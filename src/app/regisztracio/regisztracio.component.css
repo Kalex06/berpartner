@@ -1,0 +1,179 @@
+/* Modern, responsive registration page styling */
+
+:host {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg,#0f1724 0%, #2b3948 60%);
+    font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+    color: #0f1724;
+    padding: 32px;
+    box-sizing: border-box;
+}
+
+/* Card */
+#egesz {
+    width: 100%;
+    max-width: 480px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 36px;
+    box-shadow: 0 8px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    backdrop-filter: blur(6px);
+    box-sizing: border-box;
+    margin: 4vh 16px;
+}
+
+/* Header inside card (if present) */
+#egesz .title {
+    font-size: 1.375rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #fff;
+    letter-spacing: -0.2px;
+}
+
+#egesz .subtitle {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 20px;
+}
+
+/* Form rows */
+.form-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    align-items: center;
+}
+
+/* Make inputs and Angular Material filled wrappers look modern */
+:host ::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled {
+    background: linear-gradient(180deg, rgba(255,182,193,0.18), rgba(255,182,193,0.08)) !important;
+    border-radius: 10px;
+    padding: 6px 10px !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(255,182,193,0.25) !important;
+}
+
+/* inner filled background if present */
+:host ::ng-deep .mat-mdc-text-field-wrapper .mdc-text-field__filled-background {
+    background: transparent !important;
+}
+
+/* inputs inside material wrappers should be transparent so wrapper background shows */
+:host ::ng-deep .mat-mdc-text-field-wrapper input,
+:host ::ng-deep .mat-mdc-text-field-wrapper textarea,
+:host ::ng-deep .mat-mdc-text-field-wrapper .mdc-text-field__input {
+    background: transparent !important;
+    color: #fff !important;
+    padding: 12px 6px !important;
+}
+
+/* label and helper colors */
+:host ::ng-deep .mat-mdc-floating-label {
+    color: rgba(255,255,255,0.75) !important;
+    font-weight: 500;
+}
+:host ::ng-deep .mat-mdc-text-field-helper-text {
+    color: rgba(255,255,255,0.6) !important;
+    font-size: 0.82rem;
+}
+
+/* standard input fallback if not using material */
+#egesz input,
+#egesz input[type="text"],
+#egesz input[type="email"],
+#egesz input[type="password"],
+#egesz textarea,
+#egesz select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    background: linear-gradient(180deg, rgba(255,182,193,0.12), rgba(255,182,193,0.04));
+    border: 1px solid rgba(255,182,193,0.22);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    transition: box-shadow .18s ease, transform .08s ease;
+}
+
+#egesz input:focus,
+#egesz textarea:focus,
+#egesz select:focus,
+:host ::ng-deep .mat-mdc-text-field-wrapper input:focus {
+    outline: none;
+    box-shadow: 0 6px 18px rgba(255,182,193,0.08);
+    transform: translateY(-1px);
+}
+
+/* Buttons */
+.primary-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 16px;
+    background: linear-gradient(90deg,#ff6aa6 0%, #ff2d8b 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform .08s ease, box-shadow .12s ease, opacity .12s ease;
+    box-shadow: 0 8px 24px rgba(255,45,139,0.18);
+    margin-top: 10px;
+}
+
+.primary-btn:active { transform: translateY(1px) scale(.998); }
+.primary-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* secondary link/button */
+.secondary {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.85);
+}
+
+/* small helper texts */
+.hint {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 6px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    #egesz {
+        padding: 22px;
+        border-radius: 12px;
+    }
+    .form-row {
+        flex-direction: column;
+    }
+    .title {
+        font-size: 1.1rem;
+    }
+}
+
+/* accessibility: focus visible ring for keyboard users */
+:host ::ng-deep .mat-mdc-text-field-wrapper input:focus-visible,
+#egesz input:focus-visible {
+    box-shadow: 0 0 0 4px rgba(255,182,193,0.15);
+}
+
+/* error state (if you use mat-error or classes) */
+:host ::ng-deep .mat-mdc-text-field--invalid .mdc-text-field__input,
+#egesz input.error {
+    border-color: #ff6b6b !important;
+    box-shadow: 0 6px 18px rgba(255,107,107,0.08);
+}
+
+/* small spacing utility */
+.spacer { height: 8px; }
