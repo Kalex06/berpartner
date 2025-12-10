@@ -11,11 +11,16 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 
+
+import {MatStepperModule} from '@angular/material/stepper';
+import { UdvozloComponent } from './udvozlo/udvozlo.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     BejelentkezesComponent,
-    RegisztracioComponent
+    RegisztracioComponent,
+    UdvozloComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatFormFieldModule,
     FormsModule,
     MatButtonModule,
-  
+    MatStepperModule,
   ],
   providers: [
     provideAnimationsAsync()
