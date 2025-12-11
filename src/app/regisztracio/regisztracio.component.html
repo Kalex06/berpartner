@@ -1,107 +1,100 @@
-<div id="egesz">
-  <h1>Regisztráció</h1>
-
-  <div class="name-row">
-    <mat-form-field class="firstname" appearance="outline">
-      <mat-label>Vezetéknév</mat-label>
-      <input matInput type="text" placeholder="Kiss">
-    </mat-form-field>
-
-    <mat-form-field class="lastname" appearance="outline">
-      <mat-label>Keresztnév</mat-label>
-      <input matInput type="text" placeholder="Pista">
-    </mat-form-field>
-  </div>
-
-
-  <mat-form-field class="full-width" appearance="outline">
-    <mat-label>Email cím</mat-label>
-    <input matInput type="email" placeholder="kisspista@gmail.com">
-  </mat-form-field>
-
-  <mat-form-field class="full-width" appearance="outline">
-    <mat-label>Telefonszám</mat-label>
-    <input matInput type="tel" placeholder="+36 20 999 1234">
-  </mat-form-field>
-
-  <div class="password-row">
-      <mat-form-field class="password" appearance="outline">
-        <mat-label>Jelszó</mat-label>
-        <input matInput type="password" placeholder="jelszó123">
-      </mat-form-field>
-    
-        <mat-form-field class="password-again" appearance="outline">
-        <mat-label>Jelszó újra</mat-label>
-        <input matInput type="password" placeholder="jelszó123">
-      </mat-form-field>
-  </div>
-
-
-  <mat-form-field class="half-width" appearance="outline">
-    <mat-label>Város</mat-label>
-    <input matInput type="text" placeholder="Kalocsa">
-  </mat-form-field>
-
-
-
-  <div class="address-row">
-    <mat-form-field class="street" appearance="outline">
-      <mat-label>Utca</mat-label>
-      <input matInput type="text" placeholder="Miskei út">
-    </mat-form-field>
-
-    <mat-form-field class="house-number" appearance="outline">
-      <mat-label>Házszám</mat-label>
-      <input matInput type="number" placeholder="99">
-    </mat-form-field>
-  </div>
-
-  <div class="register-button">
-    <button mat-flat-button>Regisztráció</button>
-  </div>
+<div class=".registration-container">
+  <h2>Regisztráció</h2>
+  
+  <mat-stepper linear #stepper>
+  
+    <mat-step [stepControl]="nameFormGroup">
+      <form [formGroup]="nameFormGroup">
+        <ng-template matStepLabel>Adja meg a nevét</ng-template>
+        <mat-form-field>
+          <mat-label>Vezetéknév</mat-label>
+          <input matInput placeholder="Kiss" formControlName="lastName" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Keresztnév</mat-label>
+          <input matInput placeholder="Pista" formControlName="firstName" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Tovább</button>
+        </div>
+      </form>
+    </mat-step>
+  
+    <mat-step [stepControl]="contactFormGroup" [optional]="isOptional">
+      <form [formGroup]="contactFormGroup">
+        <ng-template matStepLabel>Elérhetőségek</ng-template>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="kisspista@gmail.com"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>telefonszám</mat-label>
+          <input matInput formControlName="phone" placeholder="06 20 999 1234"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Vissza</button>
+          <button mat-button matStepperNext>Tovább</button>
+        </div>
+      </form>
+    </mat-step>
+  
+    <mat-step [stepControl]="passwordFormGroup">
+      <form [formGroup]="passwordFormGroup">
+        <ng-template matStepLabel>Adja meg a jelszavát</ng-template>
+        <mat-form-field>
+          <mat-label>Jelszó</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="jelszó123"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Jelszó újra</mat-label>
+          <input matInput type="password" formControlName="confirmPassword" placeholder="jelszó123"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Vissza</button>
+          <button mat-button matStepperNext>Tovább</button>
+        </div>
+      </form>
+    </mat-step>
+  
+      <mat-step [stepControl]="addressFormGroup" [optional]="isOptional">
+      <form [formGroup]="addressFormGroup">
+        <ng-template matStepLabel>Postázási cím</ng-template>
+        <mat-form-field>
+          <mat-label>Város</mat-label>
+          <input matInput formControlName="varos" placeholder="Pl.: Dunapataj"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Utca</mat-label>
+          <input matInput formControlName="utca" placeholder="Pl.: Kalocsa út"
+                 required>
+        </mat-form-field>
+              <mat-form-field>
+          <mat-label>Házszám</mat-label>
+          <input matInput formControlName="hazszam" placeholder="Pl.: 99"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Vissza</button>
+          <button mat-button matStepperNext>Tovább</button>
+        </div>
+      </form>
+    </mat-step>
+  
+    <mat-step>
+      <ng-template matStepLabel>Befejezés</ng-template>
+      <p>A profilja készen áll!.</p>
+      <div>
+        <button mat-button matStepperPrevious>Vissza</button>
+        <button mat-button (click)="stepper.reset()">Regisztrálás</button>
+      </div>
+    </mat-step>
+  
+  </mat-stepper>
 </div>
 
 
-
-
-
-<!-- <button mat-raised-button (click)="isOptional = !isOptional">
-  {{!isOptional ? 'Enable optional steps' : 'Disable optional steps'}}
-</button>
-
-<mat-stepper linear #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-               required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
-</mat-stepper> -->

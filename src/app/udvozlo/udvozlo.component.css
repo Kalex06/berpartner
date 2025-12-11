@@ -1,26 +1,117 @@
-.welcome-container{
-    border: 2px solid orange;
-    position: relative;
-    margin-left: 50px;
-    margin-top: 100px;
-    padding: 20px;
-    max-width: 800px;
+html, body, app-root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.welcome-wrapper {
+  min-height: 100vh;
+  height: 100vh;              
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f172a;    
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;            
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  padding: 60px 50px;
+  background: linear-gradient(135deg, #fff8f0, #e08e23);  
+  border: 4px double #fb923c;
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  gap: 80px;
+}
+
+.text-content {
+  flex: 1;
+  h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #7c2d12;
+    margin-bottom: 24px;
+  }
+  p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 12px;
+  }
+}
+
+.button-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  min-width: 240px;
+
+  .login-btn {
+    width: 240px;
+    height: 56px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: 2px solid #1e293b !important;
+    color: #1e293b;
+    background-color: rgb(218, 238, 245)
+  }
+
+  .register-btn {
+    width: 240px;
+    height: 56px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: linear-gradient(180deg, #ffd9b3, #fc8627);
+    color: rgb(145, 46, 0);
+    box-shadow: 0 8px 25px rgba(251, 146, 60, 0.4);
+  }
+
+  .or {
+  font-size: 1.1rem;
+  color: #64748b;
+  font-weight: 500;
+    }
 }
 
 footer{
-    border: darkgray 1px solid;
-    background: gray;
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    text-align: center;
-    font-size: 0.9rem;
-    color: white;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #334155;          
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 16px 20px;
+  font-size: 0.9rem;
+  z-index: 10;
 }
 
-.button-column{
-    position: relative;
-    
-    gap: 10px;
+.logo{
+  position: fixed;
+  top: 2px;
+  left: 20px;
+
+  img {
+    height: 500px;
+    width: 200px;
+  }
+}
+
+@media (max-width: 868px) {
+  .card {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 30px;
+    gap: 40px;
+  }
+  .button-section {
     margin-top: 20px;
+  }
 }

@@ -14,13 +14,16 @@ import {MatButtonModule} from '@angular/material/button';
 
 import {MatStepperModule} from '@angular/material/stepper';
 import { UdvozloComponent } from './udvozlo/udvozlo.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     BejelentkezesComponent,
     RegisztracioComponent,
-    UdvozloComponent
+    UdvozloComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { UdvozloComponent } from './udvozlo/udvozlo.component';
     FormsModule,
     MatButtonModule,
     MatStepperModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideAnimationsAsync()

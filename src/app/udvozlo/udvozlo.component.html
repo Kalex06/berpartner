@@ -1,16 +1,32 @@
-<div class="welcome-container">
-    <h1>Üdvözlünk a BérPartner weboldalán!</h1>
-    <h3>Szükséged van eszközökre vagy járműre a munkádhoz vagy hobbdidhoz, de nem akarsz vagyonokat költeni? <br> Itt jó helyen vagy!</h3>
-    <p>Kérlek, jelentkezz be vagy regisztrálj a folytatáshoz.</p>
-    <div class="button-column">
-        <button mat-flat-button routerLink="/login">Bejelentkezés</button>
-        <p>vagy</p>
-        <button mat-flat-button routerLink="/register">Regisztráció</button>
+<div class="welcome-wrapper">
+
+  <img src="assets/pictures/logo_1.png" alt="BérPartner Logo" class="logo">
+
+
+  <div class="card">
+
+    <div class="text-content">
+      <h1>Üdvözlünk a BérPartner weboldalán!</h1>
+      <p>
+        Szükséged van eszközökre vagy járműre a munkádhoz vagy hobbidhoz,<br>
+        de nem akarsz vagyonokat költeni?<br>
+        Itt jó helyen vagy!
+      </p>
+      <p>Kérlek, jelentkezz be vagy regisztrálj a folytatáshoz.</p>
     </div>
+   
+    <div class="button-section">
+      <button mat-stroked-button class="login-btn" routerLink="/login">
+        Bejelentkezés
+      </button>
+      <span class="or">vagy</span>
+      <button mat-flat-button color="accent" class="register-btn" routerLink="/register">
+        Regisztráció
+      </button>
+    </div>
+  </div>
 </div>
 
 <footer>
-    <p>&copy; 2025 BérPartner. Minden jog fenntartva.</p>
-    <p>Adatkezelési tájékoztató</p>
-    <p>Impresszum</p>
+  <p>© 2025 BérPartner. Minden jog fenntartva. • Adatkezelési tájékoztató • Impresszum</p>
 </footer>
