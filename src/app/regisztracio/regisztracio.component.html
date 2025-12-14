@@ -1,4 +1,4 @@
-<div class=".registration-container">
+<div class="registration-container">
   <h2>Regisztráció</h2>
   
   <mat-stepper linear #stepper>
@@ -53,6 +53,9 @@
           <input matInput type="password" formControlName="confirmPassword" placeholder="jelszó123"
                  required>
         </mat-form-field>
+        <div *ngIf="passwordFormGroup.hasError('passwordMismatch')" class="password-error">
+          A jelszavak nem egyeznek
+        </div>
         <div>
           <button mat-button matStepperPrevious>Vissza</button>
           <button mat-button matStepperNext>Tovább</button>
@@ -65,7 +68,7 @@
         <ng-template matStepLabel>Postázási cím</ng-template>
         <mat-form-field>
           <mat-label>Város</mat-label>
-          <input matInput formControlName="varos" placeholder="Pl.: Dunapataj"
+          <input matInput formControlName="varos" placeholder="Pl.: Miske"
                  required>
         </mat-form-field>
         <mat-form-field>
@@ -90,7 +93,7 @@
       <p>A profilja készen áll!.</p>
       <div>
         <button mat-button matStepperPrevious>Vissza</button>
-        <button mat-button (click)="stepper.reset()">Regisztrálás</button>
+        <button mat-button (click)="submit()">Regisztrálás</button>
       </div>
     </mat-step>
   

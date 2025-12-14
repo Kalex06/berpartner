@@ -5,6 +5,7 @@ import { BejelentkezesComponent } from './bejelentkezes/bejelentkezes.component'
 import { RegisztracioComponent } from './regisztracio/regisztracio.component';
 import { UdvozloComponent } from './udvozlo/udvozlo.component';
 
+
 const routes: Routes = [
   {path:'', component:UdvozloComponent},
   {path:'login',component:BejelentkezesComponent},
