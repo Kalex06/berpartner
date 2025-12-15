@@ -11,6 +11,11 @@ export class RegisztracioComponent {
 
   private _formBuilder = inject(FormBuilder);
 
+  hidePassword = true;
+  hideConfirm = true;
+  passwordStepSubmitted = false;
+
+
   nameFormGroup = this._formBuilder.group({
     lastName: ['', Validators.required],
     firstName: ['', Validators.required],
@@ -33,6 +38,16 @@ export class RegisztracioComponent {
     hazszam: ['', Validators.required],
   });
 
+
+  goPasswordNext(stepper: any) {
+    this.passwordStepSubmitted = true;
+
+    if (this.passwordFormGroup.invalid) {
+      this.passwordFormGroup.markAllAsTouched();
+      return;
+    }
+    stepper.next();
+  }
 
 
   passwordMatchValidator(group: any) {

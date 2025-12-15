@@ -1,103 +1,147 @@
 <div class="registration-container">
   <h2>Regisztráció</h2>
-  
-  <mat-stepper linear #stepper>
-  
-    <mat-step [stepControl]="nameFormGroup">
-      <form [formGroup]="nameFormGroup">
+
+  <div class="stepper-card">
+    <mat-horizontal-stepper linear #stepper>
+      <mat-step [stepControl]="nameFormGroup">
         <ng-template matStepLabel>Adja meg a nevét</ng-template>
-        <mat-form-field>
-          <mat-label>Vezetéknév</mat-label>
-          <input matInput placeholder="Kiss" formControlName="lastName" required>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Keresztnév</mat-label>
-          <input matInput placeholder="Pista" formControlName="firstName" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Tovább</button>
-        </div>
-      </form>
-    </mat-step>
-  
-    <mat-step [stepControl]="contactFormGroup" [optional]="isOptional">
-      <form [formGroup]="contactFormGroup">
+
+        <form [formGroup]="nameFormGroup" class="step-form">
+          <div class="form-grid">
+            <mat-form-field appearance="outline">
+              <mat-label>Vezetéknév</mat-label>
+              <input matInput placeholder="Kiss" formControlName="lastName" required>
+              <mat-error *ngIf="nameFormGroup.get('lastName')?.hasError('required')">
+                Kötelező kitölteni
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Keresztnév</mat-label>
+              <input matInput placeholder="Pista" formControlName="firstName" required>
+              <mat-error *ngIf="nameFormGroup.get('firstName')?.hasError('required')">
+                Kötelező kitölteni
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="step-actions">
+            <button mat-flat-button color="accent" matStepperNext>Tovább</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="contactFormGroup">
         <ng-template matStepLabel>Elérhetőségek</ng-template>
-        <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" placeholder="kisspista@gmail.com"
-                 required>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>telefonszám</mat-label>
-          <input matInput formControlName="phone" placeholder="06 20 999 1234"
-                 required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Vissza</button>
-          <button mat-button matStepperNext>Tovább</button>
-        </div>
-      </form>
-    </mat-step>
-  
-    <mat-step [stepControl]="passwordFormGroup">
-      <form [formGroup]="passwordFormGroup">
+
+        <form [formGroup]="contactFormGroup" class="step-form">
+          <div class="form-grid">
+            <mat-form-field appearance="outline">
+              <mat-label>E-mail cí­m</mat-label>
+              <input matInput type="email" placeholder="kisspista@gmail.com" formControlName="email" required>
+              <mat-error *ngIf="contactFormGroup.get('email')?.invalid">
+                Érvénytelen e-mail cím
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Telefonszám</mat-label>
+              <input matInput placeholder="+36 20 999 1234" formControlName="phone" required>
+              <mat-error *ngIf="contactFormGroup.get('phone')?.hasError('required')">
+                kötelező mező
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="step-actions">
+            <button mat-stroked-button matStepperPrevious>Vissza</button>
+            <button mat-flat-button color="accent" matStepperNext>Tovább</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="passwordFormGroup">
         <ng-template matStepLabel>Adja meg a jelszavát</ng-template>
-        <mat-form-field>
-          <mat-label>Jelszó</mat-label>
-          <input matInput type="password" formControlName="password" placeholder="jelszó123"
-                 required>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Jelszó újra</mat-label>
-          <input matInput type="password" formControlName="confirmPassword" placeholder="jelszó123"
-                 required>
-        </mat-form-field>
-        <div *ngIf="passwordFormGroup.hasError('passwordMismatch')" class="password-error">
-          A jelszavak nem egyeznek
-        </div>
-        <div>
-          <button mat-button matStepperPrevious>Vissza</button>
-          <button mat-button matStepperNext>Tovább</button>
-        </div>
-      </form>
-    </mat-step>
-  
-      <mat-step [stepControl]="addressFormGroup" [optional]="isOptional">
-      <form [formGroup]="addressFormGroup">
+
+        <form [formGroup]="passwordFormGroup" class="step-form">
+          <div class="form-grid">
+            <mat-form-field appearance="outline">
+              <mat-label>Jelszó</mat-label>
+              <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" placeholder="jelszó123" required>
+              <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button" tabindex="-1">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+                <mat-error *ngIf="
+                  passwordFormGroup.get('password')?.hasError('required') &&
+                  passwordStepSubmitted
+                ">
+                  Kötelező mező
+                </mat-error>
+              <mat-error *ngIf="passwordFormGroup.hasError('mustMatch')">
+                A jelszavak nem egyeznek 
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Jelszó újra</mat-label>
+              <input matInput [type]="hideConfirm ? 'password' : 'text'" formControlName="confirmPassword" placeholder="jelszó123" required>
+              <button mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" type="button" tabindex="-1">
+                <mat-icon>{{hideConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="passwordFormGroup.hasError('mustMatch')">
+                A jelszavak nem egyeznek
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="step-actions">
+            <button mat-stroked-button matStepperPrevious>Vissza</button>
+            <button mat-flat-button color="accent" (click)="goPasswordNext(stepper)"> Tovább </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="addressFormGroup">
         <ng-template matStepLabel>Postázási cím</ng-template>
-        <mat-form-field>
-          <mat-label>Város</mat-label>
-          <input matInput formControlName="varos" placeholder="Pl.: Miske"
-                 required>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Utca</mat-label>
-          <input matInput formControlName="utca" placeholder="Pl.: Kalocsa út"
-                 required>
-        </mat-form-field>
-              <mat-form-field>
-          <mat-label>Házszám</mat-label>
-          <input matInput formControlName="hazszam" placeholder="Pl.: 99"
-                 required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Vissza</button>
-          <button mat-button matStepperNext>Tovább</button>
+
+        <form [formGroup]="addressFormGroup" class="step-form">
+          <div class="form-grid">
+            <mat-form-field appearance="outline">
+              <mat-label>Város</mat-label>
+              <input matInput placeholder="Pl. Kalocsa" formControlName="varos" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Utca</mat-label>
+              <input matInput placeholder="Pl. Miskei út" formControlName="utca" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Házszám</mat-label>
+              <input matInput placeholder="Pl. 99" formControlName="hazszam" required>
+            </mat-form-field>
+          </div>
+
+          <div class="step-actions">
+            <button mat-stroked-button matStepperPrevious>Vissza</button>
+            <button mat-flat-button color="accent" matStepperNext>Tovább</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Befejezés</ng-template>
+
+        <div class="completion-step">
+          <mat-icon class="success-icon">check_circle</mat-icon>
+          <h3>Köszönjük a regisztrációt!</h3>
+          <p>A profilja elkészült. Már nyugodtan használhatja az oldalt</p>
+
+          <div class="step-actions">
+            <button mat-stroked-button matStepperPrevious>Vissza</button>
+            <button mat-flat-button color="accent" (click)="submit()">Belépés</button>
+          </div>
         </div>
-      </form>
-    </mat-step>
-  
-    <mat-step>
-      <ng-template matStepLabel>Befejezés</ng-template>
-      <p>A profilja készen áll!.</p>
-      <div>
-        <button mat-button matStepperPrevious>Vissza</button>
-        <button mat-button (click)="submit()">Regisztrálás</button>
-      </div>
-    </mat-step>
-  
-  </mat-stepper>
-</div>
-
-
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+</div> 
