@@ -60,7 +60,7 @@ mat-horizontal-stepper {
   font-weight: 500;
 }
 
-/* Form mezĹ‘k */
+
 mat-form-field {
   width: 100%;
   margin-bottom: 20px;
@@ -83,7 +83,7 @@ mat-form-field {
   caret-color: #fb923c;
 }
 
-/* Gombok */
+
 button[mat-button] {
   color: #fb923c;
   font-weight: 600;
@@ -108,7 +108,7 @@ button[mat-flat-button][color="accent"]:hover {
   box-shadow: 0 12px 35px rgba(251, 146, 60, 0.5);
 }
 
-/* Form grid */
+
 .step-form .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -123,7 +123,6 @@ button[mat-flat-button][color="accent"]:hover {
   margin-top: 20px;
 }
 
-/* BefejezĂ©s lĂ©pĂ©s */
 .completion-step {
   text-align: center;
   padding: 40px 0;
@@ -142,7 +141,32 @@ button[mat-flat-button][color="accent"]:hover {
   margin: 20px 0;
 }
 
-/* ResponsĂ­v */
+.step-actions {
+  display: flex;
+  justify-content: flex-end;   
+  align-items: center;
+  margin-top: 30px;
+  padding: 0 20px;
+  gap: 16px;                   
+}
+
+
+.step-actions:has(.back-button) {
+  justify-content: space-between;
+}
+
+
+@media (max-width: 768px) {
+  .step-actions {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .step-actions button {
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .registration-container h2 {
     font-size: 1.8rem;
@@ -177,5 +201,44 @@ button[mat-flat-button][color="accent"]:hover {
 
   .stepper-card {
     padding: 20px;
+  }
+}
+
+
+
+.logo {
+  position: fixed;
+  top: 30px;
+  left: 40px;
+  z-index: 100;                  
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;                 
+}
+
+.logo img {
+  height: 120px;                 
+  width: auto;
+  object-fit: contain;
+}
+
+
+@media (max-width: 768px) {
+  .logo {
+    top: 20px;
+    left: 20px;
+  }
+
+  .logo img {
+    height: 90px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    height: 80px;
   }
 }

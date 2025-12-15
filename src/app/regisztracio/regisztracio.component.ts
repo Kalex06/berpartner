@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators , FormGroup} from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -27,10 +27,9 @@ export class RegisztracioComponent {
   });
 
   passwordFormGroup = this._formBuilder.group({
-    password: ['', Validators.required],
-    confirmPassword: ['', Validators.required]},{
-     validators: (group) => this.passwordMatchValidator(group)
-    });
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
+    }, { validators: this.passwordMatchValidator }); 
 
   addressFormGroup = this._formBuilder.group({
     varos: ['', Validators.required],
@@ -38,24 +37,39 @@ export class RegisztracioComponent {
     hazszam: ['', Validators.required],
   });
 
+passwordMatchValidator(group: FormGroup): null {
+  const password = group.get('password')?.value;
+  const confirmPassword = group.get('confirmPassword')?.value;
+
+  const hasMismatch = password && confirmPassword && password !== confirmPassword;
+
+
+  if (hasMismatch) {
+    group.get('password')?.setErrors({ mustMatch: true });
+    group.get('confirmPassword')?.setErrors({ mustMatch: true });
+  } else {
+
+    ['password', 'confirmPassword'].forEach(controlName => {
+      const control = group.get(controlName);
+      if (control?.hasError('mustMatch')) {
+        const errors = { ...control.errors };
+        delete errors['mustMatch'];
+        control.setErrors(Object.keys(errors).length > 0 ? errors : null);
+      }
+    });
+  }
+  return null;
+}
 
   goPasswordNext(stepper: any) {
     this.passwordStepSubmitted = true;
+    this.passwordFormGroup.markAllAsTouched();
 
     if (this.passwordFormGroup.invalid) {
-      this.passwordFormGroup.markAllAsTouched();
       return;
     }
     stepper.next();
   }
-
-
-  passwordMatchValidator(group: any) {
-    const pass = group.get('password')?.value;
-    const confirm = group.get('confirmPassword')?.value;
-    return pass === confirm ? null : { passwordMismatch: true };
-  }
-
  isOptional = false; 
 
   
