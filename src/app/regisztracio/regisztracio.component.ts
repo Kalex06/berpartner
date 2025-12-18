@@ -33,6 +33,7 @@ export class RegisztracioComponent {
 
   addressFormGroup = this._formBuilder.group({
     varos: ['', Validators.required],
+    iranyitoszam: ['', Validators.required],
     utca: ['', Validators.required],
     hazszam: ['', Validators.required],
   });
@@ -42,7 +43,6 @@ passwordMatchValidator(group: FormGroup): null {
   const confirmPassword = group.get('confirmPassword')?.value;
 
   const hasMismatch = password && confirmPassword && password !== confirmPassword;
-
 
   if (hasMismatch) {
     group.get('password')?.setErrors({ mustMatch: true });
@@ -72,13 +72,9 @@ passwordMatchValidator(group: FormGroup): null {
   }
  isOptional = false; 
 
-  
-
 constructor(private auth:AuthService){}
 
-
   submit(){
-    
     const data = {
     nev: `${this.nameFormGroup.value.lastName} ${this.nameFormGroup.value.firstName}`,
     telefonszam: this.contactFormGroup.value.phone,

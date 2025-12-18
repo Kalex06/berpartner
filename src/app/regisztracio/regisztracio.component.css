@@ -60,7 +60,6 @@ mat-horizontal-stepper {
   font-weight: 500;
 }
 
-
 mat-form-field {
   width: 100%;
   margin-bottom: 20px;
@@ -82,7 +81,6 @@ mat-form-field {
   color: #1e293b !important;
   caret-color: #fb923c;
 }
-
 
 button[mat-button] {
   color: #fb923c;
@@ -108,19 +106,11 @@ button[mat-flat-button][color="accent"]:hover {
   box-shadow: 0 12px 35px rgba(251, 146, 60, 0.5);
 }
 
-
 .step-form .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   margin: 30px 0;
-}
-
-.step-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  margin-top: 20px;
 }
 
 .completion-step {
@@ -143,6 +133,13 @@ button[mat-flat-button][color="accent"]:hover {
 
 .step-actions {
   display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.step-actions {
+  display: flex;
   justify-content: flex-end;   
   align-items: center;
   margin-top: 30px;
@@ -150,11 +147,28 @@ button[mat-flat-button][color="accent"]:hover {
   gap: 16px;                   
 }
 
-
 .step-actions:has(.back-button) {
   justify-content: space-between;
 }
 
+.logo {
+  position: fixed;
+  top: 30px;
+  left: 40px;
+  z-index: 100;                  
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;                 
+}
+
+.logo img {
+  height: 120px;                 
+  width: auto;
+  object-fit: contain;
+}
 
 @media (max-width: 768px) {
   .step-actions {
@@ -190,6 +204,17 @@ button[mat-flat-button][color="accent"]:hover {
   }
 }
 
+@media (max-width: 768px) {
+  .logo {
+    top: 20px;
+    left: 20px;
+  }
+
+  .logo img {
+    height: 90px;
+  }
+}
+
 @media (max-width: 480px) {
   .registration-container {
     padding: 20px 15px;
@@ -201,39 +226,6 @@ button[mat-flat-button][color="accent"]:hover {
 
   .stepper-card {
     padding: 20px;
-  }
-}
-
-
-
-.logo {
-  position: fixed;
-  top: 30px;
-  left: 40px;
-  z-index: 100;                  
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.logo:hover {
-  opacity: 0.8;                 
-}
-
-.logo img {
-  height: 120px;                 
-  width: auto;
-  object-fit: contain;
-}
-
-
-@media (max-width: 768px) {
-  .logo {
-    top: 20px;
-    left: 20px;
-  }
-
-  .logo img {
-    height: 90px;
   }
 }
 

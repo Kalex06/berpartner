@@ -121,7 +121,6 @@
         </form>
       </mat-step>
 
-
       <mat-step [stepControl]="addressFormGroup">
         <ng-template matStepLabel>Postázási cím</ng-template>
 
@@ -130,6 +129,11 @@
             <mat-form-field appearance="outline">
               <mat-label>Város</mat-label>
               <input matInput placeholder="Pl. Kalocsa" formControlName="varos" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Irányítószám</mat-label>
+              <input matInput placeholder="Pl. 6300" formControlName="iranyitoszam" required>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
@@ -148,27 +152,23 @@
               <button mat-stroked-button matStepperPrevious>Vissza</button>
             </div>
             <div class="next-button">
-              <button mat-flat-button color="accent" matStepperNext>Tovább</button>
+              <button mat-flat-button color="accent" matStepperNext (click)="submit()">Befejezés</button>
             </div>
           </div>
         </form>
       </mat-step>
 
-
       <mat-step>
         <ng-template matStepLabel>Befejezés</ng-template>
-
         <div class="completion-step">
           <mat-icon class="success-icon">check_circle</mat-icon>
           <h3>Köszönjük a regisztrációt!</h3>
-          <p>A profilja elkészült. Már nyugodtan használhatja az oldalt</p>
+          <p>A profilja elkészült. Már nyugodtan használhatja az oldalt!</p>
+          <p>Lépjen tovább a bejelentkezéshez.</p>
 
           <div class="step-actions">
-            <div class="back-button">
-              <button mat-stroked-button matStepperPrevious>Vissza</button>
-            </div>
             <div class="next-button">
-              <button mat-flat-button color="accent" (click)="submit()">Befejezés</button>
+              <a routerLink="/login"><button mat-flat-button color="accent">Tovább a bejelentkezéshez</button></a>
             </div>
           </div>
         </div>

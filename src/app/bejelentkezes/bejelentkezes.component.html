@@ -1,17 +1,31 @@
-<div id="egesz">
+<div class="login-container">
+    <a routerLink="/" class="logo">
+        <img src="assets/pictures/logo_2.png" alt="BérPartner Logo">
+    </a>
+    <div id="egesz">
+        <h1>Bejelentkezés</h1>
 
-    <h1>Bejelentkezés</h1>
+            <mat-form-field appearance="outline">
+                <mat-label>E-mail cím</mat-label>
+                <input matInput type="email" placeholder="kisspista@gmail.com" formControlName="email" required>
+                <mat-error *ngIf="contactFormGroup.get('email')?.invalid">
+                    Érvénytelen e-mail cím
+                </mat-error>
+            </mat-form-field>
 
-    <mat-form-field class="username">
-        <mat-label>Felhasználónév</mat-label>
-        <input type="text" matInput>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Jelszó</mat-label>
+                <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required>
+                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button" tabindex="-1">
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="passwordFormGroup.get('password')?.hasError('required') && passwordStepSubmitted">
+                    Kötelező kitölteni
+                </mat-error>
+            </mat-form-field>
 
-    <mat-form-field class="password">
-        <mat-label>Jelszó</mat-label>
-        <input matInput type="text">
-    </mat-form-field>
-
-    <div class="login-button">
-        <button mat-flat-button>Bejelentkezés</button>
+        <div class="login-button">
+            <button mat-flat-button>Bejelentkezés</button>
+        </div>
+    </div>
 </div>

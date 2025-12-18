@@ -1,32 +1,133 @@
-#egesz {
+.password-error {
+    color: red;
+    font-weight: bold;
+}
+
+.login-container {
+    min-height: 100vh;
+    background: #0f172a;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    border: solid rgb(120, 174, 255) 2px;
+    justify-content: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+#egesz {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 3px solid #fb923c;
     border-radius: 20px;
-    max-width: 300px;
-    max-height: 250px;
-    padding: 60px;
-    margin: 0 auto;
-    width: 100%;
-    min-width: 150px;
-    margin-top: 10%;
-}
-
-.password {
-    width: 100%;
-}
-
-.username {
-    width: 100%;
-}
-
-.login-button {
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
     text-align: center;
+}
+
+.login-container h1 {
+    color: #1e293b;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #64748b;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #fb923c !important;
+}
+
+::ng-deep .mat-form-field-label {
+    color: #475569 !important;
+}
+
+::ng-deep .mat-input-element {
+    color: #1e293b !important;
+    caret-color: #fb923c;
+}
+
+.login-button button[mat-flat-button][color="accent"] {
+    background: linear-gradient(180deg, #ffd9b3, #fb923c);
+    color: #7c2d12;
+    border-radius: 12px;
+    padding: 0 30px;
+    height: 48px;
+    font-weight: 700;
+    box-shadow: 0 8px 25px rgba(251, 146, 60, 0.4);
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto 0 auto;
     display: block;
 }
 
-:host {
-    display: flex;
-    justify-content: center;
-    align-items: center;       
-    overflow: hidden;   
+.login-button button[mat-flat-button][color="accent"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(251, 146, 60, 0.5);
+}
+
+
+.logo {
+  position: fixed;
+  top: 30px;
+  left: 40px;
+  z-index: 100;                  
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;                 
+}
+
+.logo img {
+  height: 120px;                 
+  width: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .login-container h1 {
+        font-size: 1.8rem;
+    }
+    #egesz {
+        padding: 30px;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 20px 15px;
+    }
+    .login-container h1 {
+        font-size: 1.6rem;
+    }
+    #egesz {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    height: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo {
+    top: 20px;
+    left: 20px;
+  }
+
+  .logo img {
+    height: 90px;
+  }
 }
