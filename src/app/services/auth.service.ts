@@ -14,4 +14,24 @@ export class AuthService {
   register(data: any) :Observable<any>{
     return this.http.post('http://localhost:3000/auth/regist', data);
   }
+
+  login(data: { email: string; jelszo: string }) {
+    return this.http.post<any>(`http://localhost:3000/auth/login`, data);
+  }
+
+  saveToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
 }
