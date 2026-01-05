@@ -18,7 +18,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatIconModule } from '@angular/material/icon';
+
+// Home Component
 import { HomeComponent } from './home/home.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+
 
 
 @NgModule({
@@ -40,6 +46,9 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatIconModule,
+    MatToolbarModule,
+    MatTabsModule,
+    MatCardModule
   ],
   providers: [
     provideAnimationsAsync()
@@ -47,3 +56,5 @@ import { HomeComponent } from './home/home.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export class ToolbarSimpleExample {}
