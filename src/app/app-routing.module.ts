@@ -5,6 +5,7 @@ import { BejelentkezesComponent } from './bejelentkezes/bejelentkezes.component'
 import { RegisztracioComponent } from './regisztracio/regisztracio.component';
 import { UdvozloComponent } from './udvozlo/udvozlo.component';
 import { HomeComponent } from './home/home.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path:'login',component:BejelentkezesComponent},
   {path:'register', component:RegisztracioComponent},
   {path:'home', component:HomeComponent},
+  {path:'settings', component:SettingsComponent}
 ];
 
 

@@ -1,0 +1,19 @@
+<div class="settings-container">
+    <p><mat-slide-toggle>Sötét mód</mat-slide-toggle></p>
+
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Új jelszó</mat-label>
+            <input type="password" matInput [formControl]="passwordFormControl" placeholder="Jelszó123" formControlName="newPassword">
+            @if (passwordFormControl.hasError('required')) {
+            <mat-error>A jelszó mező<strong>hiányos</strong></mat-error>
+            }
+            @if (passwordFormControl.hasError('minLength')) {
+            <mat-error>Minimum 6 karaktert adjon meg!</mat-error>
+            }
+            @if (passwordFormControl.hasError('maxLength')) {
+            <mat-error>Maximum 255 karaktert adjon meg!</mat-error>
+            }
+        </mat-form-field>
+    </form>
+</div>

@@ -24,6 +24,9 @@ import { HomeComponent } from './home/home.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
+import { SettingsComponent } from './settings/settings.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -34,6 +37,7 @@ import {MatCardModule} from '@angular/material/card';
     RegisztracioComponent,
     UdvozloComponent,
     HomeComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,9 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,
     MatToolbarModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule,
+    MatSlideToggleModule,
   ],
   providers: [
     provideAnimationsAsync()

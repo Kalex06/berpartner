@@ -27,12 +27,12 @@ export class RegisztracioComponent {
   });
 
   passwordFormGroup = this._formBuilder.group({
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required]],
       confirmPassword: ['', Validators.required]
     }, { validators: this.passwordMatchValidator }); 
 
   addressFormGroup = this._formBuilder.group({
-    varos: ['', Validators.required],
+    varos: ['', Validators.required, Validators],
     iranyitoszam: ['', Validators.required],
     utca: ['', Validators.required],
     hazszam: ['', Validators.required],

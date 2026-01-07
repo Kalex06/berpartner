@@ -4,11 +4,32 @@
             <img src="assets/pictures/logo_2.png" alt="BérPartner Logo" class="logo_img">
             <span>BérPartner</span>
             <span class="example-spacer"></span>
-            <button mat-icon-button class="example-icon favorite-icon">
-                <mat-icon>shopping_cart</mat-icon>
-            </button>
-            <button mat-icon-button class="example-icon">
+            <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
                 <mat-icon>person</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="">
+                    <mat-icon>shopping_basket</mat-icon>
+                    <span>Bérléseid</span>
+                </button>
+                <button mat-menu-item routerLink="">
+                    <mat-icon>receipt</mat-icon>
+                    <span>Bérbeadásaid</span>
+                </button>
+                <button mat-menu-item routerLink="/settings">
+                    <mat-icon>settings</mat-icon>
+                    <span>Beállítások</span>
+                </button>
+                <button mat-menu-item>
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Kijelentkezés</span>
+                </button>
+            </mat-menu>
+            <button mat-icon-button class="example-icon favorite-icon">
+                <mat-icon>mail_outline</mat-icon>
+            </button>
+            <button mat-icon-button class="example-icon" routerLink="">
+                <mat-icon>add_circle_outline</mat-icon>
             </button>
         </mat-toolbar>
     </nav>
