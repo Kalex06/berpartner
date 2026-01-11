@@ -1,0 +1,6 @@
+.delete-button {
+  color: red !important;                  
+  border: solid 2px red !important;
+  background-color: rgb(235, 235, 235) !important; 
+
+}

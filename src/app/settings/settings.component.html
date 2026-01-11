@@ -1,19 +1,121 @@
-<div class="settings-container">
-    <p><mat-slide-toggle>Sötét mód</mat-slide-toggle></p>
+<div class="settings-page">
+    <a routerLink="/home" class="logo">
+        <img src="assets/pictures/logo_2.png" alt="BérPartner Logo" class="logo_img">
+    </a>
+    <div class="settings-container">
 
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-            <mat-label>Új jelszó</mat-label>
-            <input type="password" matInput [formControl]="passwordFormControl" placeholder="Jelszó123" formControlName="newPassword">
-            @if (passwordFormControl.hasError('required')) {
-            <mat-error>A jelszó mező<strong>hiányos</strong></mat-error>
-            }
-            @if (passwordFormControl.hasError('minLength')) {
-            <mat-error>Minimum 6 karaktert adjon meg!</mat-error>
-            }
-            @if (passwordFormControl.hasError('maxLength')) {
-            <mat-error>Maximum 255 karaktert adjon meg!</mat-error>
-            }
-        </mat-form-field>
-    </form>
+        <div class="settings-card">
+            <h2 class="settings-title">Beállítások</h2>
+
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title> Oldal beállítások </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="setting-item">
+                        <mat-slide-toggle>
+                            Sötét mód
+                        </mat-slide-toggle>
+                    </div>
+                    <!--profile pic  -->
+                    <div class="setting-item">
+                        <p>Profilkép beállítása:</p>
+                        <input type="file" accept="image/*" class="img-upload">
+                    </div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title> Személyes információk </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p>Név</p>
+                    <p>Jelszó</p>
+                    <p>E-mail cím</p>
+                    <p>Telefonszám</p>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title> Biztonság & Védelem </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p>Jelszó változtatás</p>
+                    <div class="setting-item">
+                        <form [formGroup]="passwordForm">
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Új jelszó</mat-label>
+                                <input matInput type="password" formControlName="newPassword"
+                                    placeholder="Legalább 6 karakter">
+
+                                @if (passwordForm.get('newPassword')?.hasError('required') &&
+                                passwordForm.get('newPassword')?.touched) {
+                                <mat-error>A jelszó megadása kötelező</mat-error>
+                                }
+                                @if (passwordForm.get('newPassword')?.hasError('minlength') &&
+                                passwordForm.get('newPassword')?.touched) {
+                                <mat-error>Minimum 6 karakter szükséges</mat-error>
+                                }
+                                @if (passwordForm.get('newPassword')?.hasError('maxlength') &&
+                                passwordForm.get('newPassword')?.touched) {
+                                <mat-error>Maximum 255 karakter engedélyezett</mat-error>
+                                }
+                            </mat-form-field>
+
+                            <button mat-raised-button color="accent" type="submit" [disabled]="passwordForm.invalid">
+                                Jelszó módosítása
+                            </button>
+                        </form>
+                    </div>
+
+                    <p>E-mail cím változtatás</p>
+                    <div class="setting-item">
+                        <form [formGroup]="emailForm">
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Új E-mail</mat-label>
+                                <input matInput type="email" formControlName="newEmail"
+                                    placeholder="Legalább 6 karakter">
+                                @if (emailForm.get('newEmail')?.hasError('required') &&
+                                emailForm.get('newEmail')?.touched) {
+                                <mat-error>Az e-mail megadása kötelező</mat-error>
+                                }
+                                @if (emailForm.get('newEmail')?.hasError('email') && emailForm.get('newEmail')?.touched)
+                                {
+                                <mat-error>Érvénytelen e-mail cím</mat-error>
+                                }
+                            </mat-form-field>
+
+                            <button mat-raised-button color="accent" type="submit" [disabled]="emailForm.invalid">
+                                E-mail módosítása
+                            </button>
+                        </form>
+                    </div>
+
+                    <p>Telefonszám változtatás</p>
+                    <div class="setting-item">
+                        <form [formGroup]="phoneForm">
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Új Telefonszám</mat-label>
+                                <input matInput type="tel" formControlName="newPhone" placeholder="+36 30 123 4567">
+                                @if (phoneForm.get('newPhone')?.hasError('required') &&
+                                phoneForm.get('newPhone')?.touched) {
+                                <mat-error>A telefonszám megadása kötelező</mat-error>
+                                }
+                                @if (phoneForm.get('newPhone')?.hasError('pattern') &&
+                                phoneForm.get('newPhone')?.touched) {
+                                <mat-error>Érvénytelen telefonszám formátum</mat-error>
+                                }
+                            </mat-form-field>
+
+                            <button mat-raised-button color="accent" type="submit" [disabled]="phoneForm.invalid">
+                                Telefonszám módosítása
+                            </button>
+                        </form>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+            <button mat-raised-button class="delete-button" (click)="openUserDeletionDialog()">
+                Fiók törlése
+            </button>
+        </div>
+    </div>
 </div>

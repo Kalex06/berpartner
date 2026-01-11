@@ -1,0 +1,78 @@
+.settings-page {
+  min-height: 100vh;
+  padding: 20px 20px;
+}
+
+.settings-container {
+  min-height: 100vh;
+  background-color: white;           /* Pure white background */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.settings-card {
+  width: 100%;
+  max-width: 480px;                    /* Comfortable width for forms – adjust as needed */
+  background-color: white;
+  border: 4px double #fb923c;          /* Double border in requested orange */
+  border-radius: 12px;
+  padding: 32px 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Subtle elevation */
+}
+
+.settings-title {
+  font-size: 28px;
+  text-align: center;
+}
+
+.setting-item {
+  margin-bottom: 32px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Better spacing and alignment for Material components */
+:host ::ng-deep .mat-mdc-form-field {
+  width: 100%;
+}
+
+:host ::ng-deep .mat-mdc-slide-toggle {
+  font-size: 16px;
+}
+
+.delete-button {
+  color: red !important;                  
+  border: solid 2px red !important;
+  background-color: rgb(235, 235, 235) !important; 
+  width: 30%;
+  margin-top: 24px;
+}
+
+.logo_img{
+  height: 50px;      
+  width: auto;       
+  margin-left: 16px; 
+  margin-right: 16px; 
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .settings-card {
+    padding: 24px 20px;
+    border-width: 3px;                 /* Slightly thinner on small screens */
+  }
+  
+  .settings-title {
+    font-size: 24px;
+  }
+
+    .logo-img {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}

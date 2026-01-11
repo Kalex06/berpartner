@@ -20,37 +20,22 @@
                     <mat-icon>settings</mat-icon>
                     <span>Beállítások</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item routerLink="/login">
                     <mat-icon>exit_to_app</mat-icon>
                     <span>Kijelentkezés</span>
                 </button>
             </mat-menu>
-            <button mat-icon-button class="example-icon favorite-icon">
+            <button mat-icon-button class="example-icon" (click)="openNotifications()">
                 <mat-icon>mail_outline</mat-icon>
             </button>
-            <button mat-icon-button class="example-icon" routerLink="">
+            <button mat-icon-button class="example-icon" >
                 <mat-icon>add_circle_outline</mat-icon>
             </button>
         </mat-toolbar>
     </nav>
     <div class="tabs-container">
         <mat-toolbar>
-            <!-- <mat-tab-group mat-stretch-tabs animationDuration="200ms" class="full-width-tabs">
 
-                <mat-tab label="">
-                    
-                </mat-tab>
-                
-
-                <mat-tab label="">
-                  
-                </mat-tab>
-
-                <mat-tab label="">
-                    
-                </mat-tab>
-
-            </mat-tab-group> -->
         </mat-toolbar>
     </div>
 </div>

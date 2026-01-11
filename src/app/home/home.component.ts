@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { NotificationsComponent } from '../notifications/notifications.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -8,4 +10,9 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  readonly dialog = inject(MatDialog);
+
+  openNotifications() {
+    this.dialog.open(NotificationsComponent);
+  }
 }
