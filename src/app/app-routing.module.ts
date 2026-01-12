@@ -14,6 +14,7 @@ const routes: Routes = [
   {path:'register', component:RegisztracioComponent},
   {path:'home', component:HomeComponent},
   {path:'settings', component:SettingsComponent}
+  
 ];
 
 
