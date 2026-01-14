@@ -1,5 +1,5 @@
 <div class="registration-container">
-<a routerLink="/" class="logo">
+  <a routerLink="/" class="logo">
     <img src="assets/pictures/logo_2.png" alt="BérPartner Logo">
   </a>
 
@@ -41,7 +41,6 @@
 
       <mat-step [stepControl]="contactFormGroup">
         <ng-template matStepLabel>Elérhetőségek</ng-template>
-
         <form [formGroup]="contactFormGroup" class="step-form">
           <div class="form-grid">
             <mat-form-field appearance="outline">
@@ -57,6 +56,9 @@
               <input matInput placeholder="+36 20 999 1234" formControlName="phone" required>
               <mat-error *ngIf="contactFormGroup.get('phone')?.hasError('required')">
                 Kötelező mező
+              </mat-error>
+              <mat-error *ngIf="contactFormGroup.get('phone')?.hasError('pattern')">
+                Érvénytelen telefonszám formátum.
               </mat-error>
             </mat-form-field>
           </div>
@@ -104,7 +106,7 @@
                 *ngIf="passwordFormGroup.get('confirmPassword')?.hasError('required') && passwordStepSubmitted">
                 Kötelező kitölteni
               </mat-error>
-              <mat-error *ngIf="passwordFormGroup.get('confirmPassword')?.hasError('mustMatch')">
+              <mat-error *ngIf="passwordFormGroup.errors?.['mustMatch'] && passwordFormGroup.touched">
                 A jelszavak nem egyeznek
               </mat-error>
             </mat-form-field>
@@ -152,7 +154,8 @@
               <button mat-stroked-button matStepperPrevious>Vissza</button>
             </div>
             <div class="next-button">
-              <button mat-flat-button color="accent" matStepperNext (click)="submit()">Befejezés</button>
+              <button mat-flat-button color="accent" matStepperNext (click)="submit()"
+                [disabled]="addressFormGroup.invalid">Befejezés</button>
             </div>
           </div>
         </form>
@@ -168,7 +171,7 @@
 
           <div class="step-actions">
             <div class="next-button">
-              <a routerLink="/login"><button mat-flat-button color="accent">Tovább a bejelentkezéshez</button></a>
+              <a routerLink="/home"><button mat-flat-button color="accent">Tovább a főoldalra</button></a>
             </div>
           </div>
         </div>

@@ -37,6 +37,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 // Notifications Component
 import {MatListModule} from '@angular/material/list';
 import { UserDeletionComponent } from './user-deletion/user-deletion.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -51,6 +52,7 @@ import { UserDeletionComponent } from './user-deletion/user-deletion.component';
     SettingsComponent,
     NotificationsComponent,
     UserDeletionComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

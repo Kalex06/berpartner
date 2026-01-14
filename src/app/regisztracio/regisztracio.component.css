@@ -1,4 +1,7 @@
-.password-error{color: red;font-weight: bold;}
+.password-error{
+  color: red;
+  font-weight: bold;
+}
 
 .registration-container {
   min-height: 100vh;
