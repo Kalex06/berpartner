@@ -28,6 +28,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { SettingsComponent } from './settings/settings.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
+
 // Settings Component
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -36,6 +37,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 // Notifications Component
 import {MatListModule} from '@angular/material/list';
 import { UserDeletionComponent } from './user-deletion/user-deletion.component';
+
+
 
 
 @NgModule({

@@ -1,46 +1,79 @@
 <div class="home-container">
     <header>
         <nav>
-        <mat-toolbar>
-            <img src="assets/pictures/logo_2.png" alt="BérPartner Logo" class="logo_img">
-            <span>BérPartner</span>
-            <span class="example-spacer"></span>
-            <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
-                <mat-icon>person</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item routerLink="">
-                    <mat-icon>shopping_basket</mat-icon>
-                    <span>Bérléseid</span>
+            <mat-toolbar>
+                <img src="assets/pictures/logo_2.png" alt="BérPartner Logo" class="logo_img">
+                <span>BérPartner</span>
+                <span class="example-spacer"></span>
+                <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
+                    <mat-icon>person</mat-icon>
                 </button>
-                <button mat-menu-item routerLink="">
-                    <mat-icon>receipt</mat-icon>
-                    <span>Bérbeadásaid</span>
+                <mat-menu #menu="matMenu">
+                     <button mat-menu-item routerLink="">
+                        <mat-icon>person</mat-icon>
+                        <span>Profil</span>
+                    </button>
+                    <button mat-menu-item routerLink="">
+                        <mat-icon>shopping_basket</mat-icon>
+                        <span>Bérléseid</span>
+                    </button>
+                    <button mat-menu-item routerLink="">
+                        <mat-icon>receipt</mat-icon>
+                        <span>Bérbeadásaid</span>
+                    </button>
+                    <button mat-menu-item routerLink="/settings">
+                        <mat-icon>settings</mat-icon>
+                        <span>Beállítások</span>
+                    </button>
+                    <button mat-menu-item routerLink="/login">
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Kijelentkezés</span>
+                    </button>
+                </mat-menu>
+                <button mat-icon-button class="example-icon" (click)="openNotifications()">
+                    <mat-icon>mail_outline</mat-icon>
                 </button>
-                <button mat-menu-item routerLink="/settings">
-                    <mat-icon>settings</mat-icon>
-                    <span>Beállítások</span>
+                <button mat-icon-button class="example-icon">
+                    <mat-icon>add_circle_outline</mat-icon>
                 </button>
-                <button mat-menu-item routerLink="/login">
-                    <mat-icon>exit_to_app</mat-icon>
-                    <span>Kijelentkezés</span>
-                </button>
-            </mat-menu>
-            <button mat-icon-button class="example-icon" (click)="openNotifications()">
-                <mat-icon>mail_outline</mat-icon>
-            </button>
-            <button mat-icon-button class="example-icon" >
-                <mat-icon>add_circle_outline</mat-icon>
-            </button>
-        </mat-toolbar>
-    </nav>
+            </mat-toolbar>
+        </nav>
 
-    
-    <nav class="tabs-container">
-        <mat-toolbar>
+        <nav class="tabs-container">
+            <mat-toolbar>
+                <button mat-button [matMenuTriggerFor]="categories">Kategóriák</button>
+                <mat-menu #categories="matMenu">
+                    <button mat-menu-item [matMenuTriggerFor]="tools">Eszközök</button>
+                    <button mat-menu-item [matMenuTriggerFor]="vehicle">Járművek</button>
+                    <button mat-menu-item [matMenuTriggerFor]="places">Helyszínek</button>
+                </mat-menu>
 
-        </mat-toolbar>
-    </nav>
+                <mat-menu #tools="matMenu">
+                    <button mat-menu-item>Barkács & Felújítás</button>
+                    <button mat-menu-item>Kert & Kültér</button>
+                    <button mat-menu-item>Jármű kiegészítők</button>
+                    <button mat-menu-item>Szállítás</button>
+                    <button mat-menu-item>Rendezvény</button>
+                    <button mat-menu-item>Elektronika</button>
+                </mat-menu>
+
+                <mat-menu #vehicle="matMenu">
+                    <button mat-menu-item>Személyautó</button>
+                    <button mat-menu-item>Kishaszonjármű</button>
+                    <button mat-menu-item>Haszonjármű</button>
+                    <button mat-menu-item>Munkagép</button>
+                    <button mat-menu-item>Pótkocsi/Utánfutó</button>
+                    <button mat-menu-item>Motorkerékpár</button>
+                </mat-menu>
+
+                <mat-menu #places="matMenu">
+                    <button mat-menu-item>Tárolás & Raktár</button>
+                    <button mat-menu-item>Műhely</button>
+                    <button mat-menu-item>Rendezvényhelyszín</button>
+                </mat-menu>
+
+            </mat-toolbar>
+        </nav>
     </header>
     <main>
         <article>
