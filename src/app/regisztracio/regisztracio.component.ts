@@ -88,7 +88,7 @@ export class RegisztracioComponent {
   submit() {
     const data = {
       nev: `${this.nameFormGroup.value.lastName} ${this.nameFormGroup.value.firstName}`,
-      telefonszam: this.contactFormGroup.value.phone,
+      telefonszam: `36${this.contactFormGroup.value.phone}`,
       email: this.contactFormGroup.value.email,
       jelszo: this.passwordFormGroup.value.password,
       berelt_eszkozok_szama: '0',
