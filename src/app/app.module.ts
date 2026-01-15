@@ -27,6 +27,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import { SettingsComponent } from './settings/settings.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 // Settings Component
@@ -73,6 +75,7 @@ import { ProfileComponent } from './profile/profile.component';
     MatExpansionModule,
     MatDialogModule,
     MatListModule,
+    MatSelectModule,
   ],
   providers: [
     provideAnimationsAsync()
