@@ -51,9 +51,10 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" floatLabel="always">
               <mat-label>Telefonszám</mat-label>
-              <input matInput placeholder="+36 20 999 1234" formControlName="phone" required>
+              <input matInput  formControlName="phone" mask=" 00 000 0000" [showMaskTyped]="true" required>
+              <span matTextPrefix>+36 </span>
               <mat-error *ngIf="contactFormGroup.get('phone')?.hasError('required')">
                 Kötelező mező
               </mat-error>

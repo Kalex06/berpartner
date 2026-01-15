@@ -10,6 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
+import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
 
 
 import {MatStepperModule} from '@angular/material/stepper';
@@ -73,9 +74,11 @@ import { ProfileComponent } from './profile/profile.component';
     MatExpansionModule,
     MatDialogModule,
     MatListModule,
+    NgxMaskDirective,
+    
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),provideNgxMask()
   ],
   bootstrap: [AppComponent]
 })
