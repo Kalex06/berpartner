@@ -29,7 +29,6 @@
                         <mat-panel-title> Személyes információk </mat-panel-title>
                     </mat-expansion-panel-header>
                     <p>Név</p>
-                    <p>Jelszó</p>
                     <p>E-mail cím</p>
                     <p>Telefonszám</p>
                 </mat-expansion-panel>
@@ -94,7 +93,8 @@
                         <form [formGroup]="phoneForm">
                             <mat-form-field appearance="outline" class="full-width">
                                 <mat-label>Új Telefonszám</mat-label>
-                                <input matInput type="tel" formControlName="newPhone" placeholder="+36 30 123 4567">
+                                <input matInput type="tel" formControlName="newPhone" mask=" 00 000 0000" [showMaskTyped]="true">
+                                 <span matTextPrefix>+36 </span>
                                 @if (phoneForm.get('newPhone')?.hasError('required') &&
                                 phoneForm.get('newPhone')?.touched) {
                                 <mat-error>A telefonszám megadása kötelező</mat-error>
