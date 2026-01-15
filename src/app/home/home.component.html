@@ -1,15 +1,15 @@
 <div class="home-container">
     <header>
-        <nav>
-            <mat-toolbar>
+        <nav class="header-mav">
+            <mat-toolbar id="header-toolbar">
                 <img src="assets/pictures/logo_2.png" alt="BérPartner Logo" class="logo_img">
                 <span>BérPartner</span>
                 <span class="example-spacer"></span>
-                <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
+                <button mat-icon-button class="profile-icon" [matMenuTriggerFor]="menu">
                     <mat-icon>person</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                     <button mat-menu-item routerLink="/profile">
+                    <button mat-menu-item routerLink="/profile">
                         <mat-icon>person</mat-icon>
                         <span>Profil</span>
                     </button>
@@ -39,7 +39,7 @@
             </mat-toolbar>
         </nav>
 
-        <nav class="tabs-container">
+        <nav class="tabs-container" id="search-nav">
             <mat-toolbar>
                 <button mat-button [matMenuTriggerFor]="categories">Kategóriák</button>
                 <mat-menu #categories="matMenu">
@@ -72,11 +72,24 @@
                     <button mat-menu-item>Rendezvényhelyszín</button>
                 </mat-menu>
 
+                <span class="example-spacer"></span>
+                <mat-form-field class="sorter"  appearance="outline" floatLabel="auto">
+                    <mat-label>Rendezés</mat-label>
+                    <mat-select>
+                        @for (option of options; track option) {
+                        <mat-option [value]="option.value">{{option.viewValue}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+
+                <input type="text" class="searchbar">
+
             </mat-toolbar>
         </nav>
     </header>
     <main>
         <article>
+            
         </article>
     </main>
     <footer>
