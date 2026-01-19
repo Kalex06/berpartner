@@ -1,68 +1,87 @@
-<div class="profile-container">
-    <div class="profile-card">
-        <div class="profile-header">
+<main class="profile-page">
+    <div class="left-part">
+        <button class="back-btn" routerLink="/home" aria-label="Vissza a főoldalra">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
 
-
-            <div class="avatar-icon">
-                <img src="" alt="Profilkép" class="avatar">
+        <header class="profile-header">
+            <div class="profile-picture">
+                <img src="" alt="Profilkép" class="pfp">
             </div>
+            <h1 class="full-name">Bekre Pál</h1>
+        </header>
 
-            <div class="user-info">
-                <h1 class="full-name">Bekre Pál</h1>
-            </div>
-        </div>
-
-        <div class="profile-section">
+        <section class="info-section">
             <h2 class="section-title">Személyes adatok</h2>
-
-            <div class="info-grid">
-                <div class="info-item">
-                    <span class="label">Teljes név</span>
-                    <span class="value">Bekre Pál</span>
+            
+            <div class="personal-grid">
+                <div class="grid-item">
+                    <span class="grid-label">Teljes név</span>
+                    <span class="grid-value">Bekre Pál</span>
                 </div>
 
-                <div class="info-item">
-                    <span class="label">E-mail cím</span>
-                    <span class="value">bekre.pal&#64;gmail.com</span>
+                <div class="grid-item">
+                    <span class="grid-label">E-mail cím</span>
+                    <span class="grid-value">bekre.pal&#64;gmail.com</span>
                 </div>
 
-                <div class="info-item">
-                    <span class="label">Telefonszám</span>
-                    <span class="value">+36 30 123 4567</span>
+                <div class="grid-item">
+                    <span class="grid-label">Telefonszám</span>
+                    <span class="grid-value">+36 30 123 4567</span>
                 </div>
 
-                <div class="info-item">
-                    <span class="label">Lakóhely</span>
-                    <span class="value">Kalocsa</span>
+                <div class="grid-item">
+                    <span class="grid-label">Lakóhely</span>
+                    <span class="grid-value">Kalocsa</span>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="profile-section stats-section">
-            <h2 class="section-title">Bérlési tevékenység</h2>
-
+        <div class="stats-section">
+            <h2>Bérlési előzmények</h2>
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-value">6</div>
-                    <div class="stat-label">Bérlések Száma</div>
+                    <div class="stat-label">Bérlés összesen</div>
                 </div>
-
                 <div class="stat-card">
                     <div class="stat-value">7</div>
                     <div class="stat-label">Kiadott bérlés</div>
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="right-part">
+        <h2>A felhasználó által kínált eszközök</h2>
 
-        <div class="profile-actions">
-            <button class="edit-btn" routerLink="/settings">
-                Adatok szerkesztése
-            </button>
+        <div class="items-list">
+            <article class="item-card">
+                <div class="item-image-placeholder"></div>
+                <div class="item-info">
+                    <h3>Fúrógép</h3>
+                    <p class="price">Napi díj: 1999Ft</p>
+                    <p class="status">Elérhető</p>
+                </div>
+            </article>
 
-            <button class="delete-btn" (click)="openUserDeletionDialog()">
-                Fiók törlése
-            </button>
+            <article class="item-card">
+                <div class="item-image-placeholder"></div>
+                <div class="item-info">
+                    <h3>Betonkeverő</h3>
+                    <p class="price">Napi díj: 2000Ft</p>
+                    <p class="status">Elérhető</p>
+                </div>
+            </article>
+
+            <article class="item-card">
+                <div class="item-image-placeholder"></div>
+                <div class="item-info">
+                    <h3>Utánfutó</h3>
+                    <p class="price">Napi díj: 2999Ft</p>
+                    <p class="status">Elérhető</p>
+                </div>
+            </article>
         </div>
     </div>
-</div>
+</main>
