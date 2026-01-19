@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { ChangeDetectionStrategy, signal, } from '@angular/core';
 import { UserDeletionComponent } from '../user-deletion/user-deletion.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -22,7 +23,7 @@ export class SettingsComponent {
 
   readonly panelOpenState = signal(false);
 
-  constructor() {
+  constructor(private auth:AuthService,private router:Router) {
     this.passwordForm = this.fb.group({
       newPassword: ['', [
         Validators.required,
@@ -52,4 +53,20 @@ export class SettingsComponent {
     openUserDeletionDialog() {
       this.dialog.open(UserDeletionComponent);
     }
+
+
+    
+  user:any = null
+
+  ngOnInit() {
+    this.auth.getProfile().subscribe({
+      next: profile => {
+       this.user = profile;
+      },
+      error: err => {
+       this.router.navigate(['/login']);
+       alert(err.error.message)
+      }
+    });
+  }
 }

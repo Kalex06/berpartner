@@ -27,14 +27,16 @@ export class BejelentkezesComponent {
 constructor(private auth:AuthService,private router:Router){}
 
   login() {
+   
     if(this.loginForm.invalid) return;
 
   const data = {
     email: this.loginForm.value.email!,
-    jelszo: this.loginForm.value.password!
+    jelszo: this.loginForm.value.password!,
+   
   };
 
-  console.log()
+
 
   this.auth.login(data).subscribe({
     next: res => {

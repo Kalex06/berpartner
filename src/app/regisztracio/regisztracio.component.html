@@ -58,9 +58,6 @@
               <mat-error *ngIf="contactFormGroup.get('phone')?.hasError('required')">
                 Kötelező mező
               </mat-error>
-              <mat-error *ngIf="contactFormGroup.get('phone')?.hasError('pattern')">
-                Érvénytelen telefonszám formátum.
-              </mat-error>
             </mat-form-field>
           </div>
 
@@ -172,7 +169,7 @@
 
           <div class="step-actions">
             <div class="next-button">
-              <a routerLink="/home"><button mat-flat-button color="accent">Tovább a főoldalra</button></a>
+              <a routerLink="/login"><button mat-flat-button color="accent">Tovább a főoldalra</button></a>
             </div>
           </div>
         </div>
