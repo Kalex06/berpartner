@@ -28,9 +28,10 @@
                     <mat-expansion-panel-header>
                         <mat-panel-title> Személyes információk </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <p>Név</p>
-                    <p>E-mail cím</p>
-                    <p>Telefonszám</p>
+                    <p><strong>Név:</strong> {{user.nev}}</p>
+                    <p><strong>E-mail cím:</strong> {{user.email}}</p>
+                    <p><strong>Telefonszám:</strong> {{user.telefonszam}}</p>
+                    <p><strong>Lakcím:</strong> {{user.varos}} {{user.utca}} {{user.haz_szam}}</p>
                 </mat-expansion-panel>
 
                 <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
