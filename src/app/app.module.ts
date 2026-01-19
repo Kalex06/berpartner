@@ -42,7 +42,9 @@ import {MatListModule} from '@angular/material/list';
 import { UserDeletionComponent } from './user-deletion/user-deletion.component';
 import { ProfileComponent } from './profile/profile.component';
 
-
+//interceptor
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -80,7 +82,13 @@ import { ProfileComponent } from './profile/profile.component';
     MatSelectModule,
   ],
   providers: [
-    provideAnimationsAsync(),provideNgxMask()
+    provideAnimationsAsync(),
+    provideNgxMask(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
