@@ -8,6 +8,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./regisztracio.component.css']
 })
 export class RegisztracioComponent {
+  constructor(private auth: AuthService) { }
 
   private _formBuilder = inject(FormBuilder);
 
@@ -23,7 +24,7 @@ export class RegisztracioComponent {
 
   contactFormGroup = this._formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required, Validators.pattern(/^\+36\s\d{2}\s\d{3}\s\d{4}$/)]]
+    phone: ['', [Validators.required,]]
   });
 
   passwordFormGroup = this._formBuilder.group({
@@ -59,7 +60,7 @@ export class RegisztracioComponent {
       group.get('password')?.setErrors({ mustMatch: true });
       group.get('confirmPassword')?.setErrors({ mustMatch: true });
     } else {
-
+ 
       ['password', 'confirmPassword'].forEach(controlName => {
         const control = group.get(controlName);
         if (control?.hasError('mustMatch')) {
@@ -83,7 +84,7 @@ export class RegisztracioComponent {
   }
   isOptional = false;
 
-  constructor(private auth: AuthService) { }
+  
 
   submit() {
     const data = {

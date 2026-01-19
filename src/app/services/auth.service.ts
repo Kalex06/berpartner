@@ -7,16 +7,20 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-    
+    private API = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
   register(data: any) :Observable<any>{
-    return this.http.post('http://localhost:3000/auth/regist', data);
+    return this.http.post(`${this.API}/auth/regist`, data);
   }
 
   login(data: { email: string; jelszo: string }) {
-    return this.http.post<any>(`http://localhost:3000/auth/login`, data);
+    return this.http.post<any>(`${this.API}/auth/login`, data);
+  }
+
+  getProfile(){
+    return this.http.get<any>(`${this.API}/users/myprofile`);
   }
 
   saveToken(token: string) {
