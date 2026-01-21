@@ -45,6 +45,8 @@ import { ProfileComponent } from './profile/profile.component';
 //interceptor
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { RenteditemsComponent } from './renteditems/renteditems.component';
+import { MyitemsComponent } from './myitems/myitems.component';
 
 
 @NgModule({
@@ -58,6 +60,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     NotificationsComponent,
     UserDeletionComponent,
     ProfileComponent,
+    RenteditemsComponent,
+    MyitemsComponent,
   ],
   imports: [
     BrowserModule,

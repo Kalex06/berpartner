@@ -1,0 +1,163 @@
+
+
+.item-container{
+    width: 50%;
+    margin: auto;
+    padding: 5px;
+    border: #fb923c 5px double;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.item-card {
+  display: flex;
+  background: #f8fafc;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.item-image-placeholder {
+  width: 180px;
+  background: #fb923c;
+  flex-shrink: 0;
+}
+
+.item-info {
+  padding: 20px;
+  flex: 1;
+}
+
+.item-info h3 {
+  margin: 0px 0px 8px 0px;
+  font-size: 1.25rem;
+}
+
+.price {
+  font-weight: 600;
+  color: #3b82f6;
+  font-size: 1.1rem;
+}
+
+
+.logo_img {
+  height: 40px;      
+  width: auto;       
+  margin-left: 16px; 
+  margin-right: 16px; 
+}
+
+nav{
+
+    margin: 0px;
+    color: white;
+}
+
+mat-toolbar{
+    background: #141e38;
+    color: white;
+    width: 50%;
+    margin: auto;
+}
+
+.header-mav{
+    background: #172342;
+}
+
+#header-toolbar{
+    background: #172342;
+}
+
+#search-nav{
+    background: #141e38;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.full-width-toolbar {
+  background: #141e38;
+  width: 100vw;                  
+  position: relative;            
+  left: 50%;
+  right: 50%;
+}
+
+.searchbar{
+  height: 40%;
+  width: 50%;
+}
+
+.sorter {
+  width: 200px;
+  margin: 0 10px 0 0; 
+  height: 38px;
+  color: white;
+}
+
+.sorter ::ng-deep .mat-mdc-text-field-wrapper {
+  height: 38px; 
+  background-color: #1f2a4a; 
+  padding-top: 0 !important; 
+  padding-bottom: 0 !important;
+  color: white;
+}
+
+.sorter ::ng-deep .mat-mdc-form-field-infix {
+   padding-top: 0 !important;
+   padding-bottom: 0 !important;
+   line-height: 38px;
+   color: white;
+
+}
+
+.sorter ::ng-deep .mat-mdc-form-field-label {
+  color: #ffffff !important;
+
+}
+
+.sorter ::ng-deep .mat-mdc-select-value-text {
+  color: rgb(185, 184, 184) !important; 
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.back-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: black;
+  opacity: 0.5;
+  color: white;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.back-btn:hover {
+  opacity: 0.4;
+}
+
+.back-btn mat-icon {
+  font-size: 22px;
+}

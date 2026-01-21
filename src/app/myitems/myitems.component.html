@@ -1,16 +1,13 @@
-<div class="home-container">
-    <header>
-        <nav class="header-mav">
+<div>
+            <nav class="header-mav">
             <mat-toolbar id="header-toolbar">
                 <img src="assets/pictures/logo_2.png" alt="BérPartner Logo" class="logo_img">
                 <span>BérPartner</span>
                 <span class="example-spacer"></span>
-                <span class="profile-name">{{user.nev}}</span>
                 <button mat-icon-button class="profile-icon" [matMenuTriggerFor]="menu">
                     <mat-icon>person</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    
                     <button mat-menu-item routerLink="/profile">
                         <mat-icon>person</mat-icon>
                         <span>Profil</span>
@@ -88,12 +85,43 @@
 
             </mat-toolbar>
         </nav>
-    </header>
-    <main>
-        <article>
-        </article>
-    </main>
-    <footer>
-        
-    </footer>
+
+    <button class="back-btn" routerLink="/home" aria-label="Vissza a főoldalra">
+        <mat-icon>home</mat-icon>
+    </button>
 </div>
+<main class="item-container">
+
+    <h2>Általad által kínált eszközök</h2>
+
+    <div class="items-list">
+        <article class="item-card">
+            <div class="item-image-placeholder"></div>
+            <div class="item-info">
+                <h3>Fúrógép</h3>
+                <p class="price">Napi díj: 1999Ft</p>
+                <p class="status">Elérhető</p>
+            </div>
+            <button mat-button><mat-icon>edit</mat-icon></button>
+            <button mat-button><mat-icon color="warn">delete</mat-icon></button>
+        </article>
+
+        <article class="item-card">
+            <div class="item-image-placeholder"></div>
+            <div class="item-info">
+                <h3>Betonkeverő</h3>
+                <p class="price">Napi díj: 2000Ft</p>
+                <p class="status">Elérhető</p>
+            </div>
+        </article>
+
+        <article class="item-card">
+            <div class="item-image-placeholder"></div>
+            <div class="item-info">
+                <h3>Utánfutó</h3>
+                <p class="price">Napi díj: 2999Ft</p>
+                <p class="status">Elérhető</p>
+            </div>
+        </article>
+    </div>
+</main>
