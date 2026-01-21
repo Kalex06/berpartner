@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthService } from '../services/auth.service';
-import {  Router } from '@angular/router';
+
 
 interface SortOption {
   value: string;
@@ -10,13 +9,11 @@ interface SortOption {
 }
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  selector: 'app-myitems',
+  templateUrl: './myitems.component.html',
+  styleUrl: './myitems.component.css'
 })
-export class HomeComponent {
-  constructor(private auth:AuthService,private router:Router){}
-
+export class MyitemsComponent {
   readonly dialog = inject(MatDialog);
 
   openNotifications() {
@@ -28,21 +25,4 @@ export class HomeComponent {
     {value: 'price-desc', viewValue: 'Legdrágább felül'},
     {value: 'price-asc', viewValue: 'Legolcsóbb felül'},
   ];
-
-
- 
-  user:any = null
-
-  ngOnInit() {
-    this.auth.getProfile().subscribe({
-      next: profile => {
-       this.user = profile;
-      },
-      // error: err => {
-      //  this.router.navigate(['/login']);
-      //  alert(err.error.message)
-      // }
-    });
-  }
-
 }
