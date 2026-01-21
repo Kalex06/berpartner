@@ -38,10 +38,10 @@ export class HomeComponent {
       next: profile => {
        this.user = profile;
       },
-      // error: err => {
-      //  this.router.navigate(['/login']);
-      //  alert(err.error.message)
-      // }
+      error: err => {
+       this.router.navigate(['/login']);
+       alert(err.error.message)
+      }
     });
   }
 
