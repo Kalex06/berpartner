@@ -5,23 +5,23 @@
                 <img src="assets/pictures/logo_2.png" alt="BérPartner Logo" class="logo_img">
                 <span>BérPartner</span>
                 <span class="example-spacer"></span>
-                <span class="profile-name">{{user.nev}}</span>
-                <button mat-icon-button class="profile-icon" [matMenuTriggerFor]="menu">
+                <button mat-icon-button class="profile-menu-btn" [matMenuTriggerFor]="menu">
+                    <span class="profile-name">{{user.nev}}</span>
                     <mat-icon>person</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    
+
                     <button mat-menu-item routerLink="/profile">
                         <mat-icon>person</mat-icon>
                         <span>Profil</span>
                     </button>
                     <button mat-menu-item routerLink="/renteditems">
                         <mat-icon>shopping_basket</mat-icon>
-                        <span>Bérléseid</span>
+                        <span>Bérléseim</span>
                     </button>
                     <button mat-menu-item routerLink="/myitems">
                         <mat-icon>receipt</mat-icon>
-                        <span>Bérbeadásaid</span>
+                        <span>Hírdetéseim</span>
                     </button>
                     <button mat-menu-item routerLink="/settings">
                         <mat-icon>settings</mat-icon>
@@ -32,10 +32,10 @@
                         <span>Kijelentkezés</span>
                     </button>
                 </mat-menu>
-                <button mat-icon-button class="example-icon" (click)="openNotifications()">
+                <button mat-icon-button class="notifications-icon" (click)="openNotifications()">
                     <mat-icon>mail_outline</mat-icon>
                 </button>
-                <button mat-icon-button class="example-icon">
+                <button mat-icon-button class="upload-icon">
                     <mat-icon>add_circle_outline</mat-icon>
                 </button>
             </mat-toolbar>
@@ -43,7 +43,8 @@
 
         <nav class="tabs-container" id="search-nav">
             <mat-toolbar>
-                <button mat-button [matMenuTriggerFor]="categories">Kategóriák</button>
+                <button mat-button [matMenuTriggerFor]="categories" style="color: white !important;"
+                    class="categories-btn">Kategóriák</button>
                 <mat-menu #categories="matMenu">
                     <button mat-menu-item [matMenuTriggerFor]="tools">Eszközök</button>
                     <button mat-menu-item [matMenuTriggerFor]="vehicle">Járművek</button>
@@ -75,9 +76,9 @@
                 </mat-menu>
 
                 <span class="example-spacer"></span>
-                <mat-form-field class="sorter"  appearance="outline" floatLabel="auto">
+                <mat-form-field class="sorter" appearance="outline" floatLabel="auto">
                     <mat-label>Rendezés</mat-label>
-                    <mat-select>
+                    <mat-select [(ngModel)]="selectedSort">
                         @for (option of options; track option) {
                         <mat-option [value]="option.value">{{option.viewValue}}</mat-option>
                         }
@@ -94,6 +95,6 @@
         </article>
     </main>
     <footer>
-        
+
     </footer>
 </div>

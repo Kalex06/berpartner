@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 interface SortOption {
   value: string;
@@ -15,7 +15,7 @@ interface SortOption {
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  constructor(private auth:AuthService,private router:Router){}
+  constructor(private auth: AuthService, private router: Router) { }
 
   readonly dialog = inject(MatDialog);
 
@@ -23,24 +23,24 @@ export class HomeComponent {
     this.dialog.open(NotificationsComponent);
   }
 
-    options: SortOption[] = [
-    {value: 'newest-0', viewValue: 'Legújabb'},
-    {value: 'price-desc', viewValue: 'Legdrágább felül'},
-    {value: 'price-asc', viewValue: 'Legolcsóbb felül'},
+  options: SortOption[] = [
+    { value: 'newest-0', viewValue: 'Legújabb' },
+    { value: 'price-desc', viewValue: 'Legdrágább felül' },
+    { value: 'price-asc', viewValue: 'Legolcsóbb felül' },
   ];
+  selectedSort: string = 'newest-0';
 
 
- 
-  user:any = null
+  user: any = null
 
   ngOnInit() {
     this.auth.getProfile().subscribe({
       next: profile => {
-       this.user = profile;
+        this.user = profile;
       },
       error: err => {
-       this.router.navigate(['/login']);
-       alert(err.error.message)
+        this.router.navigate(['/login']);
+        alert(err.error.message)
       }
     });
   }

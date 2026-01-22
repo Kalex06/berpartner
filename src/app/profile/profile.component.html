@@ -8,7 +8,7 @@
             <div class="profile-picture">
                 <img src="" alt="Profilkép" class="pfp">
             </div>
-            <h1 class="full-name">Bekre Pál</h1>
+            <h1 class="full-name">{{user.nev}}</h1>
         </header>
 
         <section class="info-section">
@@ -17,22 +17,22 @@
             <div class="personal-grid">
                 <div class="grid-item">
                     <span class="grid-label">Teljes név</span>
-                    <span class="grid-value">Bekre Pál</span>
+                    <span class="grid-value">{{user.nev}}</span>
                 </div>
 
                 <div class="grid-item">
                     <span class="grid-label">E-mail cím</span>
-                    <span class="grid-value">bekre.pal&#64;gmail.com</span>
+                    <span class="grid-value">{{user.email}}</span>
                 </div>
 
                 <div class="grid-item">
                     <span class="grid-label">Telefonszám</span>
-                    <span class="grid-value">+36 30 123 4567</span>
+                    <span class="grid-value">+{{user.telefonszam}}</span>
                 </div>
 
                 <div class="grid-item">
                     <span class="grid-label">Lakóhely</span>
-                    <span class="grid-value">Kalocsa</span>
+                    <span class="grid-value">{{user.varos}}</span>
                 </div>
             </div>
         </section>

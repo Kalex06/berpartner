@@ -51,6 +51,20 @@ mat-toolbar{
   margin-right: 16px;
 }
 
+.profile-menu-btn {
+  color: white !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 4px;
+  padding-left: 12px !important;
+  padding-right: 8px !important;
+}
+
+.notifications-icon,
+.upload-icon {
+  color: white !important;
+}
+
 .full-width-toolbar {
   background: #141e38;
   width: 100vw;                  
@@ -59,9 +73,14 @@ mat-toolbar{
   right: 50%;
 }
 
-.searchbar{
-  height: 40%;
+.searchbar {
+  background: #334155;
+  border: none;
+  border-radius: 8px;
+  height: 60%;
   width: 50%;
+  font-size: 1rem;
+  color: white;
 }
 
 .sorter {
@@ -97,6 +116,12 @@ mat-toolbar{
 .sorter ::ng-deep .mat-mdc-select-value-text {
   color: rgb(185, 184, 184) !important; 
 }
+
+.categories-btn {
+  color: white !important;
+  border: 2px solid #fb923c;
+}
+
 
 
 @media (max-width: 600px) {
