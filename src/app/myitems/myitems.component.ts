@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+
 
 interface SortOption {
   value: string;
@@ -14,8 +16,9 @@ interface SortOption {
   styleUrl: './myitems.component.css'
 })
 export class MyitemsComponent {
+  constructor(private auth: AuthService, private router: Router) { }
   readonly dialog = inject(MatDialog);
-  private router = inject(Router);
+
 
   openNotifications() {
     this.dialog.open(NotificationsComponent);
@@ -32,5 +35,20 @@ export class MyitemsComponent {
     setTimeout(() => {
       this.router.navigate(['/home']);
     }, 400);
+  }
+
+
+  user: any = null
+
+  ngOnInit() {
+    this.auth.getProfile().subscribe({
+      next: profile => {
+        this.user = profile;
+      },
+      error: err => {
+        this.router.navigate(['/login']);
+        alert(err.error.message)
+      }
+    });
   }
 }
