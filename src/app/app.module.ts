@@ -47,6 +47,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RenteditemsComponent } from './renteditems/renteditems.component';
 import { MyitemsComponent } from './myitems/myitems.component';
+import { UploadComponent } from './upload/upload.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { MyitemsComponent } from './myitems/myitems.component';
     ProfileComponent,
     RenteditemsComponent,
     MyitemsComponent,
+    UploadComponent,
   ],
   imports: [
     BrowserModule,
