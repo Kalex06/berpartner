@@ -9,6 +9,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RenteditemsComponent } from './renteditems/renteditems.component';
 import { MyitemsComponent } from './myitems/myitems.component';
+import { UploadComponent } from './upload/upload.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:'profile', component:ProfileComponent},
   {path:'renteditems', component:RenteditemsComponent},
   {path:'myitems', component:MyitemsComponent},
+  {path:'upload', component:UploadComponent}
 ];
 
 

@@ -1,0 +1,193 @@
+.upload-page {
+  min-height: 100vh;
+  background-color: #192c57;
+  padding: 32px 16px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.upload-card {
+  width: 100%;
+  max-width: 50%;
+  background-color: white;
+  border-radius: 16px;
+  padding: 40px;
+}
+
+.page-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+}
+
+.images-section {
+  margin-bottom: 48px;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.image-upload-box {
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f1f5f9;
+  border: 2px dashed #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.image-upload-box:hover {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.upload-placeholder {
+  text-align: center;
+  color: #64748b;
+}
+
+.upload-placeholder mat-icon {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+  margin-bottom: 8px;
+}
+
+.image-hint{
+  color: #64748b;
+}
+
+.form-section {
+  margin-bottom: 48px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-form-field {
+  margin-bottom: 20px;
+}
+
+.action-bar {
+  text-align: center;
+}
+
+.submit-btn {
+  font-size: 1.2rem;
+  border-radius: 12px;
+  background-color: #172342;
+  color: white;
+}
+
+.submit-btn:hover {
+  font-size: 1.3rem;
+  background: #f97316;
+}
+
+.back-btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 1000;
+  background: black;
+  opacity: 0.5;
+  color: white;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+@media (max-width: 1024px) {
+  .upload-card {
+    max-width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .upload-card {
+    max-width: 80%;
+    padding: 24px;
+  }
+
+  .page-title {
+    font-size: 1.9rem;
+  }
+
+  .back-btn {
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Number Input spinner eltüntetése */
+input.no-spinners::-webkit-outer-spin-button,
+input.no-spinners::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input.no-spinners {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+
+
+
+
+
+.preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.image-upload-box {
+  position: relative;
+}
+
+.remove-overlay {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.remove-overlay:hover {
+  transform: scale(1.1);
+  background: red;
+}
+
+.remove-overlay mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}

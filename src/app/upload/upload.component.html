@@ -1,0 +1,100 @@
+<main class="upload-page">
+    <button class="back-btn" routerLink="/home" (click)="navigateBack()" aria-label="Vissza a főoldalra">
+        <mat-icon>home</mat-icon>
+    </button>
+    <div class="upload-card">
+        <h1 class="page-title">Új hirdetés feladása</h1>
+
+        <form class="upload-form">
+            <section class="images-section">
+                <h2 class="section-title">Képek</h2>
+
+                <!-- Kép Feltöltés -->
+                <div class="image-grid">
+                    <div *ngFor="let img of imagePreviews; let i = index" class="image-upload-box"
+                        (click)="fileInput.click()">
+
+                        <input type="file" #fileInput accept="image/*" hidden (change)="onFileSelected($event, i)">
+
+                        <ng-container *ngIf="imagePreviews[i]; else placeholder">
+                            <img [src]="imagePreviews[i]" class="preview-img">
+                            <div class="remove-overlay" (click)="removeImage(i, $event)">
+                                <mat-icon>delete</mat-icon>
+                            </div>
+                        </ng-container>
+
+                        <ng-template #placeholder>
+                            <div class="upload-placeholder">
+                                <mat-icon>add_photo_alternate</mat-icon>
+                                <span>Kép {{i + 1}}</span>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+
+
+                <p class="image-hint">Legalább 1, legfeljebb 4 képet tölthetsz fel (max. 5 MB / kép)</p>
+            </section>
+
+
+            <section class="form-section">
+                <h2>Hirdetés adatai</h2>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Hirdetés neve</mat-label>
+                    <input matInput placeholder="Pl. Bosch GSB 600, Ütvefúrógép, 600W" required>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Kategória</mat-label>
+                    <mat-select required>
+
+                        <mat-optgroup label="Eszközök">
+                            <mat-option value="barkacs">Barkács & Felújítás</mat-option>
+                            <mat-option value="kert">Kert & Kültér</mat-option>
+                            <mat-option value="jarmu_kiegeszito">Jármű kiegészítők</mat-option>
+                            <mat-option value="szallitas">Szállítás</mat-option>
+                            <mat-option value="rendezveny">Rendezvény</mat-option>
+                            <mat-option value="elektronika">Elektronika</mat-option>
+                        </mat-optgroup>
+
+                        <mat-optgroup label="Járművek">
+                            <mat-option value="szemelyauto">Személyautó</mat-option>
+                            <mat-option value="kishaszon">Kishaszonjármű</mat-option>
+                            <mat-option value="haszon">Haszonjármű</mat-option>
+                            <mat-option value="munkagep">Munkagép</mat-option>
+                            <mat-option value="potkocsi">Pótkocsi/Utánfutó</mat-option>
+                            <mat-option value="motor">Motorkerékpár</mat-option>
+                        </mat-optgroup>
+
+                        <mat-optgroup label="Helyszínek">
+                            <mat-option value="tarolas">Tárolás & Raktár</mat-option>
+                            <mat-option value="muhely">Műhely</mat-option>
+                            <mat-option value="helyszin">Rendezvényhelyszín</mat-option>
+                        </mat-optgroup>
+
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Napi díj (Ft)</mat-label>
+                    <input matInput type="number" class="no-spinners" placeholder="Pl. 2500"
+                        (wheel)="$event.preventDefault()" required>
+                    <span matTextSuffix>Ft / nap</span>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width" floatLabel="always">
+                    <mat-label>Leírás</mat-label>
+                    <textarea matInput rows="5"
+                        placeholder="Leírás az eszközről, állapotáról és egyéb információkról..."></textarea>
+                </mat-form-field>
+            </section>
+
+
+            <footer class="action-bar">
+                <button mat-flat-button class="submit-btn" type="submit">
+                    Hirdetés feladása
+                </button>
+            </footer>
+        </form>
+    </div>
+</main>
