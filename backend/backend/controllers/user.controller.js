@@ -1,5 +1,3 @@
-
-const { json } = require('express');
 const User = require('../models/user.model');
 
 
