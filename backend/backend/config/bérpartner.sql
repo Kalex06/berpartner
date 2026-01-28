@@ -9,10 +9,11 @@ CREATE TABLE felhasznalok (
     email VARCHAR(100) UNIQUE NOT NULL,
     jelszo VARCHAR(255) NOT NULL,
     berelt_eszkozok_szama INT NOT NULL,
-    jogosultsag ENUM('guest','user','admin') NOT NULL,
+    jogosultsag ENUM('user','admin') NOT NULL,
     varos VARCHAR(100) NOT NULL,
     utca VARCHAR(100) NOT NULL,
-    haz_szam VARCHAR(10) NOT NULL
+    haz_szam VARCHAR(10) NOT NULL,
+    profil_kep VARCHAR(255)
 );
 
 
@@ -35,6 +36,13 @@ CREATE TABLE eszkozok (
     FOREIGN KEY (kategoria_id) REFERENCES kategoriak(id)
 );
 
+
+CREATE TABLE termek_kepek(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    eszkoz_id INT NOT NULL,
+    eleresi_ut VARCHAR(255),
+    FOREIGN KEY (eszkoz_id) REFERENCES eszkozok(id)
+)
 
 CREATE TABLE berlesek (
     id INT AUTO_INCREMENT PRIMARY KEY,
