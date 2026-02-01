@@ -6,7 +6,7 @@
                 <span>BérPartner</span>
                 <span class="spacer"></span>
                 <button mat-icon-button class="profile-menu-btn" [matMenuTriggerFor]="menu">
-                    <!-- <span class="profile-name">{{user.nev}}</span> -->
+                    <span class="profile-name">{{user.nev}}</span>
                     <mat-icon>person</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
@@ -35,7 +35,7 @@
                 <button mat-icon-button class="notifications-icon" (click)="openNotifications()">
                     <mat-icon>mail_outline</mat-icon>
                 </button>
-                <button mat-icon-button class="upload-icon" routerLink="upload" aria-label="Új termék feltöltése">
+                <button mat-icon-button class="upload-icon" routerLink="/upload" aria-label="Új termék feltöltése">
                     <mat-icon>add_circle_outline</mat-icon>
                 </button>
             </mat-toolbar>
@@ -114,7 +114,31 @@
                     </div>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-raised-button color="accent" class="details-btn">Részletek</button>
+                    <button mat-raised-button color="accent" class="details-btn"  routerLink="/item-details">Részletek</button>
+                    <button mat-raised-button color="accent" class="rent-btn">FOGLALÁS</button>
+                </mat-card-actions>
+            </mat-card>
+
+            <mat-card class="item-card" appearance="outlined">
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Test photo">
+                <mat-card-header>
+                    <mat-card-title>(Hírdetés Cím)</mat-card-title>
+                    <mat-card-subtitle>(Kategória)</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        (Description)
+                    </p>
+                    <div class="item-informations">
+
+                        <div class="price-tag">5 000 Ft / nap</div>
+                        <div class="location-tag"><mat-icon class="location-icon" >place</mat-icon> <span>Kalocsa</span>
+                        </div>
+
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="accent" class="details-btn"  routerLink="/item-details">Részletek</button>
                     <button mat-raised-button color="accent" class="rent-btn">FOGLALÁS</button>
                 </mat-card-actions>
             </mat-card>
@@ -138,7 +162,7 @@
                     </div>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-raised-button color="accent" class="details-btn">Részletek</button>
+                    <button mat-raised-button color="accent" class="details-btn"  routerLink="/item-details">Részletek</button>
                     <button mat-raised-button color="accent" class="rent-btn">FOGLALÁS</button>
                 </mat-card-actions>
             </mat-card>
@@ -162,7 +186,7 @@
                     </div>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-raised-button color="accent" class="details-btn">Részletek</button>
+                    <button mat-raised-button color="accent" class="details-btn"  routerLink="/item-details">Részletek</button>
                     <button mat-raised-button color="accent" class="rent-btn">FOGLALÁS</button>
                 </mat-card-actions>
             </mat-card>
@@ -186,31 +210,7 @@
                     </div>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-raised-button color="accent" class="details-btn">Részletek</button>
-                    <button mat-raised-button color="accent" class="rent-btn">FOGLALÁS</button>
-                </mat-card-actions>
-            </mat-card>
-
-            <mat-card class="item-card" appearance="outlined">
-                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Test photo">
-                <mat-card-header>
-                    <mat-card-title>(Hírdetés Cím)</mat-card-title>
-                    <mat-card-subtitle>(Kategória)</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <p>
-                        (Description)
-                    </p>
-                    <div class="item-informations">
-
-                        <div class="price-tag">5 000 Ft / nap</div>
-                        <div class="location-tag"><mat-icon class="location-icon">place</mat-icon> <span>Kalocsa</span>
-                        </div>
-
-                    </div>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-raised-button color="accent" class="details-btn">Részletek</button>
+                    <button mat-raised-button color="accent" class="details-btn" routerLink="/item-details">Részletek</button>
                     <button mat-raised-button color="accent" class="rent-btn">FOGLALÁS</button>
                 </mat-card-actions>
             </mat-card>
