@@ -1,0 +1,262 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.logo_img {
+    height: 40px;
+    width: auto;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+nav {
+
+    margin: 0px;
+    color: white;
+}
+
+mat-toolbar {
+    background: #141e38;
+    color: white;
+    width: 60%;
+    margin: auto;
+}
+
+.header-mav {
+    background: #172342;
+}
+
+#header-toolbar {
+    background: #172342;
+}
+
+#search-nav {
+    background: #141e38;
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.profile-menu-btn {
+    color: white !important;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 4px;
+    padding-left: 12px !important;
+    padding-right: 8px !important;
+}
+
+.notifications-icon,
+.upload-icon {
+    color: white !important;
+}
+
+.full-width-toolbar {
+    background: #141e38;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+}
+
+.searchbar {
+    background: #334155;
+    border: none;
+    border-radius: 8px;
+    height: 60%;
+    width: 50%;
+    font-size: 1rem;
+    color: white;
+}
+
+.sorter {
+    width: 200px;
+    margin: 0 10px 0 0;
+    height: 38px;
+    color: white;
+}
+
+/* Bele kell nyúlni a generált MDC wrapper osztályba a magasság fixálásához */
+.sorter ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 38px;
+    background-color: #1f2a4a;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    color: white;
+}
+
+/* Az infix (a tényleges input terület) igazítása */
+.sorter ::ng-deep .mat-mdc-form-field-infix {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    line-height: 38px;
+    color: white;
+
+}
+
+.sorter ::ng-deep .mat-mdc-form-field-label {
+    color: white !important;
+
+}
+
+.sorter ::ng-deep .mat-mdc-select-value-text {
+    color: rgb(185, 184, 184) !important;
+}
+
+.categories-btn {
+    color: white !important;
+    border: 2px solid #fb923c;
+}
+
+
+
+
+.upload-page {
+
+    min-height: 100vh;
+    background-color: #192c57;
+    padding: 32px 16px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.upload-card {
+    width: 60%;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.page-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0 0 32px 0;
+    text-align: center;
+}
+
+.image-grid {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.main-image {
+    flex: 2;
+    aspect-ratio: 4 / 3;
+}
+
+.image-grid-small {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.image-display-box {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+}
+
+.preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #64748b;
+}
+
+.detail-value {
+    color: #1e293b;
+    font-weight: 500;
+}
+
+.price-text {
+    color: green;
+    font-size: 1.2rem;
+}
+
+.description-box {
+    margin-top: 24px;
+    padding: 16px;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+.description-box h3 {
+    margin-top: 0;
+}
+
+.description-box p {
+    color: #475569;
+}
+
+
+.submit-btn {
+    width: 100%;
+    margin-top: 24px;
+    padding: 12px;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    background-color: #172342;
+    color: white;
+}
+
+.submit-btn:hover {
+    font-size: 1.3rem;
+    background: #f97316;
+}
+
+.back-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+    background: black;
+    opacity: 0.5;
+    color: white;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+@media (max-width: 1200px) {
+    .upload-card {
+        width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .upload-card {
+        width: 95%;
+        padding: 20px;
+    }
+    .image-grid {
+        flex-direction: column;
+    }
+}
