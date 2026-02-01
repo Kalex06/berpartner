@@ -32,6 +32,7 @@ import {MatSelectModule} from '@angular/material/select';
 
 
 
+
 // Settings Component
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -48,6 +49,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RenteditemsComponent } from './renteditems/renteditems.component';
 import { MyitemsComponent } from './myitems/myitems.component';
 import { UploadComponent } from './upload/upload.component';
+import { ItemDetailsComponent } from './item-details/item-details.component';
 
 
 @NgModule({
@@ -64,6 +66,7 @@ import { UploadComponent } from './upload/upload.component';
     RenteditemsComponent,
     MyitemsComponent,
     UploadComponent,
+    ItemDetailsComponent,
   ],
   imports: [
     BrowserModule,

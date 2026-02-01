@@ -1,47 +1,46 @@
-
 .home-container {
   min-height: 100vh;
-  background: #0f172a; 
+  background: #0f172a;
   padding: 0px;
   box-sizing: border-box;
 }
 
-.example-spacer {
+.spacer {
   flex: 1 1 auto;
 }
 
 
 
 .logo_img {
-  height: 40px;      
-  width: auto;       
-  margin-left: 16px; 
-  margin-right: 16px; 
+  height: 40px;
+  width: auto;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
-nav{
+nav {
 
-    margin: 0px;
-    color: white;
+  margin: 0px;
+  color: white;
 }
 
-mat-toolbar{
-    background: #141e38;
-    color: white;
-    width: 50%;
-    margin: auto;
+mat-toolbar {
+  background: #141e38;
+  color: white;
+  width: 60%;
+  margin: auto;
 }
 
-.header-mav{
-    background: #172342;
+.header-mav {
+  background: #172342;
 }
 
-#header-toolbar{
-    background: #172342;
+#header-toolbar {
+  background: #172342;
 }
 
-#search-nav{
-    background: #141e38;
+#search-nav {
+  background: #141e38;
 }
 
 .logo-img {
@@ -67,8 +66,8 @@ mat-toolbar{
 
 .full-width-toolbar {
   background: #141e38;
-  width: 100vw;                  
-  position: relative;            
+  width: 100vw;
+  position: relative;
   left: 50%;
   right: 50%;
 }
@@ -85,36 +84,36 @@ mat-toolbar{
 
 .sorter {
   width: 200px;
-  margin: 0 10px 0 0; 
+  margin: 0 10px 0 0;
   height: 38px;
   color: white;
 }
 
 /* Bele kell nyúlni a generált MDC wrapper osztályba a magasság fixálásához */
 .sorter ::ng-deep .mat-mdc-text-field-wrapper {
-  height: 38px; 
-  background-color: #1f2a4a; 
-  padding-top: 0 !important; 
+  height: 38px;
+  background-color: #1f2a4a;
+  padding-top: 0 !important;
   padding-bottom: 0 !important;
   color: white;
 }
 
 /* Az infix (a tényleges input terület) igazítása */
 .sorter ::ng-deep .mat-mdc-form-field-infix {
-   padding-top: 0 !important;
-   padding-bottom: 0 !important;
-   line-height: 38px;
-   color: white;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  line-height: 38px;
+  color: white;
 
 }
 
 .sorter ::ng-deep .mat-mdc-form-field-label {
-  color: #ffffff !important; /* vagy pl. #e5e7eb */
+  color: white !important;
 
 }
 
 .sorter ::ng-deep .mat-mdc-select-value-text {
-  color: rgb(185, 184, 184) !important; 
+  color: rgb(185, 184, 184) !important;
 }
 
 .categories-btn {
@@ -123,15 +122,68 @@ mat-toolbar{
 }
 
 
+.ad-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+
+.item-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.item-card img {
+  height: 180px;
+  object-fit: cover;
+}
+
+
+
+
+.item-informations {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+mat-card-actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.price-tag {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: green;
+}
+
+
+@media (max-width: 1024px) {
+  .ad-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 @media (max-width: 600px) {
   .title-text {
     display: none;
   }
+
   .logo-img {
     margin-left: 8px;
     margin-right: 8px;
   }
+
+  .ad-grid {
+    grid-template-columns: 1fr;
+  }
 }
-
-
