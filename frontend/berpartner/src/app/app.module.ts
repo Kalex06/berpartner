@@ -50,6 +50,7 @@ import { RenteditemsComponent } from './renteditems/renteditems.component';
 import { MyitemsComponent } from './myitems/myitems.component';
 import { UploadComponent } from './upload/upload.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
     MyitemsComponent,
     UploadComponent,
     ItemDetailsComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,

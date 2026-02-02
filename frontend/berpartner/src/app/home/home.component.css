@@ -1,127 +1,3 @@
-.home-container {
-  min-height: 100vh;
-  background: #0f172a;
-  padding: 0px;
-  box-sizing: border-box;
-}
-
-.spacer {
-  flex: 1 1 auto;
-}
-
-
-
-.logo_img {
-  height: 40px;
-  width: auto;
-  margin-left: 16px;
-  margin-right: 16px;
-}
-
-nav {
-
-  margin: 0px;
-  color: white;
-}
-
-mat-toolbar {
-  background: #141e38;
-  color: white;
-  width: 60%;
-  margin: auto;
-}
-
-.header-mav {
-  background: #172342;
-}
-
-#header-toolbar {
-  background: #172342;
-}
-
-#search-nav {
-  background: #141e38;
-}
-
-.logo-img {
-  height: 40px;
-  width: auto;
-  margin-left: 16px;
-  margin-right: 16px;
-}
-
-.profile-menu-btn {
-  color: white !important;
-  display: inline-flex !important;
-  align-items: center;
-  gap: 4px;
-  padding-left: 12px !important;
-  padding-right: 8px !important;
-}
-
-.notifications-icon,
-.upload-icon {
-  color: white !important;
-}
-
-.full-width-toolbar {
-  background: #141e38;
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-}
-
-.searchbar {
-  background: #334155;
-  border: none;
-  border-radius: 8px;
-  height: 60%;
-  width: 50%;
-  font-size: 1rem;
-  color: white;
-}
-
-.sorter {
-  width: 200px;
-  margin: 0 10px 0 0;
-  height: 38px;
-  color: white;
-}
-
-/* Bele kell nyúlni a generált MDC wrapper osztályba a magasság fixálásához */
-.sorter ::ng-deep .mat-mdc-text-field-wrapper {
-  height: 38px;
-  background-color: #1f2a4a;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  color: white;
-}
-
-/* Az infix (a tényleges input terület) igazítása */
-.sorter ::ng-deep .mat-mdc-form-field-infix {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  line-height: 38px;
-  color: white;
-
-}
-
-.sorter ::ng-deep .mat-mdc-form-field-label {
-  color: white !important;
-
-}
-
-.sorter ::ng-deep .mat-mdc-select-value-text {
-  color: rgb(185, 184, 184) !important;
-}
-
-.categories-btn {
-  color: white !important;
-  border: 2px solid #fb923c;
-}
-
-
 .ad-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -131,21 +7,16 @@ mat-toolbar {
   margin-top: 30px;
 }
 
-
 .item-card {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-
 .item-card img {
   height: 180px;
   object-fit: cover;
 }
-
-
-
 
 .item-informations {
   margin-top: 15px;
@@ -166,23 +37,13 @@ mat-card-actions {
   color: green;
 }
 
-
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
   .ad-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .title-text {
-    display: none;
-  }
-
-  .logo-img {
-    margin-left: 8px;
-    margin-right: 8px;
-  }
-
   .ad-grid {
     grid-template-columns: 1fr;
   }

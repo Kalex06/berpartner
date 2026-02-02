@@ -40,15 +40,15 @@ export class MyitemsComponent {
 
   user: any = null
 
-  ngOnInit() {
-    this.auth.getProfile().subscribe({
-      next: profile => {
-        this.user = profile;
-      },
-      error: err => {
-        this.router.navigate(['/login']);
-        alert(err.error.message)
-      }
-    });
-  }
+  // ngOnInit() {
+  //   this.auth.getProfile().subscribe({
+  //     next: profile => {
+  //       this.user = profile;
+  //     },
+  //     error: err => {
+  //       this.router.navigate(['/login']);
+  //       alert(err.error.message)
+  //     }
+  //   });
+  // }
 }
