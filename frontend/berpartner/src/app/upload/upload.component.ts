@@ -38,4 +38,8 @@ export class UploadComponent {
     this.imagePreviews[index] = null;
     this.selectedFiles[index] = null;
   }
+
+  SendItem(){
+    
+  }
 }
