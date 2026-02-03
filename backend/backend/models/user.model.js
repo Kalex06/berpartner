@@ -30,20 +30,20 @@ const pool = require('../config/db');
 
 async function createUser(user) {
   const {nev,telefonszam,email, jelszo ,berelt_eszkozok_szama, jogosultsag, varos, utca,haz_szam } = user;
-  const [result] = await pool.execute(
+  const [rows] = await pool.execute(
     'INSERT INTO felhasznalok (nev,telefonszam,email, jelszo ,berelt_eszkozok_szama, jogosultsag, varos, utca,haz_szam) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
     [nev,telefonszam,email, jelszo ,berelt_eszkozok_szama, jogosultsag, varos, utca,haz_szam]
   );
-  return result.insertId; 
+  return rows.insertId; 
 }
 
 async function updateUser(id, user) {
   const {nev,telefonszam,email, jelszo ,berelt_eszkozok_szama, jogosultsag, varos, utca,haz_szam} = user;
-  const [result] = await pool.execute(
+  const [rows] = await pool.execute(
     'UPDATE felhasznalok SET nev = ?,telefonszam = ?,email = ?,jelszo=?,berelt_eszkozok_szama=?,  jogosultsag = ?, varos=?, utca=?, haz_szam=? WHERE id = ?',
     [nev,telefonszam,email, jelszo ,berelt_eszkozok_szama, jogosultsag, varos, utca,haz_szam, id]
   );
-  return result.affectedRows; 
+  return rows.affectedRows; 
 }
 
 
