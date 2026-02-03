@@ -100,7 +100,7 @@ export class RegisztracioComponent {
     };
     this.auth.register(data).subscribe({
       next: () => alert('Sikeres regisztráció'),
-      error: err => alert(err.error.message)
+      error: (err) => alert(err.error.message)
     });
   }
 }

@@ -16,7 +16,7 @@ import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
 import {MatStepperModule} from '@angular/material/stepper';
 import { UdvozloComponent } from './udvozlo/udvozlo.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 import { MatIconModule } from '@angular/material/icon';
 
@@ -74,7 +74,6 @@ import { UploadComponent } from './upload/upload.component';
     MatButtonModule,
     MatStepperModule,
     ReactiveFormsModule,
-    HttpClientModule,
     MatIconModule,
     MatToolbarModule,
     MatTabsModule,
@@ -90,6 +89,7 @@ import { UploadComponent } from './upload/upload.component';
   providers: [
     provideAnimationsAsync(),
     provideNgxMask(),
+    provideHttpClient(),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
