@@ -52,6 +52,15 @@ import { UploadComponent } from './upload/upload.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 
+// Item Details Component
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
+import { LOCALE_ID } from '@angular/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import localeHu from '@angular/common/locales/hu';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localeHu);
 
 @NgModule({
   declarations: [
@@ -91,10 +100,14 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     MatListModule,
     NgxMaskDirective,
     MatSelectModule,
+    MatDatepickerModule,
   ],
   providers: [
     provideAnimationsAsync(),
     provideNgxMask(),
+    provideNativeDateAdapter(),
+    { provide: LOCALE_ID, useValue: 'hu-HU' },
+    { provide: MAT_DATE_LOCALE, useValue: 'hu-HU' },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
