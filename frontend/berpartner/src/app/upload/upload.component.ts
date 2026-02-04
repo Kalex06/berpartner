@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 
+interface Condition {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
@@ -9,6 +14,13 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class UploadComponent {
   constructor(private auth: AuthService, private router: Router) { }
+
+  conditions: Condition[] = [
+    {value: 'new', viewValue: 'Új'},
+    {value: 'newlike', viewValue: 'Újszerű'},
+    {value: 'good', viewValue: 'Jó / megkímélt'},
+    {value: 'used', viewValue: 'Használt'},
+  ];
 
   navigateBack() {
     setTimeout(() => {
