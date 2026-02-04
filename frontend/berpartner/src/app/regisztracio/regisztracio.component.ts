@@ -94,6 +94,7 @@ export class RegisztracioComponent {
       jelszo: this.passwordFormGroup.value.password,
       berelt_eszkozok_szama: '0',
       jogosultsag: 'user',
+      iranyitoszam:this.addressFormGroup.value.iranyitoszam,
       varos: this.addressFormGroup.value.varos,
       utca: this.addressFormGroup.value.utca,
       haz_szam: this.addressFormGroup.value.hazszam

@@ -40,6 +40,12 @@ export class UploadComponent {
   }
 
   SendItem(){
+    const formData = new FormData();
     
+    this.selectedFiles.filter(file=>file!=null&&file!=undefined).forEach((file)=>{
+      formData.append('selectedFiles',file,file.name);
+    })
+
+   // formData.append('nev',)
   }
 }
