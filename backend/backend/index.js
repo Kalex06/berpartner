@@ -14,9 +14,9 @@ const item_router = require('./routes/item.routes');
 app.use(cors());
 app.use(express.json());
 
-app.use('/users', user_router);
+app.use('/user', user_router);
 app.use('/auth', auth_router);
-app.use('/items',item_router);
+app.use('/item',item_router);
 
 app.listen(PORT,()=>{
 
