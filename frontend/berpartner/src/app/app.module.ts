@@ -104,6 +104,10 @@ registerLocaleData(localeHu);
   providers: [
     provideAnimationsAsync(),
     provideNgxMask(),
+    provideNativeDateAdapter(),
+    { provide: LOCALE_ID, useValue: 'hu-HU' },
+    { provide: MAT_DATE_LOCALE, useValue: 'hu-HU' },
+    provideHttpClient(),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
