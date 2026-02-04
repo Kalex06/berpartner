@@ -10,6 +10,7 @@ CREATE TABLE felhasznalok (
     jelszo VARCHAR(255) NOT NULL,
     berelt_eszkozok_szama INT NOT NULL,
     jogosultsag ENUM('user','admin') NOT NULL,
+    iranyitoszam VARCHAR(100) NOT NULL,
     varos VARCHAR(100) NOT NULL,
     utca VARCHAR(100) NOT NULL,
     haz_szam VARCHAR(10) NOT NULL,
@@ -17,11 +18,38 @@ CREATE TABLE felhasznalok (
 );
 
 
+CREATE TABLE foKategoriak (
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     fo_kategoria VARCHAR(100) UNIQUE NOT NULL
+);
+
+INSERT INTO foKategoriak (fo_kategoria) VALUES 
+('Eszközök'),
+('Járművek'),
+('Helyszínek');
 
 CREATE TABLE kategoriak (
      id INT AUTO_INCREMENT PRIMARY KEY,
-     kategoria VARCHAR(100) UNIQUE NOT NULL
+     fo_kategoriaId INT NOT NULL,
+     kategoria VARCHAR(100) NOT NULL,
+     FOREIGN KEY (fo_kategoriaId) REFERENCES foKategoriak(id)
 );
+
+INSERT INTO kategoriak (fo_kategoriaId, kategoria) VALUES 
+(1,'Építőipari & gépi szerszámok'),
+(1,'Kert & Kültér'),
+(1,'Jármű szerelés'),
+(1,'Szállítás'),
+(1,'Rendezvény'),
+(1,'Elektronika'),
+(2,'Kisteherautó'),
+(2,'Személyautó'),
+(2,'Teherautó'),
+(2,'Földmunka & Emelőgépek'),
+(2,'Pótkocsi/Utánfutó'),
+(3,'Tárolás & Raktár'),
+(3,'Műhely'),
+(3,'Rendezvényhelyszín');
 
 CREATE TABLE eszkozok (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -41,7 +69,7 @@ CREATE TABLE eszkoz_kepek(
     eszkoz_id INT NOT NULL,
     kep_nev VARCHAR(255),
     FOREIGN KEY (eszkoz_id) REFERENCES eszkozok(id)
-)
+);
 
 CREATE TABLE berlesek (
     id INT AUTO_INCREMENT PRIMARY KEY,
