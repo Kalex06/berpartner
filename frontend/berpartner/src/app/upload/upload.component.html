@@ -34,16 +34,16 @@
                 <p class="image-hint">Legalább 1, legfeljebb 4 képet tölthetsz fel (max. 5 MB / kép)</p>
             </section>
 
-            <section class="form-section">
+            <section class="form-section" [formGroup]="uploadForm">
                 <h2>Hirdetés adatai</h2>
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Hirdetés neve</mat-label>
-                    <input matInput placeholder="Pl. Bosch GSB 600, Ütvefúrógép, 600W" required>
+                    <input matInput placeholder="Pl. Bosch GSB 600, Ütvefúrógép, 600W" formControlName="title" required>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Kategória</mat-label>
-                    <mat-select required>
+                    <mat-select formControlName="category" required>
                         <mat-optgroup label="Eszközök">
                             <mat-option value="epito_gepi">Építőipari & gépi szerszámok</mat-option>
                             <mat-option value="kert">Kert & Kültér</mat-option>
@@ -71,7 +71,7 @@
 
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Állapot</mat-label>
-                    <mat-select formControlName="allapot" required>
+                    <mat-select formControlName="condition" required>
                         @for (condition of conditions; track condition) {
                         <mat-option [value]="condition.value">{{condition.viewValue}}</mat-option>
                         }
@@ -81,19 +81,21 @@
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Napi díj (Ft)</mat-label>
                     <input matInput type="number" class="no-spinners" placeholder="Pl. 2500"
-                        (wheel)="$event.preventDefault()" required>
+                        (wheel)="$event.preventDefault()" formControlName="dailyFee" required>
                     <span matTextSuffix>Ft / nap</span>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="full-width" floatLabel="always">
                     <mat-label>Leírás</mat-label>
                     <textarea matInput rows="5"
-                        placeholder="Leírás az eszközről, állapotáról és egyéb információkról..." required></textarea>
+                        placeholder="Leírás az eszközről, állapotáról és egyéb információkról..."
+                        formControlName="description" required>
+                    </textarea>
                 </mat-form-field>
             </section>
 
             <footer class="action-bar">
-                <button mat-flat-button class="submit-btn" type="submit">
+                <button mat-flat-button class="submit-btn" type="submit" [disabled]="uploadForm.invalid">
                     Hirdetés feladása
                 </button>
             </footer>
