@@ -9,13 +9,14 @@ const PORT = 3000;
 
 const user_router = require('./routes/user.routes');
 const auth_router = require('./routes/auth.routes');
+const item_router = require('./routes/item.routes');
 
 app.use(cors());
 app.use(express.json());
 
 app.use('/users', user_router);
 app.use('/auth', auth_router);
-
+app.use('/items',item_router);
 
 app.listen(PORT,()=>{
 

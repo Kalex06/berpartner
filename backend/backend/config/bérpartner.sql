@@ -26,7 +26,6 @@ CREATE TABLE kategoriak (
 CREATE TABLE eszkozok (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nev VARCHAR(200) NOT NULL,
-    statusz VARCHAR(30) NOT NULL,
     kategoria_id INT NOT NULL,
     ar_egy_napra INT NOT NULL,
     allapot VARCHAR(100) NOT NULL,
@@ -37,10 +36,10 @@ CREATE TABLE eszkozok (
 );
 
 
-CREATE TABLE termek_kepek(
+CREATE TABLE eszkoz_kepek(
     id INT AUTO_INCREMENT PRIMARY KEY,
     eszkoz_id INT NOT NULL,
-    eleresi_ut VARCHAR(255),
+    kep_nev VARCHAR(255),
     FOREIGN KEY (eszkoz_id) REFERENCES eszkozok(id)
 )
 

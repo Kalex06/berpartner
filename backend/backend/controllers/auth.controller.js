@@ -55,7 +55,8 @@ async function regist(req, res) {
 
         const hashedPassword = await bcrypt.hash(jelszo, 10);
 
-        const id = await User.createUser({ nev, telefonszam, email, jelszo: hashedPassword, berelt_eszkozok_szama, jogosultsag, varos, utca, haz_szam });
+        const user = { nev, telefonszam, email, hashedPassword, berelt_eszkozok_szama, jogosultsag, varos, utca, haz_szam };
+        const id = await User.createUser(user);
         res.status(201).json({ message: 'Sikeres regisztráció', id });
     } catch (err) {
         res.status(500).json({ message: 'Hiba a felhasználó regisztrálásakor', error: err.message });

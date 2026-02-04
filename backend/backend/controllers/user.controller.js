@@ -56,9 +56,9 @@ async function getUserById(req, res) {
 async function putUser(req, res) {
     try {
         const { id } = req.params;
-        const { nev, telefonszam, email, jelszo, berelt_eszkozok_szama, jogosultsag, varos, utca, haz_szam } = req.body;
+        const user = req.body;
 
-        const affectedRows = await User.updateUser(id, { nev, telefonszam, email, jelszo, berelt_eszkozok_szama, jogosultsag, varos, utca, haz_szam });
+        const affectedRows = await User.updateUser(id, user);
         if (affectedRows === 0) return res.status(404).json({ message: 'A felhasználó nem létezik' });
 
         res.json({ message: 'Felhasználó frissítve' });

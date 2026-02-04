@@ -16,7 +16,7 @@ import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
 import {MatStepperModule} from '@angular/material/stepper';
 import { UdvozloComponent } from './udvozlo/udvozlo.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 import { MatIconModule } from '@angular/material/icon';
 
@@ -88,7 +88,6 @@ registerLocaleData(localeHu);
     MatButtonModule,
     MatStepperModule,
     ReactiveFormsModule,
-    HttpClientModule,
     MatIconModule,
     MatToolbarModule,
     MatTabsModule,
@@ -105,9 +104,6 @@ registerLocaleData(localeHu);
   providers: [
     provideAnimationsAsync(),
     provideNgxMask(),
-    provideNativeDateAdapter(),
-    { provide: LOCALE_ID, useValue: 'hu-HU' },
-    { provide: MAT_DATE_LOCALE, useValue: 'hu-HU' },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
