@@ -33,22 +33,11 @@ export class RegisztracioComponent {
     { validators: this.passwordMatchValidator });
 
   addressFormGroup = this._formBuilder.group({
-    varos: ['', Validators.required],
-    iranyitoszam: ['', Validators.required],
-    utca: ['', Validators.required],
-    hazszam: ['', Validators.required],
+    city: ['', Validators.required],
+    postcode: ['', Validators.required],
+    street: ['', Validators.required],
+    house: ['', Validators.required],
   });
-
-
-
-
-  // checkPasswords(group: FormGroup) {
-  //   const pass = group.get('password')?.value;
-  //   const confirmPass = group.get('confirmPassword')?.value;
-  //   return pass === confirmPass ? null : { mustMatch: true };
-  // }
-
-
 
   passwordMatchValidator(group: FormGroup): null {
     const password = group.get('password')?.value;
@@ -84,8 +73,6 @@ export class RegisztracioComponent {
   }
   isOptional = false;
 
-  
-
   submit() {
     const data = {
       nev: `${this.nameFormGroup.value.lastName} ${this.nameFormGroup.value.firstName}`,
@@ -94,9 +81,9 @@ export class RegisztracioComponent {
       jelszo: this.passwordFormGroup.value.password,
       berelt_eszkozok_szama: '0',
       jogosultsag: 'user',
-      varos: this.addressFormGroup.value.varos,
-      utca: this.addressFormGroup.value.utca,
-      haz_szam: this.addressFormGroup.value.hazszam
+      varos: this.addressFormGroup.value.city,
+      utca: this.addressFormGroup.value.street,
+      haz_szam: this.addressFormGroup.value.house
     };
     this.auth.register(data).subscribe({
       next: () => alert('Sikeres regisztráció'),

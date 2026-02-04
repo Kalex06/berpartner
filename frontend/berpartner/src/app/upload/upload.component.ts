@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 interface Condition {
   value: string;
@@ -13,24 +14,27 @@ interface Condition {
   styleUrl: './upload.component.css'
 })
 export class UploadComponent {
-  constructor(private auth: AuthService, private router: Router) { }
-
-  conditions: Condition[] = [
-    {value: 'new', viewValue: 'Új'},
-    {value: 'newlike', viewValue: 'Újszerű'},
-    {value: 'good', viewValue: 'Jó / megkímélt'},
-    {value: 'used', viewValue: 'Használt'},
-  ];
-
-  navigateBack() {
-    setTimeout(() => {
-      this.router.navigate(['/home']);
-    }, 400);
-  }
-
-
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
+  private _formBuilder = inject(FormBuilder);
   imagePreviews: (string | null)[] = [null, null, null, null];
   selectedFiles: (File | null)[] = [null, null, null, null];
+
+  uploadForm = this._formBuilder.group({
+    title: ['', [Validators.required, Validators.minLength(3)]],
+    category: ['', [Validators.required]],
+    condition: ['', [Validators.required]],
+    dailyFee: [null, [Validators.required, Validators.min(1)]],
+    description: ['', Validators.required],
+    images: [[], [Validators.required]] 
+  })
+
+  conditions: Condition[] = [
+    { value: 'new', viewValue: 'Új' },
+    { value: 'newlike', viewValue: 'Újszerű' },
+    { value: 'good', viewValue: 'Jó / megkímélt' },
+    { value: 'used', viewValue: 'Használt' },
+  ];
+
 
   onFileSelected(event: any, index: number) {
     const file = event.target.files[0];
@@ -51,7 +55,14 @@ export class UploadComponent {
     this.selectedFiles[index] = null;
   }
 
-  SendItem(){
-    
+  navigateBack() {
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+    }, 400);
+  }
+
+
+  SendItem() {
+
   }
 }
