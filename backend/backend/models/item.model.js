@@ -7,7 +7,7 @@ async function uploadpictures(pool,data) {
         'INSERT INTO eszkoz_kepek (eszkoz_id,kep_nev) VALUES ?',
         [data]
     );
-     return rows.insertId;
+     return rows.affectedRows;
     
  }
 
