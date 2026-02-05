@@ -55,14 +55,13 @@ export class UploadComponent {
     this.selectedFiles[index] = null;
   }
 
-  navigateBack() {
-    setTimeout(() => {
-      this.router.navigate(['/home']);
-    }, 400);
-  }
+  SendItem(){
+    const formData = new FormData();
+    
+    this.selectedFiles.filter(file=>file!=null&&file!=undefined).forEach((file)=>{
+      formData.append('selectedFiles',file,file.name);
+    })
 
-
-  SendItem() {
-
+   // formData.append('nev',)
   }
 }

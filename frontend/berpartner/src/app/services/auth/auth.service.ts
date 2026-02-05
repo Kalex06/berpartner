@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   getProfile(){
-    return this.http.get<any>(`${this.API}/users/myprofile`);
+    return this.http.get<any>(`${this.API}/user/myprofile`);
   }
 
   saveToken(token: string) {

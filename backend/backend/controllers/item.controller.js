@@ -1,9 +1,13 @@
 const Item = require('../models/item.model');
+const pool = require('../config/db');
 const Category = require('../models/category.model');
 
 async function uploadItem(req,res){
+     const connection = await pool.getConnection();
     try{
-        
+        await connection.beginTransaction();
+
+
         const {kategoria} = req.body;
          const{nev,ar_egy_napra,allapot,leiras} = req.body;
 
@@ -13,35 +17,38 @@ async function uploadItem(req,res){
 
         const itemData = {
             nev:nev,
-            kategoria_id:categoryId,
+            kategoria_id: categoryId,
             ar_egy_napra:ar_egy_napra,
             allapot:allapot,
             leiras:leiras,
             tulajdonos_id: req.user.id
         };
 
-       const savedItemdata = await Item.uploadItem(itemData);
+       const savedItemid = await Item.uploadItem(connection,itemData);
 
 
 
-        const {eszkoz_id} = req.body;
+        
         const pictures = [];
-
         for (let index = 0; index < req.files.length; index++) {
             const element = req.files[index];
-            pictures.push({
-                eszkoz_id: eszkoz_id,
-                eleresi_ut: element.filename
-            });
+            pictures.push([
+                savedItemid,
+                element.filename
+            ]);
 
 
         };
 
-      const savedPic = await Item.uploadpictures(pictures);
-        res.status(200).json({message:`Sikeres feltöltés! Adat: ${savedItemdata}  Képek: ${savedPic}`});
+      const savedPic = await Item.uploadpictures(connection,pictures);
+        await connection.commit();
+        res.status(200).json({message:`Sikeres feltöltés! Adat: ${savedItemid}  Képek: ${savedPic}`});
     }
     catch(err){
-            res.status(500).json({message:"Hiba feltöltés közben"});
+            res.status(500).json({message:"Hiba feltöltés közben",error: err.message });
+    }
+    finally{
+        connection.release();
     }
 }
 
