@@ -17,8 +17,8 @@ async function uploadItem(req,res){
 
         const itemData = {
             nev:nev,
-            kategoria_id: categoryId,
-            ar_egy_napra:ar_egy_napra,
+            kategoria_id: categoryId.id,
+            ar_egy_napra:Number(ar_egy_napra),
             allapot:allapot,
             leiras:leiras,
             tulajdonos_id: req.user.id
@@ -42,7 +42,7 @@ async function uploadItem(req,res){
 
       const savedPic = await Item.uploadpictures(connection,pictures);
         await connection.commit();
-        res.status(200).json({message:`Sikeres feltöltés! Adat: ${savedItemid}  Képek: ${savedPic}`});
+        res.status(200).json({message:`Sikeres feltöltés! Adat Id: ${savedItemid}  Képek száma: ${savedPic}`});
     }
     catch(err){
             res.status(500).json({message:"Hiba feltöltés közben",error: err.message });

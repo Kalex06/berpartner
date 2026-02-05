@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ItemService } from '../services/item/item.service';
 
 interface Condition {
   value: string;
@@ -14,7 +15,7 @@ interface Condition {
   styleUrl: './upload.component.css'
 })
 export class UploadComponent {
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private item: ItemService, private router: Router) { }
   private _formBuilder = inject(FormBuilder);
   imagePreviews: (string | null)[] = [null, null, null, null];
   selectedFiles: (File | null)[] = [null, null, null, null];
@@ -29,10 +30,10 @@ export class UploadComponent {
   })
 
   conditions: Condition[] = [
-    { value: 'new', viewValue: 'Új' },
-    { value: 'newlike', viewValue: 'Újszerű' },
-    { value: 'good', viewValue: 'Jó / megkímélt' },
-    { value: 'used', viewValue: 'Használt' },
+    { value: 'Új', viewValue: 'Új' },
+    { value: 'Újszerű', viewValue: 'Újszerű' },
+    { value: 'Jó / megkímélt', viewValue: 'Jó / megkímélt' },
+    { value: 'Használt', viewValue: 'Használt' },
   ];
 
 
@@ -53,7 +54,10 @@ export class UploadComponent {
     event.stopPropagation();
     this.imagePreviews[index] = null;
     this.selectedFiles[index] = null;
+    
   }
+
+
 
   SendItem(){
     const formData = new FormData();
@@ -62,6 +66,18 @@ export class UploadComponent {
       formData.append('selectedFiles',file,file.name);
     })
 
-   // formData.append('nev',)
+    formData.append('nev',String(this.uploadForm.value.title));
+    formData.append('kategoria',String(this.uploadForm.value.category));
+    formData.append('ar_egy_napra',String(this.uploadForm.value.dailyFee));
+    formData.append('allapot',String(this.uploadForm.value.condition));
+    formData.append('leiras',String(this.uploadForm.value.description));
+
+
+    this.item.uploaditem(formData).subscribe({
+      next:()=>alert("Feltöltés sikeres!"),
+      error(err) {
+        alert(err)
+      }
+    });
   }
 }

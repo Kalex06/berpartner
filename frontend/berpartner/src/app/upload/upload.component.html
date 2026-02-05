@@ -1,11 +1,11 @@
 <main class="upload-page">
-    <button class="back-btn" routerLink="/home" (click)="navigateBack()" aria-label="Vissza a főoldalra">
+    <button class="back-btn" routerLink="/home"  aria-label="Vissza a főoldalra">
         <mat-icon>home</mat-icon>
     </button>
     <div class="upload-card">
         <h1 class="page-title">Új hirdetés feladása</h1>
 
-        <form class="upload-form">
+        <form class="upload-form" (ngSubmit)="SendItem()">
             <section class="images-section">
                 <h2 class="section-title">Képek</h2>
 
@@ -34,7 +34,7 @@
                 <p class="image-hint">Legalább 1, legfeljebb 4 képet tölthetsz fel (max. 5 MB / kép)</p>
             </section>
 
-            <section class="form-section" [formGroup]="uploadForm">
+            <section class="form-section" [formGroup]="uploadForm" >
                 <h2>Hirdetés adatai</h2>
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Hirdetés neve</mat-label>

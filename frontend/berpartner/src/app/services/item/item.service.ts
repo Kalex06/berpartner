@@ -12,7 +12,7 @@ export class ItemService {
   constructor(private http: HttpClient){}
 
   uploaditem(data:any):Observable<any>{
-   return this.http.post(`${this.API}/items/upload/pictures`,data);
+   return this.http.post(`${this.API}/item/upload/pictures`,data);
   }
 
     
