@@ -47,31 +47,30 @@
             <mat-menu #categories="matMenu">
                 <button mat-menu-item [matMenuTriggerFor]="tools">Eszközök</button>
                 <button mat-menu-item [matMenuTriggerFor]="vehicle">Járművek</button>
-                <button mat-menu-item [matMenuTriggerFor]="places">Helyszínek</button>
+                <button mat-menu-item [matMenuTriggerFor]="places">Épület</button>
             </mat-menu>
 
             <mat-menu #tools="matMenu">
-                <button mat-menu-item>Barkács & Felújítás</button>
-                <button mat-menu-item>Kert & Kültér</button>
-                <button mat-menu-item>Jármű kiegészítők</button>
-                <button mat-menu-item>Szállítás</button>
-                <button mat-menu-item>Rendezvény</button>
-                <button mat-menu-item>Elektronika</button>
+                <mat-option value="epito_gepi">Építőipari & gépi szerszámok</mat-option>
+                <mat-option value="kert">Kert & Kültér</mat-option>
+                <mat-option value="jarmu_szereles">Jármű szerelés</mat-option>
+                <mat-option value="szallitas">Szállítás</mat-option>
+                <mat-option value="rendezveny">Rendezvény</mat-option>
+                <mat-option value="elektronika">Elektronika</mat-option>
             </mat-menu>
 
             <mat-menu #vehicle="matMenu">
-                <button mat-menu-item>Személyautó</button>
-                <button mat-menu-item>Kishaszonjármű</button>
-                <button mat-menu-item>Haszonjármű</button>
-                <button mat-menu-item>Munkagép</button>
-                <button mat-menu-item>Pótkocsi/Utánfutó</button>
-                <button mat-menu-item>Motorkerékpár</button>
+                <mat-option value="szemelyauto">Személyautó</mat-option>
+                <mat-option value="kisteher">Kisteherautó</mat-option>
+                <mat-option value="nagyteher">Teherautó</mat-option>
+                <mat-option value="munkagep">Földmunka & Emelőgépek</mat-option>
+                <mat-option value="potkocsi">Pótkocsi/Utánfutó</mat-option>
             </mat-menu>
 
             <mat-menu #places="matMenu">
-                <button mat-menu-item>Tárolás & Raktár</button>
-                <button mat-menu-item>Műhely</button>
-                <button mat-menu-item>Rendezvényhelyszín</button>
+                <mat-option value="tarolas">Tárolás & Raktár</mat-option>
+                <mat-option value="muhely">Műhely</mat-option>
+                <mat-option value="helyszin">Rendezvényhelyszín</mat-option>
             </mat-menu>
 
             <span class="spacer"></span>
