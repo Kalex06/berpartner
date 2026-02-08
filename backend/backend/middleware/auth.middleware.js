@@ -5,12 +5,12 @@ function authMiddleware(req, res, next) {
   const authHeader = req.headers['authorization'];
 
   if (!authHeader) {
-    return res.status(401).json({ message: 'Token hiányzik' });
+    return res.status(401).json({ message: 'Hiányzó Token' });
   }
 
   const token = authHeader.split(' ')[1];
 
-  if (!token) return res.status(401).json({ message: 'Token hiányzik' });
+  if (!token) return res.status(401).json({ message: 'Hiányzó Token' });
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);

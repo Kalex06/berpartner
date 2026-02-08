@@ -15,7 +15,7 @@ async function getMyProfile(req, res) {
 
         delete user.jelszo;
 
-    res.json(user);
+    res.status(200).json(user);
     } catch (err) {
         return res.status(500).json({message:'Hiba a felhasználó lekérdezésénél!'})
     }

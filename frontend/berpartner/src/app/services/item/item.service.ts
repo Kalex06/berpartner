@@ -15,5 +15,14 @@ export class ItemService {
    return this.http.post(`${this.API}/item/upload/pictures`,data);
   }
 
+  getAllItem(){
+    return this.http.get<any>(`${this.API}/item/getAll`);
+  }
+
+  getItem(id:number){
+    return this.http.get<any>(`${this.API}/item/${id}`);
+  }
+
+  
     
 }

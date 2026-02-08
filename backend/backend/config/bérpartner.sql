@@ -14,7 +14,7 @@ CREATE TABLE felhasznalok (
     varos VARCHAR(100) NOT NULL,
     utca VARCHAR(100) NOT NULL,
     haz_szam VARCHAR(10) NOT NULL,
-    profil_kep VARCHAR(255)
+    profil_kep VARCHAR(255) DEFAULT NULL
 );
 
 

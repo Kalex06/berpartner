@@ -11,8 +11,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register(data: any) :Observable<any>{
-    return this.http.post(`${this.API}/auth/regist`, data);
+  register(data: any){
+    return this.http.post<any>(`${this.API}/auth/regist`, data);
   }
 
   login(data: { email: string; jelszo: string }) {
