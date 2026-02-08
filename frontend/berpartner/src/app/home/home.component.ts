@@ -3,6 +3,7 @@ import { NotificationsComponent } from '../notifications/notifications.component
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { ItemService } from '../services/item/item.service';
 
 interface SortOption {
   value: string;
@@ -15,7 +16,7 @@ interface SortOption {
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService,private item: ItemService, private router: Router) { }
 
   readonly dialog = inject(MatDialog);
 
@@ -30,8 +31,8 @@ export class HomeComponent {
   ];
   selectedSort: string = 'newest-0';
 
-
-  user: any = null
+  posts: any[]=[];
+  user: any = null;
 
   ngOnInit() {
     this.auth.getProfile().subscribe({
@@ -40,9 +41,17 @@ export class HomeComponent {
       },
       error: err => {
         this.router.navigate(['/login']);
-        alert(err.error.message)
+        console.log(err.error.message)
       }
     });
+    this.item.getAllItem().subscribe({
+      next:(data)=>{
+        this.posts = data;
+      },
+      error(err) {
+        console.log(err.error.message);
+      },
+    })
   }
 
 }

@@ -23,7 +23,7 @@ const routes: Routes = [
   {path:'renteditems', component:RenteditemsComponent},
   {path:'myitems', component:MyitemsComponent},
   {path:'upload', component:UploadComponent},
-  {path:'item-details', component:ItemDetailsComponent},
+  {path:'item-details/:id', component:ItemDetailsComponent},
 ];
 
 

@@ -3,13 +3,13 @@
         <mat-icon>home</mat-icon>
     </button>
 
-    <div class="upload-card">
+    <div class="upload-card" *ngIf="post">
         <header class="profile-header">
             <div class="profile-picture" routerLink="/profile">
                 <img src="" alt="Profilkép" class="pfp">
             </div>
         </header>
-        <h1 class="page-title">Hírdetés Cím</h1>
+        <h1 class="page-title">{{post.nev}}</h1>
 
         <div class="upload-form">
             <section class="images-section">
@@ -39,45 +39,45 @@
 
                 <div class="detail-row">
                     <span class="detail-label">Tulajdonos:</span>
-                    <a href=""><span class="detail-value">Bekre Pál</span></a>
+                    <a href=""><span class="detail-value">{{post.felhasznalonev}}</span></a>
                 </div>
 
                 <div class="detail-row">
                     <span class="detail-label">Telefonszám:</span>
-                    <span class="detail-value">+36 12 345 6789</span>
+                    <span class="detail-value" >+{{post.telefonszam | mask:'00 000 0000'}}</span>
                 </div>
 
                 <div class="detail-row">
                     <span class="detail-label">E-mail cím:</span>
-                    <span class="detail-value">bekre.pal&#64;email.com</span>
+                    <span class="detail-value">{{post.email}}</span>
                 </div>
 
                 <div class="detail-row">
                     <span class="detail-label">Helyszín:</span>
-                    <span class="detail-value">Kalocsa , 6300</span>
+                    <span class="detail-value">{{post.varos}} , {{post.iranyitoszam}}</span>
                     
                 </div>
 
                 <div class="detail-row">
                     <span class="detail-label">Kategória:</span>
-                    <span class="detail-value">Teszt</span>
+                    <span class="detail-value">{{post.kategoria}}</span>
                 </div>
 
                 <div class="detail-row">
                     <span class="detail-label">Állapot:</span>
-                    <span class="detail-value">Jó</span>
+                    <span class="detail-value">{{post.allapot}}</span>
                 </div>
 
                 <div class="detail-row">
                     <span class="detail-label">Napi díj:</span>
-                    <span class="detail-value price-text">5 000 Ft / nap</span>
+                    <span class="detail-value price-text">{{post.ar_egy_napra}} Ft / nap</span>
                 </div>
 
 
                 <div class="details-bottom">
                     <div class="description-box">
                         <h3>Leírás</h3>
-                        <p>Leírás</p>
+                        <p>{{post.leiras}}</p>
                     </div>
 
                     <div class="calendar-box">

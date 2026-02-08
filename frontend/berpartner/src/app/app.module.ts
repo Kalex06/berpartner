@@ -10,7 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
-import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
+import {NgxMaskDirective,NgxMaskPipe, provideNgxMask} from 'ngx-mask';
 
 
 import {MatStepperModule} from '@angular/material/stepper';
@@ -98,6 +98,7 @@ registerLocaleData(localeHu);
     MatDialogModule,
     MatListModule,
     NgxMaskDirective,
+    NgxMaskPipe,
     MatSelectModule,
     MatDatepickerModule,
   ],

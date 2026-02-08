@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ItemService } from '../services/item/item.service';
 
 interface SortOption {
   value: string;
@@ -12,8 +13,8 @@ interface SortOption {
   templateUrl: './item-details.component.html',
   styleUrl: './item-details.component.css'
 })
-export class ItemDetailsComponent {
-  constructor(private auth: AuthService, private router: Router) { }
+export class ItemDetailsComponent  {
+  constructor(private auth: AuthService,private item: ItemService, private router: Router, private route: ActivatedRoute) { }
 
   navigateBack() {
     setTimeout(() => {
@@ -53,6 +54,23 @@ export class ItemDetailsComponent {
       this.rangeText = 'Bérlési időszak kiválasztása';
     }
   }
+
+  post: any=null;
+  
+  ngOnInit() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.item.getItem(id).subscribe({
+      next:data=>{
+        this.post = data;
+      },
+      error(err) {
+        console.log(err.error.message);
+      },
+    })
+  }
+
+
+
 
 }
 

@@ -52,4 +52,34 @@ async function uploadItem(req,res){
     }
 }
 
-module.exports = {uploadItem}
+async function getAllItem(req,res){
+    try{
+        const items = await Item.getAllItem();
+        res.status(200).json(items);
+    }
+    catch(err){
+        res.status(500).json({message:"Hiba a lekérdezés közben"});
+    }
+    
+    
+
+}
+
+async function getItemById(req,res){
+    try{
+        const id = req.params.id;
+        const item = await Item.getItemById(id);
+        res.status(200).json(item);
+        if (!item) {
+            return res.status(404).json({ message: 'Az eszköz nem található!' });
+        }
+
+    }
+    catch(err){
+        res.status(500).json({message:"Hiba a lekérdezés közben"});
+    }
+
+}
+
+
+module.exports = {uploadItem,getAllItem,getItemById};
