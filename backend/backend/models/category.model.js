@@ -8,5 +8,20 @@ async function findCategory(name) {
   return rows[0];
 }
 
+async function getOneTypeCategory(id) {
+  const [rows] = await pool.execute(
+    'SELECT id,kategoria FROM kategoriak WHERE kategoriak.fo_kategoriaId=?',
+    [id]
+  );
+  return rows;
+}
 
-module.exports = {findCategory};
+
+async function getMainCategorys() {
+  const [rows] = await pool.execute(
+    'SELECT * FROM foKategoriak'
+  );
+  return rows;
+}
+
+module.exports = {findCategory,getOneTypeCategory,getMainCategorys};
