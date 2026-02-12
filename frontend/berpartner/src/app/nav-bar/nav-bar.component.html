@@ -1,7 +1,9 @@
 <header>
     <nav class="header-nav">
         <mat-toolbar id="header-toolbar">
-            <img src="assets/pictures/logo_2.png" alt="BérPartner Logo" class="logo_img">
+            <div class="logo-div">
+                <img src="assets/pictures/logo_2.png" alt="BérPartner Logo" class="logo_img" routerLink="/home" aria-label="BérPartner főoldal" >
+            </div>
             <span>BérPartner</span>
             <span class="spacer"></span>
             <button mat-icon-button class="profile-menu-btn" [matMenuTriggerFor]="menu">
