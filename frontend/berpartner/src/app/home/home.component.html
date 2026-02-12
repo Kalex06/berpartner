@@ -3,14 +3,14 @@
         <article class="ad-grid">
             
 
-            <mat-card class="item-card" appearance="outlined" *ngFor="let post of posts">
+            <mat-card class="item-card" appearance="outlined" *ngFor="let post of posts" routerLink="/item-details/{{post.id}}">
                 <img mat-card-image src="http://localhost:3000/upload/picture/{{post.kep_nev}}" alt="Test photo">
                 <mat-card-header>
                     <mat-card-title>{{post.nev}}</mat-card-title>
                     <mat-card-subtitle>{{post.kategoria}}</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
-                    <p>
+                    <p class="description">
                         {{post.leiras}}
                     </p>
                     <div class="item-informations">
@@ -18,11 +18,6 @@
                         <div class="location-tag"><mat-icon class="location-icon">place</mat-icon> <span>{{post.varos}}</span></div>
                     </div>
                 </mat-card-content>
-                <mat-card-actions>
-                    <button mat-raised-button color="accent" class="details-btn"
-                        routerLink="/item-details/{{post.id}}">Részletek</button>
-                    <button mat-raised-button color="accent" class="rent-btn">FOGLALÁS</button>
-                </mat-card-actions>
             </mat-card>
             
 

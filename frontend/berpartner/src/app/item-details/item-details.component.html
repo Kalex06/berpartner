@@ -1,7 +1,4 @@
 <main class="upload-page">
-    <button class="back-btn" routerLink="/home" aria-label="Vissza a főoldalra">
-        <mat-icon>home</mat-icon>
-    </button>
 
     <div class="upload-card" *ngIf="post">
         <header class="profile-header">
@@ -39,7 +36,7 @@
 
                 <div class="detail-row">
                     <span class="detail-label">Tulajdonos:</span>
-                    <a href=""><span class="detail-value">{{post.felhasznalonev}}</span></a>
+                    <span class="detail-value" routerLink="/profile" style="cursor: pointer;">{{post.felhasznalonev}}</span>
                 </div>
 
                 <div class="detail-row">
@@ -54,7 +51,7 @@
 
                 <div class="detail-row">
                     <span class="detail-label">Helyszín:</span>
-                    <span class="detail-value">{{post.varos}} , {{post.iranyitoszam}}</span>
+                    <span class="detail-value">{{post.varos}}, {{post.iranyitoszam}}</span>
                     
                 </div>
 
@@ -100,8 +97,8 @@
                     <mat-date-range-picker touchUi #picker></mat-date-range-picker>
                 </div>
 
-                <button mat-flat-button class="submit-btn">
-                    Bérlés Elküldése
+                <button mat-flat-button class="submit-btn" [disabled]="!startDate || !endDate">
+                    Bérlési igény küldése
                 </button>
             </footer>
         </div>
