@@ -2,10 +2,10 @@
     <button class="back-btn" routerLink="/home" (click)="navigateBack()" aria-label="Vissza a főoldalra">
         <mat-icon>home</mat-icon>
     </button>
-    
+
     <h2>Az általad kínált termékek:</h2>
 
-    <div class="items-list">
+    <!-- <div class="items-list">
         <article class="item-card">
             <div class="item-image-placeholder"></div>
             <div class="item-info">
@@ -38,5 +38,30 @@
             <button mat-button><mat-icon>edit</mat-icon></button>
             <button mat-button><mat-icon color="warn">delete</mat-icon></button>
         </article>
-    </div>
+    </div> -->
+
+
+    <article class="ad-grid">
+        <mat-card class="item-card" appearance="outlined">
+            <img mat-card-image src="" alt="Test photo">
+            <mat-card-header>
+                <mat-card-title>Cím</mat-card-title>
+                <mat-card-subtitle>kategoria</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    leiras
+                </p>
+                <div class="item-informations">
+                    <div class="price-tag"> Ft / nap</div>
+                    <div class="location-tag"><mat-icon class="location-icon">place</mat-icon> <span>Város</span></div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button><mat-icon color="warn">delete</mat-icon></button>
+                <button mat-button><mat-icon>edit</mat-icon></button>
+            </mat-card-actions>
+        </mat-card>
+    </article>
+
 </main>
