@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ItemService } from '../services/item/item.service';
+import { CategoryService } from '../services/category/category.service';
 
 interface Condition {
   value: string;
@@ -14,8 +15,8 @@ interface Condition {
   templateUrl: './upload.component.html',
   styleUrl: './upload.component.css'
 })
-export class UploadComponent {
-  constructor(private fb: FormBuilder, private item: ItemService, private router: Router) { }
+export class UploadComponent implements OnInit{
+  constructor(private fb: FormBuilder, private item: ItemService,private category:CategoryService, private router: Router) { }
   private _formBuilder = inject(FormBuilder);
   imagePreviews: (string | null)[] = [null, null, null, null];
   selectedFiles: (File | null)[] = [null, null, null, null];
@@ -57,6 +58,8 @@ export class UploadComponent {
     
   }
 
+   
+
 
 
   SendItem(){
@@ -79,5 +82,16 @@ export class UploadComponent {
         alert(err)
       }
     });
+  }
+
+ maincategories:any 
+
+  ngOnInit(): void {
+    this.category.getAllCategory().subscribe({
+      next: categories=>this.maincategories = categories,
+      error(err) {
+        console.log(err);
+      },
+    })
   }
 }
