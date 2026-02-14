@@ -6,15 +6,19 @@ async function getAllcategory(req,res){
 
         const mainCategory = await Category.getMainCategorys();
 
+       
+        console.log(mainCategory);
+        
+
         for (let fo_kategoriak of mainCategory)
-         {
+         {console.log(fo_kategoriak.id);
                 fo_kategoriak.kategoriak = await Category.getOneTypeCategory(fo_kategoriak.id);
-            
+            console.log(fo_kategoriak);
         }
 
-        console.log(fo_kategoriak);
+        
 
-        req.json(fo_kategoriak);
+        res.json(mainCategory);
 
 
     }

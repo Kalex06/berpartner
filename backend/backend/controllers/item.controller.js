@@ -11,13 +11,13 @@ async function uploadItem(req,res){
         const {kategoria} = req.body;
          const{nev,ar_egy_napra,allapot,leiras} = req.body;
 
-        const categoryId = await Category.findCategory(kategoria);
+       
 
        
 
         const itemData = {
             nev:nev,
-            kategoria_id: categoryId.id,
+            kategoria_id: Number(kategoria),
             ar_egy_napra:Number(ar_egy_napra),
             allapot:allapot,
             leiras:leiras,
@@ -67,7 +67,7 @@ async function getAllItem(req,res){
 
 async function getItemById(req,res){
     try{
-        const id = req.params.id;
+        const id = parseInt(req.params.id);
         const item = await Item.getItemById(id);
         res.status(200).json(item);
         if (!item) {
