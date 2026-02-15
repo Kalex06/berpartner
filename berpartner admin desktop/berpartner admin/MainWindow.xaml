@@ -1,0 +1,51 @@
+﻿<Window x:Class="berpartner_admin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:berpartner_admin"
+        mc:Ignorable="d"
+        Title="ADMIN FELÜLET" Height="450" Width="700">
+    <Grid Background="DarkBlue">
+        <TextBlock Text="Jelentkezz be!" Foreground="DarkOrange" FontWeight="Bold" FontSize="28" HorizontalAlignment="Center" Margin="0,100,0,0"/>
+       
+        <TextBox HorizontalAlignment="Center" x:Name="email" Margin="0,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="200" Height="30" FontSize="20"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,220,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  Width="200" Height="30" FontSize="20"/>
+        <TextBlock Text="E-mail:" Foreground="DarkOrange" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center" Margin="0,178,320,0"/>
+        <TextBlock Text="Jelszó:" Foreground="DarkOrange" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center" Margin="0,218,320,0"/>
+
+        <Button Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Center" MaxWidth="200" MaxHeight="70" VerticalAlignment="Bottom" Margin="0,0,0,80"  VerticalContentAlignment="Center">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                   
+                    <Border x:Name="GombHatter" 
+                    CornerRadius="15" 
+                    Background="Blue" 
+                    BorderBrush="White" 
+                    BorderThickness="2"
+                          >
+
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"/>
+                    </Border>
+
+                   
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            
+                            <Setter TargetName="GombHatter" Property="Background" Value="RoyalBlue"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="GombHatter" Property="Background" Value="DarkBlue"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+            <TextBlock Text="Bejelentkezés" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="8,6"/>
+
+        </Button>
+
+
+
+    </Grid>
+</Window>

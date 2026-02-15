@@ -7,7 +7,7 @@ async function getAllcategory(req,res){
         const mainCategory = await Category.getMainCategorys();
 
        
-        console.log(mainCategory);
+
         
 
         for (let fo_kategoriak of mainCategory)

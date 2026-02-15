@@ -61,7 +61,6 @@ export class UploadComponent implements OnInit{
    
 
 
-
   SendItem(){
     const formData = new FormData();
     

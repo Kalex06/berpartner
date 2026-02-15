@@ -1,6 +1,6 @@
 const Item = require('../models/item.model');
 const pool = require('../config/db');
-const Category = require('../models/category.model');
+
 
 async function uploadItem(req,res){
      const connection = await pool.getConnection();

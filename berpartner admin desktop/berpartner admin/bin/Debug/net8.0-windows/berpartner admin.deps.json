@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "berpartner admin/1.0.0": {
+        "runtime": {
+          "berpartner admin.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "berpartner admin/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
