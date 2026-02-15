@@ -97,7 +97,7 @@
                     <mat-date-range-picker touchUi #picker></mat-date-range-picker>
                 </div>
 
-                <button mat-flat-button class="submit-btn" [disabled]="!startDate || !endDate">
+                <button mat-flat-button class="submit-btn" (click)="sendRent()" [disabled]="!startDate || !endDate">
                     Bérlési igény küldése
                 </button>
             </footer>

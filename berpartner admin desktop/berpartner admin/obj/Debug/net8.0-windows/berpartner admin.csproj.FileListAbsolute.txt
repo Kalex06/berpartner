@@ -1,0 +1,21 @@
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\bin\Debug\net8.0-windows\berpartner admin.exe
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\bin\Debug\net8.0-windows\berpartner admin.deps.json
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\bin\Debug\net8.0-windows\berpartner admin.runtimeconfig.json
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\bin\Debug\net8.0-windows\berpartner admin.dll
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\bin\Debug\net8.0-windows\berpartner admin.pdb
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\berpartner admin_MarkupCompile.cache
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\berpartner admin_MarkupCompile.lref
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\berpartner admin.g.resources
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\berpartner admin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\berpartner admin.AssemblyInfoInputs.cache
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\berpartner admin.AssemblyInfo.cs
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\berpartner admin.csproj.CoreCompileInputs.cache
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\berpartner admin.sourcelink.json
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\berpartner admin.dll
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\refint\berpartner admin.dll
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\berpartner admin.pdb
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\berpartner admin.genruntimeconfig.cache
+C:\Users\Alex\Documents\SAJÁT\BérPartner\berpartner admin\berpartner admin\obj\Debug\net8.0-windows\ref\berpartner admin.dll
