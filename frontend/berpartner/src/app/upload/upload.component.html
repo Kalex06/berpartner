@@ -44,27 +44,10 @@
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Kategória</mat-label>
                     <mat-select formControlName="category" required>
-                        <mat-optgroup label="Eszközök">
-                            <mat-option value="epito_gepi">Építőipari & gépi szerszámok</mat-option>
-                            <mat-option value="kert">Kert & Kültér</mat-option>
-                            <mat-option value="jarmu_szereles">Jármű szerelés</mat-option>
-                            <mat-option value="szallitas">Szállítás</mat-option>
-                            <mat-option value="rendezveny">Rendezvény</mat-option>
-                            <mat-option value="elektronika">Elektronika</mat-option>
-                        </mat-optgroup>
-
-                        <mat-optgroup label="Járművek">
-                            <mat-option value="szemelyauto">Személyautó</mat-option>
-                            <mat-option value="kisteher">Kisteherautó</mat-option>
-                            <mat-option value="nagyteher">Teherautó</mat-option>
-                            <mat-option value="munkagep">Földmunka & Emelőgépek</mat-option>
-                            <mat-option value="potkocsi">Pótkocsi/Utánfutó</mat-option>
-                        </mat-optgroup>
-
-                        <mat-optgroup label="Épület">
-                            <mat-option value="tarolas">Tárolás & Raktár</mat-option>
-                            <mat-option value="muhely">Műhely</mat-option>
-                            <mat-option value="helyszin">Rendezvényhelyszín</mat-option>
+                        <mat-optgroup *ngFor="let maincategory of maincategories" [label]="maincategory.fo_kategoria">
+                            <mat-option *ngFor="let category of maincategory.kategoriak" [value]="category.id">
+                                {{category.kategoria}}    
+                            </mat-option>
                         </mat-optgroup>
                     </mat-select>
                 </mat-form-field>

@@ -47,9 +47,8 @@ mat-toolbar {
     margin-right: 16px;
 }
 
-.logo-div{
+.logo-div, .title {
     cursor: pointer;
-
 }
 
 mat-icon {

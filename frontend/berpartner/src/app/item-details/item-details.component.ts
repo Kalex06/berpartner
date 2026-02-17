@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ItemService } from '../services/item/item.service';
+import { RentService } from '../services/rent/rent.service';
 
 interface SortOption {
   value: string;
@@ -14,7 +15,7 @@ interface SortOption {
   styleUrl: './item-details.component.css'
 })
 export class ItemDetailsComponent  {
-  constructor(private auth: AuthService,private item: ItemService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private auth: AuthService,private item: ItemService,private rent: RentService, private router: Router, private route: ActivatedRoute) { }
 
   navigateBack() {
     setTimeout(() => {
@@ -70,6 +71,25 @@ export class ItemDetailsComponent  {
   }
 
 
+  sendRent(){
+    const data = {
+      eszkoz_id: Number(this.route.snapshot.paramMap.get('id')),
+      tulajdonos_id: this.post.tulajdonos_id,
+      datum_tol: this.startDate,
+      datum_ig:this.endDate
+
+    }
+
+    this.rent.UploadRent(data).subscribe({
+      next:()=>alert("Sikeres küldés!"),
+      error(err) {
+        console.log(err);
+      },
+    })
+
+
+
+  }
 
 
 }
