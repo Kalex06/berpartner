@@ -10,7 +10,7 @@ async function findCategory(name) {
 
 async function getOneTypeCategory(id) {
   const [rows] = await pool.execute(
-    'SELECT id,kategoria FROM kategoriak WHERE kategoriak.fo_kategoriaId=?',
+    'SELECT id,kategoria FROM kategoriak WHERE kategoriak.fo_kategoriaId=? ORDER BY id',
     [id]
   );
   return rows;
@@ -19,7 +19,7 @@ async function getOneTypeCategory(id) {
 
 async function getMainCategorys() {
   const [rows] = await pool.execute(
-    'SELECT * FROM foKategoriak'
+    'SELECT * FROM foKategoriak ORDER BY id'
   );
   return rows;
 }
