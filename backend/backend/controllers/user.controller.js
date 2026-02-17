@@ -37,7 +37,7 @@ async function getAllUsers(req, res) {
 
 async function getUserById(req, res) {
     try {
-        const user = await User.findUserById(req.params.id);
+        const user = await User.findUserById(parseInt(req.params.id));
         if (!user) {
             return res.status(404).json({ message: 'Nincs ilyen felhasználó' });
         }
@@ -55,7 +55,7 @@ async function getUserById(req, res) {
 
 async function putUser(req, res) {
     try {
-        const { id } = req.params;
+        const  id  = parseInt(req.params.id);
         const user = req.body;
 
         const affectedRows = await User.updateUser(id, user);
