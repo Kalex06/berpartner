@@ -6,7 +6,7 @@
 
         <header class="profile-header">
             <div class="profile-picture">
-                <img src="" alt="Profilkép" class="pfp">
+                <img src="assets/pictures/default_profil.svg" alt="Profilkép" class="pfp">
             </div>
             <h1 class="full-name">{{user.nev}}</h1>
         </header>
@@ -27,7 +27,7 @@
 
                 <div class="grid-item">
                     <span class="grid-label">Telefonszám</span>
-                    <span class="grid-value">+{{user.telefonszam}}</span>
+                    <span class="grid-value">+{{user.telefonszam | mask:'00 000 0000'}}</span>
                 </div>
 
                 <div class="grid-item">
