@@ -42,19 +42,19 @@
 
 
     <article class="ad-grid">
-        <mat-card class="item-card" appearance="outlined">
-            <img mat-card-image src="" alt="Test photo">
+        <mat-card class="item-card" *ngFor="let post of posts" appearance="outlined">
+            <img mat-card-image src="http://localhost:3000/upload/picture/{{post.kep_nev}}" alt="Termék kép">
             <mat-card-header>
-                <mat-card-title>Cím</mat-card-title>
-                <mat-card-subtitle>kategoria</mat-card-subtitle>
+                <mat-card-title>{{post.nev}}</mat-card-title>
+                <mat-card-subtitle>{{post.kategoria}}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
                 <p>
-                    leiras
+                    {{post.leiras}}
                 </p>
                 <div class="item-informations">
-                    <div class="price-tag"> Ft / nap</div>
-                    <div class="location-tag"><mat-icon class="location-icon">place</mat-icon> <span>Város</span></div>
+                    <div class="price-tag">{{post.ar_egy_napra}} Ft / nap</div>
+                    <div class="location-tag"><mat-icon class="location-icon">place</mat-icon> <span>{{post.varos}}</span></div>
                 </div>
             </mat-card-content>
             <mat-card-actions>
