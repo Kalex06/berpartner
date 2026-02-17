@@ -26,7 +26,7 @@ export class UploadComponent {
     condition: ['', [Validators.required]],
     dailyFee: [null, [Validators.required, Validators.min(1)]],
     description: ['', Validators.required],
-    images: [[], [Validators.required]] 
+   // images: [[], [Validators.required]] 
   })
 
   conditions: Condition[] = [
