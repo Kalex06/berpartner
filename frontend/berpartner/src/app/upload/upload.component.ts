@@ -27,11 +27,7 @@ export class UploadComponent implements OnInit{
     condition: ['', [Validators.required]],
     dailyFee: [null, [Validators.required, Validators.min(1)]],
     description: ['', Validators.required],
-<<<<<<< HEAD
    // images: [[], [Validators.required]] 
-=======
-    // images: [[], [Validators.required]] 
->>>>>>> 63b475c9ee61dfb6a6ae856f8dbbcfcaa478d6b6
   })
 
   conditions: Condition[] = [
