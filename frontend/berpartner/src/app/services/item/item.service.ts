@@ -22,6 +22,9 @@ export class ItemService {
     return this.http.get<any>(`${this.API}/item/${id}`);
   }
 
+  getItemByOwner(id:number){
+    return this.http.get<any>(`${this.API}/item/owner/${id}`)
+  }
   
     
 }
