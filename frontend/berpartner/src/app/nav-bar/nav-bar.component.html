@@ -28,7 +28,7 @@
                     <mat-icon>settings</mat-icon>
                     <span>Beállítások</span>
                 </button>
-                <button mat-menu-item routerLink="/login" style="color: darkred;">
+                <button mat-menu-item (click)="logOut()" style="color: darkred;">
                     <mat-icon color="warn">exit_to_app</mat-icon>
                     <span color="warn">Kijelentkezés</span>
                 </button>
