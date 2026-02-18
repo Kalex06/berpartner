@@ -31,6 +31,11 @@ export class NavBarComponent {
 
   user: any = null
 
+  logOut(){
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
+
   ngOnInit() {
     this.auth.getProfile().subscribe({
       next: profile => {
