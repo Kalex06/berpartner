@@ -42,6 +42,9 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import {MatListModule} from '@angular/material/list';
 import { UserDeletionComponent } from './user-deletion/user-deletion.component';
 import { ProfileComponent } from './profile/profile.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 //interceptor
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -59,6 +62,7 @@ import { LOCALE_ID } from '@angular/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import localeHu from '@angular/common/locales/hu';
 import { registerLocaleData } from '@angular/common';
+import { PrivacypolicyComponent } from './privacypolicy/privacypolicy.component';
 
 registerLocaleData(localeHu);
 
@@ -78,6 +82,7 @@ registerLocaleData(localeHu);
     UploadComponent,
     ItemDetailsComponent,
     NavBarComponent,
+    PrivacypolicyComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,6 +106,8 @@ registerLocaleData(localeHu);
     NgxMaskPipe,
     MatSelectModule,
     MatDatepickerModule,
+    MatSidenavModule,
+    MatDividerModule,
   ],
   providers: [
     provideAnimationsAsync(),

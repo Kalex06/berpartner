@@ -16,11 +16,11 @@ interface SortOption {
 export class NavBarComponent {
   constructor(private auth: AuthService, private router: Router) { }
 
-  readonly dialog = inject(MatDialog);
+  // readonly dialog = inject(MatDialog);
 
-  openNotifications() {
-    this.dialog.open(NotificationsComponent);
-  }
+  // openNotifications() {
+  //   this.dialog.open(NotificationsComponent);
+  // }
 
   options: SortOption[] = [
     { value: 'newest-0', viewValue: 'Legújabb' },
