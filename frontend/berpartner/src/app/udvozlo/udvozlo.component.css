@@ -109,6 +109,7 @@ footer {
 
 a{
   cursor: pointer;
+  text-decoration: underline;
 }
 
 /* Tablet (868px alatt) */
