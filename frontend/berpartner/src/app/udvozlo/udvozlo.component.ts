@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PrivacypolicyComponent } from '../privacypolicy/privacypolicy.component';
+import { ImprintComponent } from '../imprint/imprint.component';
 
 @Component({
   selector: 'app-udvozlo',
@@ -10,7 +11,11 @@ import { PrivacypolicyComponent } from '../privacypolicy/privacypolicy.component
 export class UdvozloComponent {
   readonly dialog = inject(MatDialog);
 
-  openDialog() {
+  openPrivacyPolicy() {
     this.dialog.open(PrivacypolicyComponent);
+  }
+
+  openImprint() {
+    this.dialog.open(ImprintComponent);
   }
 }
