@@ -29,10 +29,10 @@ const pool = require('../config/db');
 
 
 async function createUser(user) {
-  const {nev,telefonszam,email, jelszo ,berelt_eszkozok_szama, jogosultsag,iranyitoszam, varos, utca,haz_szam } = user;
+  const {nev,telefonszam,email, jelszo, jogosultsag,iranyitoszam, varos, utca,haz_szam } = user;
   const [rows] = await pool.execute(
-    'INSERT INTO felhasznalok (nev,telefonszam,email, jelszo ,berelt_eszkozok_szama, jogosultsag,iranyitoszam, varos, utca,haz_szam) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-    [nev,telefonszam,email, jelszo ,berelt_eszkozok_szama, jogosultsag,iranyitoszam, varos, utca,haz_szam]
+    'INSERT INTO felhasznalok (nev,telefonszam,email, jelszo , jogosultsag,iranyitoszam, varos, utca,haz_szam) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    [nev,telefonszam,email, jelszo , jogosultsag,iranyitoszam, varos, utca,haz_szam]
   );
   return rows.insertId; 
 }
