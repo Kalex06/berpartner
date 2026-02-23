@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../services/auth/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PrivacypolicyComponent } from '../privacypolicy/privacypolicy.component';
 
 @Component({
   selector: 'app-regisztracio',
