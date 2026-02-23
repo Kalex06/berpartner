@@ -14,7 +14,6 @@ h3 {
     padding-bottom: 5px;
     margin-top: 30px;
     color: rgb(175, 175, 175) !important;
-
 }
 
 li {
@@ -34,5 +33,4 @@ u {
     background: linear-gradient(180deg, #ffd9b3, #db7726);
     color: rgb(145, 46, 0);
     box-shadow: 0 8px 25px rgba(251, 146, 60, 0.2);
-    ;
 }
