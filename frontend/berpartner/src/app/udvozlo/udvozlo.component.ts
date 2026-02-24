@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PrivacypolicyComponent } from '../privacypolicy/privacypolicy.component';
+import { ImprintComponent } from '../imprint/imprint.component';
 
 @Component({
   selector: 'app-udvozlo',
@@ -6,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrl: './udvozlo.component.css'
 })
 export class UdvozloComponent {
+  readonly dialog = inject(MatDialog);
 
+  openPrivacyPolicy() {
+    this.dialog.open(PrivacypolicyComponent);
+  }
+
+  openImprint() {
+    this.dialog.open(ImprintComponent);
+  }
 }

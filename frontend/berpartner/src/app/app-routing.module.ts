@@ -11,6 +11,8 @@ import { RenteditemsComponent } from './renteditems/renteditems.component';
 import { MyitemsComponent } from './myitems/myitems.component';
 import { UploadComponent } from './upload/upload.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { PrivacypolicyComponent } from './privacypolicy/privacypolicy.component';
 
 
 const routes: Routes = [
@@ -23,7 +25,9 @@ const routes: Routes = [
   {path:'renteditems', component:RenteditemsComponent},
   {path:'myitems', component:MyitemsComponent},
   {path:'upload', component:UploadComponent},
+  {path: 'notifications', component: NotificationsComponent},
   {path:'item-details/:id', component:ItemDetailsComponent},
+
 ];
 
 

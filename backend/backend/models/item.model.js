@@ -42,5 +42,16 @@ async function getItemById(id) {
 }
 
 
+ async function getAllItemByOwnerId(id){
+    const [rows] = await pool.execute(
+        `SELECT eszkozok.id,eszkozok.nev,eszkozok.ar_egy_napra,eszkozok.allapot,eszkozok.leiras,felhasznalok.varos,eszkozok.tulajdonos_id,eszkoz_kepek.kep_nev,kategoriak.kategoria 
+        FROM eszkozok,eszkoz_kepek,kategoriak,felhasznalok  
+        WHERE eszkoz_kepek.eszkoz_id = eszkozok.id AND kategoriak.id = eszkozok.kategoria_id AND eszkozok.tulajdonos_id = felhasznalok.id AND felhasznalok.id = (?)
+        GROUP BY eszkozok.id`,
+        [id]
+    );
+    return rows
+ }
 
-module.exports = {uploadpictures,uploadItem,getAllItem,getItemById}
+
+module.exports = {uploadpictures,uploadItem,getAllItem,getItemById,getAllItemByOwnerId}

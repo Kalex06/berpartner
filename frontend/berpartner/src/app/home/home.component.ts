@@ -32,25 +32,17 @@ export class HomeComponent {
   selectedSort: string = 'newest-0';
 
   posts: any[]=[];
-  user: any = null;
+
 
   ngOnInit() {
-    this.auth.getProfile().subscribe({
-      next: profile => {
-        this.user = profile;
-      },
-      error: err => {
-        this.router.navigate(['/login']);
-        console.log(err.error.message)
-      }
-    });
+   
     this.item.getAllItem().subscribe({
       next:(data)=>{
         this.posts = data;
       },
       error(err) {
         console.log(err.error.message);
-      },
+      }
     })
   }
 

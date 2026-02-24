@@ -27,11 +27,7 @@ export class UploadComponent implements OnInit{
     condition: ['', [Validators.required]],
     dailyFee: [null, [Validators.required, Validators.min(1)]],
     description: ['', Validators.required],
-<<<<<<< HEAD
-   // images: [[], [Validators.required]] 
-=======
-    // images: [[], [Validators.required]] 
->>>>>>> 63b475c9ee61dfb6a6ae856f8dbbcfcaa478d6b6
+    images: [null as any, [Validators.required]] 
   })
 
   conditions: Condition[] = [
@@ -41,6 +37,14 @@ export class UploadComponent implements OnInit{
     { value: 'Használt', viewValue: 'Használt' },
   ];
 
+
+  updateImageValidation() {
+  const hasImage = this.selectedFiles.some(f => f !== null);
+  this.uploadForm.patchValue({
+    images: hasImage ? true : null
+  });
+  this.uploadForm.get('images')?.updateValueAndValidity();
+}
 
   onFileSelected(event: any, index: number) {
     const file = event.target.files[0];
@@ -52,13 +56,16 @@ export class UploadComponent implements OnInit{
         this.imagePreviews[index] = e.target.result as string;
       };
       reader.readAsDataURL(file);
+      this.updateImageValidation();
+      
     }
   }
-
+  
   removeImage(index: number, event: MouseEvent) {
     event.stopPropagation();
     this.imagePreviews[index] = null;
     this.selectedFiles[index] = null;
+    this.updateImageValidation();
     
   }
 
@@ -82,7 +89,7 @@ export class UploadComponent implements OnInit{
     this.item.uploaditem(formData).subscribe({
       next:()=>alert("Feltöltés sikeres!"),
       error(err) {
-        alert(err)
+        alert(err.error.message)
       }
     });
   }

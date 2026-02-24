@@ -21,7 +21,7 @@
   object-fit: cover;
 }
 
-.item-card:hover{
+.item-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
@@ -31,7 +31,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  
+
 }
 
 mat-card-actions {
@@ -40,7 +40,7 @@ mat-card-actions {
   justify-content: space-between;
 }
 
-.description{
+.description {
   line-clamp: 5;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -63,5 +63,132 @@ mat-card-actions {
 @media (max-width: 600px) {
   .ad-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+mat-toolbar {
+  background: #141e38;
+  color: white;
+  width: 60%;
+  margin: 0 !important;
+}
+
+.nav-container {
+  background: #141e38;
+}
+
+.searchbar {
+  flex: 1;
+  max-width: 500px;
+  margin-left: 20px;
+  background: #334155;
+  border: none;
+  border-radius: 8px;
+  height: 38px;
+  color: white;
+  padding: 0 15px;
+}
+
+.sorter {
+  width: 200px;
+  margin: 0 10px 0 0;
+  height: 38px;
+  color: white;
+}
+
+/* Bele kell nyúlni a generált MDC wrapper osztályba a magasság fixálásához */
+.sorter ::ng-deep .mat-mdc-text-field-wrapper {
+  height: 38px;
+  background-color: #1f2a4a;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  color: white;
+}
+
+/* Az infix (a tényleges input terület) igazítása */
+.sorter ::ng-deep .mat-mdc-form-field-infix {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  line-height: 38px;
+  color: white;
+
+}
+
+.sorter ::ng-deep .mat-mdc-form-field-label {
+  color: white !important;
+
+}
+
+.sorter ::ng-deep .mat-mdc-select-value-text {
+  color: rgb(185, 184, 184) !important;
+}
+
+.categories-btn {
+  color: white !important;
+  border: 2px solid #fb923c;
+}
+
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.nav-container mat-toolbar {
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+::ng-deep .mat-mdc-menu-panel {
+  overflow: visible !important;
+}
+
+::ng-deep .mat-mdc-menu-content {
+  overflow: visible !important;
+}
+
+.mat-mdc-menu-item:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+  z-index: 10;
+}
+
+
+
+.categories-btn:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+  background-color: #243561 !important;
+}
+
+.spacer{
+  flex: 1 1 auto;
+}
+
+@media (max-width: 1500px) {
+  mat-toolbar {
+    width: 90% !important;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .nav-container mat-toolbar {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .searchbar {
+    width: 100%;
+  }
+
+  .sorter {
+    width: 20%;
   }
 }
