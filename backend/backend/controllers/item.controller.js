@@ -82,4 +82,24 @@ async function getItemById(req,res){
 }
 
 
-module.exports = {uploadItem,getAllItem,getItemById};
+async function getItemsByOwner(req,res){
+    try{
+        const id = parseInt(req.params.id);
+
+        const item = await Item.getAllItemByOwnerId(id);
+
+        res.status(200).json(item);
+        if (!item) {
+            return res.status(404).json({ message: 'Az eszközök nem találhatók!' });
+        }
+
+    }
+    catch(err){
+        res.status(500).json({message:"Hiba a lekérdezés közben"});
+    }
+
+}
+
+
+
+module.exports = {uploadItem,getAllItem,getItemById,getItemsByOwner};

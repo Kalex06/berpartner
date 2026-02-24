@@ -1,8 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import { ItemService } from '../services/item/item.service';
+import { switchMap } from 'rxjs';
 
 
 interface SortOption {
@@ -15,8 +17,8 @@ interface SortOption {
   templateUrl: './myitems.component.html',
   styleUrl: './myitems.component.css'
 })
-export class MyitemsComponent {
-  constructor(private auth: AuthService, private router: Router) { }
+export class MyitemsComponent implements OnInit {
+  constructor(private auth:AuthService,private item:ItemService, private router: Router) { }
   readonly dialog = inject(MatDialog);
 
 
@@ -37,18 +39,27 @@ export class MyitemsComponent {
     }, 400);
   }
 
+  posts: any[]=[];
 
-  user: any = null
 
-  // ngOnInit() {
-  //   this.auth.getProfile().subscribe({
-  //     next: profile => {
-  //       this.user = profile;
-  //     },
-  //     error: err => {
-  //       this.router.navigate(['/login']);
-  //       alert(err.error.message)
-  //     }
-  //   });
-  // }
+
+
+
+
+
+  ngOnInit() {
+    this.auth.getProfile().pipe(switchMap(profile=>{
+      console.log(profile)
+     return this.item.getItemByOwner(profile.id)
+    })).subscribe({
+      next:data=>{
+        this.posts=data
+        
+      },
+      error(err) {
+        console.log(err)
+      },
+    })
+   
+}
 }

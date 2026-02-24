@@ -8,7 +8,7 @@ CREATE TABLE felhasznalok (
     telefonszam VARCHAR(30) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     jelszo VARCHAR(255) NOT NULL,
-    berelt_eszkozok_szama INT NOT NULL,
+    berelt_eszkozok_szama INT DEFAULT 0,
     jogosultsag ENUM('user','admin') NOT NULL,
     iranyitoszam VARCHAR(100) NOT NULL,
     varos VARCHAR(100) NOT NULL,
@@ -78,9 +78,22 @@ CREATE TABLE berlesek (
     tulajdonos_id INT NOT NULL,
     datum_tol DATE NOT NULL,
     datum_ig DATE NOT NULL,
+    statusz ENUM('függőben','elutasítva','elfogadva') NOT NULL,
     FOREIGN KEY (eszkoz_id) REFERENCES eszkozok(id),
     FOREIGN KEY (berlo_id) REFERENCES felhasznalok(id),
     FOREIGN KEY (tulajdonos_id) REFERENCES felhasznalok(id)
 );
 
+CREATE TABLE uzenetek(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    felado_id INT, 
+    cimzett_id INT NOT NULL,
+    cim VARCHAR(50),
+    tartalom TEXT,
+    tipus ENUM('request','message') NOT NULL,
+    megnyitva BOOLEAN DEFAULT FALSE,
+    letrehozva_ekkor TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (felado_id) REFERENCES felhasznalok(id),
+    FOREIGN KEY (cimzett_id) REFERENCES felhasznalok(id)
 
+);

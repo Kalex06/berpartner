@@ -1,4 +1,4 @@
-<h3 mat-dialog-title>Értesítések</h3>
+<!-- <h3 mat-dialog-title>Értesítések</h3>
 <mat-dialog-content class="notifications-content">
   <p>Nincsenek új értesítések.</p>
   <mat-list>
@@ -7,4 +7,74 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Bezárás</button>
-</mat-dialog-actions>
+</mat-dialog-actions> -->
+
+<mat-drawer-container class="drawer-container">
+  <mat-drawer mode="side" opened class="not-drawer">
+    <div class="drawer-header">Értesítések</div>
+    <mat-nav-list>
+      <mat-list-item>
+        <mat-icon matListItemIcon>all_inbox</mat-icon>
+        <span matListItemTitle>Összes üzenet</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListItemIcon>people</mat-icon>
+        <span matListItemTitle>Felhasználói üzenetek</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListItemIcon>settings</mat-icon>
+        <span matListItemTitle>Rendszer értesítések</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content class="not-content">
+    <mat-card class="notification-card">
+      <div class="not-wrapper">
+
+        <div class="sender-details">
+          <div class="title">Bérlési kérelem</div>
+          <div class="sender">Bekre Pál</div>
+          <div class="date">2026.02.18.</div>
+        </div>
+
+        <div class="message">
+          (X) nevű felhasználó bérlési kérelmet küldött a (Y) nevű termékre.
+        </div>
+
+        <div class="actions">
+          <button mat-mini-fab class="approve-btn">
+            <mat-icon>check</mat-icon>
+          </button>
+          <button mat-mini-fab class="reject-btn">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card class="notification-card">
+      <div class="not-wrapper">
+
+        <div class="sender-details">
+          <div class="title">Bérlési kérelem</div>
+          <div class="sender">Bekre Pál</div>
+          <div class="date">2026.02.18.</div>
+        </div>
+
+        <div class="message">
+          (X) nevű felhasználó bérlési kérelmet küldött a (Y) nevű termékre.
+        </div>
+
+        <div class="actions">
+          <button mat-mini-fab class="approve-btn">
+            <mat-icon>check</mat-icon>
+          </button>
+          <button mat-mini-fab color="warn" class="reject-btn">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-card>
+  </mat-drawer-content>
+</mat-drawer-container>

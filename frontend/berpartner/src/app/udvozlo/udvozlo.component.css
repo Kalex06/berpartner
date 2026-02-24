@@ -107,7 +107,10 @@ footer {
   z-index: 10;
 }
 
-/* ResponsĂ­v mĂłdosĂ­tĂˇsok */
+a{
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 /* Tablet (868px alatt) */
 @media (max-width: 868px) {
@@ -193,3 +196,4 @@ footer {
     font-size: 1.6rem;
   }
 }
+
