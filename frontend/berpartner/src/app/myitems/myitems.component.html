@@ -42,6 +42,7 @@
 
 
     <article class="ad-grid">
+        @for(post of posts; track post.id){
         <mat-card class="item-card" *ngFor="let post of posts" appearance="outlined">
             <img mat-card-image src="http://localhost:3000/upload/picture/{{post.kep_nev}}" alt="Termék kép">
             <mat-card-header>
@@ -62,6 +63,9 @@
                 <button mat-button><mat-icon>edit</mat-icon></button>
             </mat-card-actions>
         </mat-card>
+    }@empty{
+        <p style="color: aliceblue; text-align: center; margin-top: 40px;">Nincs megjeleníthető hirdetésed!</p>
+    }
     </article>
 
 </main>
