@@ -97,3 +97,5 @@ CREATE TABLE uzenetek(
     FOREIGN KEY (cimzett_id) REFERENCES felhasznalok(id)
 
 );
+
+
