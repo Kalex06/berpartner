@@ -16,7 +16,7 @@ interface Condition {
   styleUrl: './upload.component.css'
 })
 export class UploadComponent implements OnInit{
-  constructor(private fb: FormBuilder, private item: ItemService,private category:CategoryService, private router: Router) { }
+  constructor(private fb: FormBuilder, private item: ItemService,private category:CategoryService) { }
   private _formBuilder = inject(FormBuilder);
   imagePreviews: (string | null)[] = [null, null, null, null];
   selectedFiles: (File | null)[] = [null, null, null, null];

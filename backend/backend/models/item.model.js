@@ -54,4 +54,13 @@ async function getItemById(id) {
  }
 
 
-module.exports = {uploadpictures,uploadItem,getAllItem,getItemById,getAllItemByOwnerId}
+ async function getItemPicById(id) {
+     const [rows] = await pool.execute(
+        'SELECT eszkoz_kepek.kep_nev FROM `eszkoz_kepek` WHERE eszkoz_kepek.eszkoz_id = ?',
+        [id]
+     );
+     return rows
+    
+ }
+
+module.exports = {uploadpictures,uploadItem,getAllItem,getItemById,getAllItemByOwnerId,getItemPicById}
