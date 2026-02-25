@@ -45,6 +45,7 @@ async function uploadItem(req,res){
         res.status(200).json({message:`Sikeres feltöltés! Adat Id: ${savedItemid}  Képek száma: ${savedPic}`});
     }
     catch(err){
+            await connection.rollback();
             res.status(500).json({message:"Hiba feltöltés közben",error: err.message });
     }
     finally{

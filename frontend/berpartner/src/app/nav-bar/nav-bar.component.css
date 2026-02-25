@@ -199,9 +199,11 @@ mat-icon {
 ::ng-deep .profile-menu mat-icon{
     color: #fb923c !important;
 }
+
 ::ng-deep .profile-menu mat-icon.logout-btn-icon {
     color: rgb(204, 0, 0) !important;
 }
+
 ::ng-deep .logout-btn-text {
     color: rgb(204, 0, 0) !important;
 }

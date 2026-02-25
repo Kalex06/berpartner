@@ -166,8 +166,22 @@ mat-toolbar {
   background-color: #243561 !important;
 }
 
-.spacer{
+.spacer {
   flex: 1 1 auto;
+}
+
+::ng-deep .cat-menu {
+  background-color: #243561 !important;
+  border: #fb923c 1px solid !important;
+}
+
+::ng-deep .cat-menu .mat-mdc-menu-item {
+  color: white !important;
+}
+
+::ng-deep .cat-menu mat-option {
+  color: white !important;
+  border-top: #2a3f74 solid 1px !important;
 }
 
 @media (max-width: 1500px) {
