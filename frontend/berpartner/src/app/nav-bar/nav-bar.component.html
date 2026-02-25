@@ -10,7 +10,7 @@
                 <span class="profile-name">{{user?.nev}}</span>
                 <mat-icon class="profile-icon">person</mat-icon>
             </button>
-            <mat-menu #menu="matMenu">
+            <mat-menu #menu="matMenu" class="profile-menu">
 
                 <button mat-menu-item routerLink="/profile">
                     <mat-icon>person</mat-icon>
@@ -28,9 +28,9 @@
                     <mat-icon>settings</mat-icon>
                     <span>Beállítások</span>
                 </button>
-                <button mat-menu-item (click)="logOut()" style="color: darkred;">
-                    <mat-icon color="warn">exit_to_app</mat-icon>
-                    <span color="warn">Kijelentkezés</span>
+                <button mat-menu-item (click)="logOut()" >
+                    <mat-icon class="logout-btn-icon">exit_to_app</mat-icon>
+                    <span class="logout-btn-text">Kijelentkezés</span>
                 </button>
             </mat-menu>
             <button mat-icon-button class="notifications-icon" routerLink="/notifications" aria-label="Értesítések">

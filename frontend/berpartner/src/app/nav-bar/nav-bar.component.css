@@ -187,6 +187,25 @@ mat-icon {
     background-color: #243561 !important;
 }
 
+::ng-deep .profile-menu{
+    background-color: #243561 !important;
+    border: #fb923c 1px solid !important;
+}
+
+::ng-deep .profile-menu .mat-mdc-menu-item {
+    color: white !important;
+}
+
+::ng-deep .profile-menu mat-icon{
+    color: #fb923c !important;
+}
+::ng-deep .profile-menu mat-icon.logout-btn-icon {
+    color: rgb(204, 0, 0) !important;
+}
+::ng-deep .logout-btn-text {
+    color: rgb(204, 0, 0) !important;
+}
+
 @media (max-width: 1500px) {
     mat-toolbar {
         width: 90% !important;
