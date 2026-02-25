@@ -12,19 +12,40 @@
             <section class="images-section">
                 <h2 class="section-title">Képek</h2>
                 <div class="image-grid">
+                    
                     <div class="image-display-box main-image">
-                        <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="preview-img">
+                        @if(post.kepek[0]?.kep_nev){
+                        <img src="http://localhost:3000/upload/picture/{{post.kepek[0].kep_nev}}" class="preview-img">
+                        }
+                        @else{
+                                <mat-icon>image</mat-icon>
+                            }
                     </div>
 
                     <div class="image-grid-small">
                         <div class="image-display-box small">
-                            <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="preview-img">
+                             @if(post.kepek[1]?.kep_nev){
+                            <img src="http://localhost:3000/upload/picture/{{post.kepek[1].kep_nev}}" class="preview-img">
+                            }
+                            @else{
+                                 <mat-icon>image</mat-icon>
+                            }
                         </div>
                         <div class="image-display-box small">
-                            <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="preview-img">
+                             @if(post.kepek[2]?.kep_nev){
+                            <img src="http://localhost:3000/upload/picture/{{post.kepek[2].kep_nev}}" class="preview-img">
+                            }
+                             @else{
+                                 <mat-icon>image</mat-icon>
+                            }
                         </div>
                         <div class="image-display-box small">
-                            <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="preview-img">
+                             @if(post.kepek[3]?.kep_nev){
+                            <img src="http://localhost:3000/upload/picture/{{post.kepek[3].kep_nev}}" class="preview-img">
+                            }
+                            @else{
+                                 <mat-icon>image</mat-icon>
+                            }
                         </div>
 
                     </div>
