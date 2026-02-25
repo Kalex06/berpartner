@@ -158,16 +158,10 @@ mat-toolbar {
   z-index: 10;
 }
 
-
-
 .categories-btn:hover {
   transform: scale(1.1);
   transition: transform 0.2s ease-in-out;
   background-color: #243561 !important;
-}
-
-.spacer {
-  flex: 1 1 auto;
 }
 
 ::ng-deep .cat-menu {
@@ -182,6 +176,10 @@ mat-toolbar {
 ::ng-deep .cat-menu mat-option {
   color: white !important;
   border-top: #2a3f74 solid 1px !important;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }
 
 @media (max-width: 1500px) {
