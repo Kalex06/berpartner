@@ -1,6 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { NotificationsComponent } from '../notifications/notifications.component';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { ItemService } from '../services/item/item.service';
@@ -18,13 +16,8 @@ interface SortOption {
   styleUrl: './myitems.component.css'
 })
 export class MyitemsComponent implements OnInit {
-  constructor(private auth:AuthService,private item:ItemService, private router: Router) { }
-  readonly dialog = inject(MatDialog);
+  constructor(private auth: AuthService, private item: ItemService, private router: Router) { }
 
-
-  openNotifications() {
-    this.dialog.open(NotificationsComponent);
-  }
 
   options: SortOption[] = [
     { value: 'newest-0', viewValue: 'Legújabb' },
@@ -39,27 +32,21 @@ export class MyitemsComponent implements OnInit {
     }, 400);
   }
 
-  posts: any[]=[];
-
-
-
-
-
-
+  posts: any[] = [];
 
   ngOnInit() {
-    this.auth.getProfile().pipe(switchMap(profile=>{
+    this.auth.getProfile().pipe(switchMap(profile => {
       console.log(profile)
-     return this.item.getItemByOwner(profile.id)
+      return this.item.getItemByOwner(profile.id)
     })).subscribe({
-      next:data=>{
-        this.posts=data
-        
+      next: data => {
+        this.posts = data
+
       },
       error(err) {
         console.log(err)
       },
     })
-   
-}
+
+  }
 }

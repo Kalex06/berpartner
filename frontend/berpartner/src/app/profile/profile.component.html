@@ -56,32 +56,25 @@
         <h2>A felhasználó által kínált eszközök</h2>
 
         <div class="items-list">
-            <article class="item-card">
-                <div class="item-image-placeholder"></div>
-                <div class="item-info">
-                    <h3>Fúrógép</h3>
-                    <p class="price">Napi díj: 1999Ft</p>
-                    <p class="status">Elérhető</p>
+            <mat-card class="item-card" *ngFor="let post of posts" routerLink="/item-details/{{post.id}}">
+                <div class="item-image-container">
+                    <img mat-card-image src="http://localhost:3000/upload/picture/{{post.kep_nev}}" alt="Termék kép"
+                        class="item-img">
                 </div>
-            </article>
 
-            <article class="item-card">
-                <div class="item-image-placeholder"></div>
                 <div class="item-info">
-                    <h3>Betonkeverő</h3>
-                    <p class="price">Napi díj: 2000Ft</p>
-                    <p class="status">Elérhető</p>
-                </div>
-            </article>
+                    <mat-card-header>
+                        <mat-card-title>
+                            <mat-card-title>{{post.nev}}</mat-card-title>
+                        </mat-card-title>
+                    </mat-card-header>
 
-            <article class="item-card">
-                <div class="item-image-placeholder"></div>
-                <div class="item-info">
-                    <h3>Utánfutó</h3>
-                    <p class="price">Napi díj: 2999Ft</p>
-                    <p class="status">Elérhető</p>
+                    <mat-card-content>
+                        <p class="price">Napi díj: {{post.ar_egy_napra}} Ft</p>
+                        <p class="status">Elérhető</p>
+                    </mat-card-content>
                 </div>
-            </article>
+            </mat-card>
         </div>
     </div>
 </main>
