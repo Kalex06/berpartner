@@ -1,8 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { UserDeletionComponent } from '../user-deletion/user-deletion.component';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
+import { ItemService } from '../services/item/item.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -10,26 +9,24 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-    constructor(private auth:AuthService,private router:Router){}
-    readonly dialog = inject(MatDialog);
-
-    openUserDeletionDialog() {
-      this.dialog.open(UserDeletionComponent);
-    }
-
-
-
-        user:any = null
+  constructor(private auth: AuthService, private item: ItemService) { }
+  user: any = null
+  posts: any[] = [];
 
   ngOnInit() {
-    this.auth.getProfile().subscribe({
-      next: profile => {
-       this.user = profile;
+    this.auth.getProfile().pipe(
+      switchMap(profile => {
+        this.user = profile;
+        return this.item.getItemByOwner(profile.id);
+      })
+    ).subscribe({
+      next: data => {
+        this.posts = data;
       },
-      error: err => {
-       this.router.navigate(['/login']);
-       alert(err.error.message)
-      }
+      error(err) {
+        console.log(err)
+      },
     });
   }
+
 }
