@@ -88,14 +88,16 @@ CREATE TABLE uzenetek(
     id INT AUTO_INCREMENT PRIMARY KEY,
     felado_id INT, 
     cimzett_id INT NOT NULL,
-    eszkoz_id INT,
+    berles_id INT,
     cim VARCHAR(50),
     tartalom TEXT,
     tipus ENUM('request','message') NOT NULL,
     megnyitva BOOLEAN DEFAULT FALSE,
+    statusz ENUM('pending','accepted','rejected') NULL DEFAULT NULL
     letrehozva_ekkor TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (felado_id) REFERENCES felhasznalok(id),
-    FOREIGN KEY (cimzett_id) REFERENCES felhasznalok(id)
+    FOREIGN KEY (cimzett_id) REFERENCES felhasznalok(id),
+    FOREIGN KEY (berles_id) REFERENCES berlesek(id)
 
 );
 
