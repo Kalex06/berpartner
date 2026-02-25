@@ -3,13 +3,13 @@
         <mat-toolbar>
             <button mat-button [matMenuTriggerFor]="categories" style="color: white !important;"
                 class="categories-btn">Kategóriák</button>
-            <mat-menu #categories="matMenu">
+            <mat-menu #categories="matMenu"  class="cat-menu">
                 <button mat-menu-item [matMenuTriggerFor]="tools">Eszközök</button>
                 <button mat-menu-item [matMenuTriggerFor]="vehicle">Járművek</button>
                 <button mat-menu-item [matMenuTriggerFor]="places">Épület</button>
             </mat-menu>
 
-            <mat-menu #tools="matMenu">
+            <mat-menu #tools="matMenu" class="cat-menu">
                 <mat-option value="epito_gepi">Építőipari & gépi szerszámok</mat-option>
                 <mat-option value="kert">Kert & Kültér</mat-option>
                 <mat-option value="jarmu_szereles">Jármű szerelés</mat-option>
@@ -18,7 +18,7 @@
                 <mat-option value="elektronika">Elektronika</mat-option>
             </mat-menu>
 
-            <mat-menu #vehicle="matMenu">
+            <mat-menu #vehicle="matMenu"  class="cat-menu">
                 <mat-option value="szemelyauto">Személyautó</mat-option>
                 <mat-option value="kisteher">Kisteherautó</mat-option>
                 <mat-option value="nagyteher">Teherautó</mat-option>
@@ -26,7 +26,7 @@
                 <mat-option value="potkocsi">Pótkocsi/Utánfutó</mat-option>
             </mat-menu>
 
-            <mat-menu #places="matMenu">
+            <mat-menu #places="matMenu"  class="cat-menu">
                 <mat-option value="tarolas">Tárolás & Raktár</mat-option>
                 <mat-option value="muhely">Műhely</mat-option>
                 <mat-option value="helyszin">Rendezvényhelyszín</mat-option>
