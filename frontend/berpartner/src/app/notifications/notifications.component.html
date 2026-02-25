@@ -29,52 +29,57 @@
   </mat-drawer>
 
   <mat-drawer-content class="not-content">
-    <mat-card class="notification-card">
+
+    @for(msg of messages; track msg.id){
+
+    @if(msg.tipus === 'request'){
+    <mat-card class="notification-card" >
       <div class="not-wrapper">
 
         <div class="sender-details">
-          <div class="title">Bérlési kérelem</div>
-          <div class="sender">Bekre Pál</div>
-          <div class="date">2026.02.18.</div>
+          <div class="title">{{msg.cim}}</div>
+          <div class="sender">{{msg.felado}}</div>
+          <div class="date">{{msg.letrehozva_ekkor | date:'yyyy. MM. dd. HH:mm'}}</div>
         </div>
 
         <div class="message">
-          (X) nevű felhasználó bérlési kérelmet küldött a (Y) nevű termékre.
+          {{msg.felado}} {{msg.tartalom}} {{msg.eszkoz}}
         </div>
 
         <div class="actions">
-          <button mat-mini-fab class="approve-btn">
+          <button mat-mini-fab class="approve-btn" (click)="accept()">
             <mat-icon>check</mat-icon>
           </button>
-          <button mat-mini-fab class="reject-btn">
+          <button mat-mini-fab class="reject-btn" (click)="reject()">
             <mat-icon>close</mat-icon>
           </button>
         </div>
       </div>
     </mat-card>
 
-    <mat-card class="notification-card">
+    @if(msg.tipus === 'message'){
+      <mat-card class="notification-card">
       <div class="not-wrapper">
 
         <div class="sender-details">
-          <div class="title">Bérlési kérelem</div>
-          <div class="sender">Bekre Pál</div>
-          <div class="date">2026.02.18.</div>
+          <div class="title">{{msg.cim}}</div>
+          <div class="sender">{{msg.felado}}</div>
+          <div class="date">msg.letrehozva_ekkor | date:'yyyy. MM. dd. HH:mm'</div>
         </div>
 
         <div class="message">
-          (X) nevű felhasználó bérlési kérelmet küldött a (Y) nevű termékre.
-        </div>
-
-        <div class="actions">
-          <button mat-mini-fab class="approve-btn">
-            <mat-icon>check</mat-icon>
-          </button>
-          <button mat-mini-fab color="warn" class="reject-btn">
-            <mat-icon>close</mat-icon>
-          </button>
+          {{msg.tartalom}}
         </div>
       </div>
-    </mat-card>
+    </mat-card>}
+
+
+  }} @empty{
+    <p style="text-align: center;margin-top: 40px;">Nincsenek megjeleníthető üzeneteid!</p>
+  }
+
+
+
+    
   </mat-drawer-content>
 </mat-drawer-container>

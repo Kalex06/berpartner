@@ -10,4 +10,12 @@ async function uploadRentRequest(pool,data) {
   return rows.insertId; 
 }
 
-module.exports = {uploadRentRequest}
+async function findItemByRentId(id) {
+  const [rows] = await pool.execute(
+    'SELECT eszkozok.* FROM eszkozok JOIN berlesek on berlesek.eszkoz_id = eszkozok.id WHERE berlesek.id = ?;',
+    [id]
+  );
+  return rows[0];
+}
+
+module.exports = {uploadRentRequest,findItemByRentId}

@@ -25,24 +25,21 @@ async function uploadRent(req,res) {
         const messageData = {
             felado_id:req.user.id,
             cimzett_id:req.body.tulajdonos_id,
-            eszkoz_id:req.body.eszkoz_id,
+            berles_id:id,
             cim:"Bérlési kérelem",
             tartalom:"felhasználó bérlési kérelmet nyújtott be az alábbi termékedre:",
             tipus: 'request',
+            statusz:'pending'
         };
 
 
        
 
-
-
-
         const savedmassage = await Message.createMessage(connection,messageData);
-
          await connection.commit(); 
         res.status(200).json({message:`Kérés feltöltve! id:${id} , üzenetId: ${savedmassage}`,})
     } catch (err) {
-        
+ 
         await connection.rollback();
         res.status(500).json({message:"Hiba a bérlés leadásakor!"});
     }
