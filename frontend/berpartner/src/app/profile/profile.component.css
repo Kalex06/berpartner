@@ -159,41 +159,59 @@
 
 .item-card {
   display: flex;
+  flex-direction: row;
   background-color: #1e293b;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: 0.3s;
+  margin-bottom: 16px;
 }
 
 .item-card:hover {
-  background-color: #243561;
-  border-color: #fb923c;
-}
-
-.item-image-placeholder {
-  width: 150px;
-  background-color: #334155;
-  border-right: 2px solid #fb923c;
+  background-color: #243561 !important;
+  border-color: #fb923c !important;
+  transform: translateY(-4px);
+  cursor: pointer;
 }
 
 .item-info {
   padding: 16px;
 }
 
-.item-info h3 {
+.item-info mat-card-title {
   color: #ffb03a;
-  margin-bottom: 5px;
+  margin: 0 0 5px 0;
+  font-size: 1.25rem;
+}
+
+.item-info mat-card-header {
+  padding: 0 !important;
 }
 
 .price {
-  color: #fb923c;
+  color: #0fa301;
   font-weight: 500;
+  margin-bottom: 4px;
 }
-  
+
 .status {
   color: #659ce9;
   font-style: italic;
+  margin: 0px;
+}
+
+.item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-image-container {
+  width: 150px;
+  height: auto;
+  flex-shrink: 0;
+  overflow: hidden;
 }
 
 @media (max-width: 900px) {
