@@ -93,7 +93,7 @@ CREATE TABLE uzenetek(
     tartalom TEXT,
     tipus ENUM('request','message') NOT NULL,
     megnyitva BOOLEAN DEFAULT FALSE,
-    statusz ENUM('pending','accepted','rejected') NULL DEFAULT NULL
+    statusz ENUM('pending','accepted','rejected') NULL DEFAULT NULL,
     letrehozva_ekkor TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (felado_id) REFERENCES felhasznalok(id),
     FOREIGN KEY (cimzett_id) REFERENCES felhasznalok(id),
