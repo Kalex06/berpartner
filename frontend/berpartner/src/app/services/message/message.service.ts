@@ -14,4 +14,14 @@ getMessages(){
     return this.http.get<any>(`${this.API}/message/all`);
   }
 
+acceptMessage(message_id:number,rent_id:number){
+   const message = {id: message_id,berles_id:rent_id}
+    return this.http.patch<any>(`${this.API}/message/accept`,message);
+}
+
+rejectMessage(message_id:number,rent_id:number){
+    const message = {id: message_id,berles_id:rent_id}
+    return this.http.patch<any>(`${this.API}/message/reject`,message);
+}
+
 }

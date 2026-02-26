@@ -78,7 +78,7 @@ CREATE TABLE berlesek (
     tulajdonos_id INT NOT NULL,
     datum_tol DATE NOT NULL,
     datum_ig DATE NOT NULL,
-    statusz ENUM('függőben','elutasítva','elfogadva') NOT NULL DEFAULT "függőben",
+    statusz ENUM('pending','accepted','rejected') NOT NULL DEFAULT "pending",
     FOREIGN KEY (eszkoz_id) REFERENCES eszkozok(id),
     FOREIGN KEY (berlo_id) REFERENCES felhasznalok(id),
     FOREIGN KEY (tulajdonos_id) REFERENCES felhasznalok(id)

@@ -81,7 +81,6 @@ export class RegisztracioComponent {
       telefonszam: `36${this.contactFormGroup.value.phone}`,
       email: this.contactFormGroup.value.email,
       jelszo: this.passwordFormGroup.value.password,
-      jogosultsag: 'user',
       iranyitoszam:this.addressFormGroup.value.postcode,
       varos: this.addressFormGroup.value.city,
       utca: this.addressFormGroup.value.street,
