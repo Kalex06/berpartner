@@ -1,4 +1,5 @@
 const pool = require('../config/db');
+const { updateRequestStatusById } = require('./message.model');
 
 
 async function uploadRentRequest(pool,data) {
@@ -18,4 +19,14 @@ async function findItemByRentId(id) {
   return rows[0];
 }
 
-module.exports = {uploadRentRequest,findItemByRentId}
+async function updateRentStatusById(status,id,connection=null) {
+  const executor = connection||pool;
+  const[row] = await executor.execute(
+        'UPDATE berlesek set statusz = ? WHERE berlesek.id = ?',
+        [status,id]
+    );
+    return row.affectedRows
+  
+}
+
+module.exports = {uploadRentRequest,findItemByRentId,updateRentStatusById}

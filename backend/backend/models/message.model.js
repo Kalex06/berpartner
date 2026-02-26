@@ -1,11 +1,12 @@
 const pool = require('../config/db');
 
 
-async function createMessage(pool,data) {
-    const {felado_id,cimzett_id,berles_id,cim,tartalom,tipus} = data;
-    const [row] = await pool.execute(
-        'INSERT INTO uzenetek (felado_id,cimzett_id,berles_id,cim,tartalom,tipus) VALUES (?, ?,?, ?, ?, ?)',
-        [felado_id,cimzett_id,berles_id,cim,tartalom,tipus]
+async function createMessage(data,connection=null) {
+    const {felado_id,cimzett_id,berles_id,cim,tartalom,tipus,statusz} = data;
+    const executor = connection||pool;
+    const [row] = await executor.execute(
+        'INSERT INTO uzenetek (felado_id,cimzett_id,berles_id,cim,tartalom,tipus,statusz) VALUES (?, ?,?, ?, ?, ?, ?)',
+        [felado_id,cimzett_id,berles_id,cim,tartalom,tipus,statusz]
     );
     return row.insertId;
 }
@@ -21,6 +22,19 @@ async function getAllMessageByOwner(id) {
 
 
 
+async function updateRequestStatusById(status,id,connection=null) {
+    const executor = connection||pool;
+    const[row] = await executor.execute(
+        'UPDATE uzenetek set statusz = ? WHERE uzenetek.id = ?',
+        [status,id]
+    );
+    return row.affectedRows
+    
+}
 
 
-module.exports = {createMessage,getAllMessageByOwner};
+
+
+
+
+module.exports = {createMessage,getAllMessageByOwner,updateRequestStatusById};
