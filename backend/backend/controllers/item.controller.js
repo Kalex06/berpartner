@@ -73,7 +73,7 @@ async function getItemById(req,res){
         const pictures = await Item.getItemPicById(id);
         const item_data = {...item,kepek:pictures};
 
-        console.log(item_data)
+        
         res.status(200).json(item_data);
         if (!item) {
             return res.status(404).json({ message: 'Az eszköz nem található!' });

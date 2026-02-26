@@ -45,7 +45,7 @@ messages:any[] = []
   reject(message_id:number,rent_id:number){
     this.Message.rejectMessage(message_id,rent_id).subscribe({
       next:()=>{
-        console.log("Kérés elfogadva");
+        console.log("Kérés elutasítva");
       },
       error(err) {
         alert(err)

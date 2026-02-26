@@ -70,8 +70,8 @@ async function messageReject(req,res) {
         await connection.beginTransaction();
         const message = req.body
 
-        const updatedRentRow = await Rent.updateRentStatusById('accepted',message.berles_id,connection);
-        const updatedMessageRow = await Message.updateRequestStatusById('accepted',message.id,connection);
+        const updatedRentRow = await Rent.updateRentStatusById('rejected',message.berles_id,connection);
+        const updatedMessageRow = await Message.updateRequestStatusById('rejected',message.id,connection);
 
         console.log("frissítet sorok száma:",updatedRentRow, updatedMessageRow)
         
