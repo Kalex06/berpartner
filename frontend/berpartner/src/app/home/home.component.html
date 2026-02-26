@@ -50,10 +50,9 @@
     <main>
         <article class="ad-grid">
 
-
             <mat-card class="item-card" appearance="outlined" *ngFor="let post of posts"
                 routerLink="/item-details/{{post.id}}">
-                <img mat-card-image src="http://localhost:3000/upload/picture/{{post.kep_nev}}" alt="Termék kép">
+                <img mat-card-image src="http://localhost:3000/upload/picture/{{post.kep_nev}}" alt="Termék kép" class="item-image">
                 <mat-card-header>
                     <mat-card-title>{{post.nev}}</mat-card-title>
                     <mat-card-subtitle>{{post.kategoria}}</mat-card-subtitle>
@@ -69,8 +68,6 @@
                     </div>
                 </mat-card-content>
             </mat-card>
-
-
 
         </article>
     </main>
