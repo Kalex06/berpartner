@@ -33,6 +33,7 @@
     @for(msg of messages; track msg.id){
 
     @if(msg.tipus === 'request'){
+
       @if(msg.statusz === 'accepted'){
         <mat-card class="notification-card" >
       <div class="not-wrapper">
@@ -101,25 +102,26 @@
       </div>
     </mat-card>
   }
-
-    @if(msg.tipus === 'message'){
+}
+    @else if(msg.tipus === 'message'){
       <mat-card class="notification-card">
       <div class="not-wrapper">
 
         <div class="sender-details">
           <div class="title">{{msg.cim}}</div>
           <div class="sender">{{msg.felado}}</div>
-          <div class="date">msg.letrehozva_ekkor | date:'yyyy. MM. dd. HH:mm'</div>
+          <div class="date">{{msg.letrehozva_ekkor | date:'yyyy. MM. dd. HH:mm'}}</div>
         </div>
 
         <div class="message">
           {{msg.tartalom}}
         </div>
       </div>
-    </mat-card>}
+    </mat-card>
+  }
 
 
-  }} @empty{
+  } @empty{
     <p style="text-align: center;margin-top: 40px;">Nincsenek megjeleníthető üzeneteid!</p>
   }
 
