@@ -1,5 +1,5 @@
 const pool = require('../config/db');
-const { updateRequestStatusById } = require('./message.model');
+
 
 
 async function uploadRentRequest(pool,data) {

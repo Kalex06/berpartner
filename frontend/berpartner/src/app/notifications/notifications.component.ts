@@ -30,8 +30,8 @@ messages:any[] = []
 
 
 
-  accept(message_id:number,rent_id:number){
-    this.Message.acceptMessage(message_id,rent_id).subscribe({
+  accept(data: any){
+    this.Message.acceptMessage(data).subscribe({
       next:()=>{
         console.log("Kérés elfogadva");
       },
@@ -42,8 +42,8 @@ messages:any[] = []
 
   }
 
-  reject(message_id:number,rent_id:number){
-    this.Message.rejectMessage(message_id,rent_id).subscribe({
+  reject(data:any){
+    this.Message.rejectMessage(data).subscribe({
       next:()=>{
         console.log("Kérés elutasítva");
       },
