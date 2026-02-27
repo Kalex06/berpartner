@@ -15,11 +15,13 @@ async function getAllMessagesByOwner(req,res) {
 
         for (let msg of message)
         {
+            if(msg.statusz!==null){
                 const sender = await User.findUserById(msg.felado_id);
                 const item = await Rent.findItemByRentId(msg.berles_id);
-
+            
                 msg.felado = sender.nev;
                 msg.eszkoz = item.nev;
+            }
         }
        
 
@@ -32,7 +34,7 @@ async function getAllMessagesByOwner(req,res) {
     }
     
     catch(err){
-        
+            console.log(err)
              res.status(500).json({message:"Hiba a lekérdezés közben",error: err.message });
     }
     
@@ -44,15 +46,28 @@ async function messageAccept(req,res){
         const connection = await pool.getConnection();
     try{
         await connection.beginTransaction();
-        const message = req.body
+        const message = req.body;
+        console.log(message);
 
         const updatedRentRow = await Rent.updateRentStatusById('accepted',message.berles_id,connection);
         const updatedMessageRow = await Message.updateRequestStatusById('accepted',message.id,connection);
 
-        console.log("frissítet sorok száma:",updatedRentRow, updatedMessageRow)
+        const answer_message = {
+            felado_id: req.user.id,
+            cimzett_id: message.felado_id, //azért mert visszaküldjük ezt
+            berles_id: message.berles_id,
+            cim: null,
+            tartalom: null,
+            tipus:'message',
+            statusz:'accepted'
+        };
+
+        const savedmassage = await Message.createMessage(answer_message,connection);
+
+        console.log("frissítet sorok száma:",updatedRentRow, updatedMessageRow);
         
         await connection.commit(); 
-        res.status(200).json({message:'Kérés elfogadva!'})
+        res.status(200).json({message:'Kérés elfogadva! válaszüzenet id:',savedmassage});
     }
     catch(err){
         await connection.rollback();
@@ -68,15 +83,27 @@ async function messageReject(req,res) {
       const connection = await pool.getConnection();
     try{
         await connection.beginTransaction();
-        const message = req.body
+        const message = req.body;
 
         const updatedRentRow = await Rent.updateRentStatusById('rejected',message.berles_id,connection);
         const updatedMessageRow = await Message.updateRequestStatusById('rejected',message.id,connection);
 
+        const answer_message = {
+            felado_id: req.user.id,
+            cimzett_id: message.felado_id, //azért mert visszaküldjük ezt
+            berles_id: message.berles_id,
+            cim: null,
+            tartalom: null,
+            tipus:'message',
+            statusz:'rejected'
+        };
+
+        const savedmassage = await Message.createMessage(answer_message,connection);
+
         console.log("frissítet sorok száma:",updatedRentRow, updatedMessageRow)
         
         await connection.commit(); 
-        res.status(200).json({message:'Kérés elutasítva!'})
+        res.status(200).json({message:'Kérés elutasítva! válaszüzenet id:',savedmassage})
     }
     catch(err){
         await connection.rollback();

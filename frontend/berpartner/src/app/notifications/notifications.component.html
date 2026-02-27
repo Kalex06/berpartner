@@ -39,13 +39,13 @@
       <div class="not-wrapper">
 
         <div class="sender-details">
-          <div class="title">{{msg.cim}}</div>
+          <div class="title">Bérlési kérelem</div>
           <div class="sender">{{msg.felado}}</div>
           <div class="date">{{msg.letrehozva_ekkor | date:'yyyy. MM. dd. HH:mm'}}</div>
         </div>
 
         <div class="message">
-          {{msg.felado}} {{msg.tartalom}} {{msg.eszkoz}}
+          {{msg.felado}} felhasználó bérlési kérelmet nyújtott be az alábbi termékedre: {{msg.eszkoz}}
         </div>
 
         <div class="actions">
@@ -62,13 +62,13 @@
       <div class="not-wrapper">
 
         <div class="sender-details">
-          <div class="title">{{msg.cim}}</div>
+          <div class="title">Bérlési kérelem</div>
           <div class="sender">{{msg.felado}}</div>
           <div class="date">{{msg.letrehozva_ekkor | date:'yyyy. MM. dd. HH:mm'}}</div>
         </div>
 
         <div class="message">
-          {{msg.felado}} {{msg.tartalom}} {{msg.eszkoz}}
+          {{msg.felado}} felhasználó bérlési kérelmet nyújtott be az alábbi termékedre: {{msg.eszkoz}}
         </div>
 
         <div class="actions">
@@ -82,20 +82,20 @@
       <div class="not-wrapper">
 
         <div class="sender-details">
-          <div class="title">{{msg.cim}}</div>
+          <div class="title">Bérlési kérelem</div>
           <div class="sender">{{msg.felado}}</div>
           <div class="date">{{msg.letrehozva_ekkor | date:'yyyy. MM. dd. HH:mm'}}</div>
         </div>
 
         <div class="message">
-          {{msg.felado}} {{msg.tartalom}} {{msg.eszkoz}}
+          {{msg.felado}} felhasználó bérlési kérelmet nyújtott be az alábbi termékedre: {{msg.eszkoz}}
         </div>
 
         <div class="actions">
-          <button mat-mini-fab class="approve-btn" (click)="accept(msg.id,msg.berles_id)">
+          <button mat-mini-fab class="approve-btn" (click)="accept(msg)">
             <mat-icon>check</mat-icon>
           </button>
-          <button mat-mini-fab class="reject-btn" (click)="reject(msg.id,msg.berles_id)">
+          <button mat-mini-fab class="reject-btn" (click)="reject(msg)">
             <mat-icon>close</mat-icon>
           </button>
         </div>
@@ -104,6 +104,45 @@
   }
 }
     @else if(msg.tipus === 'message'){
+
+      @if(msg.statusz === 'accepted'){
+        <mat-card class="notification-card" >
+      <div class="not-wrapper">
+
+        <div class="sender-details">
+          <div class="title">✅Kérelem elfogadva</div>
+          <div class="sender">{{msg.felado}}</div>
+          <div class="date">{{msg.letrehozva_ekkor | date:'yyyy. MM. dd. HH:mm'}}</div>
+        </div>
+
+        <div class="message">
+          {{msg.felado}} felhasználó elfogadta a kérelmedet az alábbi termékre: {{msg.eszkoz}}
+        </div>
+
+      </div>
+    </mat-card>
+
+
+      }
+      @else if(msg.statusz === 'rejected'){
+
+        <mat-card class="notification-card" >
+      <div class="not-wrapper">
+
+        <div class="sender-details">
+          <div class="title">❌Kérelem elutasítva</div>
+          <div class="sender">{{msg.felado}}</div>
+          <div class="date">{{msg.letrehozva_ekkor | date:'yyyy. MM. dd. HH:mm'}}</div>
+        </div>
+
+        <div class="message">
+          {{msg.felado}} felhasználó elutasította a kérelmedet az alábbi termékre: {{msg.eszkoz}}<br>
+          Indok: <i>{{msg.tartalom}}</i>
+        </div>
+      </div>
+    </mat-card>
+    }
+        @else{
       <mat-card class="notification-card">
       <div class="not-wrapper">
 
@@ -118,6 +157,7 @@
         </div>
       </div>
     </mat-card>
+          }
   }
 
 
