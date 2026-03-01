@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { identity } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,13 @@ export class ItemService {
    return this.http.post<any>(`${this.API}/item/upload/pictures`,data);
   }
 
-  getAllItem(){
-    return this.http.get<any>(`${this.API}/item/getAll`);
+  getAllItems(sort:string,category?:string){
+    let params = new HttpParams().set('sort',sort);
+    if(category)
+    {
+      params = new HttpParams().set('category',category);
+    }
+    return this.http.get<any>(`${this.API}/item/all`,{params});
   }
 
   getItem(id:number){

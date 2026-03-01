@@ -2,8 +2,10 @@ import { Component, inject } from '@angular/core';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../services/auth/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ItemService } from '../services/item/item.service';
+import { forkJoin } from 'rxjs';
+import { CategoryService } from '../services/category/category.service';
 
 interface SortOption {
   value: string;
@@ -16,7 +18,7 @@ interface SortOption {
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  constructor(private auth: AuthService,private item: ItemService, private router: Router) { }
+  constructor(private item: ItemService,private category:CategoryService, private router: Router,private route:ActivatedRoute) { }
 
   readonly dialog = inject(MatDialog);
 
@@ -25,25 +27,52 @@ export class HomeComponent {
   }
 
   options: SortOption[] = [
-    { value: 'newest-0', viewValue: 'Legújabb' },
-    { value: 'price-desc', viewValue: 'Legdrágább felül' },
-    { value: 'price-asc', viewValue: 'Legolcsóbb felül' },
+    { value: '1', viewValue: 'Legújabb' },
+    { value: '2', viewValue: 'Legdrágább felül' },
+    { value: '3', viewValue: 'Legolcsóbb felül' },
   ];
-  selectedSort: string = 'newest-0';
+  selectedSort: string = '1';
 
   posts: any[]=[];
+  maincategories: any
 
+
+
+  sortChange(sort_id:string){
+    this.router.navigate([],{
+      queryParams: {sort: sort_id},
+      queryParamsHandling: 'merge'
+    });
+  }
+
+categoryChange(category_id:string){
+    this.router.navigate([],{
+      queryParams: {category: category_id},
+      queryParamsHandling: 'merge'
+    });
+  }
 
   ngOnInit() {
-   
-    this.item.getAllItem().subscribe({
+    this.route.queryParams.subscribe(params=>{
+      const category = params['category'];
+      const sort = params['sort'] || 1;
+
+    
+  forkJoin({
+    cat: this.category.getAllCategory(),
+    items: this.item.getAllItems(sort,category)
+
+  }).subscribe({
       next:(data)=>{
-        this.posts = data;
+        this.posts = data.items;
+        this.maincategories = data.cat;
       },
       error(err) {
         console.log(err.error.message);
       }
-    })
+    });
+  });
   }
+
 
 }
