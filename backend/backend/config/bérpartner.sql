@@ -59,6 +59,7 @@ CREATE TABLE eszkozok (
     allapot VARCHAR(100) NOT NULL,
     leiras TEXT,
     tulajdonos_id INT NOT NULL,
+    letrehozva_ekkor TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (tulajdonos_id) REFERENCES felhasznalok(id),
     FOREIGN KEY (kategoria_id) REFERENCES kategoriak(id)
 );
