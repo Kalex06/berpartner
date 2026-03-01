@@ -26,7 +26,11 @@ async function updateRentStatusById(status,id,connection=null) {
         [status,id]
     );
     return row.affectedRows
-  
 }
+
+
+
+
+
 
 module.exports = {uploadRentRequest,findItemByRentId,updateRentStatusById}
