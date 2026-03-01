@@ -7,7 +7,7 @@ const {uploadItem,getAllItem,getItemById,getItemsByOwner} = require('../controll
 const item_router = express.Router();
 
 item_router.post('/upload/pictures',authMiddleware,pictureMiddleware,uploadItem);
-item_router.get('/getAll',authMiddleware,getAllItem);
+item_router.get('/all',authMiddleware,getAllItem);
 item_router.get('/:id',authMiddleware,getItemById);
 item_router.get('/owner/:id',authMiddleware,getItemsByOwner);
 
