@@ -50,5 +50,17 @@ async function uploadRent(req,res) {
     
 }
 
+async function getMyRents(req,res) {
+        try{
+            const rents = await Rent.getAllRentsByOwner(req.user.id);
+            res.status(200).json(rents)
+        }
+        catch(err){
+            console.log(err)
+             res.status(500).json({message:"Hiba a bérlés(ek) lekérdezésekor!"});
+        }
 
-module.exports = {uploadRent}
+}
+
+
+module.exports = {uploadRent,getMyRents}
