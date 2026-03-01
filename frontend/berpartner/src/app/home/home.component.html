@@ -5,21 +5,20 @@
                 class="categories-btn">Kategóriák</button>
             <mat-menu #categories="matMenu" class="cat-menu" >
                 <ng-container *ngFor="let maincategory of maincategories">
-                <button  mat-menu-item [matMenuTriggerFor]="catMenu">
-                    {{maincategory.fo_kategoria}}
-                </button>
+                    <button  mat-menu-item [matMenuTriggerFor]="catMenu">
+                        {{maincategory.fo_kategoria}}
+                    </button>
                 
             
+                    <mat-menu #catMenu="matMenu" class="cat-menu">
+                        <button mat-menu-item *ngFor="let category of maincategory.kategoriak"
+                        (click)="categoryChange(category.id)">
+                            {{category.kategoria}}
+                        </button>
+                    </mat-menu>
 
-            <mat-menu #catMenu="matMenu" class="cat-menu">
-                <button mat-menu-item *ngFor="let category of maincategory.kategoriak"
-                (click)="categoryChange(category.id)">
-                    {{category.kategoria}}
-                </button>
-            </mat-menu>
-
-        </ng-container>
-    </mat-menu>
+                </ng-container>
+             </mat-menu>
 
             <span class="spacer"></span>
             <mat-form-field class="sorter" appearance="outline" floatLabel="auto">

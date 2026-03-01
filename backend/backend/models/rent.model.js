@@ -28,9 +28,22 @@ async function updateRentStatusById(status,id,connection=null) {
     return row.affectedRows
 }
 
+async function getAllRentsByOwner(id) {
+  const [rows] = await pool.execute(
+    `SELECT eszkozok.*,berlesek.datum_tol,berlesek.datum_ig,felhasznalok.varos FROM eszkozok
+    JOIN berlesek ON berlesek.eszkoz_id = eszkozok.id
+    JOIN felhasznalok ON eszkozok.tulajdonos_id = felhasznalok.id
+    WHERE berlesek.statusz = "accepted" AND eszkozok.tulajdonos_id = ?;`,
+    [id]
+  );
+  return rows;
+}
 
 
 
 
 
-module.exports = {uploadRentRequest,findItemByRentId,updateRentStatusById}
+
+
+
+module.exports = {uploadRentRequest,findItemByRentId,updateRentStatusById,getAllRentsByOwner}
