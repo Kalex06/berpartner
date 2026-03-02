@@ -15,7 +15,12 @@ messages:any[] = []
 
   ngOnInit(): void {
 
-    this.Message.getMessages().subscribe({
+    this.load();
+    
+  }
+
+ load(){
+  this.Message.getMessages().subscribe({
       next:(data)=>{
         this.messages = data;
         
@@ -24,15 +29,13 @@ messages:any[] = []
         console.log(err);
       },
     })
-    
-  }
-
-
+ }
 
   accept(data: any){
     this.Message.acceptMessage(data).subscribe({
       next:()=>{
         console.log("Kérés elfogadva");
+        this.load();
       },
       error(err) {
         alert(err)
@@ -45,6 +48,7 @@ messages:any[] = []
     this.Message.rejectMessage(data).subscribe({
       next:()=>{
         console.log("Kérés elutasítva");
+        this.load();
       },
       error(err) {
         alert(err)
