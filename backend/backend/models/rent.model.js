@@ -1,6 +1,7 @@
 const pool = require('../config/db');
 
 
+
 async function uploadRentRequest(pool,data) {
     const {eszkoz_id,berlo_id,tulajdonos_id,datum_tol,datum_ig} = data;
   const [rows] = await pool.execute(
@@ -18,4 +19,31 @@ async function findItemByRentId(id) {
   return rows[0];
 }
 
-module.exports = {uploadRentRequest,findItemByRentId}
+async function updateRentStatusById(status,id,connection=null) {
+  const executor = connection||pool;
+  const[row] = await executor.execute(
+        'UPDATE berlesek set statusz = ? WHERE berlesek.id = ?',
+        [status,id]
+    );
+    return row.affectedRows
+}
+
+async function getAllRentsByOwner(id) {
+  const [rows] = await pool.execute(
+    `SELECT eszkozok.*,berlesek.datum_tol,berlesek.datum_ig,felhasznalok.varos FROM eszkozok
+    JOIN berlesek ON berlesek.eszkoz_id = eszkozok.id
+    JOIN felhasznalok ON eszkozok.tulajdonos_id = felhasznalok.id
+    WHERE berlesek.statusz = "accepted" AND eszkozok.tulajdonos_id = ?;`,
+    [id]
+  );
+  return rows;
+}
+
+
+
+
+
+
+
+
+module.exports = {uploadRentRequest,findItemByRentId,updateRentStatusById,getAllRentsByOwner}

@@ -101,7 +101,7 @@ export class UploadComponent implements OnInit{
       next: categories=>this.maincategories = categories,
       error(err) {
         console.log(err);
-      },
+      }
     })
   }
 }

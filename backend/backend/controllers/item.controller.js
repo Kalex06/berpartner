@@ -55,16 +55,43 @@ async function uploadItem(req,res){
 
 async function getAllItem(req,res){
     try{
-        const items = await Item.getAllItem();
+
+        const sortoptions = {
+            "1" : "eszkozok.letrehozva_ekkor DESC",
+            "2" : "eszkozok.ar_egy_napra DESC",
+            "3" : "eszkozok.ar_egy_napra"
+        }
+
+
+
+        const category = req.query.category;
+        const sort = sortoptions[req.query.sort] || sortoptions["1"];
+
+        let items
+
+        if(category)
+        {
+             items = await Item.getAllItem(sort,parseInt(category));
+
+        }
+        else{
+            items = await Item.getAllItem(sort);
+        }
+
+        
         res.status(200).json(items);
     }
     catch(err){
+        console.log(err)
         res.status(500).json({message:"Hiba a lekérdezés közben"});
     }
     
     
 
 }
+
+
+
 
 async function getItemById(req,res){
     try{
@@ -73,7 +100,7 @@ async function getItemById(req,res){
         const pictures = await Item.getItemPicById(id);
         const item_data = {...item,kepek:pictures};
 
-        console.log(item_data)
+        
         res.status(200).json(item_data);
         if (!item) {
             return res.status(404).json({ message: 'Az eszköz nem található!' });

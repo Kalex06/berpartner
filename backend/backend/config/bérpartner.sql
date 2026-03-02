@@ -59,6 +59,7 @@ CREATE TABLE eszkozok (
     allapot VARCHAR(100) NOT NULL,
     leiras TEXT,
     tulajdonos_id INT NOT NULL,
+    letrehozva_ekkor TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (tulajdonos_id) REFERENCES felhasznalok(id),
     FOREIGN KEY (kategoria_id) REFERENCES kategoriak(id)
 );
@@ -78,7 +79,7 @@ CREATE TABLE berlesek (
     tulajdonos_id INT NOT NULL,
     datum_tol DATE NOT NULL,
     datum_ig DATE NOT NULL,
-    statusz ENUM('függőben','elutasítva','elfogadva') NOT NULL DEFAULT "függőben",
+    statusz ENUM('pending','accepted','rejected') NOT NULL DEFAULT "pending",
     FOREIGN KEY (eszkoz_id) REFERENCES eszkozok(id),
     FOREIGN KEY (berlo_id) REFERENCES felhasznalok(id),
     FOREIGN KEY (tulajdonos_id) REFERENCES felhasznalok(id)
@@ -93,7 +94,7 @@ CREATE TABLE uzenetek(
     tartalom TEXT,
     tipus ENUM('request','message') NOT NULL,
     megnyitva BOOLEAN DEFAULT FALSE,
-    statusz ENUM('pending','accepted','rejected') NULL DEFAULT NULL
+    statusz ENUM('pending','accepted','rejected') NULL DEFAULT NULL,
     letrehozva_ekkor TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (felado_id) REFERENCES felhasznalok(id),
     FOREIGN KEY (cimzett_id) REFERENCES felhasznalok(id),

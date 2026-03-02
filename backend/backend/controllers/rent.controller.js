@@ -26,8 +26,8 @@ async function uploadRent(req,res) {
             felado_id:req.user.id,
             cimzett_id:req.body.tulajdonos_id,
             berles_id:id,
-            cim:"Bérlési kérelem",
-            tartalom:"felhasználó bérlési kérelmet nyújtott be az alábbi termékedre:",
+            cim: null,
+            tartalom: null,
             tipus: 'request',
             statusz:'pending'
         };
@@ -35,7 +35,7 @@ async function uploadRent(req,res) {
 
        
 
-        const savedmassage = await Message.createMessage(connection,messageData);
+        const savedmassage = await Message.createMessage(messageData,connection);
          await connection.commit(); 
         res.status(200).json({message:`Kérés feltöltve! id:${id} , üzenetId: ${savedmassage}`,})
     } catch (err) {
@@ -50,5 +50,17 @@ async function uploadRent(req,res) {
     
 }
 
+async function getMyRents(req,res) {
+        try{
+            const rents = await Rent.getAllRentsByOwner(req.user.id);
+            res.status(200).json(rents)
+        }
+        catch(err){
+            console.log(err)
+             res.status(500).json({message:"Hiba a bérlés(ek) lekérdezésekor!"});
+        }
 
-module.exports = {uploadRent}
+}
+
+
+module.exports = {uploadRent,getMyRents}
