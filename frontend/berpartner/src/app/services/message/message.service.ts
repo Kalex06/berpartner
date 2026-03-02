@@ -14,4 +14,12 @@ getMessages(){
     return this.http.get<any>(`${this.API}/message/all`);
   }
 
+acceptMessage(message:any){
+    return this.http.patch<any>(`${this.API}/message/accept`,message);
+}
+
+rejectMessage(message:any){
+    return this.http.patch<any>(`${this.API}/message/reject`,message);
+}
+
 }

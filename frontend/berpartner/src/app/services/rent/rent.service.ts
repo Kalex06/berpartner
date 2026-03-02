@@ -10,7 +10,11 @@ export class RentService {
 
   constructor(private http: HttpClient) {}
 
-  UploadRent(data:any){
+  uploadRent(data:any){
    return this.http.post<any>(`${this.API}/rent/upload`,data);
+  }
+
+  myRents(){
+    return this.http.get<any>(`${this.API}/rent/myrents`)
   }
 }

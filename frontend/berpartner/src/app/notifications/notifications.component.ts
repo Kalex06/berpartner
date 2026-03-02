@@ -28,12 +28,29 @@ messages:any[] = []
   }
 
 
-  accept(){
+
+
+  accept(data: any){
+    this.Message.acceptMessage(data).subscribe({
+      next:()=>{
+        console.log("Kérés elfogadva");
+      },
+      error(err) {
+        alert(err)
+      },
+    })
 
   }
 
-  reject(){
-
+  reject(data:any){
+    this.Message.rejectMessage(data).subscribe({
+      next:()=>{
+        console.log("Kérés elutasítva");
+      },
+      error(err) {
+        alert(err)
+      },
+    })
 
   }
 

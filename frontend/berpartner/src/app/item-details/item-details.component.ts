@@ -80,7 +80,7 @@ export class ItemDetailsComponent  {
 
     }
 
-    this.rent.UploadRent(data).subscribe({
+    this.rent.uploadRent(data).subscribe({
       next:()=>alert("Sikeres küldés!"),
       error(err) {
         console.log(err);
