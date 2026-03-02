@@ -29,7 +29,6 @@ messages:any[] = []
 
 
 
-
   accept(data: any){
     this.Message.acceptMessage(data).subscribe({
       next:()=>{
