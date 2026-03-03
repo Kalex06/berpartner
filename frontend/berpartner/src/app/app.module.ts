@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { MatIconModule } from '@angular/material/icon';
+import {MatBadgeModule} from '@angular/material/badge';
 
 // Home Component
 import { HomeComponent } from './home/home.component';
@@ -110,6 +111,7 @@ registerLocaleData(localeHu);
     MatDatepickerModule,
     MatSidenavModule,
     MatDividerModule,
+    MatBadgeModule,
   ],
   providers: [
     provideAnimationsAsync(),

@@ -18,12 +18,17 @@ async function getAllMessagesByOwner(req,res) {
             if(msg.statusz!==null){
                 const sender = await User.findUserById(msg.felado_id);
                 const item = await Rent.findItemByRentId(msg.berles_id);
-            
+                
+
                 msg.felado = sender.nev;
                 msg.eszkoz = item.nev;
             }
         }
-       
+    
+   
+
+     
+        
 
             
     
@@ -54,7 +59,7 @@ async function messageAccept(req,res){
 
         const answer_message = {
             felado_id: req.user.id,
-            cimzett_id: message.felado_id, //azért mert visszaküldjük ezt
+            cimzett_id: message.felado_id, //azért mert visszaküldjük ezt, a felado_id itt a kérelmet küldő id-ja
             berles_id: message.berles_id,
             cim: null,
             tartalom: null,
@@ -117,6 +122,18 @@ async function messageReject(req,res) {
 
 
 
+async function getIsOpenedCountByOwner(req,res) {
+    try{
+         const notReadedCount = await getIsOpenedCountByOwner(req.user.id);
+         res.status(200).json(notReadedCount);
+    }
+    catch(err){
+        res.status(500).json({message:"Hiba a kérés elutasítása közben!",error: err.message });
+    }
+    
+}
 
 
-module.exports = {getAllMessagesByOwner,messageAccept,messageReject};
+
+
+module.exports = {getAllMessagesByOwner,messageAccept,messageReject,getIsOpenedCountByOwner};
