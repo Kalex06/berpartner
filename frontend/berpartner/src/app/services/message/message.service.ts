@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,10 @@ import { Injectable } from '@angular/core';
 export class MessageService {
 
   private API = 'http://localhost:3000';
+
+  private notReadedCountSource = new BehaviorSubject<number>(0);
+
+  notReadedCount$ = this.notReadedCountSource.asObservable();
 
   constructor(private http:HttpClient) {}
 
@@ -22,8 +27,12 @@ rejectMessage(message:any){
     return this.http.patch<any>(`${this.API}/message/reject`,message);
 }
 
-notReadedMessageCount(){
+notReadMessageCount(){
   return this.http.get<any>(`${this.API}/message/notReaded`);
+}
+
+updatenotReadMessageCount(){
+  //return this.http.get<any>
 }
 
 }
