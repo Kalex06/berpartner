@@ -17,7 +17,7 @@ async function getAllMessageByOwner(id) {
     'SELECT * FROM uzenetek WHERE uzenetek.cimzett_id = (?) ORDER BY uzenetek.letrehozva_ekkor DESC',
     [id]
     );
-    return row
+    return row;
 }
 
 
@@ -28,17 +28,17 @@ async function updateRequestStatusById(status,id,connection=null) {
         'UPDATE uzenetek set statusz = ? WHERE uzenetek.id = ?',
         [status,id]
     );
-    return row.affectedRows
+    return row.affectedRows;
     
 }
 
 
 async function getIsOpenedByOwnerId(id) {
     const[row] = await pool.execute(
-        'SELECT COUNT(uzenetek.megnyitva) FROM uzenetek WHERE uzenetek.cimzett_id = (?) AND uzenetek.megnyitva = FALSE',
+        'SELECT COUNT(uzenetek.megnyitva) AS unread_count FROM uzenetek WHERE uzenetek.cimzett_id = (?) AND uzenetek.megnyitva = FALSE',
         [id]
     );
-    return row
+    return row[0];
     
 }
 

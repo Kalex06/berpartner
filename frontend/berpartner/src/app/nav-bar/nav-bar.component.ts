@@ -53,7 +53,7 @@ export class NavBarComponent {
     }).subscribe({
       next: ({profile,notRcount})=> {
         this.user = profile;
-        this.notReadedCount = notRcount;
+        this.notReadedCount = notRcount.unread_count;
       },
       error:(err) =>{
         this.router.navigate(['/login']);

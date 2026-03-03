@@ -124,7 +124,7 @@ async function messageReject(req,res) {
 
 async function getIsOpenedCountByOwner(req,res) {
     try{
-         const notReadedCount = await getIsOpenedCountByOwner(req.user.id);
+         const notReadedCount = await Message.getIsOpenedByOwnerId(req.user.id);
          res.status(200).json(notReadedCount);
     }
     catch(err){
