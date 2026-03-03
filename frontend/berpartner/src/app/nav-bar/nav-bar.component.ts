@@ -3,6 +3,7 @@ import { NotificationsComponent } from '../notifications/notifications.component
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import { MessageService } from '../services/message/message.service';
 
 interface SortOption {
   value: string;
@@ -14,7 +15,7 @@ interface SortOption {
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, public message:MessageService) { }
 
   // readonly dialog = inject(MatDialog);
 

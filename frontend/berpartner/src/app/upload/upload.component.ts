@@ -16,7 +16,7 @@ interface Condition {
   styleUrl: './upload.component.css'
 })
 export class UploadComponent implements OnInit{
-  constructor(private fb: FormBuilder, private item: ItemService,private category:CategoryService) { }
+  constructor(private fb: FormBuilder, private item: ItemService,private category:CategoryService,private router: Router) { }
   private _formBuilder = inject(FormBuilder);
   imagePreviews: (string | null)[] = [null, null, null, null];
   selectedFiles: (File | null)[] = [null, null, null, null];
@@ -87,7 +87,10 @@ export class UploadComponent implements OnInit{
 
 
     this.item.uploaditem(formData).subscribe({
-      next:()=>alert("Feltöltés sikeres!"),
+      next:()=>{
+        alert("Feltöltés sikeres!");
+        this.router.navigate(['/home'])
+      },
       error(err) {
         alert(err.error.message)
       }
