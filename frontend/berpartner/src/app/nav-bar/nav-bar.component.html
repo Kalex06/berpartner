@@ -33,8 +33,8 @@
                     <span class="logout-btn-text">Kijelentkezés</span>
                 </button>
             </mat-menu>
-            <button mat-icon-button class="notifications-icon"  routerLink="/notifications" aria-label="Értesítések">
-                <mat-icon matBadge='1' [matBadgeHidden]="true">mail_outline</mat-icon>
+            <button mat-icon-button class="notifications-icon" routerLink="/notifications" aria-label="Értesítések">
+                <mat-icon matBadge='{{message.notReadCount$ | async}}' >mail_outline</mat-icon>
             </button>
             <button mat-icon-button class="upload-icon" routerLink="/upload" aria-label="Új termék feltöltése">
                 <mat-icon>add_circle_outline</mat-icon>
