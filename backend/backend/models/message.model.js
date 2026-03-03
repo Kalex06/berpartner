@@ -33,8 +33,18 @@ async function updateRequestStatusById(status,id,connection=null) {
 }
 
 
+async function getIsOpenedByOwnerId(id) {
+    const[row] = await pool.execute(
+        'SELECT COUNT(uzenetek.megnyitva) FROM uzenetek WHERE uzenetek.cimzett_id = (?) AND uzenetek.megnyitva = FALSE',
+        [id]
+    );
+    return row
+    
+}
 
 
 
 
-module.exports = {createMessage,getAllMessageByOwner,updateRequestStatusById};
+
+
+module.exports = {createMessage,getAllMessageByOwner,updateRequestStatusById,getIsOpenedByOwnerId};

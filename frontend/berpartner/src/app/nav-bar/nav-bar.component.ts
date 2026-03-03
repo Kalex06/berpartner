@@ -3,6 +3,8 @@ import { NotificationsComponent } from '../notifications/notifications.component
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import { MessageService } from '../services/message/message.service';
+import { catchError, forkJoin, of } from 'rxjs';
 
 interface SortOption {
   value: string;
@@ -14,7 +16,7 @@ interface SortOption {
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private message:MessageService){}
 
   // readonly dialog = inject(MatDialog);
 
@@ -29,7 +31,8 @@ export class NavBarComponent {
   ];
   selectedSort: string = 'newest-0';
 
-  user: any = null
+  user: any = null;
+  notReadedCount:any =null;
 
   logOut(){
     this.auth.logout();
@@ -37,15 +40,31 @@ export class NavBarComponent {
   }
 
   ngOnInit() {
-    this.auth.getProfile().subscribe({
-      next: profile => {
+
+
+    forkJoin({
+      profile: this.auth.getProfile(),
+      notRcount: this.message.notReadedMessageCount().pipe(
+        catchError(err => {
+          console.log("üzenetek lekérdezése sikertelen",err);
+          return of(0);
+        })
+      )
+    }).subscribe({
+      next: ({profile,notRcount})=> {
         this.user = profile;
+        this.notReadedCount = notRcount;
       },
-      error: err => {
+      error:(err) =>{
         this.router.navigate(['/login']);
         alert(err.error.message)
-      }
-    });
+      },
+    })
+
+    
   }
+
+  
+
 
 }

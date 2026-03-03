@@ -22,4 +22,8 @@ rejectMessage(message:any){
     return this.http.patch<any>(`${this.API}/message/reject`,message);
 }
 
+notReadedMessageCount(){
+  return this.http.get<any>(`${this.API}/message/notReaded`);
+}
+
 }
