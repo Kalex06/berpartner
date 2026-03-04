@@ -52,6 +52,7 @@
     justify-content: center;
     flex: 2;
     min-height: 80px;
+    cursor: pointer;
 }
 
 .image-display-box mat-icon {

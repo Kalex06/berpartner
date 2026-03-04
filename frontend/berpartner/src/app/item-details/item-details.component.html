@@ -13,7 +13,7 @@
                 <h2 class="section-title">Képek</h2>
                 <div class="image-grid">
                     
-                    <div class="image-display-box main-image">
+                    <div class="image-display-box main-image" (click)="openImage(0)">
                         @if(post.kepek[0]?.kep_nev){
                         <img src="http://localhost:3000/upload/picture/{{post.kepek[0].kep_nev}}" class="preview-img">
                         }
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="image-grid-small">
-                        <div class="image-display-box small">
+                        <div class="image-display-box small" (click)="openImage(1)">
                              @if(post.kepek[1]?.kep_nev){
                             <img src="http://localhost:3000/upload/picture/{{post.kepek[1].kep_nev}}" class="preview-img">
                             }
@@ -31,7 +31,7 @@
                                  <mat-icon>image</mat-icon>
                             }
                         </div>
-                        <div class="image-display-box small">
+                        <div class="image-display-box small" (click)="openImage(2)">
                              @if(post.kepek[2]?.kep_nev){
                             <img src="http://localhost:3000/upload/picture/{{post.kepek[2].kep_nev}}" class="preview-img">
                             }
@@ -39,7 +39,7 @@
                                  <mat-icon>image</mat-icon>
                             }
                         </div>
-                        <div class="image-display-box small">
+                        <div class="image-display-box small" (click)="openImage(3)">
                              @if(post.kepek[3]?.kep_nev){
                             <img src="http://localhost:3000/upload/picture/{{post.kepek[3].kep_nev}}" class="preview-img">
                             }

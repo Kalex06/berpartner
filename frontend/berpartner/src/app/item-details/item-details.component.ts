@@ -1,8 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component} from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ItemService } from '../services/item/item.service';
 import { RentService } from '../services/rent/rent.service';
+import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 interface SortOption {
   value: string;
@@ -14,8 +16,19 @@ interface SortOption {
   templateUrl: './item-details.component.html',
   styleUrl: './item-details.component.css'
 })
-export class ItemDetailsComponent  {
-  constructor(private auth: AuthService,private item: ItemService,private rent: RentService, private router: Router, private route: ActivatedRoute) { }
+export class ItemDetailsComponent {
+  constructor(private auth: AuthService, private item: ItemService, private rent: RentService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { }
+
+  openImage(index: number) {
+    if (!this.post.kepek[index]) return;
+
+    const imageUrl = `http://localhost:3000/upload/picture/${this.post.kepek[index].kep_nev}`;
+    this.dialog.open(ImageDialogComponent, {
+      data: { url: imageUrl },
+      maxWidth: '95vw',
+      maxHeight: '95vh'
+    });
+  }
 
   navigateBack() {
     setTimeout(() => {
@@ -56,12 +69,12 @@ export class ItemDetailsComponent  {
     }
   }
 
-  post: any=null;
-  
+  post: any = null;
+
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.item.getItem(id).subscribe({
-      next:data=>{
+      next: data => {
         this.post = data;
       },
       error(err) {
@@ -71,17 +84,17 @@ export class ItemDetailsComponent  {
   }
 
 
-  sendRent(){
+  sendRent() {
     const data = {
       eszkoz_id: Number(this.route.snapshot.paramMap.get('id')),
       tulajdonos_id: this.post.tulajdonos_id,
       datum_tol: this.startDate,
-      datum_ig:this.endDate
+      datum_ig: this.endDate
 
     }
 
     this.rent.uploadRent(data).subscribe({
-      next:()=>alert("Sikeres küldés!"),
+      next: () => alert("Sikeres küldés!"),
       error(err) {
         console.log(err);
       },
