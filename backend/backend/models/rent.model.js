@@ -30,10 +30,12 @@ async function updateRentStatusById(status,id,connection=null) {
 
 async function getAllRentsByOwner(id) {
   const [rows] = await pool.execute(
-    `SELECT eszkozok.*,berlesek.datum_tol,berlesek.datum_ig,felhasznalok.varos FROM eszkozok
+    `SELECT eszkozok.*,berlesek.datum_tol,berlesek.datum_ig,felhasznalok.varos,eszkoz_kepek.kep_nev FROM eszkozok
     JOIN berlesek ON berlesek.eszkoz_id = eszkozok.id
     JOIN felhasznalok ON eszkozok.tulajdonos_id = felhasznalok.id
-    WHERE berlesek.statusz = "accepted" AND eszkozok.tulajdonos_id = ?;`,
+    JOIN eszkoz_kepek ON eszkoz_kepek.eszkoz_id = eszkozok.id
+    WHERE berlesek.statusz = "accepted" AND eszkozok.tulajdonos_id = ?
+    GROUP BY berlesek.id;`,
     [id]
   );
   return rows;

@@ -94,7 +94,9 @@ export class ItemDetailsComponent {
     }
 
     this.rent.uploadRent(data).subscribe({
-      next: () => alert("Sikeres küldés!"),
+      next: () => {alert("Sikeres küldés!");
+        this.router.navigate(['/home'])
+      },
       error(err) {
         console.log(err);
       },

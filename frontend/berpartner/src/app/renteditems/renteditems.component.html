@@ -4,7 +4,7 @@
     <article class="ad-grid">
         @for(rent of rents;track rent.id){
         <mat-card class="item-card" appearance="outlined">
-            <img mat-card-image src="" alt="Test photo">
+            <img mat-card-image src="http://localhost:3000/upload/picture/{{rent.kep_nev}}" alt="Test photo">
             <mat-card-header>
                 <mat-card-title>{{rent.nev}}</mat-card-title>
                 <mat-card-subtitle>{{rent.kategoria}}</mat-card-subtitle>

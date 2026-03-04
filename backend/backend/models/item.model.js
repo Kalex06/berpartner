@@ -28,7 +28,8 @@ async function uploadpictures(pool,data) {
         `SELECT eszkozok.id,eszkozok.nev,eszkozok.ar_egy_napra,eszkozok.allapot,eszkozok.leiras,felhasznalok.varos,eszkozok.tulajdonos_id,eszkoz_kepek.kep_nev,kategoriak.kategoria 
         FROM eszkozok,eszkoz_kepek,kategoriak,felhasznalok  
         WHERE eszkoz_kepek.eszkoz_id = eszkozok.id AND kategoriak.id = eszkozok.kategoria_id AND eszkozok.tulajdonos_id = felhasznalok.id ${category}
-        GROUP BY ${sort}`
+        GROUP BY eszkozok.id
+        ORDER BY ${sort}`
      
     );
     return rows
@@ -39,7 +40,7 @@ async function getItemById(id) {
     `SELECT eszkozok.nev,eszkozok.ar_egy_napra,eszkozok.allapot,eszkozok.leiras,eszkozok.tulajdonos_id,kategoriak.kategoria,felhasznalok.nev AS felhasznalonev,felhasznalok.telefonszam,felhasznalok.email,felhasznalok.varos,felhasznalok.iranyitoszam 
     FROM eszkozok,kategoriak,felhasznalok  
     WHERE kategoriak.id = eszkozok.kategoria_id AND eszkozok.tulajdonos_id = felhasznalok.id AND eszkozok.id = (?)
-    GROUP BY eszkozok.id`,
+    ORDER BY eszkozok.id`,
     [id]
   );
   return rows[0];

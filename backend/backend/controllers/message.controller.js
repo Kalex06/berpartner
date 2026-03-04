@@ -128,7 +128,7 @@ async function getIsOpenedCountByOwner(req,res) {
          res.status(200).json(notReadedCount);
     }
     catch(err){
-        res.status(500).json({message:"Hiba a kérés elutasítása közben!",error: err.message });
+        res.status(500).json({message:"Hiba a lekérdezés közben!",error: err.message });
     }
     
 }
@@ -136,4 +136,20 @@ async function getIsOpenedCountByOwner(req,res) {
 
 
 
-module.exports = {getAllMessagesByOwner,messageAccept,messageReject,getIsOpenedCountByOwner};
+async function updateIsOpenedByOwner(req,res) {
+    try{
+        const rows = Message.updateAllIsOpenedValueByOwner(req.user.id);
+        res.status(200).json({message:"Sikeresen frissített sorok száma: ",rows});
+    }
+    catch(err){
+        res.status(500).json({message:"Hiba a frissítés közben!",error: err.message });
+    }
+    
+}
+
+
+
+
+
+
+module.exports = {getAllMessagesByOwner,messageAccept,messageReject,getIsOpenedCountByOwner,updateIsOpenedByOwner};
