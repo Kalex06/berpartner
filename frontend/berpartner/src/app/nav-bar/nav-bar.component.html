@@ -33,7 +33,7 @@
                     <span class="logout-btn-text">Kijelentkezés</span>
                 </button>
             </mat-menu>
-            <button mat-icon-button class="notifications-icon" routerLink="/notifications" aria-label="Értesítések">
+            <button mat-icon-button class="notifications-icon" (click)="updateNotread()" aria-label="Értesítések">
                 <mat-icon [matBadge]='message.notReadCount$ | async' [matBadgeHidden]="(message.notReadCount$ | async)===0">mail_outline</mat-icon>
             </button>
             <button mat-icon-button class="upload-icon" routerLink="/upload" aria-label="Új termék feltöltése">

@@ -38,7 +38,16 @@ async function getIsOpenedByOwnerId(id) {
         'SELECT COUNT(uzenetek.megnyitva) AS unread_count FROM uzenetek WHERE uzenetek.cimzett_id = (?) AND uzenetek.megnyitva = FALSE',
         [id]
     );
-    return row[0];
+    return row[0];   
+}
+
+async function updateAllIsOpenedValueByOwner(id) {
+    const[row] = await pool.execute(
+        'UPDATE uzenetek set megnyitva = TRUE WHERE uzenetek.cimzett_id = ?',
+        [id]
+    );
+    return row.affectedRows;
+
     
 }
 
@@ -46,5 +55,4 @@ async function getIsOpenedByOwnerId(id) {
 
 
 
-
-module.exports = {createMessage,getAllMessageByOwner,updateRequestStatusById,getIsOpenedByOwnerId};
+module.exports = {createMessage,getAllMessageByOwner,updateRequestStatusById,getIsOpenedByOwnerId,updateAllIsOpenedValueByOwner};

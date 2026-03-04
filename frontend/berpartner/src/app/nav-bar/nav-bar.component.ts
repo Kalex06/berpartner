@@ -37,6 +37,18 @@ export class NavBarComponent {
     this.router.navigate(['/login']);
   }
 
+  updateNotread(){
+    this.message.updatenotReadMessageCount().subscribe({
+      next:()=> {
+          console.log('Frissítés sikeres');
+          this.router.navigate(['/notifications']);
+      },
+      error:(err)=> {
+        console.log(err);
+      },
+    })
+  }
+
   ngOnInit() {
     this.auth.getProfile().subscribe({
       next: profile => {

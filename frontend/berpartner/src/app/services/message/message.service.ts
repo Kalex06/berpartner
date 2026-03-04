@@ -31,6 +31,10 @@ notReadMessageCount(){
   return this.http.get<any>(`${this.API}/message/notRead`);
 }
 
+updatenotReadMessageCount(){
+  return this.http.patch<any>(`${this.API}/message/updateNotRead`,null);
+}
+
 reloadnotReadMessageCount(){
   this.notReadMessageCount().subscribe({
     next:(count)=> {
