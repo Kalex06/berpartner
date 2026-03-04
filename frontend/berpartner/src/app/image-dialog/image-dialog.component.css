@@ -1,0 +1,29 @@
+.dialog-image-container {
+    display: flex;
+    cursor: pointer;
+}
+
+.full-image {
+    max-width: 95vw;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.close-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: darkred;
+    background-color: rgba(163, 8, 8, 0.438);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.close-icon:hover {
+    background-color: rgba(163, 8, 8, 0.192);
+}

@@ -63,8 +63,10 @@ import { LOCALE_ID } from '@angular/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import localeHu from '@angular/common/locales/hu';
 import { registerLocaleData } from '@angular/common';
+
 import { PrivacypolicyComponent } from './privacypolicy/privacypolicy.component';
 import { ImprintComponent } from './imprint/imprint.component';
+import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 
 registerLocaleData(localeHu);
 
@@ -86,6 +88,7 @@ registerLocaleData(localeHu);
     NavBarComponent,
     PrivacypolicyComponent,
     ImprintComponent,
+    ImageDialogComponent,
   ],
   imports: [
     BrowserModule,
