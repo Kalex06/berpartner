@@ -12,7 +12,6 @@ import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {NgxMaskDirective,NgxMaskPipe, provideNgxMask} from 'ngx-mask';
 
-
 import {MatStepperModule} from '@angular/material/stepper';
 import { UdvozloComponent } from './udvozlo/udvozlo.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -20,6 +19,8 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 import { MatIconModule } from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
+
+import {ToastrModule} from 'ngx-toastr';
 
 // Home Component
 import { HomeComponent } from './home/home.component';
@@ -114,7 +115,8 @@ registerLocaleData(localeHu);
     MatDatepickerModule,
     MatSidenavModule,
     MatDividerModule,
-    MatBadgeModule
+    MatBadgeModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     provideAnimationsAsync(),
