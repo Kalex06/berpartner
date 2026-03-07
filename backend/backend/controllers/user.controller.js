@@ -1,4 +1,6 @@
 const User = require('../models/user.model');
+const fs = require('fs').promises;
+const path = require('path');
 
 
 async function getMyProfile(req, res) {
@@ -19,6 +21,33 @@ async function getMyProfile(req, res) {
     } catch (err) {
         return res.status(500).json({message:'Hiba a felhasználó lekérdezésénél!'})
     }
+
+}
+
+async function updateProfilePic(req,res) {
+    try{
+        const myProfilePic = await User.findProfilePicById(req.user.id);
+
+        if(myProfilePic.profil__kep)
+        {
+            try{
+                const filePath = path.join(__dirname,'..','upload','profile_picture',myProfilePic);
+                await fs.unlink(filePath);
+            }
+            catch(fileErr){
+                    console.log("A kép már nem létezik.")
+            }
+            
+
+        }
+        
+      const pic = await User.updateProfilePic(req.file,req.user.id);
+    res.status(200).json({message:"Sikeresen frissített sorok száma: ",pic});
+    }
+    catch(err){
+            return res.status(500).json({message:'Hiba a profilkép frissítése közben!'})
+    }
+
 
 }
 
@@ -67,4 +96,4 @@ async function putUser(req, res) {
     }
 }
 
-module.exports = { getAllUsers, getUserById, putUser ,getMyProfile};
+module.exports = { getAllUsers, getUserById, putUser ,getMyProfile,updateProfilePic};
