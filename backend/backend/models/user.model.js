@@ -46,5 +46,20 @@ async function updateUser(id, user) {
   return rows.affectedRows; 
 }
 
+ async function findProfilePicById(id) {
+  const [rows] = await pool.execute(
+    'SELECT felhasznalok.profil_kep FROM felhasznalok WHERE id = ?',
+    [id]
+  );
+  return rows[0];
+}
 
-module.exports = {getAllUser,findUserById,findUserByemail,createUser,updateUser};
+ async function updateProfilePicById(avatar,id) {
+  const [rows] = await pool.execute(
+    'UPDATE felhasznalok set profil_kep = ? WHERE felhasznalok.id = ?',
+    [avatar,id]
+  );
+  return rows.affectedRows;
+}
+
+module.exports = {getAllUser,findUserById,findUserByemail,createUser,updateUser,findProfilePicById,updateProfilePicById};
