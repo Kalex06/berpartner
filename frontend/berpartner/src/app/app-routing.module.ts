@@ -13,20 +13,21 @@ import { UploadComponent } from './upload/upload.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PrivacypolicyComponent } from './privacypolicy/privacypolicy.component';
+import { authGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
   {path:'', component:UdvozloComponent},
   {path:'login',component:BejelentkezesComponent},
   {path:'register', component:RegisztracioComponent},
-  {path:'home', component:HomeComponent},
-  {path:'settings', component:SettingsComponent},
-  {path:'profile', component:ProfileComponent},
-  {path:'renteditems', component:RenteditemsComponent},
-  {path:'myitems', component:MyitemsComponent},
-  {path:'upload', component:UploadComponent},
-  {path: 'notifications', component: NotificationsComponent},
-  {path:'item-details/:id', component:ItemDetailsComponent},
+  {path:'home', component:HomeComponent,canActivate: [authGuard]},
+  {path:'settings', component:SettingsComponent,canActivate: [authGuard]},
+  {path:'profile', component:ProfileComponent,canActivate: [authGuard]},
+  {path:'renteditems', component:RenteditemsComponent,canActivate: [authGuard]},
+  {path:'myitems', component:MyitemsComponent,canActivate: [authGuard]},
+  {path:'upload', component:UploadComponent,canActivate: [authGuard]},
+  {path: 'notifications', component: NotificationsComponent,canActivate: [authGuard]},
+  {path:'item-details/:id', component:ItemDetailsComponent,canActivate: [authGuard]},
 
 ];
 
