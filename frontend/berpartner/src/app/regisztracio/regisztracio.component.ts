@@ -3,6 +3,8 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../services/auth/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PrivacypolicyComponent } from '../privacypolicy/privacypolicy.component';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-regisztracio',
@@ -10,15 +12,13 @@ import { PrivacypolicyComponent } from '../privacypolicy/privacypolicy.component
   styleUrls: ['./regisztracio.component.css']
 })
 export class RegisztracioComponent {
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   private _formBuilder = inject(FormBuilder);
 
   hidePassword = true;
   hideConfirm = true;
   passwordStepSubmitted = false;
-
-
   nameFormGroup = this._formBuilder.group({
     lastName: ['', Validators.required],
     firstName: ['', Validators.required],
@@ -31,7 +31,8 @@ export class RegisztracioComponent {
 
   passwordFormGroup = this._formBuilder.group({
     password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmPassword: ['', Validators.required]}, 
+    confirmPassword: ['', Validators.required]
+  },
     { validators: this.passwordMatchValidator });
 
   addressFormGroup = this._formBuilder.group({
@@ -51,7 +52,7 @@ export class RegisztracioComponent {
       group.get('password')?.setErrors({ mustMatch: true });
       group.get('confirmPassword')?.setErrors({ mustMatch: true });
     } else {
- 
+
       ['password', 'confirmPassword'].forEach(controlName => {
         const control = group.get(controlName);
         if (control?.hasError('mustMatch')) {
@@ -75,13 +76,25 @@ export class RegisztracioComponent {
   }
   isOptional = false;
 
+  toastr = inject(ToastrService);
+  showSuccess() {
+    this.toastr.success('Sikeres regisztráció!', '', {
+      positionClass: 'toast-top-center',
+      timeOut: 4000,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      closeButton: true,
+      tapToDismiss: true,
+    });
+  }
+
   submit() {
     const data = {
       nev: `${this.nameFormGroup.value.lastName} ${this.nameFormGroup.value.firstName}`,
       telefonszam: `36${this.contactFormGroup.value.phone}`,
       email: this.contactFormGroup.value.email,
       jelszo: this.passwordFormGroup.value.password,
-      iranyitoszam:this.addressFormGroup.value.postcode,
+      iranyitoszam: this.addressFormGroup.value.postcode,
       varos: this.addressFormGroup.value.city,
       utca: this.addressFormGroup.value.street,
       haz_szam: this.addressFormGroup.value.house
@@ -90,6 +103,6 @@ export class RegisztracioComponent {
       next: () => alert('Sikeres regisztráció'),
       error: (err) => alert(err.error.message)
     });
+    this.showSuccess();
   }
 }
-
