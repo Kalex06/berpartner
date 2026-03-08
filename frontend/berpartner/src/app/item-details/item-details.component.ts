@@ -1,10 +1,11 @@
-import { Component} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ItemService } from '../services/item/item.service';
 import { RentService } from '../services/rent/rent.service';
 import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 interface SortOption {
   value: string;
@@ -43,7 +44,6 @@ export class ItemDetailsComponent {
   ];
   selectedSort: string = 'newest-0';
 
-
   // Bérlés időszaka
   startDate: Date | null = null;
   endDate: Date | null = null;
@@ -71,6 +71,20 @@ export class ItemDetailsComponent {
 
   post: any = null;
 
+  toastr = inject(ToastrService);
+  showSuccess() {
+    this.toastr.success('Sikeres rendelés!', '', {
+      positionClass: 'toast-top-center',
+      timeOut: 4000,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      closeButton: true,
+      tapToDismiss: true,
+    });
+
+    this.router.navigate(['/home']);
+  }
+
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.item.getItem(id).subscribe({
@@ -83,30 +97,23 @@ export class ItemDetailsComponent {
     })
   }
 
-
   sendRent() {
     const data = {
       eszkoz_id: Number(this.route.snapshot.paramMap.get('id')),
       tulajdonos_id: this.post.tulajdonos_id,
       datum_tol: this.startDate,
       datum_ig: this.endDate
-
     }
 
     this.rent.uploadRent(data).subscribe({
-      next: () => {alert("Sikeres küldés!");
-        this.router.navigate(['/home'])
+      next: () => {
+        this.showSuccess();
       },
       error(err) {
         console.log(err);
       },
     })
-
-
-
   }
-
-
 }
 
 
