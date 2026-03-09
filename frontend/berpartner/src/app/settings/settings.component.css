@@ -11,11 +11,15 @@
 .settings-card {
   width: 100%;
   max-width: 480px;
-  background-color: white;
+  background-color: #1e293b;
   border: 4px double #fb923c;
   border-radius: 12px;
   padding: 32px 40px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+  color: white;
 }
 
 .settings-title {
@@ -31,42 +35,62 @@
   width: 100%;
 }
 
-
-:host ::ng-deep .mat-mdc-form-field {
-  width: 100%;
-}
-
-:host ::ng-deep .mat-mdc-slide-toggle {
-  font-size: 16px;
-}
-
 .delete-button {
-  color: red !important;                  
+  color: white !important;
   border: solid 2px red !important;
-  background-color: rgb(235, 235, 235) !important; 
+  background: linear-gradient(135deg, #8f0101 0%, #cc0000 100%) !important;
   width: 30%;
   margin-top: 24px;
 }
 
-.logo_img{
-  height: 50px;      
-  width: auto;       
-  margin-left: 16px; 
-  margin-right: 16px; 
+.logo_img {
+  height: 50px;
+  width: auto;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
+mat-expansion-panel {
+  background-color: #2a3c5a;
+  color: white !important;
+}
+
+mat-panel-title {
+  color: #fb923c !important;
+}
+
+strong {
+  color: #fb923c;
+}
+
+::ng-deep .mat-mdc-form-field input {
+  color: white !important;
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-floating-label {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+::ng-deep .mat-mdc-form-field input::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+::ng-deep .mat-mdc-form-field {
+  color: white !important;
+  margin-right: 4px;
+}
 
 @media (max-width: 480px) {
   .settings-card {
     padding: 24px 20px;
     border-width: 3px;
   }
-  
+
   .settings-title {
     font-size: 24px;
   }
 
-    .logo-img {
+  .logo-img {
     margin-left: 8px;
     margin-right: 8px;
   }
