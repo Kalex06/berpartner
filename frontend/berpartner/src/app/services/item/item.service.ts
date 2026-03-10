@@ -32,5 +32,15 @@ export class ItemService {
     return this.http.get<any>(`${this.API}/item/owner/${id}`)
   }
   
+
+  searchItems(sort:string,search:string){
+    let params = new HttpParams().set('sort',sort);
+      params = new HttpParams().set('search',search);
     
+    return this.http.get<any>(`${this.API}/item/search`,{params});
+  }
+    
+
+
+
 }
