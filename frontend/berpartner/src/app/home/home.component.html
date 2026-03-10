@@ -30,7 +30,7 @@
                 </mat-select>
             </mat-form-field>
 
-            <input type="text" class="searchbar" placeholder="Keresés...">
+            <input type="text" class="searchbar" (keyup.enter)="searchChange(search.value)" #search placeholder="Keresés...">
 
         </mat-toolbar>
     </nav>

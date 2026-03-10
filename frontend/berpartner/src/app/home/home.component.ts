@@ -52,15 +52,29 @@ categoryChange(category_id:string){
     });
   }
 
+
+searchChange(search_string:string){
+    this.router.navigate([],{
+      queryParams: {
+        search: search_string || null,
+        category: null
+      },
+      queryParamsHandling: 'merge'
+    });
+  }
+
   ngOnInit() {
     this.route.queryParams.subscribe(params=>{
       const category = params['category'];
       const sort = params['sort'] || 1;
+      const search = params['search'];
+
+      const request = search ? this.item.searchItems(sort,search) : this.item.getAllItems(sort,category);
 
     
   forkJoin({
     cat: this.category.getAllCategory(),
-    items: this.item.getAllItems(sort,category)
+    items: request
 
   }).subscribe({
       next:(data)=>{
@@ -68,7 +82,7 @@ categoryChange(category_id:string){
         this.maincategories = data.cat;
       },
       error(err) {
-        console.log(err.error.message);
+        console.log(err.error.message,err);
       }
     });
   });
