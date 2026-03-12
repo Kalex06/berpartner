@@ -70,16 +70,38 @@ mat-toolbar {
   background: #141e38;
 }
 
-.searchbar {
+.search-container {
+  display: flex;
   flex: 1;
+  align-items: center;
+  background: #334155;
+  border-radius: 8px;
   max-width: 500px;
   margin-left: 20px;
+  height: 38px;
+  padding-right: 5px;
+}
+
+.searchbar {
+  font-size: 15px;
+  flex: 1;
+  max-width: 500px;
   background: #334155;
   border: none;
+  outline: none;
   border-radius: 8px;
   height: 38px;
-  color: white;
+  color: white !important;
   padding: 0 15px;
+  margin-left: 0 !important;
+}
+
+.search-btn {
+  color: rgb(214, 214, 214) !important;
+}
+
+.search-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .sorter {

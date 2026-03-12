@@ -3,44 +3,50 @@
         <mat-toolbar>
             <button mat-button [matMenuTriggerFor]="categories" style="color: white !important;"
                 class="categories-btn">Kategóriák</button>
-            <mat-menu #categories="matMenu" class="cat-menu" >
+            <mat-menu #categories="matMenu" class="cat-menu">
                 <ng-container *ngFor="let maincategory of maincategories">
-                    <button  mat-menu-item [matMenuTriggerFor]="catMenu">
+                    <button mat-menu-item [matMenuTriggerFor]="catMenu">
                         {{maincategory.fo_kategoria}}
                     </button>
-                
-            
+
+
                     <mat-menu #catMenu="matMenu" class="cat-menu">
                         <button mat-menu-item *ngFor="let category of maincategory.kategoriak"
-                        (click)="categoryChange(category.id)">
+                            (click)="categoryChange(category.id)">
                             {{category.kategoria}}
                         </button>
                     </mat-menu>
 
                 </ng-container>
-             </mat-menu>
+            </mat-menu>
 
             <span class="spacer"></span>
             <mat-form-field class="sorter" appearance="outline" floatLabel="auto">
                 <mat-label>Rendezés</mat-label>
                 <mat-select [(ngModel)]="selectedSort" panelClass="sorter-panel">
                     @for (option of options; track option) {
-                    <mat-option [value]="option.value" (click)="sortChange(option.value)">{{option.viewValue}}</mat-option>
+                    <mat-option [value]="option.value"
+                        (click)="sortChange(option.value)">{{option.viewValue}}</mat-option>
                     }
                 </mat-select>
             </mat-form-field>
 
-            <input type="text" class="searchbar" (keyup.enter)="searchChange(search.value)" #search placeholder="Keresés...">
-
+            <div class="search-container">
+                <input type="text" class="searchbar" (keyup.enter)="searchChange(search.value)" #search
+                    placeholder="Keresés...">
+                <button mat-icon-button class="search-btn" (click)="searchChange(search.value)">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
         </mat-toolbar>
     </nav>
 
     <main>
         <article class="ad-grid">
             @for(post of posts; track post.id){
-            <mat-card class="item-card" appearance="outlined"
-                routerLink="/item-details/{{post.id}}">
-                <img mat-card-image src="http://localhost:3000/upload/picture/{{post.kep_nev}}" alt="Termék kép" class="item-image">
+            <mat-card class="item-card" appearance="outlined" routerLink="/item-details/{{post.id}}">
+                <img mat-card-image src="http://localhost:3000/upload/picture/{{post.kep_nev}}" alt="Termék kép"
+                    class="item-image">
                 <mat-card-header>
                     <mat-card-title>{{post.nev}}</mat-card-title>
                     <mat-card-subtitle>{{post.kategoria}}</mat-card-subtitle>
@@ -52,13 +58,15 @@
                     <div class="item-informations">
                         <div class="price-tag">{{post.ar_egy_napra}} Ft / nap</div>
                         <div class="location-tag"><mat-icon class="location-icon">place</mat-icon>
-                            <span>{{post.varos}}</span></div>
+                            <span>{{post.varos}}</span>
+                        </div>
                     </div>
                 </mat-card-content>
             </mat-card>
-        }@empty{
-            <p style="margin-top: 30%;margin-left: 110%;color: rgba(255, 255, 255, 0.5);font-size:large;width:400px;">Nincsen megjeleníthető tartalom!</p>
-        }
+            }@empty{
+            <p style="margin-top: 30%;margin-left: 110%;color: rgba(255, 255, 255, 0.5);font-size:large;width:400px;">
+                Nincsen megjeleníthető tartalom!</p>
+            }
 
         </article>
     </main>
