@@ -12,42 +12,43 @@
             <section class="images-section">
                 <h2 class="section-title">Képek</h2>
                 <div class="image-grid">
-                    
                     <div class="image-display-box main-image" (click)="openImage(0)">
                         @if(post.kepek[0]?.kep_nev){
                         <img src="http://localhost:3000/upload/picture/{{post.kepek[0].kep_nev}}" class="preview-img">
                         }
                         @else{
-                                <mat-icon>image</mat-icon>
-                            }
+                        <mat-icon>image</mat-icon>
+                        }
                     </div>
 
                     <div class="image-grid-small">
                         <div class="image-display-box small" (click)="openImage(1)">
-                             @if(post.kepek[1]?.kep_nev){
-                            <img src="http://localhost:3000/upload/picture/{{post.kepek[1].kep_nev}}" class="preview-img">
+                            @if(post.kepek[1]?.kep_nev){
+                            <img src="http://localhost:3000/upload/picture/{{post.kepek[1].kep_nev}}"
+                                class="preview-img">
                             }
                             @else{
-                                 <mat-icon>image</mat-icon>
+                            <mat-icon>image</mat-icon>
                             }
                         </div>
                         <div class="image-display-box small" (click)="openImage(2)">
-                             @if(post.kepek[2]?.kep_nev){
-                            <img src="http://localhost:3000/upload/picture/{{post.kepek[2].kep_nev}}" class="preview-img">
+                            @if(post.kepek[2]?.kep_nev){
+                            <img src="http://localhost:3000/upload/picture/{{post.kepek[2].kep_nev}}"
+                                class="preview-img">
                             }
-                             @else{
-                                 <mat-icon>image</mat-icon>
+                            @else{
+                            <mat-icon>image</mat-icon>
                             }
                         </div>
                         <div class="image-display-box small" (click)="openImage(3)">
-                             @if(post.kepek[3]?.kep_nev){
-                            <img src="http://localhost:3000/upload/picture/{{post.kepek[3].kep_nev}}" class="preview-img">
+                            @if(post.kepek[3]?.kep_nev){
+                            <img src="http://localhost:3000/upload/picture/{{post.kepek[3].kep_nev}}"
+                                class="preview-img">
                             }
                             @else{
-                                 <mat-icon>image</mat-icon>
+                            <mat-icon>image</mat-icon>
                             }
                         </div>
-
                     </div>
                 </div>
             </section>
@@ -57,12 +58,13 @@
 
                 <div class="detail-row">
                     <span class="detail-label">Tulajdonos:</span>
-                    <span class="detail-value" routerLink="/profile" style="cursor: pointer;">{{post.felhasznalonev}}</span>
+                    <span class="detail-value" routerLink="/profile"
+                        style="cursor: pointer;">{{post.felhasznalonev}}</span>
                 </div>
 
                 <div class="detail-row">
                     <span class="detail-label">Telefonszám:</span>
-                    <span class="detail-value" >+{{post.telefonszam | mask:'00 000 0000'}}</span>
+                    <span class="detail-value">+{{post.telefonszam | mask:'00 000 0000'}}</span>
                 </div>
 
                 <div class="detail-row">
@@ -73,7 +75,6 @@
                 <div class="detail-row">
                     <span class="detail-label">Helyszín:</span>
                     <span class="detail-value">{{post.varos}}, {{post.iranyitoszam}}</span>
-                    
                 </div>
 
                 <div class="detail-row">
@@ -106,7 +107,18 @@
                 </div>
             </section>
 
-            <footer class="action-bar">
+            <div class="action-bar">
+                @if (currentUserId === post.tulajdonos_id) {
+                <div class="owner-actions">
+                    <button mat-flat-button color="warn" class="delete-btn" (click)="deletePost()">
+                        <mat-icon>delete</mat-icon> Törlés
+                    </button>
+                    <button mat-flat-button color="primary" class="edit-btn" (click)="editPost()">
+                        <mat-icon>edit</mat-icon> Hirdetés szerkesztése
+                    </button>
+                </div>
+                }
+                @else {
                 <div class="calendar-wrapper">
                     <mat-date-range-input [rangePicker]="picker" style="display: none;">
                         <input matStartDate placeholder="Mettől" (dateChange)="onStartChange($event)">
@@ -117,11 +129,11 @@
                     </button>
                     <mat-date-range-picker touchUi #picker></mat-date-range-picker>
                 </div>
-
                 <button mat-flat-button class="submit-btn" (click)="sendRent()" [disabled]="!startDate || !endDate">
                     Bérlési igény küldése
                 </button>
-            </footer>
+                }
+            </div>
         </div>
     </div>
 </main>

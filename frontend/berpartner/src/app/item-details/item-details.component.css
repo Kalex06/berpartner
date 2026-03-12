@@ -56,7 +56,7 @@
 }
 
 .image-display-box mat-icon {
-    color:  #cacacacb;
+    color: #cacacacb;
     width: 48px;
     height: 48px;
     font-size: 48px;
@@ -214,6 +214,18 @@
     border-radius: 12px;
 }
 
+.owner-actions {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.edit-btn,
+.delete-btn {
+    flex: 1;
+    height: 50px;
+    font-size: 16px;
+}
 
 @media (max-width: 1200px) {
     .upload-card {
@@ -245,4 +257,3 @@
         width: 100%;
     }
 }
-
