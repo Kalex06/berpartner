@@ -18,6 +18,9 @@ interface SortOption {
   styleUrl: './item-details.component.css'
 })
 export class ItemDetailsComponent {
+  currentUserId: number | null = null;
+  post: any = null;
+
   constructor(private auth: AuthService, private item: ItemService, private rent: RentService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) { }
 
   openImage(index: number) {
@@ -69,7 +72,6 @@ export class ItemDetailsComponent {
     }
   }
 
-  post: any = null;
 
   toastr = inject(ToastrService);
   showSuccess() {
@@ -86,13 +88,20 @@ export class ItemDetailsComponent {
   }
 
   ngOnInit() {
+    this.auth.getProfile().subscribe({
+      next: user => {
+        this.currentUserId = user.id;
+      },
+      error: err => console.log(err.error.message)
+    });
+
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.item.getItem(id).subscribe({
       next: data => {
         this.post = data;
       },
       error(err) {
-        console.log(err.error.message);
+        console.log(err);
       },
     })
   }
@@ -114,6 +123,13 @@ export class ItemDetailsComponent {
       },
     })
   }
+
+  editPost() {
+    
+  }
+
+  deletePost() {
+    
+  }
+
 }
-
-
