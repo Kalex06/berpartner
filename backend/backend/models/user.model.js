@@ -62,4 +62,35 @@ async function updateUser(id, user) {
   return rows.affectedRows;
 }
 
-module.exports = {getAllUser,findUserById,findUserByemail,createUser,updateUser,findProfilePicById,updateProfilePicById};
+async function updatePasswordById(password,id) {
+  const [rows] = await pool.execute(
+    'UPDATE felhasznalok set jelszo = ? WHERE felhasznalok.id = ?',
+    [password,id]
+  );
+  return rows.affectedRows;
+}
+
+async function updateUsernameById(name,id) {
+  const [rows] = await pool.execute(
+    'UPDATE felhasznalok set nev = ? WHERE felhasznalok.id = ?',
+    [name,id]
+  );
+  return rows.affectedRows;
+}
+
+async function updateEmailById(email,id) {
+  const [rows] = await pool.execute(
+    'UPDATE felhasznalok set email = ? WHERE felhasznalok.id = ?',
+    [email,id]
+  );
+}
+
+  async function updatePhoneNumberById(number,id) {
+  const [rows] = await pool.execute(
+    'UPDATE felhasznalok set telefonszam = ? WHERE felhasznalok.id = ?',
+    [number,id]
+  );
+  return rows.affectedRows;
+}
+
+module.exports = {getAllUser,findUserById,findUserByemail,createUser,updateUser,findProfilePicById,updateProfilePicById,updatePasswordById,updateEmailById,updateUsernameById,updatePhoneNumberById};

@@ -64,8 +64,13 @@ async function getAllItem(req,res){
 
 
 
+
+
         const category = req.query.category;
         const sort = sortoptions[req.query.sort] || sortoptions["1"];
+
+
+    
 
         let items
 
@@ -91,6 +96,42 @@ async function getAllItem(req,res){
 }
 
 
+async function searchItems(req,res) {
+
+     try{
+
+        const sortoptions = {
+            "1" : "eszkozok.letrehozva_ekkor DESC",
+            "2" : "eszkozok.ar_egy_napra DESC",
+            "3" : "eszkozok.ar_egy_napra"
+        }
+
+
+        const sort = sortoptions[req.query.sort] || sortoptions["1"];
+
+
+        const search = req.query.search || "";
+
+            // console.log(search)
+
+    
+
+            const items = await Item.getItemBySearch(sort,search.trim());
+
+        
+        res.status(200).json(items || []);
+    }
+    catch(err){
+        console.log(err)
+        res.status(500).json({message:"Hiba a lekérdezés közben"});
+    }
+    
+    
+
+    
+}
+
+
 
 
 async function getItemById(req,res){
@@ -101,11 +142,12 @@ async function getItemById(req,res){
         const item_data = {...item,kepek:pictures};
 
         
-        res.status(200).json(item_data);
+        
         if (!item) {
             return res.status(404).json({ message: 'Az eszköz nem található!' });
         }
-
+        
+        res.status(200).json(item_data);
     }
     catch(err){
         res.status(500).json({message:"Hiba a lekérdezés közben"});
@@ -120,11 +162,12 @@ async function getItemsByOwner(req,res){
 
         const item = await Item.getAllItemByOwnerId(id);
 
-        res.status(200).json(item);
+        
         if (!item) {
             return res.status(404).json({ message: 'Az eszközök nem találhatók!' });
         }
 
+        res.status(200).json(item);
     }
     catch(err){
         res.status(500).json({message:"Hiba a lekérdezés közben"});
@@ -134,4 +177,4 @@ async function getItemsByOwner(req,res){
 
 
 
-module.exports = {uploadItem,getAllItem,getItemById,getItemsByOwner};
+module.exports = {uploadItem,getAllItem,getItemById,getItemsByOwner,searchItems};
