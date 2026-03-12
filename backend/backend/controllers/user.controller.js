@@ -88,7 +88,9 @@ async function putUser(req, res) {
         const user = req.body;
 
         const affectedRows = await User.updateUser(id, user);
-        if (affectedRows === 0) return res.status(404).json({ message: 'A felhasználó nem létezik' });
+        if (affectedRows === 0){
+             return res.status(404).json({ message: 'A felhasználó nem létezik' });
+        }
 
         res.json({ message: 'Felhasználó frissítve' });
     } catch (err) {
@@ -96,4 +98,76 @@ async function putUser(req, res) {
     }
 }
 
-module.exports = { getAllUsers, getUserById, putUser ,getMyProfile,updateProfilePic};
+async function updateEmail(req,res) {
+    try{
+        const newEmail = req.body.newEmail;
+        
+        if(!newEmail){
+            return res.status(404).json({ message: 'Hiányosan megadott adatok!' });
+        }
+
+      const row = await User.updateEmailById(newEmail,req.user.id);
+
+     if(row === 0){
+         return  res.status(404).json({ message: 'Sikertelen frissítés!' });
+     }
+
+
+      res.status(200).json({message:'Felhasználó frissítve!'})
+        
+    }
+    catch(err){
+        res.status(500).json({ message: 'Hiba a felhasználó frissítésekor.', error: err.message });
+    }
+    
+}
+
+async function updatePhoneNumber(req,res) {
+    try{
+        const newPhone = req.body.newPhone;
+        
+        if(!newPhone){
+            return res.status(404).json({ message: 'Hiányosan megadott adatok!' });
+        }
+
+      const row = await User.updateEmailById(newPhone,req.user.id);
+
+     if(row === 0){
+         return  res.status(404).json({ message: 'Sikertelen frissítés!' });
+     }
+
+
+      res.status(200).json({message:'Felhasználó frissítve!'})
+        
+    }
+    catch(err){
+        res.status(500).json({ message: 'Hiba a felhasználó frissítésekor.', error: err.message });
+    }
+    
+}
+
+async function updateUsername(req,res) {
+    try{
+        const newName = req.body.newName;
+        
+        if(!newName){
+            return res.status(404).json({ message: 'Hiányosan megadott adatok!' });
+        }
+
+      const row = await User.updateEmailById(newName,req.user.id);
+
+     if(row === 0){
+         return  res.status(404).json({ message: 'Sikertelen frissítés!' });
+     }
+
+
+      res.status(200).json({message:'Felhasználó frissítve!'})
+        
+    }
+    catch(err){
+        res.status(500).json({ message: 'Hiba a felhasználó frissítésekor.', error: err.message });
+    }
+    
+}
+
+module.exports = { getAllUsers, getUserById, putUser ,getMyProfile,updateProfilePic,updateEmail,updatePhoneNumber,updateUsername};

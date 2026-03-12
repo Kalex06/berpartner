@@ -1,4 +1,4 @@
-CREATE DATABASE `berpartner` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci;;
+CREATE DATABASE `berpartner` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci;
 USE berpartner;
 
 
