@@ -176,5 +176,64 @@ async function getItemsByOwner(req,res){
 }
 
 
+async function putItem(req,res) {
+    
+    try{
+    const id = req.body.id;
+    const {name,category,price_per_day,condition,description} = req.body;
 
-module.exports = {uploadItem,getAllItem,getItemById,getItemsByOwner,searchItems};
+    if(!name||!category||!price_per_day||!condition||!description){
+        return  res.status(404).json({message:"Hiányosan megadott adatok!"});
+    }
+
+    const newDetail = {
+        name: req.body.name,
+        category: req.body.category,
+        price_per_day: req.body.price_per_day,
+        condition: req.body.condition,
+        description: req.body.description
+        };
+
+      const row = await Item.updateItemById(id,newDetail);
+
+      if(row===0){
+       return res.status(404).json({message:"Nem történt módosítás!"});
+      }
+
+       res.status(200).json({message:"Sikeres módosítás!"});
+
+    }
+    catch(err){
+        res.status(500).json({message:"Hiba az eszköz módosítása közben!"});
+    }
+
+}
+
+
+async function deleteItem(req,res) {
+    try{
+
+        const id = req.body.id;
+
+        if(!id){
+            return res.status(404).json({message:"Hiányos ID!"});
+        }
+
+        const row = await Item.deleteItemById(id);
+
+      if(row===0){
+       return res.status(404).json({message:"Nem történt törlés!"});
+      }
+
+       res.status(200).json({message:"Sikeres módosítás!"});
+
+    }
+    catch(err){
+        res.status(500).json({message:"Hiba az eszköz törlése közben!"});
+    }
+}
+
+
+
+
+module.exports = {uploadItem,getAllItem,getItemById,getItemsByOwner,searchItems,putItem,deleteItem};

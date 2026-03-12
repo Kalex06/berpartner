@@ -83,4 +83,23 @@ async function getItemById(id) {
  }
 
 
-module.exports = {uploadpictures,uploadItem,getAllItem,getItemById,getAllItemByOwnerId,getItemPicById,getItemBySearch}
+
+ async function deleteItemById(id) {
+        const [rows] = await pool.execute(
+            'DELETE FROM eszkozok WHERE id= ?;',
+            [id]
+        );
+        return rows.affectedRows;
+ }
+
+
+ async function updateItemById(id,data) {
+        const {name,category,price_per_day,condition,description} = data;
+        const [rows] = await pool.execute(
+            'UPDATE eszkozok SET nev=?, kategoria_id=?, ar_egy_napra=?, allapot=?, leiras=? WHERE id=?;',
+            [name,category,price_per_day,condition,description,id]
+        );
+        return rows.affectedRows;
+ }
+
+module.exports = {uploadpictures,uploadItem,getAllItem,getItemById,getAllItemByOwnerId,getItemPicById,getItemBySearch,deleteItemById,updateItemById}
