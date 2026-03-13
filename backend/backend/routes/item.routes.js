@@ -6,12 +6,12 @@ const {uploadItem,getAllItem,getItemById,getItemsByOwner,searchItems,deleteItem,
 
 const item_router = express.Router();
 
-item_router.post('/upload/pictures',authMiddleware,pictureMiddleware,uploadItem);
+item_router.post('/upload',authMiddleware,pictureMiddleware,uploadItem);
 item_router.get('/all',authMiddleware,getAllItem);
 item_router.get('/search',authMiddleware,searchItems);
 item_router.get('/:id',authMiddleware,getItemById);
 item_router.get('/owner/:id',authMiddleware,getItemsByOwner);
-item_router.delete('/delete',authMiddleware,deleteItem);
+item_router.delete('/delete/:id',authMiddleware,deleteItem);
 item_router.put('/update',authMiddleware,putItem);
 
 

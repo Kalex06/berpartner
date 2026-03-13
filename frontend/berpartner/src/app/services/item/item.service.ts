@@ -12,7 +12,7 @@ export class ItemService {
   constructor(private http: HttpClient){}
 
   uploaditem(data:any){
-   return this.http.post<any>(`${this.API}/item/upload/pictures`,data);
+   return this.http.post<any>(`${this.API}/item/upload`,data);
   }
 
   getAllItems(sort:string,category?:string){
@@ -40,7 +40,12 @@ export class ItemService {
     return this.http.get<any>(`${this.API}/item/search`,{params});
   }
     
+  updateItem(data:any){
+   return this.http.put<any>(`${this.API}/item/update`,data);
+  }
 
-
+  deleteItem(id:number){
+    return this.http.delete<any>(`${this.API}/item/delete/${id}`)
+  }
 
 }
