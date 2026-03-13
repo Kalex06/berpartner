@@ -213,7 +213,7 @@ async function putItem(req,res) {
 async function deleteItem(req,res) {
     try{
 
-        const id = req.body.id;
+        const id = req.params.id;
 
         if(!id){
             return res.status(404).json({message:"Hiányos ID!"});
