@@ -23,21 +23,7 @@ export class AuthService {
     return this.http.get<any>(`${this.API}/user/myprofile`);
   }
 
-  updatePhone(data:any){
-   return this.http.patch<any>(`${this.API}/user/update/phone`,data);
-  }
-
-  updateUsername(data:any){
-   return this.http.patch<any>(`${this.API}/user/update/username`,data);
-  }
-
-  updateEmail(data:any){
-   return this.http.patch<any>(`${this.API}/user/update/email`,data);
-  }
-
-  updateProfilePicture(data:any){
-   return this.http.patch<any>(`${this.API}/user/update/avatar`,data);
-  }
+  
 
   saveToken(token: string) {
     localStorage.setItem('token', token);
