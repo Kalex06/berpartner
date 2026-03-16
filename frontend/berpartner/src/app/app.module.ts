@@ -68,6 +68,7 @@ import { registerLocaleData } from '@angular/common';
 import { PrivacypolicyComponent } from './privacypolicy/privacypolicy.component';
 import { ImprintComponent } from './imprint/imprint.component';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
 
 registerLocaleData(localeHu);
 
@@ -90,6 +91,7 @@ registerLocaleData(localeHu);
     PrivacypolicyComponent,
     ImprintComponent,
     ImageDialogComponent,
+    EditPostComponent,
   ],
   imports: [
     BrowserModule,
