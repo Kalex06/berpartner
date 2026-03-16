@@ -125,7 +125,7 @@ export class ItemDetailsComponent {
   }
 
   editPost() {
-    
+    this.router.navigate(['/edit-post']);
   }
 
   deletePost() {

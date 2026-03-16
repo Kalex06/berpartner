@@ -14,6 +14,7 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PrivacypolicyComponent } from './privacypolicy/privacypolicy.component';
 import { authGuard } from './guards/auth.guard';
+import { EditPostComponent } from './edit-post/edit-post.component';
 
 
 const routes: Routes = [
@@ -28,7 +29,7 @@ const routes: Routes = [
   {path:'upload', component:UploadComponent,canActivate: [authGuard]},
   {path: 'notifications', component: NotificationsComponent,canActivate: [authGuard]},
   {path:'item-details/:id', component:ItemDetailsComponent,canActivate: [authGuard]},
-
+  {path: 'edit-post', component: EditPostComponent,canActivate: [authGuard]}
 ];
 
 
