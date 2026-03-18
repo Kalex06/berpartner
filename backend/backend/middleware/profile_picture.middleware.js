@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage:storage,limits:{
     fileSize: 5*1024*1024
-}}).single('selectedFiles');
+}}).single('selectedFile');
 
 
 function profilePictureMiddleware(req,res,next){
@@ -21,6 +21,7 @@ function profilePictureMiddleware(req,res,next){
         return res.status(400).json({message: `Feltöltési hiba: ${err.code}`});
     }
     else if(err){
+        console.log(err)
         return res.status(500).json({message: err.message});
     }
 

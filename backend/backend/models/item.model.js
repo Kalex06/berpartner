@@ -102,4 +102,8 @@ async function getItemById(id) {
         return rows.affectedRows;
  }
 
+
+ 
+
+ 
 module.exports = {uploadpictures,uploadItem,getAllItem,getItemById,getAllItemByOwnerId,getItemPicById,getItemBySearch,deleteItemById,updateItemById}

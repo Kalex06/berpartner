@@ -28,7 +28,7 @@ async function updateProfilePic(req,res) {
     try{
         const myProfilePic = await User.findProfilePicById(req.user.id);
 
-        if(myProfilePic.profil__kep)
+        if(myProfilePic.profil_kep)
         {
             try{
                 const filePath = path.join(__dirname,'..','upload','profile_picture',myProfilePic);
@@ -45,6 +45,7 @@ async function updateProfilePic(req,res) {
     res.status(200).json({message:"Sikeresen frissített sorok száma: ",pic});
     }
     catch(err){
+        console.log(err)
             return res.status(500).json({message:'Hiba a profilkép frissítése közben!'})
     }
 
@@ -70,6 +71,9 @@ async function getUserById(req, res) {
         if (!user) {
             return res.status(404).json({ message: 'Nincs ilyen felhasználó' });
         }
+
+        delete user.jelszo
+      
         res.json(user);
     }
     catch (err) {

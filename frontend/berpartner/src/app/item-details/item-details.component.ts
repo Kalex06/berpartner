@@ -88,7 +88,7 @@ export class ItemDetailsComponent {
   }
 
   ngOnInit() {
-    this.auth.getProfile().subscribe({
+    this.auth.getMyProfile().subscribe({
       next: user => {
         this.currentUserId = user.id;
       },

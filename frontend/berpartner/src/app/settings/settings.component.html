@@ -17,7 +17,7 @@
                     <!--profile pic  -->
                     <div class="setting-item">
                         <p>Profilkép beállítása:</p>
-                        <input type="file" accept="image/*" class="img-upload">
+                        <input type="file" accept="image/*"  class="img-upload" (change)="onFileSelected($event)">
                     </div>
                 </mat-expansion-panel>
 
@@ -27,7 +27,7 @@
                     </mat-expansion-panel-header>
                     <p><strong>Név:</strong> {{user.nev}}</p>
                     <p><strong>E-mail cím:</strong> {{user.email}}</p>
-                    <p><strong>Telefonszám:</strong> {{user.telefonszam}}</p>
+                    <p><strong>Telefonszám:</strong> {{user.telefonszam | mask:'00 000 0000'}}</p>
                     <p><strong>Lakcím:</strong> {{user.varos}} {{user.utca}} {{user.haz_szam}}</p>
                 </mat-expansion-panel>
 

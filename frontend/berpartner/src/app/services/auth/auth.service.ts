@@ -19,11 +19,14 @@ export class AuthService {
     return this.http.post<any>(`${this.API}/auth/login`, data);
   }
 
-  getProfile(){
+  getMyProfile(){
     return this.http.get<any>(`${this.API}/user/myprofile`);
   }
 
-  
+  getProfile(id:number){
+    return this.http.get<any>(`${this.API}/user/${id}`);
+  }
+
 
   saveToken(token: string) {
     localStorage.setItem('token', token);
