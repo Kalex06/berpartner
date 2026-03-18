@@ -35,7 +35,7 @@ export class MyitemsComponent implements OnInit {
   posts: any[] = [];
 
   ngOnInit() {
-    this.auth.getProfile().pipe(switchMap(profile => {
+    this.auth.getMyProfile().pipe(switchMap(profile => {
       console.log(profile)
       return this.item.getItemByOwner(profile.id)
     })).subscribe({

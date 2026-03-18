@@ -17,7 +17,7 @@ interface Condition {
   styleUrl: './edit-post.component.css'
 })
 export class EditPostComponent implements OnInit {
-  constructor(private fb: FormBuilder, private item: ItemService, private category: CategoryService, private router: Router) { }
+  constructor(private item: ItemService, private category: CategoryService, private router: Router) { }
   private _formBuilder = inject(FormBuilder);
   imagePreviews: (string | null)[] = [null, null, null, null];
   selectedFiles: (File | null)[] = [null, null, null, null];
@@ -52,10 +52,12 @@ export class EditPostComponent implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.selectedFiles[index] = file;
+      console.log("selected:",this.selectedFiles[index])
 
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imagePreviews[index] = e.target.result as string;
+        console.log("Previews",this.imagePreviews[index])
       };
       reader.readAsDataURL(file);
       this.updateImageValidation();
@@ -92,11 +94,13 @@ export class EditPostComponent implements OnInit {
       formData.append('selectedFiles', file, file.name);
     })
 
-    formData.append('nev', String(this.uploadForm.value.title));
-    formData.append('kategoria', String(this.uploadForm.value.category));
-    formData.append('ar_egy_napra', String(this.uploadForm.value.dailyFee));
-    formData.append('allapot', String(this.uploadForm.value.condition));
-    formData.append('leiras', String(this.uploadForm.value.description));
+
+
+    formData.append('name', String(this.uploadForm.value.title));
+    formData.append('category', String(this.uploadForm.value.category));
+    formData.append('price_per_day', String(this.uploadForm.value.dailyFee));
+    formData.append('condition', String(this.uploadForm.value.condition));
+    formData.append('description', String(this.uploadForm.value.description));
 
     this.item.uploaditem(formData).subscribe({
       next: () => {

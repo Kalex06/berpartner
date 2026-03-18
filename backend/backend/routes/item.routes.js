@@ -12,7 +12,7 @@ item_router.get('/search',authMiddleware,searchItems);
 item_router.get('/:id',authMiddleware,getItemById);
 item_router.get('/owner/:id',authMiddleware,getItemsByOwner);
 item_router.delete('/delete/:id',authMiddleware,deleteItem);
-item_router.put('/update',authMiddleware,putItem);
+item_router.put('/update',authMiddleware,pictureMiddleware,putItem);
 
 
 module.exports = item_router;

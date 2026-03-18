@@ -50,7 +50,7 @@ export class NavBarComponent {
   }
 
   ngOnInit() {
-    this.auth.getProfile().subscribe({
+    this.auth.getMyProfile().subscribe({
       next: profile => {
         this.user = profile;
       },

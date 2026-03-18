@@ -100,9 +100,9 @@ export class RegisztracioComponent {
       haz_szam: this.addressFormGroup.value.house
     };
     this.auth.register(data).subscribe({
-      next: () => alert('Sikeres regisztráció'),
+      next: () => this.showSuccess(),
       error: (err) => alert(err.error.message)
     });
-    this.showSuccess();
+    
   }
 }

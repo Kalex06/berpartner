@@ -23,7 +23,7 @@ const routes: Routes = [
   {path:'register', component:RegisztracioComponent},
   {path:'home', component:HomeComponent,canActivate: [authGuard]},
   {path:'settings', component:SettingsComponent,canActivate: [authGuard]},
-  {path:'profile', component:ProfileComponent,canActivate: [authGuard]},
+  {path:'profile/:id', component:ProfileComponent,canActivate: [authGuard]},
   {path:'renteditems', component:RenteditemsComponent,canActivate: [authGuard]},
   {path:'myitems', component:MyitemsComponent,canActivate: [authGuard]},
   {path:'upload', component:UploadComponent,canActivate: [authGuard]},

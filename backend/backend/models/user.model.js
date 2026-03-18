@@ -83,6 +83,7 @@ async function updateEmailById(email,id) {
     'UPDATE felhasznalok set email = ? WHERE felhasznalok.id = ?',
     [email,id]
   );
+  return rows.affectedRows;
 }
 
   async function updatePhoneNumberById(number,id) {
