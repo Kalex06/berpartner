@@ -1,9 +1,3 @@
-:host {
-  display: block;
-  background-color: #192c57;
-  min-height: 100vh;
-}
-
 h2 {
   color: white;
   margin-left: 8px;
@@ -28,39 +22,11 @@ h2 {
   border: 1px solid #e5e7eb;
   transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: #fb923c 0px 1px 3px;
-
 }
 
 .item-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-}
-
-.back-btn {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  z-index: 1000;
-  background: black;
-  opacity: 0.5;
-  color: white;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.back-btn:hover {
-  opacity: 0.4;
-}
-
-.back-btn mat-icon {
-  font-size: 22px;
 }
 
 .status {
@@ -142,15 +108,6 @@ mat-card-actions {
     flex-direction: row;
     justify-content: center;
     padding: 16px;
-  }
-}
-
-@media (max-width: 600px) {
-  .back-btn {
-    top: 10px;
-    left: 10px;
-    width: 30px;
-    height: 30px;
   }
 }
 
