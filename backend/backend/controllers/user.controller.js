@@ -31,7 +31,7 @@ async function updateProfilePic(req,res) {
         if(myProfilePic.profil_kep)
         {
             try{
-                const filePath = path.join(__dirname,'..','upload','profile_picture',myProfilePic);
+                const filePath = path.join(__dirname,'..','upload','profile_picture',myProfilePic.profil_kep);
                 await fs.unlink(filePath);
             }
             catch(fileErr){
@@ -40,8 +40,7 @@ async function updateProfilePic(req,res) {
             
 
         }
-        
-      const pic = await User.updateProfilePic(req.file,req.user.id);
+      const pic = await User.updateProfilePicById(req.file.filename,req.user.id);
     res.status(200).json({message:"Sikeresen frissített sorok száma: ",pic});
     }
     catch(err){
