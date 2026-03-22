@@ -71,9 +71,9 @@ export class SettingsComponent {
       const formData = new FormData();
 
       if(this.selectedFile){
-      formData.append('selectedFiles', this.selectedFile, this.selectedFile.name);
+      formData.append('selectedFile', this.selectedFile, this.selectedFile.name);
 
-     this._user.updateProfilePicture(this.selectedFile).subscribe({
+     this._user.updateProfilePicture(formData).subscribe({
       next:()=>this.toastr.success("Sikeres Profilkép módosítás!"),
       error:(err)=> {
         this.toastr.error("Sikertelen Profilkép módosítás!")
