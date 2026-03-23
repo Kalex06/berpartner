@@ -37,7 +37,7 @@ async function uploadpictures(pool,data) {
 
 async function getItemById(id) {
   const [rows] = await pool.execute(
-    `SELECT eszkozok.nev,eszkozok.ar_egy_napra,eszkozok.allapot,eszkozok.leiras,eszkozok.tulajdonos_id,kategoriak.kategoria,felhasznalok.nev AS felhasznalonev,felhasznalok.telefonszam,felhasznalok.email,felhasznalok.varos,felhasznalok.iranyitoszam 
+    `SELECT eszkozok.*,kategoriak.kategoria,felhasznalok.nev AS felhasznalonev,felhasznalok.telefonszam,felhasznalok.email,felhasznalok.varos,felhasznalok.iranyitoszam 
     FROM eszkozok,kategoriak,felhasznalok  
     WHERE kategoriak.id = eszkozok.kategoria_id AND eszkozok.tulajdonos_id = felhasznalok.id AND eszkozok.id = (?)
     ORDER BY eszkozok.id`,

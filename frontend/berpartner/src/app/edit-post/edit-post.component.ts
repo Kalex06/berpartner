@@ -1,10 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ItemService } from '../services/item/item.service';
 import { CategoryService } from '../services/category/category.service';
 import { ToastrService } from 'ngx-toastr';
+import { forkJoin } from 'rxjs';
 
 interface Condition {
   value: string;
@@ -17,11 +18,13 @@ interface Condition {
   styleUrl: './edit-post.component.css'
 })
 export class EditPostComponent implements OnInit {
-  constructor(private item: ItemService, private category: CategoryService, private router: Router) { }
+  constructor(private item: ItemService, private category: CategoryService, private router: Router,private route:ActivatedRoute) { }
   private _formBuilder = inject(FormBuilder);
   imagePreviews: (string | null)[] = [null, null, null, null];
   selectedFiles: (File | null)[] = [null, null, null, null];
-  maincategories: any
+  maincategories: any;
+  itemData:any;
+  
 
   uploadForm = this._formBuilder.group({
     title: ['', [Validators.required, Validators.minLength(3)]],
@@ -102,7 +105,7 @@ export class EditPostComponent implements OnInit {
     formData.append('condition', String(this.uploadForm.value.condition));
     formData.append('description', String(this.uploadForm.value.description));
 
-    this.item.uploaditem(formData).subscribe({
+    this.item.updateItem(formData).subscribe({
       next: () => {
         this.showSuccess();
       },
@@ -114,11 +117,32 @@ export class EditPostComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.category.getAllCategory().subscribe({
-      next: categories => this.maincategories = categories,
-      error(err) {
-        console.log(err);
+
+    forkJoin({
+      cat:  this.category.getAllCategory(),
+      item: this.item.getItem(Number(this.route.snapshot.paramMap.get('id')))
+    }).subscribe({
+      next:(data)=> {
+        this.maincategories = data.cat;
+        this.itemData = data.item;
+        this.uploadForm.patchValue({
+          title:this.itemData.nev,
+          category:this.itemData.kategoria_id,
+          dailyFee:this.itemData.ar_egy_napra,
+          condition:this.itemData.allapot,
+          description:this.itemData.leiras
+        });
+     const pictures:any[] =  Object.values(this.itemData.kepek);
+     console.log(pictures)
+       this.imagePreviews = this.imagePreviews.map((img,index)=> pictures[index]?.kep_nev ? `http://localhost:3000/upload/picture/${pictures[index].kep_nev}` : null)
+      console.log(this.imagePreviews)
+      },
+      error:(err)=> {
+        console.log(err)
       }
     })
+
+
+ 
   }
 }

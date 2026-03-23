@@ -124,8 +124,8 @@ export class ItemDetailsComponent {
     })
   }
 
-  editPost() {
-    this.router.navigate(['/edit-post']);
+  editPost(id:number) {
+    this.router.navigate([`/edit-post/${id}`]);
   }
 
   deletePost() {

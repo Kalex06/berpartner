@@ -29,7 +29,7 @@ const routes: Routes = [
   {path:'upload', component:UploadComponent,canActivate: [authGuard]},
   {path: 'notifications', component: NotificationsComponent,canActivate: [authGuard]},
   {path:'item-details/:id', component:ItemDetailsComponent,canActivate: [authGuard]},
-  {path: 'edit-post', component: EditPostComponent,canActivate: [authGuard]}
+  {path: 'edit-post/:id', component: EditPostComponent,canActivate: [authGuard]}
 ];
 
 
