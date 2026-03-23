@@ -17,7 +17,7 @@
                         <input type="file" #fileInput accept="image/*" hidden (change)="onFileSelected($event, i)">
 
                         <ng-container *ngIf="imagePreviews[i]; else placeholder">
-                            <img [src]="imagePreviews[i]" class="preview-img">
+                            <img [src]="imagePreviews[i]" alt="kép betöltése sikertelen" class="preview-img">
                             <div class="remove-overlay" (click)="removeImage(i, $event)">
                                 <mat-icon>delete</mat-icon>
                             </div>
