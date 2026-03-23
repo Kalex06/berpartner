@@ -80,6 +80,16 @@ strong {
   margin-right: 4px;
 }
 
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.setting-row button{
+  color: yellow;
+}
+
 @media (max-width: 480px) {
   .settings-card {
     padding: 24px 20px;

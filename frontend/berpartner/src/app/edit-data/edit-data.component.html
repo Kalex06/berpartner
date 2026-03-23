@@ -1,0 +1,53 @@
+<h2 mat-dialog-title>{{ data.title }} módosítása</h2>
+
+<mat-dialog-content>
+    <mat-form-field appearance="outline" class="full-width">
+        <input matInput type="password" formControlName="currentPassword" placeholder="Jelenlegi jelszó" required>
+    </mat-form-field>
+
+    @if (data.type === 'password' || data.type === 'email' || data.type === 'phone') {
+    <mat-form-field appearance="outline" class="full-width">
+        @if (data.type === 'password') {
+        <input matInput type="password" formControlName="newValue" placeholder="Új jelszó">
+        } @else if (data.type === 'email') {
+        <input matInput type="email" formControlName="newValue" placeholder="Új email">
+        } @else if (data.type === 'phone') {
+        <input matInput type="tel" formControlName="newValue" mask="00 000 0000" prefix="+36 "
+            placeholder="Új telefonszám">
+        }
+    </mat-form-field>
+    }
+
+    @if (data.type === 'address') {
+    <div formGroupName="addressGroup">
+        <div class="address-row">
+            <mat-form-field appearance="outline">
+                <mat-label>Irányítószám</mat-label>
+                <input matInput formControlName="zip">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Város</mat-label>
+                <input matInput formControlName="city">
+            </mat-form-field>
+        </div>
+
+        <div class="address-row">
+            <mat-form-field appearance="outline">
+                <mat-label>Utca</mat-label>
+                <input matInput formControlName="street">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Házszám</mat-label>
+                <input matInput formControlName="houseNumber">
+            </mat-form-field>
+        </div>
+    </div>
+    }
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Mégse</button>
+    <button mat-button mat-dialog-close (click)="onConfirm()">Mentés</button>
+</mat-dialog-actions>

@@ -69,6 +69,7 @@ import { PrivacypolicyComponent } from './privacypolicy/privacypolicy.component'
 import { ImprintComponent } from './imprint/imprint.component';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
+import { EditDataComponent } from './edit-data/edit-data.component';
 
 registerLocaleData(localeHu);
 
@@ -92,6 +93,7 @@ registerLocaleData(localeHu);
     ImprintComponent,
     ImageDialogComponent,
     EditPostComponent,
+    EditDataComponent,
   ],
   imports: [
     BrowserModule,

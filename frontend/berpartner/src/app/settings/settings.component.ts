@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { EditDataComponent } from '../edit-data/edit-data.component';
 
 @Component({
   selector: 'app-settings',
@@ -23,9 +24,11 @@ export class SettingsComponent {
   emailForm: FormGroup;
   phoneForm: FormGroup;
 
+  user: any = null;
+
   readonly panelOpenState = signal(false);
 
-  constructor(private auth:AuthService,private _user:UserService,private router:Router,private toastr:ToastrService) {
+  constructor(private auth: AuthService, private _user: UserService, private router: Router, private toastr: ToastrService) {
     this.passwordForm = this.fb.group({
       newPassword: ['', [
         Validators.required,
@@ -50,17 +53,15 @@ export class SettingsComponent {
     });
   }
 
-    readonly dialog = inject(MatDialog);
+  readonly dialog = inject(MatDialog);
 
-    openUserDeletionDialog() {
-      this.dialog.open(UserDeletionComponent);
-    }
+  openUserDeletionDialog() {
+    this.dialog.open(UserDeletionComponent);
+  }
 
+  selectedFile: File | null = null;
 
-    selectedFile: File | null = null;
-
-
-    onFileSelected(event: any) {
+  onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file;
@@ -70,34 +71,34 @@ export class SettingsComponent {
 
       const formData = new FormData();
 
-      if(this.selectedFile){
-      formData.append('selectedFile', this.selectedFile, this.selectedFile.name);
+      if (this.selectedFile) {
+        formData.append('selectedFile', this.selectedFile, this.selectedFile.name);
 
-     this._user.updateProfilePicture(formData).subscribe({
-      next:()=>this.toastr.success("Sikeres Profilkép módosítás!"),
-      error:(err)=> {
-        this.toastr.error("Sikertelen Profilkép módosítás!")
+        this._user.updateProfilePicture(formData).subscribe({
+          next: () => this.toastr.success("Sikeres Profilkép módosítás!"),
+          error: (err) => {
+            this.toastr.error("Sikertelen Profilkép módosítás!")
+          }
+        })
       }
-     })
-    }
     }
   }
-
-    
-  user:any = null
-
-
-
 
   ngOnInit() {
     this.auth.getMyProfile().subscribe({
       next: profile => {
-       this.user = profile;
+        this.user = profile;
       },
       error: err => {
-       this.router.navigate(['/login']);
-       alert(err.error.message)
+        this.router.navigate(['/login']);
+        alert(err.error.message)
       }
+    });
+  }
+
+  openEditDialog(type: string, title: string) {
+    this.dialog.open(EditDataComponent, {
+      data: { type, title }
     });
   }
 }
