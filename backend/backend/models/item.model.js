@@ -11,6 +11,16 @@ async function uploadpictures(pool,data) {
     
  }
 
+ async function deletepictures(pool,data) {
+    const [rows] = await pool.query(
+        'DELETE FROM eszkoz_kepek WHERE kep_nev IN  (?)',
+        [data]
+    );
+     return rows.affectedRows;
+    
+ }
+
+
  async function uploadItem(pool,data) {
     const {nev,kategoria_id,ar_egy_napra,allapot,leiras,tulajdonos_id} = data;
     const [rows] = await pool.execute(
@@ -93,7 +103,7 @@ async function getItemById(id) {
  }
 
 
- async function updateItemById(id,data) {
+ async function updateItemById(pool,id,data) {
         const {name,category,price_per_day,condition,description} = data;
         const [rows] = await pool.execute(
             'UPDATE eszkozok SET nev=?, kategoria_id=?, ar_egy_napra=?, allapot=?, leiras=? WHERE id=?;',
@@ -106,4 +116,4 @@ async function getItemById(id) {
  
 
  
-module.exports = {uploadpictures,uploadItem,getAllItem,getItemById,getAllItemByOwnerId,getItemPicById,getItemBySearch,deleteItemById,updateItemById}
+module.exports = {uploadpictures,uploadItem,getAllItem,getItemById,getAllItemByOwnerId,getItemPicById,getItemBySearch,deleteItemById,updateItemById,deletepictures}
