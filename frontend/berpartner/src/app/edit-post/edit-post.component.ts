@@ -22,8 +22,10 @@ export class EditPostComponent implements OnInit {
   private _formBuilder = inject(FormBuilder);
   imagePreviews: (string | null)[] = [null, null, null, null];
   selectedFiles: (File | null)[] = [null, null, null, null];
+  deletedImages:any=[];
   maincategories: any;
   itemData:any;
+
   
 
   uploadForm = this._formBuilder.group({
@@ -45,8 +47,9 @@ export class EditPostComponent implements OnInit {
 
   updateImageValidation() {
     const hasImage = this.selectedFiles.some(f => f !== null);
+    const hasExistingImage = this.imagePreviews.some(img => img !== null);
     this.uploadForm.patchValue({
-      images: hasImage ? true : null
+      images: (hasImage||hasExistingImage) ? true : null
     });
     this.uploadForm.get('images')?.updateValueAndValidity();
   }
@@ -78,7 +81,7 @@ export class EditPostComponent implements OnInit {
 
   toastr = inject(ToastrService);
   showSuccess() {
-    this.toastr.success('Sikeres feltöltés!', '', {
+    this.toastr.success('Módosítások elmentve!', '', {
       positionClass: 'toast-top-center',
       timeOut: 4000,
       progressBar: true,
@@ -95,18 +98,24 @@ export class EditPostComponent implements OnInit {
     const formData = new FormData();
     this.selectedFiles.filter(file => file != null && file != undefined).forEach((file) => {
       formData.append('selectedFiles', file, file.name);
+      
     })
+    this.deletedImages = this.deletedImages.filter((img:string) => !this.imagePreviews.includes(img));
+      this.deletedImages = this.deletedImages.map((img:string)=> img.split('/').pop())
+      console.log("ez",this.deletedImages);
 
 
-
+    formData.append('id', String(this.itemData.id));
     formData.append('name', String(this.uploadForm.value.title));
     formData.append('category', String(this.uploadForm.value.category));
     formData.append('price_per_day', String(this.uploadForm.value.dailyFee));
     formData.append('condition', String(this.uploadForm.value.condition));
     formData.append('description', String(this.uploadForm.value.description));
+    formData.append('deletedImages',this.deletedImages);
 
     this.item.updateItem(formData).subscribe({
-      next: () => {
+      next: (x) => {
+        console.log(x.message);
         this.showSuccess();
       },
       error(err) {
@@ -133,9 +142,12 @@ export class EditPostComponent implements OnInit {
           description:this.itemData.leiras
         });
      const pictures:any[] =  Object.values(this.itemData.kepek);
-     console.log(pictures)
-       this.imagePreviews = this.imagePreviews.map((img,index)=> pictures[index]?.kep_nev ? `http://localhost:3000/upload/picture/${pictures[index].kep_nev}` : null)
-      console.log(this.imagePreviews)
+    
+       this.imagePreviews = this.imagePreviews.map((img,index)=> pictures[index]?.kep_nev ? `http://localhost:3000/upload/picture/${pictures[index].kep_nev}` : null);
+       this.deletedImages = this.imagePreviews;
+      this.deletedImages = this.deletedImages.filter((img:any) => img!==null);
+      this.updateImageValidation();
+      console.log(this.deletedImages);
       },
       error:(err)=> {
         console.log(err)

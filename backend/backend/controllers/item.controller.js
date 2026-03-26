@@ -1,5 +1,7 @@
 const Item = require('../models/item.model');
 const pool = require('../config/db');
+const fs = require('fs').promises;
+const path = require('path');
 
 
 async function uploadItem(req,res){
@@ -142,7 +144,6 @@ async function getItemById(req,res){
         const item_data = {...item,kepek:pictures};
 
         
-        console.log(item_data)
         if (!item) {
             return res.status(404).json({ message: 'Az eszköz nem található!' });
         }
@@ -177,34 +178,84 @@ async function getItemsByOwner(req,res){
 
 
 async function putItem(req,res) {
-    
+    const connection = await pool.getConnection();
     try{
-    const id = req.body.id;
+    await connection.beginTransaction();
+    const id = Number(req.body.id);
     const {name,category,price_per_day,condition,description} = req.body;
 
     if(!name||!category||!price_per_day||!condition||!description){
         return  res.status(404).json({message:"Hiányosan megadott adatok!"});
     }
 
-    const newDetail = {
-        name: req.body.name,
-        category: req.body.category,
-        price_per_day: req.body.price_per_day,
-        condition: req.body.condition,
-        description: req.body.description
-        };
+    const item = await Item.getItemById(id);
+    if(item.tulajdonos_id!==req.user.id && req.user.jogosultsag!=='admin'){
+        return res.status(403).json({message:"Nincs jogosultságod ehhez!"});
+    }
 
-      const row = await Item.updateItemById(id,newDetail);
+
+    const pictures = [];
+        for (let index = 0; index < req.files.length; index++) {
+            const element = req.files[index];
+            pictures.push([
+                id,
+                element.filename
+            ]);
+        };
+        let savedPic = 0;
+        let deletePic = 0;
+        if(pictures.length>0){
+             savedPic = await Item.uploadpictures(connection,pictures);
+        }
+
+        
+        const newDetail = {
+            name: req.body.name,
+            category: req.body.category,
+            price_per_day: req.body.price_per_day,
+            condition: req.body.condition,
+            description: req.body.description
+        };
+        
+        const row = await Item.updateItemById(connection,id,newDetail);
+        
+    await connection.commit();
+
+       const delImges = req.body.deletedImages.split(',');
+        console.log(delImges)
+    
+        if(delImges.length>0){
+             deletePic = await Item.deletepictures(connection,delImges);;
+            
+        for (let index = 0; index < delImges.length; index++) {
+            try{
+                const filePath = path.join(__dirname,'..','upload','items_picture',delImges[index]);
+                console.log(filePath);
+                await fs.unlink(filePath);
+            }
+            catch(fileErr){
+                console.log(fileErr);
+            }
+        
+            
+        }
+    }
 
       if(row===0){
-       return res.status(404).json({message:"Nem történt módosítás!"});
+       return res.status(200).json({message:"Nem történt módosítás!"});
       }
 
-       res.status(200).json({message:"Sikeres módosítás!"});
+
+       res.status(200).json({message:`Sikeres módosítás! \n${savedPic} - mentett kép\n${deletePic} - törölt kép`});
 
     }
     catch(err){
+        await connection.rollback();
+        console.log(err);
         res.status(500).json({message:"Hiba az eszköz módosítása közben!"});
+    }
+    finally{
+        connection.release();
     }
 
 }
@@ -229,8 +280,10 @@ async function deleteItem(req,res) {
 
     }
     catch(err){
+        
         res.status(500).json({message:"Hiba az eszköz törlése közben!"});
     }
+    
 }
 
 
