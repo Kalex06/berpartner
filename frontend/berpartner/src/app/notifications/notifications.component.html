@@ -45,7 +45,11 @@
         </div>
 
         <div class="message">
-          {{msg.felado}} felhasználó bérlési kérelmet nyújtott be az alábbi termékedre: {{msg.eszkoz}}
+          <p>
+          <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be 
+          <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}} </strong> időszakra az alábbi termékedre: 
+          <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
+          </p>
         </div>
 
         <div class="actions">
@@ -68,7 +72,11 @@
         </div>
 
         <div class="message">
-          {{msg.felado}} felhasználó bérlési kérelmet nyújtott be az alábbi termékedre: {{msg.eszkoz}}
+          <p>
+          <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be 
+          <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}} </strong> időszakra az alábbi termékedre: 
+          <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
+          </p>
         </div>
 
         <div class="actions">
@@ -88,7 +96,11 @@
         </div>
 
         <div class="message">
-          {{msg.felado}} felhasználó bérlési kérelmet nyújtott be az alábbi termékedre: {{msg.eszkoz}}
+          <p>
+          <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be 
+          <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}} </strong> időszakra az alábbi termékedre: 
+          <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
+          </p>
         </div>
 
         <div class="actions">
@@ -116,7 +128,11 @@
         </div>
 
         <div class="message">
-          {{msg.felado}} felhasználó elfogadta a kérelmedet az alábbi termékre: {{msg.eszkoz}}
+          <p>
+          <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be 
+          <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}}</strong> időszakra az alábbi termékedre: 
+          <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
+          </p>
         </div>
 
       </div>
@@ -136,8 +152,11 @@
         </div>
 
         <div class="message">
-          {{msg.felado}} felhasználó elutasította a kérelmedet az alábbi termékre: {{msg.eszkoz}}<br>
-          Indok: <i>{{msg.tartalom}}</i>
+          <p>
+          <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be 
+          <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}}</strong> időszakra az alábbi termékedre: 
+          <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
+          <br>Indok: <i>{{msg.tartalom}}</i> </p>
         </div>
       </div>
     </mat-card>
