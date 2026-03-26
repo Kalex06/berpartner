@@ -5,16 +5,17 @@
         </button>
 
         <header class="profile-header">
-            <div class="profile-picture">
-                <img src="assets/pictures/default_profil.svg" alt="Profilkép" class="pfp">
-
-                <input type="file" accept="image/*" class="img-upload" (change)="onFileSelected($event)">
+            <div class="profile-picture" (click)="fileInput.click()">
+                
+                <img *ngIf="!user?.profil_kep" src="assets/pictures/default_profil.svg" alt="Profilkép" class="pfp">
+                <img *ngIf="user?.profil_kep" src="http://localhost:3000/upload/avatar/{{user.profil_kep}}" alt="Profilkép" class="pfp">
+                <input type="file" #fileInput accept="image/*" class="img-upload" (change)="onFileSelected($event)">
 
                 <div class="pfp-overlay">
                     <mat-icon>camera_alt</mat-icon>
                 </div>
             </div>
-            <h1 class="full-name">{{user.nev}}</h1>
+            <h1 class="full-name">{{user?.nev}}</h1>
         </header>
 
         <section class="info-section">
@@ -23,22 +24,22 @@
             <div class="personal-grid">
                 <div class="grid-item">
                     <span class="grid-label">Teljes név</span>
-                    <span class="grid-value">{{user.nev}}</span>
+                    <span class="grid-value">{{user?.nev}}</span>
                 </div>
 
                 <div class="grid-item">
                     <span class="grid-label">E-mail cím</span>
-                    <span class="grid-value">{{user.email}}</span>
+                    <span class="grid-value">{{user?.email}}</span>
                 </div>
 
                 <div class="grid-item">
                     <span class="grid-label">Telefonszám</span>
-                    <span class="grid-value">+{{user.telefonszam | mask:'00 000 0000'}}</span>
+                    <span class="grid-value">+{{user?.telefonszam | mask:'00 000 0000'}}</span>
                 </div>
 
                 <div class="grid-item">
                     <span class="grid-label">Lakóhely</span>
-                    <span class="grid-value">{{user.varos}}</span>
+                    <span class="grid-value">{{user?.varos}}</span>
                 </div>
             </div>
         </section>
