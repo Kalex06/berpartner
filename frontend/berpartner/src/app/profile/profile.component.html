@@ -7,6 +7,12 @@
         <header class="profile-header">
             <div class="profile-picture">
                 <img src="assets/pictures/default_profil.svg" alt="Profilkép" class="pfp">
+
+                <input type="file" accept="image/*" class="img-upload" (change)="onFileSelected($event)">
+
+                <div class="pfp-overlay">
+                    <mat-icon>camera_alt</mat-icon>
+                </div>
             </div>
             <h1 class="full-name">{{user.nev}}</h1>
         </header>
