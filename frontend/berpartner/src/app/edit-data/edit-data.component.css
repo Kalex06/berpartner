@@ -10,7 +10,17 @@ h2 {
     color: white !important;
 }
 
-mat-dialog-content {
-    display: flex;
-    flex-direction: column;
+.content-text {
+    color: #fb923c;
+    font-size: 15px;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 0 !important;
+}
+
+li {
+    margin-top: 0px;
+    color: white;
 }
