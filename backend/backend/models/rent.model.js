@@ -19,6 +19,15 @@ async function findItemByRentId(id) {
   return rows[0];
 }
 
+async function findRentById(id) {
+  const [rows] = await pool.execute(
+    'SELECT berlesek.* FROM  berlesek WHERE berlesek.id = ?;',
+    [id]
+  );
+  return rows[0];
+}
+
+
 async function updateRentStatusById(status,id,connection=null) {
   const executor = connection||pool;
   const[row] = await executor.execute(
@@ -48,4 +57,4 @@ async function getAllRentsByOwner(id) {
 
 
 
-module.exports = {uploadRentRequest,findItemByRentId,updateRentStatusById,getAllRentsByOwner}
+module.exports = {uploadRentRequest,findItemByRentId,updateRentStatusById,getAllRentsByOwner,findRentById}

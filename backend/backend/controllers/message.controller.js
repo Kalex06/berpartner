@@ -18,10 +18,13 @@ async function getAllMessagesByOwner(req,res) {
             if(msg.statusz!==null){
                 const sender = await User.findUserById(msg.felado_id);
                 const item = await Rent.findItemByRentId(msg.berles_id);
-                
+                const rent = await Rent.findRentById(msg.berles_id);
 
                 msg.felado = sender.nev;
                 msg.eszkoz = item.nev;
+                msg.eszkoz_id = item.id;
+                msg.datum_tol = rent.datum_tol;
+                msg.datum_ig = rent.datum_ig;
             }
         }
     
