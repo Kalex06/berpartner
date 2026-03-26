@@ -26,6 +26,7 @@ app.use('/rent',rent_router);
 app.use('/message',message_router);
 
 app.use('/upload/picture',express.static(path.join(__dirname,'upload','items_picture')));
+app.use('/upload/avatar',express.static(path.join(__dirname,'upload','profile_picture')));
 app.listen(PORT,()=>{
 
     console.log(`A szerver fut itt: http://localhost:${PORT}`)
