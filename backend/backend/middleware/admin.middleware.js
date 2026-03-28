@@ -1,7 +1,7 @@
 
 function adminMiddleware(req, res, next) {
   if (!req.user) {
-    return res.status(401).json({ message: 'Nincs Bejelentkezve' });
+    return res.status(401).json({ message: 'Nem vagy bejelentkezve' });
   }
 
   if (req.user.jogosultsag !== 'admin') {
