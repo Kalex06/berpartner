@@ -227,6 +227,20 @@
     font-size: 16px;
 }
 
+button.reserved-day{
+  background: rgba(241, 34, 19, 0.8);
+  border-radius: 100%;
+  color: black !important;
+  opacity: 1 !important;
+}
+
+button.pending-reserved-day{
+  background: rgb(251, 255, 32,0.8);
+  border-radius: 100%;
+  color: black !important;
+  opacity: 1 !important;
+}
+
 @media (max-width: 1200px) {
     .upload-card {
         width: 80%;

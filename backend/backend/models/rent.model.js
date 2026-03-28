@@ -30,11 +30,11 @@ async function findRentById(id) {
 
 async function updateRentStatusById(status,id,connection=null) {
   const executor = connection||pool;
-  const[row] = await executor.execute(
+  const[rows] = await executor.execute(
         'UPDATE berlesek set statusz = ? WHERE berlesek.id = ?',
         [status,id]
     );
-    return row.affectedRows
+    return rows.affectedRows
 }
 
 async function getAllRentsByOwner(id) {
@@ -51,10 +51,19 @@ async function getAllRentsByOwner(id) {
 }
 
 
+async function getRentsDateByItem(id) {
+  const [rows] = await pool.execute(
+    'SELECT berlesek.datum_tol, berlesek.datum_ig, berlesek.statusz FROM berlesek WHERE berlesek.eszkoz_id = ? AND NOT berlesek.statusz = "rejected"',
+    [id]
+  );
+  return rows;
+  
+}
 
 
 
 
 
 
-module.exports = {uploadRentRequest,findItemByRentId,updateRentStatusById,getAllRentsByOwner,findRentById}
+
+module.exports = {uploadRentRequest,findItemByRentId,updateRentStatusById,getAllRentsByOwner,findRentById,getRentsDateByItem}

@@ -15,6 +15,11 @@ export class RentService {
   }
 
   myRents(){
-    return this.http.get<any>(`${this.API}/rent/myrents`)
+    return this.http.get<any>(`${this.API}/rent/myrents`);
   }
+
+  ItemRentsDate(id:number){
+    return this.http.get<any>(`${this.API}/rent/dates/${id}`);
+  }
+
 }
