@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../services/message/message.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notifications',
@@ -8,7 +10,7 @@ import { MessageService } from '../services/message/message.service';
 })
 export class NotificationsComponent implements OnInit{
 
-  constructor(private Message:MessageService){}
+  constructor(private Message:MessageService,private router:Router){}
 
 
 messages:any[] = []
@@ -25,9 +27,12 @@ messages:any[] = []
         this.messages = data;
         
       },
-      error(err) {
-        console.log(err);
-      },
+      error:(err: HttpErrorResponse)=> {
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+  
+        }
+      }
     })
  }
 
@@ -37,9 +42,12 @@ messages:any[] = []
         console.log("Kérés elfogadva");
         this.load();
       },
-      error(err) {
-        alert(err)
-      },
+      error:(err: HttpErrorResponse)=> {
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+  
+        }
+      }
     })
 
   }
@@ -50,9 +58,12 @@ messages:any[] = []
         console.log("Kérés elutasítva");
         this.load();
       },
-      error(err) {
-        alert(err)
-      },
+      error:(err: HttpErrorResponse)=> {
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+  
+        }
+      }
     })
 
   }

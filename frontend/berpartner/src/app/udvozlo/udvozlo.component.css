@@ -1,21 +1,15 @@
-html, body, app-root {
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
-}
-
 .welcome-wrapper {
   min-height: 100vh;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;           
-  justify-content: flex-start;   
+  align-items: center;
+  justify-content: flex-start;
   background: #0f172a;
-  padding: 80px 20px 40px;       
+  padding: 80px 20px 40px;
   box-sizing: border-box;
   overflow: hidden;
-  gap: 30px;                     
+  gap: 30px;
 }
 
 .logo-container {
@@ -25,8 +19,8 @@ html, body, app-root {
 .logo {
   height: auto;
   width: auto;
-  max-height: 220px;             
-  max-width: 300px;              
+  max-height: 220px;
+  max-width: 300px;
   object-fit: contain;
 }
 
@@ -46,18 +40,25 @@ html, body, app-root {
 
 .text-content {
   flex: 1;
-  h1 {
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: #7c2d12;
-    margin-bottom: 24px;
-  }
-  p {
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: #475569;
-    margin-bottom: 12px;
-  }
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #7c2d12;
+  margin-bottom: 24px;
+}
+
+p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #475569 !important;
+  margin-bottom: 12px;
+}
+
+.footer-text p {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 0.9rem;
 }
 
 .button-section {
@@ -66,32 +67,31 @@ html, body, app-root {
   align-items: center;
   gap: 24px;
   min-width: 240px;
+}
 
-  .login-btn {
-    width: 240px;
-    height: 56px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border: 2px solid #1e293b !important;
-    color: #1e293b;
-    background-color: rgb(218, 238, 245);
-  }
+.login-btn {
+  width: 240px;
+  height: 56px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b !important;
+  background: linear-gradient(180deg, #7eb6f7, #355091);
+}
 
-  .register-btn {
-    width: 240px;
-    height: 56px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    background: linear-gradient(180deg, #ffd9b3, #fc8627);
-    color: rgb(145, 46, 0);
-    box-shadow: 0 8px 25px rgba(251, 146, 60, 0.4);
-  }
+.register-btn {
+  width: 240px;
+  height: 56px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(180deg, #ffd9b3, #fc8627);
+  color: rgb(145, 46, 0) !important;
+  box-shadow: 0 8px 25px rgba(251, 146, 60, 0.4);
+}
 
-  .or {
-    font-size: 1.1rem;
-    color: #64748b;
-    font-weight: 500;
-  }
+.or {
+  font-size: 1.1rem;
+  color: #64748b;
+  font-weight: 500;
 }
 
 footer {
@@ -107,15 +107,15 @@ footer {
   z-index: 10;
 }
 
-a{
+a {
   cursor: pointer;
   text-decoration: underline;
 }
 
-/* Tablet (868px alatt) */
+
 @media (max-width: 868px) {
   .welcome-wrapper {
-    padding: 60px 20px 40px;     /* Kissebb felsĹ‘ padding */
+    padding: 60px 20px 40px;
     gap: 25px;
   }
 
@@ -138,7 +138,7 @@ a{
   }
 }
 
-/* Mobil (600px alatt) */
+
 @media (max-width: 600px) {
   .welcome-wrapper {
     padding: 40px 15px 20px;
@@ -196,4 +196,3 @@ a{
     font-size: 1.6rem;
   }
 }
-

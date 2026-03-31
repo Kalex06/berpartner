@@ -101,7 +101,7 @@
 
                     <div class="calendar-box">
                         <mat-card class="calendar-card">
-                            <mat-calendar ></mat-calendar>
+                            <mat-calendar [dateClass]="dateClass"></mat-calendar>
                         </mat-card>
                     </div>
                 </div>
@@ -120,14 +120,14 @@
                 }
                 @else {
                 <div class="calendar-wrapper">
-                    <mat-date-range-input [rangePicker]="picker" style="display: none;">
-                        <input matStartDate placeholder="Mettől" (dateChange)="onStartChange($event)">
-                        <input matEndDate placeholder="Meddig" (dateChange)="onEndChange($event)">
+                    <mat-date-range-input [rangePicker]="picker" [dateFilter]="dateFilter" style="display: none;">
+                        <input matStartDate placeholder="Mettől"  (dateChange)="onStartChange($event)">
+                        <input matEndDate placeholder="Meddig"  (dateChange)="onEndChange($event)">
                     </mat-date-range-input>
                     <button mat-flat-button class="calendar-btn" (click)="picker.open()">
                         <span>{{rangeText}}</span>
                     </button>
-                    <mat-date-range-picker touchUi #picker></mat-date-range-picker>
+                    <mat-date-range-picker [dateClass]="dateClass"  touchUi #picker></mat-date-range-picker>
                 </div>
                 <button mat-flat-button class="submit-btn" (click)="sendRent()" [disabled]="!startDate || !endDate">
                     Bérlési igény küldése

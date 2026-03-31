@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotificationsComponent } from './notifications.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 
 describe('NotificationsComponent', () => {
   let component: NotificationsComponent;
@@ -8,7 +13,14 @@ describe('NotificationsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NotificationsComponent]
+      declarations: [NotificationsComponent],
+      imports:[NoopAnimationsModule],
+      providers:[
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ],
+
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
 

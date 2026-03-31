@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PrivacypolicyComponent } from '../privacypolicy/privacypolicy.component';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-regisztracio',
@@ -101,7 +102,15 @@ export class RegisztracioComponent {
     };
     this.auth.register(data).subscribe({
       next: () => this.showSuccess(),
-      error: (err) => alert(err.error.message)
+      error:(err: HttpErrorResponse)=> {
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+  
+        }
+        else{
+          this.toastr.error("Regisztráció sikertelen!");
+        }
+      }
     });
     
   }

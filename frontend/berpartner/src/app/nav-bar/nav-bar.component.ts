@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { MessageService } from '../services/message/message.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface SortOption {
   value: string;
@@ -43,9 +44,12 @@ export class NavBarComponent {
           console.log('Frissítés sikeres');
           this.router.navigate(['/notifications']);
       },
-      error:(err)=> {
-        console.log(err);
-      },
+      error:(err: HttpErrorResponse)=> {
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+  
+        }
+      }
     })
   }
 
@@ -54,10 +58,12 @@ export class NavBarComponent {
       next: profile => {
         this.user = profile;
       },
-      error: err => {
-        this.router.navigate(['/login']);
-        alert(err.error.message)
+      error:(err: HttpErrorResponse)=> {
+       if(err.status == 403 || err.status == 401){
+         this.router.navigate(['/login']);
+        
       }
+    }
     });
   }
 

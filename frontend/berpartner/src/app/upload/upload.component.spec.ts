@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UploadComponent } from './upload.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 
 describe('UploadComponent', () => {
   let component: UploadComponent;
@@ -8,7 +13,14 @@ describe('UploadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UploadComponent]
+      declarations: [UploadComponent],
+      imports:[NoopAnimationsModule],
+      providers:[
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ],
+
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
 

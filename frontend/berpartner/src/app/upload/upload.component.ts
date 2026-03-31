@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ItemService } from '../services/item/item.service';
 import { CategoryService } from '../services/category/category.service';
 import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface Condition {
   value: string;
@@ -101,8 +102,11 @@ export class UploadComponent implements OnInit {
       next: () => {
         this.showSuccess();
       },
-      error(err) {
-        alert(err.error.message)
+      error:(err: HttpErrorResponse)=> {
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+  
+        }
       }
     });
   }
@@ -112,8 +116,11 @@ export class UploadComponent implements OnInit {
   ngOnInit(): void {
     this.category.getAllCategory().subscribe({
       next: categories => this.maincategories = categories,
-      error(err) {
-        console.log(err);
+      error:(err: HttpErrorResponse)=> {
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+  
+        }
       }
     })
   }

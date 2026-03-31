@@ -18,6 +18,20 @@ async function uploadRent(req,res) {
 
         };
 
+        const ItemRentesDates = await Rent.getRentsDateByItem(rentData.eszkoz_id);
+
+        if(ItemRentesDates){
+
+           const isReserved = ItemRentesDates.some(range=>{
+               return (new Date(rentData.datum_tol).getTime() >= new Date(range.datum_tol).getTime() && new Date(rentData.datum_ig).getTime() <= new Date(range.datum_ig).getTime()) ||
+               (new Date(rentData.datum_tol).getTime() <= new Date(range.datum_tol).getTime() && new Date(rentData.datum_ig).getTime() >= new Date(range.datum_ig).getTime())
+            });
+
+            if(isReserved){
+              return res.status(409).json({message:"Az általad kiválasztott időszak már foglalt!"});
+            }
+        }
+
 
         const id = await Rent.uploadRentRequest(connection,rentData);
 
@@ -39,7 +53,7 @@ async function uploadRent(req,res) {
          await connection.commit(); 
         res.status(200).json({message:`Kérés feltöltve! id:${id} , üzenetId: ${savedmassage}`,})
     } catch (err) {
- 
+
         await connection.rollback();
         res.status(500).json({message:"Hiba a bérlés leadásakor!"});
     }
@@ -62,5 +76,19 @@ async function getMyRents(req,res) {
 
 }
 
+async function getRentsDateByItemId(req,res) {
+        try{
+            const rents = await Rent.getRentsDateByItem(Number(req.params.id));
+            res.status(200).json(rents)
+        }
+        catch(err){
+            console.log(err)
+             res.status(500).json({message:"Hiba a bérlés(ek) lekérdezésekor!"});
+        }
 
-module.exports = {uploadRent,getMyRents}
+}
+
+
+
+
+module.exports = {uploadRent,getMyRents,getRentsDateByItemId}

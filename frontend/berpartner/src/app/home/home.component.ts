@@ -6,6 +6,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ItemService } from '../services/item/item.service';
 import { forkJoin } from 'rxjs';
 import { CategoryService } from '../services/category/category.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface SortOption {
   value: string;
@@ -81,9 +82,12 @@ searchChange(search_string:string){
         this.posts = data.items;
         this.maincategories = data.cat;
       },
-      error(err) {
-        console.log(err.error.message,err);
-      }
+      error:(err: HttpErrorResponse)=> {
+              if(err.status == 403 || err.status == 401){
+                this.router.navigate(['/login']);
+        
+              }
+        }
     });
   });
   }

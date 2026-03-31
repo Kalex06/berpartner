@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -71,6 +72,9 @@ import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { EditDataComponent } from './edit-data/edit-data.component';
 
+
+
+
 registerLocaleData(localeHu);
 
 @NgModule({
@@ -97,6 +101,7 @@ registerLocaleData(localeHu);
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MatInputModule,
     MatFormFieldModule,
