@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { ItemService } from '../services/item/item.service';
 import { switchMap } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  constructor(private auth: AuthService, private item: ItemService, private route: ActivatedRoute, private _user: UserService, private toastr: ToastrService) { }
+  constructor(private auth: AuthService, private item: ItemService,private router:Router, private route: ActivatedRoute, private _user: UserService, private toastr: ToastrService) { }
   user: any = null
   posts: any[] = [];
 
@@ -26,9 +27,12 @@ export class ProfileComponent {
       next: data => {
         this.posts = data;
       },
-      error(err) {
-        console.log(err)
-      },
+      error:(err: HttpErrorResponse)=> {
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+  
+        }
+      }
     });
   }
 
@@ -49,9 +53,15 @@ export class ProfileComponent {
 
         this._user.updateProfilePicture(formData).subscribe({
           next: () => this.toastr.success("Sikeres Profilkép módosítás!"),
-          error: (err) => {
-            this.toastr.error("Sikertelen Profilkép módosítás!")
-          }
+        error:(err: HttpErrorResponse) => {
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+  
+        }
+        else{
+          this.toastr.error("A Profilkép feltöltése sikertelen!")
+        }
+      }
         })
       }
     }

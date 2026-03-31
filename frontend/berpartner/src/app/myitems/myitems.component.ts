@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { ItemService } from '../services/item/item.service';
 import { switchMap } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 interface SortOption {
@@ -43,9 +44,12 @@ export class MyitemsComponent implements OnInit {
         this.posts = data
 
       },
-      error(err) {
-        console.log(err)
-      },
+      error:(err: HttpErrorResponse)=> {
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+        
+        }
+      }
     })
 
   }

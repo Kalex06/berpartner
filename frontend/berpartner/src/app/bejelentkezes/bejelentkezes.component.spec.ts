@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BejelentkezesComponent } from './bejelentkezes.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 
 describe('BejelentkezesComponent', () => {
   let component: BejelentkezesComponent;
@@ -8,7 +13,14 @@ describe('BejelentkezesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BejelentkezesComponent]
+      declarations: [BejelentkezesComponent],
+      imports:[NoopAnimationsModule],
+      providers:[
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ],
+
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
 

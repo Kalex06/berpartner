@@ -6,6 +6,7 @@ import { ItemService } from '../services/item/item.service';
 import { CategoryService } from '../services/category/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { forkJoin } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface Condition {
   value: string;
@@ -118,8 +119,11 @@ export class EditPostComponent implements OnInit {
         console.log(x.message);
         this.showSuccess();
       },
-      error(err) {
-        alert(err.error.message)
+      error:(err: HttpErrorResponse)=> {
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+  
+        }
       }
     });
   }
@@ -149,8 +153,11 @@ export class EditPostComponent implements OnInit {
       this.updateImageValidation();
       console.log(this.deletedImages);
       },
-      error:(err)=> {
-        console.log(err)
+      error:(err: HttpErrorResponse)=> {
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+  
+        }
       }
     })
 

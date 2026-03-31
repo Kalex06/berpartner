@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { EditDataComponent } from '../edit-data/edit-data.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-settings',
@@ -89,9 +90,11 @@ export class SettingsComponent {
       next: profile => {
         this.user = profile;
       },
-      error: err => {
-        this.router.navigate(['/login']);
-        alert(err.error.message)
+      error:(err: HttpErrorResponse)=> {
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+  
+        }
       }
     });
   }
