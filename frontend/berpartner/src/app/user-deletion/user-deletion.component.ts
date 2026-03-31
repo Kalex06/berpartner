@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-deletion',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './user-deletion.component.css'
 })
 export class UserDeletionComponent {
+  private passwordfb = inject(FormBuilder);
 
+  passwordFormGroup = this.passwordfb.group({
+    password: ['', [Validators.required, Validators.minLength(8)]]
+  });
+  
 }

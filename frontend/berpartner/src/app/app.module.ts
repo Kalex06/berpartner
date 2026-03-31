@@ -33,9 +33,6 @@ import { SettingsComponent } from './settings/settings.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 
-
-
-
 // Settings Component
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -47,7 +44,6 @@ import { UserDeletionComponent } from './user-deletion/user-deletion.component';
 import { ProfileComponent } from './profile/profile.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
-
 
 //interceptor
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -71,9 +67,6 @@ import { ImprintComponent } from './imprint/imprint.component';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { EditDataComponent } from './edit-data/edit-data.component';
-
-
-
 
 registerLocaleData(localeHu);
 
