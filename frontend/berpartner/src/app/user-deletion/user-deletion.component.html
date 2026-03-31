@@ -1,6 +1,19 @@
-<h3 mat-dialog-title>Felhasználó törlése</h3>
-<mat-dialog-content>Biztosan törölni szeretné fiókját?</mat-dialog-content>
+<h1 mat-dialog-title>Felhasználói fiók törlése</h1>
+<mat-dialog-content>
+    <h3>Biztosan törölni szeretné a fiókját?</h3>
+
+    <p>Adja meg a jelszavát:</p>
+    <mat-form-field appearance="outline" class="full-width" [formGroup]="passwordFormGroup">
+        <input matInput type="password" formControlName="password" placeholder="Jelenlegi jelszó" required>
+    </mat-form-field>
+
+</mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Mégse</button>
-    <button mat-button mat-dialog-close class="delete-button">Törlés</button>
+    <button mat-button mat-dialog-close class="cancel-button">Mégse</button>
+    <button mat-button mat-dialog-close class="delete-button" routerLink="">Törlés</button>
 </mat-dialog-actions>
+
+<div class="dialog-del-warning">
+    <mat-icon>warning</mat-icon>
+    <span>Ez a művelet nem vonható vissza! Minden adat véglegesen törlődik.</span>
+</div>
