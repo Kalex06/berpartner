@@ -1,6 +1,68 @@
-.delete-button {
-  color: red !important;                  
-  border: solid 2px red !important;
-  background-color: rgb(235, 235, 235) !important; 
+:host {
+  display: block;
+  background-color: #141e38;
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+}
 
+h1 {
+  color: rgb(216, 2, 2) !important;
+}
+
+h3 {
+  color: #fb923c !important;
+}
+
+p {
+  color: #fb923c;
+  font-size: 15px;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-dialog-actions button {
+  width: 110px;
+}
+
+.cancel-button {
+  color: white !important;
+  border: solid 2px #6b7280 !important;
+  background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%) !important;
+  transition: 0.3s ease;
+}
+
+.cancel-button:hover {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%) !important;
+  transform: scale(1.1);
+}
+
+.delete-button {
+  color: white !important;
+  border: solid 2px red !important;
+  background: linear-gradient(135deg, #8f0101 0%, #cc0000 100%) !important;
+  transition: 0.3s ease;
+}
+
+.delete-button:hover {
+  background: linear-gradient(135deg, #cc0000 0%, #8f0101 100%) !important;
+  transform: scale(1.1);
+}
+
+.dialog-del-warning {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    color: #dd0b0b;
+    font-size: 0.95rem;
+    border-top: 1px solid #dd0b0b;
+}
+
+.dialog-del-warning mat-icon {
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
 }
