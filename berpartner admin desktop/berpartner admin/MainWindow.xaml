@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:berpartner_admin"
         mc:Ignorable="d"
-        Title="ADMIN FELÜLET" Height="450" Width="700">
+        Title="ADMIN FELÜLET" Height="450" Width="700" Icon="/logo_icon.ico">
     <Grid Background="DarkBlue">
         <TextBlock Text="Jelentkezz be!" Foreground="DarkOrange" FontWeight="Bold" FontSize="28" HorizontalAlignment="Center" Margin="0,100,0,0"/>
        
-        <TextBox HorizontalAlignment="Center" x:Name="email" Margin="0,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="200" Height="30" FontSize="20"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,220,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  Width="200" Height="30" FontSize="20"/>
+        <TextBox HorizontalAlignment="Center" x:Name="emailInput" Margin="0,180,0,0" VerticalAlignment="Top"  Width="200" Height="30" FontSize="20"/>
+        <PasswordBox HorizontalAlignment="Center" x:Name="passwordInput" Margin="0,220,0,0" VerticalAlignment="Top"  Width="200" Height="30" FontSize="20"/>
         <TextBlock Text="E-mail:" Foreground="DarkOrange" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center" Margin="0,178,320,0"/>
         <TextBlock Text="Jelszó:" Foreground="DarkOrange" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center" Margin="0,218,320,0"/>
 
-        <Button Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Center" MaxWidth="200" MaxHeight="70" VerticalAlignment="Bottom" Margin="0,0,0,80"  VerticalContentAlignment="Center">
+        <Button Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="20" HorizontalAlignment="Center" MaxWidth="200" MaxHeight="70" Margin="0,300,0,0" VerticalAlignment="Top"  VerticalContentAlignment="Center" Click="Button_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                    
