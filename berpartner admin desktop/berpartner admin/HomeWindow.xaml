@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:berpartner_admin"
         mc:Ignorable="d"
-        Title="HomeWindow" Height="450" Width="800">
+        Title="HomeWindow" Height="450" Width="800" Icon="/logo_icon.ico" Loaded="Window_Loaded">
     <Grid Background="DarkBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="55"/>
@@ -14,11 +14,12 @@
 
         <StackPanel Orientation="Horizontal" Height="50" Background="#FF0A1A5A">
             <Image Source="/logo_2.png" Margin="20,1"></Image>
-            <Button  Padding="10" Margin="5" FontSize="15" Background="#FF07398A" Foreground="AliceBlue">🏠︎ Kezdőlap</Button>
+            <Button  Padding="10" Margin="5" FontSize="15" Background="#FF07398A" Foreground="AliceBlue" Click="Button_Click">🏠︎ Kezdőlap</Button>
             <Button  Padding="10" Margin="5" FontSize="15" Background="#FF07398A" Foreground="AliceBlue">✎ Táblák szerkesztése</Button>
-            <Button  Padding="10" Margin="5" FontSize="15" Background="#FF07398A" Foreground="AliceBlue">✉ Üzenet küldés</Button>
+            <Button  Padding="10" Margin="5" FontSize="15" Background="#FF07398A" Foreground="AliceBlue" Click="Button_Click_1">✉ Üzenet küldés</Button>
         </StackPanel>
 
         <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"></Frame>
+     
     </Grid>
 </Window>

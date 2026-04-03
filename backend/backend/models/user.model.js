@@ -5,7 +5,7 @@ const pool = require('../config/db');
 
  async function getAllUser() {
   const [rows] = await pool.execute(
-    'SELECT * FROM felhasznalok'
+    'SELECT felhasznalok.nev,felhasznalok.telefonszam,felhasznalok.email,felhasznalok.berelt_eszkozok_szama,felhasznalok.jogosultsag,felhasznalok.iranyitoszam,felhasznalok.varos,felhasznalok.utca,felhasznalok.haz_szam FROM felhasznalok WHERE NOT felhasznalok.jogosultsag = "admin"'
   );
   return rows;
 }
