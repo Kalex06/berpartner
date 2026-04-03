@@ -8,8 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Net.Http;          
-using System.Text.Json;     
+using System.Net.Http;
+using System.Net.Http.Json; 
 using System.Threading.Tasks; 
 
 namespace berpartner_admin
@@ -31,6 +31,12 @@ namespace berpartner_admin
         
         }
 
+        public class LoginResponse
+        {
+            public string token { get; set; }
+        }
+
+        private static readonly HttpClient client = new HttpClient();
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -40,49 +46,65 @@ namespace berpartner_admin
             loginData.jelszo = passwordInput.Password;
 
 
-            using (HttpClient client = new HttpClient()) {
 
-                try
+
+            try
+            {
+
+
+                HttpResponseMessage respons = await client.PostAsJsonAsync("http://localhost:3000/auth/login", loginData);
+
+                if (respons.IsSuccessStatusCode)
                 {
-                    string json = JsonSerializer.Serialize(loginData);
-                    StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                    HttpResponseMessage respons = await client.PostAsync("http://localhost:3000/auth/login", content);
-
-                    if (respons.IsSuccessStatusCode)
-                    {
-
-                        string responsContent = await respons.Content.ReadAsStringAsync();
+                    var result = await respons.Content.ReadFromJsonAsync<LoginResponse>();
 
 
-                        using (JsonDocument doc = JsonDocument.Parse(responsContent)) {
-                        
-                            JsonElement root = doc.RootElement;
 
-                            App.Token = root.GetProperty("token").GetString();
 
-                        }
 
-                            
 
-                            HomeWindow home = new HomeWindow();
-                        home.Show();
-                        this.Close();
+                    App.Token = result.token;
 
-                    }
-                    else
-                    {
 
-                        MessageBox.Show("Hibás felhasználónév vagy jeszó!", "Hibás Adatok", MessageBoxButton.OK, MessageBoxImage.Error);
 
-                    }
+
+
+                    HomeWindow home = new HomeWindow();
+                    home.Show();
+                    this.Close();
 
                 }
-                catch (Exception ex) {
+                else
+                {
 
-                    MessageBox.Show(ex.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                    if (respons.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    {
+
+                        MessageBox.Show("Nincs jogosultságod a belépéshez!", "Hiányzó jogosultság", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    }
+                    else {
+                    
+                    MessageBox.Show("Hibás felhasználónév vagy jeszó!", "Hibás Adatok", MessageBoxButton.OK, MessageBoxImage.Error);
+                    
+                    }
+
+                    
+
                 }
+
             }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Nem sikerült elérni a szervert!", "Hálózati hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }

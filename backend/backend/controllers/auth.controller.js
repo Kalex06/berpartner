@@ -44,6 +44,52 @@ async function login(req, res) {
 }
 
 
+async function AdminLogin(req, res) {
+    try {
+        
+        const { email, jelszo } = req.body;
+        const user = await User.findUserByemail(email);
+        if (!user) {
+            return res.status(404).json({ message: 'Nincs ilyen felhasználó' });
+        }
+
+
+        const isMatch = await bcrypt.compare(jelszo, user.jelszo);
+        if (!isMatch) {
+            return res.status(404).json({ message: 'Hibás jelszó' })
+
+        }
+
+
+        if(user.jogosultsag!=='admin'){
+             return res.status(403).json({ message: 'Nincs jogosultságod a belépéshez!' });
+        }
+
+        const token = jwt.sign(
+            {
+                id: user.id,
+                jogosultsag: user.jogosultsag
+            },
+            JWT_SECRET,
+            { expiresIn: '2h' }
+        );
+
+
+        res.json({
+            token,
+            user: {
+                id: user.id,
+                email: user.email,
+                jogosultsag: user.jogosultsag
+            }
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Hiba történt bejelentkezés közben' })
+    }
+
+}
+
 async function regist(req, res) {
     try {
         const { nev, telefonszam, email, jelszo,iranyitoszam, varos, utca, haz_szam } = req.body;
@@ -68,4 +114,4 @@ async function changePassword(req,res) {
     
 }
 
-module.exports = { login, regist }
+module.exports = { login, regist,AdminLogin}
