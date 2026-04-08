@@ -74,8 +74,8 @@ p {
   height: 56px;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #1e293b !important;
-  background: linear-gradient(180deg, #7eb6f7, #355091);
+  background: linear-gradient(180deg, #ffd9b3, #fc8627);
+  color: rgb(145, 46, 0) !important;
 }
 
 .register-btn {
