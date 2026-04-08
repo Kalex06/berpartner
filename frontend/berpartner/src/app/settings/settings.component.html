@@ -38,28 +38,28 @@
 
                     <div class="setting-row">
                         <span>Jelszó módosítása</span>
-                        <button mat-button (click)="openEditDialog('password', 'Jelszó')">
+                        <button mat-button (click)="openEditDialog('password', 'Jelszó', user.email)">
                             <mat-icon>edit</mat-icon>
                         </button>
                     </div>
 
                     <div class="setting-row">
                         <span>E-mail cím módosítása</span>
-                        <button mat-button (click)="openEditDialog('email', 'E-mail')">
+                        <button mat-button (click)="openEditDialog('email', 'E-mail',user.email)">
                             <mat-icon>edit</mat-icon>
                         </button>
                     </div>
 
                     <div class="setting-row">
                         <span>Telefonszám módosítása</span>
-                        <button mat-button (click)="openEditDialog('phone', 'Telefonszám')">
+                        <button mat-button (click)="openEditDialog('phone', 'Telefonszám',user.email)">
                             <mat-icon>edit</mat-icon>
                         </button>
                     </div>
 
                     <div class="setting-row">
                         <span>Lakcím módosítása</span>
-                        <button mat-button (click)="openEditDialog('address', 'Lakcím')">
+                        <button mat-button (click)="openEditDialog('address', 'Lakcím',user.email)">
                             <mat-icon>edit</mat-icon>
                         </button>
                     </div>

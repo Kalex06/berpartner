@@ -14,6 +14,10 @@ export class UserService {
    return this.http.patch<any>(`${this.API}/user/update/phone`,data);
   }
 
+  updatePassword(data:any){
+   return this.http.patch<any>(`${this.API}/user/update/password`,data);
+  }
+
   updateUsername(data:any){
    return this.http.patch<any>(`${this.API}/user/update/username`,data);
   }
