@@ -6,11 +6,44 @@
       xmlns:local="clr-namespace:berpartner_admin"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MessagePage">
+      Title="MessagePage" Loaded="Page_Loaded">
 
     <Grid Background="DarkBlue">
-        
-        
+
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,900,150">
+            <TextBlock HorizontalAlignment="Left" Foreground="AliceBlue" FontSize="25" Margin="0,0,40,20">Címzett</TextBlock>
+            <RadioButton IsChecked="True" Foreground="AliceBlue" FontSize="18" VerticalContentAlignment="Center" Margin="30,0,0,0">Mindenkinek</RadioButton>
+            <RadioButton x:Name="valakinekRadio" Foreground="AliceBlue" FontSize="18" VerticalContentAlignment="Center" Margin="30,0,0,0">Küldés egy személynek:</RadioButton>
+            <ComboBox Margin="30,10,0,0" IsEnabled="{Binding ElementName=valakinekRadio,Path=IsChecked}" x:Name="ComboBox1" DisplayMemberPath="nev" SelectedValuePath="id"></ComboBox>
+            <Button Margin="30,30,0,0" Foreground="AliceBlue" FontSize="14" Height="40" Width="200" x:Name="send" >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="GombHatter"
+                          CornerRadius="5" 
+                          Background="Blue" 
+                          BorderBrush="White" 
+                          BorderThickness="2" >
+
+                            <ContentPresenter HorizontalAlignment="Center" 
+                      VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+
+                                <Setter TargetName="GombHatter" Property="Background" Value="RoyalBlue"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="GombHatter" Property="Background" Value="DarkBlue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Button.Template>
+
+                Küldés</Button>
+        </StackPanel>
         <Label Foreground="AliceBlue" Margin="0,0,360,300" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Tárgy</Label>
         <TextBox Width="400" Height="30" Margin="0,0,0,230" HorizontalAlignment="Center" VerticalAlignment="Center" MaxLength="25" FontSize="18" />
         <Label Foreground="AliceBlue" Margin="0,0,340,130" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Üzenet</Label>

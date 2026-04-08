@@ -99,9 +99,9 @@ export class SettingsComponent {
     });
   }
 
-  openEditDialog(type: string, title: string) {
+  openEditDialog(type: string, title: string,currentEmail:string) {
     this.dialog.open(EditDataComponent, {
-      data: { type, title }
+      data: { type, title,currentEmail }
     });
   }
 }

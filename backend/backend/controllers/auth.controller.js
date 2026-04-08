@@ -109,9 +109,6 @@ async function regist(req, res) {
 }
 
 
-async function changePassword(req,res) {
-    
-    
-}
+
 
 module.exports = { login, regist,AdminLogin}

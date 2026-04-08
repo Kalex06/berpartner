@@ -38,5 +38,10 @@ namespace berpartner_admin
         {
             MainFrame.Navigate(new MessagePage());
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new TablesPage());
+        }
     }
 }

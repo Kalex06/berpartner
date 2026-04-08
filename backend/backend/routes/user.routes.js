@@ -3,6 +3,7 @@ const {
      getUserById,putUser,
      getMyProfile,updateProfilePic,
      updateEmail,updatePhoneNumber,
+     updatePassword,
      updateUsername,
      getAllUsers} = require('../controllers/user.controller');
 const authMiddleware = require('../middleware/auth.middleware');
@@ -20,6 +21,7 @@ user_router.patch('/update/avatar',authMiddleware,profilePictureMiddleware,updat
 user_router.patch('/update/email',authMiddleware,updateEmail);
 user_router.patch('/update/phone',authMiddleware,updatePhoneNumber);
 user_router.patch('/update/username',authMiddleware,updateUsername);
+user_router.patch('/update/password',authMiddleware,updatePassword);
 
 
 module.exports = user_router;
