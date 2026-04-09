@@ -16,11 +16,14 @@ export class NotificationsComponent implements OnInit {
 
   messages: any[] = []
 
+  currentType = "all";
+
+
   ngOnInit(): void {
 
     this.route.queryParams.subscribe(params=>{
-       const type = params['type'];
-       this.load(type);
+       this.currentType = params['type'] || "all";
+       this.load(this.currentType);
     });
 
   }
@@ -50,11 +53,8 @@ export class NotificationsComponent implements OnInit {
     this.Message.acceptMessage(data).subscribe({
       next: () => {
         console.log("Kérés elfogadva");
-        this.route.queryParams.subscribe(params=>{
-        const type = params['type'];
-        this.load(type);
-    });
-      },
+        this.load(this.currentType);
+    },
       error: (err: HttpErrorResponse) => {
         if (err.status == 403 || err.status == 401) {
           this.router.navigate(['/login']);
@@ -69,10 +69,7 @@ export class NotificationsComponent implements OnInit {
     this.Message.rejectMessage(data).subscribe({
       next: () => {
         console.log("Kérés elutasítva");
-        this.route.queryParams.subscribe(params=>{
-        const type = params['type'];
-        this.load(type);
-       });
+        this.load(this.currentType);
       },
       error: (err: HttpErrorResponse) => {
         if (err.status == 403 || err.status == 401) {
