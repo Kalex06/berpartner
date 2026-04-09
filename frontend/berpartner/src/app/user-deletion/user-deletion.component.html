@@ -10,7 +10,7 @@
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button mat-dialog-close class="cancel-button">Mégse</button>
-    <button mat-button mat-dialog-close class="delete-button" routerLink="">Törlés</button>
+    <button mat-button class="delete-button" (click)="onDelete()">Törlés</button>
 </mat-dialog-actions>
 
 <div class="dialog-del-warning">

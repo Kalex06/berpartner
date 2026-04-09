@@ -18,6 +18,11 @@ export class UserService {
    return this.http.patch<any>(`${this.API}/user/update/password`,data);
   }
 
+  updateAddress(data:any){
+    return this.http.patch<any>(`${this.API}/user/update/address`,data);
+  }
+
+
   updateUsername(data:any){
    return this.http.patch<any>(`${this.API}/user/update/username`,data);
   }
@@ -30,8 +35,8 @@ export class UserService {
    return this.http.patch<any>(`${this.API}/user/update/avatar`,data);
   }
  
-  deleteUser(id:number){
-   return this.http.delete<any>(`${this.API}/user/delete/${id}`)
+  deleteUser(data:any){
+   return this.http.delete<any>(`${this.API}/user/delete`,data)
   }
   
 }
