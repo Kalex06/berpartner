@@ -37,6 +37,13 @@
                     </mat-expansion-panel-header>
 
                     <div class="setting-row">
+                        <span>Név módosítása</span>
+                        <button mat-button (click)="openEditDialog('name', 'Név', user.email)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </div>
+
+                    <div class="setting-row">
                         <span>Jelszó módosítása</span>
                         <button mat-button (click)="openEditDialog('password', 'Jelszó', user.email)">
                             <mat-icon>edit</mat-icon>
