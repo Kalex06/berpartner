@@ -5,11 +5,13 @@ const {
      updateEmail,updatePhoneNumber,
      updatePassword,
      updateUsername,
-     getAllUsers} = require('../controllers/user.controller');
+     updateAddress,
+     getAllUsers,
+     deleteUser } = require('../controllers/user.controller');
 const authMiddleware = require('../middleware/auth.middleware');
 const profilePictureMiddleware = require('../middleware/profile_picture.middleware');
 const adminMiddleware = require('../middleware/admin.middleware');
-
+const passwordMiddleware = require('../middleware/password.middleware');
 
 const user_router = express.Router();
 
@@ -18,10 +20,12 @@ user_router.get('/getAll',authMiddleware,adminMiddleware,getAllUsers);
 user_router.get('/:id',getUserById);
 user_router.put('/:id',putUser);
 user_router.patch('/update/avatar',authMiddleware,profilePictureMiddleware,updateProfilePic);
-user_router.patch('/update/email',authMiddleware,updateEmail);
-user_router.patch('/update/phone',authMiddleware,updatePhoneNumber);
-user_router.patch('/update/username',authMiddleware,updateUsername);
-user_router.patch('/update/password',authMiddleware,updatePassword);
+user_router.patch('/update/email',authMiddleware,passwordMiddleware,updateEmail);
+user_router.patch('/update/phone',authMiddleware,passwordMiddleware,updatePhoneNumber);
+user_router.patch('/update/username',authMiddleware,passwordMiddleware,updateUsername);
+user_router.patch('/update/password',authMiddleware,passwordMiddleware,updatePassword);
+user_router.patch('/update/address',authMiddleware,passwordMiddleware,updateAddress);
+user_router.delete('/delete',authMiddleware,passwordMiddleware,deleteUser);
 
 
 module.exports = user_router;

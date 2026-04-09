@@ -56,8 +56,10 @@ export class SettingsComponent {
 
   readonly dialog = inject(MatDialog);
 
-  openUserDeletionDialog() {
-    this.dialog.open(UserDeletionComponent);
+  openUserDeletionDialog(currentEmail:string) {
+    this.dialog.open(UserDeletionComponent,{
+      data: {currentEmail}
+    });
   }
 
   selectedFile: File | null = null;

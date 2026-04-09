@@ -80,9 +80,24 @@ export class EditDataComponent {
 
       }
     );
+    
   }
-}
+
+  if(this.data.type == "address" ){
+      
+      this.user.updateAddress({"password":this.editForm.value.currentPassword,"iranyitoszam":this.editForm.value.addressGroup.zip,"varos":this.editForm.value.addressGroup.city,"utca":this.editForm.value.addressGroup.street,"haz_szam":this.editForm.value.addressGroup.houseNumber,"email":this.data.currentEmail}).subscribe({
+        next:()=>{
+          this.toastr.success("Sikeres Módosítás");
+          this.dialogRef.close(this.editForm.value);
+        },
+        error:(err)=> {
+          this.toastr.error(err.error.message);
+        }
+
+      }
+    );
+  }
 
 
-
+  }
 }
