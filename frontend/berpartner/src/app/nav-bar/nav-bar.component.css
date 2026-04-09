@@ -40,7 +40,8 @@ mat-toolbar {
     margin-right: 16px;
 }
 
-.logo-div, .title {
+.logo-div,
+.title {
     cursor: pointer;
 }
 
@@ -187,7 +188,7 @@ mat-icon {
     background-color: #243561 !important;
 }
 
-::ng-deep .profile-menu{
+::ng-deep .profile-menu {
     background-color: #243561 !important;
     border: #fb923c 1px solid !important;
 }
@@ -196,7 +197,7 @@ mat-icon {
     color: white !important;
 }
 
-::ng-deep .profile-menu mat-icon{
+::ng-deep .profile-menu mat-icon {
     color: #fb923c !important;
 }
 
@@ -233,5 +234,44 @@ mat-icon {
 
     .sorter {
         width: 20%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    mat-toolbar,
+    #header-toolbar {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 5px !important;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .logo_img {
+        margin-left: 5px !important;
+        margin-right: 5px !important;
+    }
+
+    .profile-name {
+        display: none;
+    }
+
+    .profile-menu-btn {
+        padding: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .notifications-icon,
+    .upload-icon {
+        width: 40px !important;
+        height: 40px !important;
+        margin: 0 !important;
+    }
+
+    mat-icon {
+        font-size: 24px !important;
     }
 }

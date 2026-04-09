@@ -9,10 +9,18 @@
   <button mat-button mat-dialog-close>Bezárás</button>
 </mat-dialog-actions> -->
 
-<mat-drawer-container class="drawer-container">
-  <mat-drawer mode="side" opened class="not-drawer">
-    <div class="drawer-header">Értesítések</div>
-    <mat-nav-list>
+<mat-drawer-container class="drawer-container" autosize>
+  <mat-drawer #drawer mode="side" opened [class.not-drawer]="drawer.opened" [class.collapsed]="!isMenuOpen"
+    class="drawer-base">
+    <div class="drawer-header">
+      <span @fadeIn *ngIf="isMenuOpen">Értesítések</span>
+
+      <button mat-icon-button (click)="isMenuOpen = !isMenuOpen" class="toggle-btn">
+        <mat-icon>{{ isMenuOpen ? 'menu_open' : 'menu' }}</mat-icon>
+      </button>
+    </div>
+
+    <mat-nav-list *ngIf="isMenuOpen">
       <mat-list-item>
         <mat-icon matListItemIcon>all_inbox</mat-icon>
         <span matListItemTitle>Összes üzenet</span>
@@ -34,8 +42,8 @@
 
     @if(msg.tipus === 'request'){
 
-      @if(msg.statusz === 'accepted'){
-        <mat-card class="notification-card" >
+    @if(msg.statusz === 'accepted'){
+    <mat-card class="notification-card">
       <div class="not-wrapper">
 
         <div class="sender-details">
@@ -46,23 +54,24 @@
 
         <div class="message">
           <p>
-          <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be 
-          <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}} </strong> időszakra az alábbi termékedre: 
-          <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
+            <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be
+            <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}} </strong>
+            időszakra az alábbi termékedre:
+            <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
           </p>
         </div>
 
         <div class="actions">
           <p style="background-color:greenyellow; padding: 15px;">Elfogadva</p>
-          </div>
+        </div>
       </div>
     </mat-card>
 
 
-      }
-      @else if(msg.statusz === 'rejected'){
+    }
+    @else if(msg.statusz === 'rejected'){
 
-        <mat-card class="notification-card" >
+    <mat-card class="notification-card">
       <div class="not-wrapper">
 
         <div class="sender-details">
@@ -73,20 +82,21 @@
 
         <div class="message">
           <p>
-          <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be 
-          <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}} </strong> időszakra az alábbi termékedre: 
-          <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
+            <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be
+            <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}} </strong>
+            időszakra az alábbi termékedre:
+            <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
           </p>
         </div>
 
         <div class="actions">
           <p style="background-color:red;color: aliceblue; padding: 15px;">Elutasítva</p>
-          </div>
+        </div>
       </div>
     </mat-card>
-      }
-      @else{
-    <mat-card class="notification-card" >
+    }
+    @else{
+    <mat-card class="notification-card">
       <div class="not-wrapper">
 
         <div class="sender-details">
@@ -97,9 +107,10 @@
 
         <div class="message">
           <p>
-          <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be 
-          <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}} </strong> időszakra az alábbi termékedre: 
-          <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
+            <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be
+            <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}} </strong>
+            időszakra az alábbi termékedre:
+            <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
           </p>
         </div>
 
@@ -113,12 +124,12 @@
         </div>
       </div>
     </mat-card>
-  }
-}
+    }
+    }
     @else if(msg.tipus === 'message'){
 
-      @if(msg.statusz === 'accepted'){
-        <mat-card class="notification-card" >
+    @if(msg.statusz === 'accepted'){
+    <mat-card class="notification-card">
       <div class="not-wrapper">
 
         <div class="sender-details">
@@ -129,9 +140,10 @@
 
         <div class="message">
           <p>
-          <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be 
-          <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}}</strong> időszakra az alábbi termékedre: 
-          <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
+            <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be
+            <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}}</strong>
+            időszakra az alábbi termékedre:
+            <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
           </p>
         </div>
 
@@ -139,10 +151,10 @@
     </mat-card>
 
 
-      }
-      @else if(msg.statusz === 'rejected'){
+    }
+    @else if(msg.statusz === 'rejected'){
 
-        <mat-card class="notification-card" >
+    <mat-card class="notification-card">
       <div class="not-wrapper">
 
         <div class="sender-details">
@@ -153,16 +165,18 @@
 
         <div class="message">
           <p>
-          <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be 
-          <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}}</strong> időszakra az alábbi termékedre: 
-          <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
-          <br>Indok: <i>{{msg.tartalom}}</i> </p>
+            <span routerLink="/profile/{{msg.felado_id}}">{{msg.felado}}</span> felhasználó bérlési kérelmet nyújtott be
+            <strong>{{msg.datum_tol | date:'yyyy. MM. dd.'}} - {{msg.datum_ig | date:'yyyy. MM. dd.'}}</strong>
+            időszakra az alábbi termékedre:
+            <span routerLink="/item-details/{{msg.eszkoz_id}}">{{msg.eszkoz}}</span>
+            <br>Indok: <i>{{msg.tartalom}}</i>
+          </p>
         </div>
       </div>
     </mat-card>
     }
-        @else{
-      <mat-card class="notification-card">
+    @else{
+    <mat-card class="notification-card">
       <div class="not-wrapper">
 
         <div class="sender-details">
@@ -176,16 +190,16 @@
         </div>
       </div>
     </mat-card>
-          }
-  }
+    }
+    }
 
 
-  } @empty{
+    } @empty{
     <p style="text-align: center;margin-top: 40px;">Nincsenek megjeleníthető üzeneteid!</p>
-  }
+    }
 
 
 
-    
+
   </mat-drawer-content>
 </mat-drawer-container>
