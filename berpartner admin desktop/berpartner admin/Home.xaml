@@ -5,32 +5,67 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:berpartner_admin"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="Home" Loaded="Page_Loaded">
 
     <Grid Background="DarkBlue">
      
-        <DataGrid  Margin="20" Background="#FF0A1A5A" Foreground="White" AutoGenerateColumns="True" CanUserAddRows="False" x:Name="UserDataGrid"
-                ColumnWidth="*">
+        <DataGrid  Margin="20" Background="#FF0A1A5A" Foreground="White" AutoGenerateColumns="False" CanUserAddRows="False" x:Name="UserDataGrid"
+                ColumnWidth="*"
+                   HeadersVisibility="Column">
 
 
             <DataGrid.Resources>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Background" Value="#FF152B81"/>
                     <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="BorderThickness"  Value="0"/>
-                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                    <Setter Property="BorderThickness"  Value="2"/>
+                    <Setter Property="BorderBrush"  Value="#FF0A1A5A"/>
+                   
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="DataGridCell">
+                                <Grid Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                        </Setter>
                 </Style>
+
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="Background" Value="#FF152B81"/>
                     <Setter Property="Foreground" Value="White"/>
                     
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 </Style>
                
 
             </DataGrid.Resources>
-            
+
+            <DataGrid.Columns>
+              
+                <DataGridTextColumn Header="AZONOSÍTÓ" Binding="{Binding id}" Width="*" />
+                <DataGridTextColumn Header="NÉV" Binding="{Binding nev}" Width="*" />
+                <DataGridTextColumn Header="TELEFONSZÁM" Binding="{Binding telefonszam}" Width="*" />
+                <DataGridTextColumn Header="E-MAIL" Binding="{Binding email}" Width="*" />
+                <DataGridTextColumn Header="BÉRELT ESZKÖZÖK SZÁMA" Binding="{Binding berelt_eszkozok_szama}" Width="*" />
+                <DataGridTextColumn Header="JOGOSULTSÁG" Binding="{Binding jogosultsag }" Width="*" />
+                <DataGridTextColumn Header="IRÁNYÍTÓSZÁM" Binding="{Binding iranyitoszam}" Width="*" />
+                <DataGridTextColumn Header="VÁROS" Binding="{Binding varos}" Width="*" />
+                <DataGridTextColumn Header="UTCA" Binding="{Binding utca}" Width="*" />
+                <DataGridTextColumn Header="HÁZ SZÁM" Binding="{Binding haz_szam}" Width="*" />
+
+                
+                <DataGridTemplateColumn Header="Törlés" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="&#xE74D;" Background="#FF2E4ECF" FontSize="16" FontFamily="Segoe MDL2 Assets" Foreground="Red" BorderThickness="0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
         </DataGrid>
 
     </Grid>

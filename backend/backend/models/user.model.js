@@ -5,7 +5,7 @@ const pool = require('../config/db');
 
  async function getAllUser() {
   const [rows] = await pool.execute(
-    'SELECT felhasznalok.nev,felhasznalok.telefonszam,felhasznalok.email,felhasznalok.berelt_eszkozok_szama,felhasznalok.jogosultsag,felhasznalok.iranyitoszam,felhasznalok.varos,felhasznalok.utca,felhasznalok.haz_szam FROM felhasznalok WHERE NOT felhasznalok.jogosultsag = "admin"'
+    'SELECT felhasznalok.id,felhasznalok.nev,felhasznalok.telefonszam,felhasznalok.email,felhasznalok.berelt_eszkozok_szama,felhasznalok.jogosultsag,felhasznalok.iranyitoszam,felhasznalok.varos,felhasznalok.utca,felhasznalok.haz_szam FROM felhasznalok WHERE NOT felhasznalok.jogosultsag = "admin"'
   );
   return rows;
 }
@@ -94,4 +94,21 @@ async function updateEmailById(email,id) {
   return rows.affectedRows;
 }
 
-module.exports = {getAllUser,findUserById,findUserByemail,createUser,updateUser,findProfilePicById,updateProfilePicById,updatePasswordById,updateEmailById,updateUsernameById,updatePhoneNumberById};
+async function updateAddressrById(zip,city,street,house_number,id) {
+  const [rows] = await pool.execute(
+    'UPDATE felhasznalok set iranyitoszam = ?, varos = ?, utca = ?, haz_szam = ? WHERE felhasznalok.id = ?',
+    [zip,city,street,house_number,id]
+  );
+  return rows.affectedRows;
+}
+
+
+  async function deleteUserById(id) {
+  const [rows] = await pool.execute(
+    'DELETE FROM felhasznalok WHERE felhasznalok.id = ?',
+    [id]
+  );
+  return rows.affectedRows;
+}
+
+module.exports = {getAllUser,findUserById,findUserByemail,createUser,updateUser,findProfilePicById,updateProfilePicById,updatePasswordById,updateEmailById,updateUsernameById,updatePhoneNumberById,updateAddressrById,deleteUserById};

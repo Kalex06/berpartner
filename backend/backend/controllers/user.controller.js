@@ -133,7 +133,7 @@ async function updatePhoneNumber(req,res) {
             return res.status(404).json({ message: 'Hiányosan megadott adatok!' });
         }
 
-      const row = await User.updateEmailById(newPhone,req.user.id);
+      const row = await User.updatePhoneNumberById(newPhone,req.user.id);
 
      if(row === 0){
          return  res.status(404).json({ message: 'Sikertelen frissítés!' });
@@ -157,7 +157,7 @@ async function updateUsername(req,res) {
             return res.status(404).json({ message: 'Hiányosan megadott adatok!' });
         }
 
-      const row = await User.updateEmailById(newName,req.user.id);
+      const row = await User.updateUsernameById(newName,req.user.id);
 
      if(row === 0){
          return  res.status(404).json({ message: 'Sikertelen frissítés!' });
@@ -173,4 +173,76 @@ async function updateUsername(req,res) {
     
 }
 
-module.exports = { getAllUsers, getUserById, putUser ,getMyProfile,updateProfilePic,updateEmail,updatePhoneNumber,updateUsername};
+async function updatePassword(req,res) {
+    
+     try{
+        const newPassword = req.body.newPassword;
+        
+        if(!newPassword){
+            return res.status(404).json({ message: 'Hiányosan megadott adatok!' });
+        }
+
+      const row = await User.updatePasswordById(newPassword,req.user.id);
+
+     if(row === 0){
+         return  res.status(404).json({ message: 'Sikertelen frissítés!' });
+     }
+
+
+      res.status(200).json({message:'Felhasználó frissítve!'})
+        
+    }
+    catch(err){
+        res.status(500).json({ message: 'Hiba a felhasználó frissítésekor.', error: err.message });
+    }
+    
+}
+
+
+
+async function updateAddress(req,res) {
+    
+     try{
+        const {iranyitoszam,varos,utca,haz_szam} = req.body;
+        
+        if(!iranyitoszam||!varos||!utca||!haz_szam){
+            return res.status(404).json({ message: 'Hiányosan megadott adatok!' });
+        }
+
+      
+      const row = await User.updateAddressrById(iranyitoszam,varos,utca,haz_szam,req.user.id);
+
+     if(row === 0){
+         return  res.status(404).json({ message: 'Sikertelen frissítés!' });
+     }
+
+
+      res.status(200).json({message:'Felhasználó frissítve!'})
+        
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).json({ message: 'Hiba a felhasználó frissítésekor.', error: err.message });
+    }
+    
+}
+
+
+async function deleteUser(req,res) {
+    
+     try{
+
+      const row = await User.deleteUserById(req.user.id);
+
+
+    
+      res.status(200).json({message:'Felhasználó törölve'})
+        
+    }
+    catch(err){
+        res.status(500).json({ message: 'Hiba a felhasználó törlésekor.', error: err.message });
+    }
+    
+}
+
+module.exports = { getAllUsers, getUserById, putUser ,getMyProfile,updateProfilePic,updateEmail,updatePhoneNumber,updateUsername,updatePassword,updateAddress,deleteUser};
