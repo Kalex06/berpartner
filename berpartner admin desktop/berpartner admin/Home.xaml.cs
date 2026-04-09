@@ -33,6 +33,7 @@ namespace berpartner_admin
 
         public class User {
 
+            public int id { get; set; }
             public string nev { get; set; }
             public string telefonszam { get; set; }          
             public string email { get; set; }    
