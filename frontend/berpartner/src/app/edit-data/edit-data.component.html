@@ -1,70 +1,90 @@
 <h2 mat-dialog-title>{{ data.title }} módosítása</h2>
 <form [formGroup]="editForm">
-<mat-dialog-content>
-    <p class="content-text">Adja meg a jelenlegi jelszavát a módosítás megerősítéséhez:</p>
-    <mat-form-field appearance="outline" class="full-width">
-        <input matInput type="password" formControlName="currentPassword" placeholder="Jelenlegi jelszó" required>
-    </mat-form-field>
+    <mat-dialog-content>
+        <p class="content-text">Adja meg a jelenlegi jelszavát a módosítás megerősítéséhez:</p>
+        <mat-form-field appearance="outline" class="full-width">
+            <input matInput type="password" formControlName="currentPassword" placeholder="Jelenlegi jelszó" required>
+        </mat-form-field>
 
-    @if (data.type === 'password' || data.type === 'email' || data.type === 'phone') {
-    <p class="content-text">Adja meg az új {{ data.type === 'password' ? 'jelszavát' : (data.type === 'email' ? 'email
-        címét' : 'telefonszámát')
-        }}:</p>
-    <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
+        @if (data.type === 'password' || data.type === 'email' || data.type === 'phone') {
+        <p class="content-text">
+            Adja meg az új {{
+            data.type === 'password' ? 'jelszavát' :
+            (data.type === 'email' ? 'email címét' : 'telefonszámát')
+            }}:
+        </p>
+
+        <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
+            @if (data.type === 'password') {
+            <input matInput type="password" formControlName="newValue" placeholder="Új jelszó">
+            }
+            @else if (data.type === 'email') {
+            <input matInput type="email" formControlName="newValue" placeholder="Új email">
+            }
+            @else if (data.type === 'phone') {
+            <input matInput type="tel" formControlName="newValue" mask="00 000 0000" [showMaskTyped]="true"
+                prefix="+36 " placeholder="+36">
+            }
+        </mat-form-field>
+
+
+
         @if (data.type === 'password') {
-        <input matInput type="password" formControlName="newValue" placeholder="Új jelszó">
-        } @else if (data.type === 'email') {
-        <input matInput type="email" formControlName="newValue" placeholder="Új email">
-        } @else if (data.type === 'phone') {
-        <input matInput type="tel" formControlName="newValue" mask="00 000 0000" [showMaskTyped]="true" prefix="+36 "
-            placeholder="+36">
+        <div>
+            <ul>
+                <li>Legalább 8 karakter hosszú legyen,</li>
+                <li>Tartalmazzon nagybetűt,</li>
+                <li>Tartalmazzon kisbetűt,</li>
+                <li>Tartalmazzon számot.</li>
+            </ul>
+        </div>
         }
-    </mat-form-field>
+        }
 
-    @if (data.type === 'password') {
-    <div>
-        <ul>
-            <li>Legalább 8 karakter hosszú legyen,</li>
-            <li>Tartalmazzon nagybetűt,</li>
-            <li>Tartalmazzon kisbetűt,</li>
-            <li>Tartalmazzon számot.</li>
-        </ul>
-    </div>
-    }
-    }
-
-    @if (data.type === 'address') {
-    <p class="content-text">Adja meg az új címet:</p>
-    <div formGroupName="addressGroup">
-        <div class="address-row">
+        @if (data.type === 'name') {
+        <p class="content-text">Adja meg az új nevét:</p>
+        <div formGroupName="nameGroup" class="address-row">
             <mat-form-field appearance="outline">
-                <mat-label>Irányítószám</mat-label>
-                <input matInput formControlName="zip">
+                <mat-label>Vezetéknév</mat-label>
+                <input matInput formControlName="lastName" placeholder="Bekre">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-                <mat-label>Város</mat-label>
-                <input matInput formControlName="city">
+                <mat-label>Keresztnév</mat-label>
+                <input matInput formControlName="firstName" placeholder="Pál">
             </mat-form-field>
         </div>
+        }
 
-        <div class="address-row">
-            <mat-form-field appearance="outline">
-                <mat-label>Utca</mat-label>
-                <input matInput formControlName="street">
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-                <mat-label>Házszám</mat-label>
-                <input matInput formControlName="houseNumber">
-            </mat-form-field>
+        @if (data.type === 'address') {
+        <p class="content-text">Adja meg az új címet:</p>
+        <div formGroupName="addressGroup">
+            <div class="address-row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Irányítószám</mat-label>
+                    <input matInput formControlName="zip">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Város</mat-label>
+                    <input matInput formControlName="city">
+                </mat-form-field>
+            </div>
+            <div class="address-row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Utca</mat-label>
+                    <input matInput formControlName="street">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Házszám</mat-label>
+                    <input matInput formControlName="houseNumber">
+                </mat-form-field>
+            </div>
         </div>
-    </div>
-    }
-</mat-dialog-content>
+        }
+    </mat-dialog-content>
 
-<mat-dialog-actions>
-    <button mat-button mat-dialog-close color="warn">Mégse</button>
-    <button mat-button  (click)="onConfirm()" style="color: green;">Mentés</button>
-</mat-dialog-actions>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close color="warn">Mégse</button>
+        <button mat-button (click)="onConfirm()" style="color: green;">Mentés</button>
+    </mat-dialog-actions>
 </form>
