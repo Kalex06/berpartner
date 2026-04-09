@@ -12,9 +12,9 @@ async function createMessage(data,connection=null) {
 }
 
 
-async function getAllMessageByOwner(id) {
+async function getAllMessageByOwner(type,id) {
     const[row] = await pool.execute(
-    'SELECT * FROM uzenetek WHERE uzenetek.cimzett_id = (?) ORDER BY uzenetek.letrehozva_ekkor DESC',
+    `SELECT * FROM uzenetek WHERE uzenetek.cimzett_id = (?) AND ${type} ORDER BY uzenetek.letrehozva_ekkor DESC`,
     [id]
     );
     return row;

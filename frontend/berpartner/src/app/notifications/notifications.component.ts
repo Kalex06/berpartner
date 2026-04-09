@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../services/message/message.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-notifications',
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class NotificationsComponent implements OnInit {
 
-  constructor(private Message: MessageService, private router: Router) { }
+  constructor(private Message: MessageService, private router: Router,private route:ActivatedRoute) { }
 
   isMenuOpen = true;
 
@@ -18,12 +18,21 @@ export class NotificationsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.load();
+    this.route.queryParams.subscribe(params=>{
+       const type = params['type'];
+       this.load(type);
+    });
 
   }
 
-  load() {
-    this.Message.getMessages().subscribe({
+    typeChange(type:string){
+    this.router.navigate([],{
+      queryParams: {type: type}
+    });
+  }
+
+  load(type:string) {
+    this.Message.getMessages(type).subscribe({
       next: (data) => {
         this.messages = data;
 
@@ -41,7 +50,10 @@ export class NotificationsComponent implements OnInit {
     this.Message.acceptMessage(data).subscribe({
       next: () => {
         console.log("Kérés elfogadva");
-        this.load();
+        this.route.queryParams.subscribe(params=>{
+        const type = params['type'];
+        this.load(type);
+    });
       },
       error: (err: HttpErrorResponse) => {
         if (err.status == 403 || err.status == 401) {
@@ -57,7 +69,10 @@ export class NotificationsComponent implements OnInit {
     this.Message.rejectMessage(data).subscribe({
       next: () => {
         console.log("Kérés elutasítva");
-        this.load();
+        this.route.queryParams.subscribe(params=>{
+        const type = params['type'];
+        this.load(type);
+       });
       },
       error: (err: HttpErrorResponse) => {
         if (err.status == 403 || err.status == 401) {

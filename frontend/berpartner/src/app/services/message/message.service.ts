@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -15,8 +15,9 @@ export class MessageService {
 
   constructor(private http:HttpClient) {}
 
-getMessages(){
-    return this.http.get<any>(`${this.API}/message/all`);
+getMessages(type:string){
+    let params = new HttpParams().set('type',type);
+    return this.http.get<any>(`${this.API}/message/all`,{params});
   }
 
 acceptMessage(message:any){
