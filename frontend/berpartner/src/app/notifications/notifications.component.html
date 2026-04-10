@@ -118,9 +118,12 @@
           <button mat-mini-fab class="approve-btn" (click)="accept(msg)">
             <mat-icon>check</mat-icon>
           </button>
-          <button mat-mini-fab class="reject-btn" (click)="reject(msg)">
+          <button mat-mini-fab class="reject-btn" (click)="openRejectDialog(msg)">
             <mat-icon>close</mat-icon>
           </button>
+          <!-- <button mat-mini-fab class="reject-btn" (click)="reject(msg)" >
+            <mat-icon>close</mat-icon>
+          </button> -->
         </div>
       </div>
     </mat-card>
