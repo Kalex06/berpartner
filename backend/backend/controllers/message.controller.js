@@ -8,8 +8,17 @@ const pool = require('../config/db');
 async function getAllMessagesByOwner(req,res) {
 
     try{
+
+        const typeOptions = {
+            "all" : "1=1",
+            "user" : "uzenetek.felado_id IS NOT NULL",
+            "system" : "uzenetek.felado_id IS NULL"
+        }
+
+
+        const type = typeOptions[req.query.type] || typeOptions["all"];
         
-        const message = await Message.getAllMessageByOwner(req.user.id);
+        const message = await Message.getAllMessageByOwner(type,req.user.id);
      
         
 

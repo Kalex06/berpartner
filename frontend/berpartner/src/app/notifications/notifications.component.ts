@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MessageService } from '../services/message/message.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { RejectRequestComponent } from '../reject-request/reject-request.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-notifications',
@@ -12,30 +12,42 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class NotificationsComponent implements OnInit {
 
-  constructor(private Message: MessageService, private router: Router) { }
+  constructor(private Message: MessageService, private router: Router, private route: ActivatedRoute) { }
 
   isMenuOpen = true;
 
   readonly dialog = inject(MatDialog);
   messages: any[] = []
 
+  currentType = "all";
+
+
   ngOnInit(): void {
 
-    this.load();
+    this.route.queryParams.subscribe(params => {
+      this.currentType = params['type'] || "all";
+      this.load(this.currentType);
+    });
 
   }
 
-openRejectDialog(msg: any) {
-  const dialogRef = this.dialog.open(RejectRequestComponent, {
-    data: msg,
-    width: '450px'
-  });
+  openRejectDialog(msg: any) {
+    const dialogRef = this.dialog.open(RejectRequestComponent, {
+      data: msg,
+      width: '450px'
+    });
 
 
-}
+  }
 
-  load() {
-    this.Message.getMessages().subscribe({
+  typeChange(type: string) {
+    this.router.navigate([], {
+      queryParams: { type: type }
+    });
+  }
+
+  load(type: string) {
+    this.Message.getMessages(type).subscribe({
       next: (data) => {
         this.messages = data;
 
@@ -53,7 +65,7 @@ openRejectDialog(msg: any) {
     this.Message.acceptMessage(data).subscribe({
       next: () => {
         console.log("Kérés elfogadva");
-        this.load();
+        this.load(this.currentType);
       },
       error: (err: HttpErrorResponse) => {
         if (err.status == 403 || err.status == 401) {
@@ -69,7 +81,7 @@ openRejectDialog(msg: any) {
     this.Message.rejectMessage(data).subscribe({
       next: () => {
         console.log("Kérés elutasítva");
-        this.load();
+        this.load(this.currentType);
       },
       error: (err: HttpErrorResponse) => {
         if (err.status == 403 || err.status == 401) {

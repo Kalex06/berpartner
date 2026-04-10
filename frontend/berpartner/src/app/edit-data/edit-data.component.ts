@@ -47,9 +47,10 @@ export class EditDataComponent {
   onConfirm() {
     if (this.data.type == "name") {
 
-      this.user.updateUsername({ "password": this.editForm.value.currentPassword, "email": this.data.currentEmail, "name": `${this.editForm.value.nameGroup.lastName} ${this.editForm.value.nameGroup.firstName}` }).subscribe({
+      this.user.updateUsername({ "password": this.editForm.value.currentPassword, "email": this.data.currentEmail, "newName": `${this.editForm.value.nameGroup.lastName} ${this.editForm.value.nameGroup.firstName}` }).subscribe({
         next: () => {
           this.toastr.success("Sikeres Módosítás");
+          window.location.reload();
           this.dialogRef.close(this.editForm.value);
         },
         error: (err) => {
@@ -66,6 +67,7 @@ export class EditDataComponent {
       this.user.updateEmail({ "password": this.editForm.value.currentPassword, "newEmail": this.editForm.value.newValue, "email": this.data.currentEmail }).subscribe({
         next: () => {
           this.toastr.success("Sikeres Módosítás");
+          window.location.reload();
           this.dialogRef.close(this.editForm.value);
         },
         error: (err) => {
@@ -81,6 +83,7 @@ export class EditDataComponent {
       this.user.updatePhone({ "password": this.editForm.value.currentPassword, "newPhone": this.editForm.value.newValue, "email": this.data.currentEmail }).subscribe({
         next: () => {
           this.toastr.success("Sikeres Módosítás");
+          window.location.reload();
           this.dialogRef.close(this.editForm.value);
         },
         error: (err) => {
@@ -96,6 +99,7 @@ export class EditDataComponent {
       this.user.updatePassword({ "password": this.editForm.value.currentPassword, "newPassword": this.editForm.value.newValue, "email": this.data.currentEmail }).subscribe({
         next: () => {
           this.toastr.success("Sikeres Módosítás");
+          window.location.reload();
           this.dialogRef.close(this.editForm.value);
         },
         error: (err) => {
@@ -112,6 +116,7 @@ export class EditDataComponent {
       this.user.updateAddress({ "password": this.editForm.value.currentPassword, "iranyitoszam": this.editForm.value.addressGroup.zip, "varos": this.editForm.value.addressGroup.city, "utca": this.editForm.value.addressGroup.street, "haz_szam": this.editForm.value.addressGroup.houseNumber, "email": this.data.currentEmail }).subscribe({
         next: () => {
           this.toastr.success("Sikeres Módosítás");
+          window.location.reload();
           this.dialogRef.close(this.editForm.value);
         },
         error: (err) => {

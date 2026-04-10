@@ -13,7 +13,7 @@ async function passwordMiddleware(req,res,next){
  
          const isMatch = await bcrypt.compare(password, user.jelszo);
          if (!isMatch) {
-             return res.status(404).json({ message: 'Hibás jelszó' })
+             return res.status(401).json({ message: 'Hibás jelszó' })
  
          }
         
