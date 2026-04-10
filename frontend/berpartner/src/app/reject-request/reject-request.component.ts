@@ -1,5 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MessageService } from '../services/message/message.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reject-request',
@@ -25,4 +28,6 @@ export class RejectRequestComponent {
   onCancel(): void {
     this.dialogRef.close();
   }
+
+
 }

@@ -110,7 +110,7 @@ async function messageReject(req,res) {
             cimzett_id: message.felado_id, //azért mert visszaküldjük ezt
             berles_id: message.berles_id,
             cim: null,
-            tartalom: null,
+            tartalom: message.tartalom,
             tipus:'message',
             statusz:'rejected'
         };
