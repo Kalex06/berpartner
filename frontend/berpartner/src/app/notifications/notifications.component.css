@@ -83,6 +83,7 @@
   transform: scale(1.05);
 }
 
+
 .reject-btn {
   background-color: red !important;
   color: white !important;
@@ -147,6 +148,25 @@ mat-list-item:hover {
 .not-content {
   flex: 1;
   overflow-x: hidden;
+}
+
+.rejection-text{
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #dee3e9; /* Ugyanaz a szürke, mint a sender-details-nél */
+  font-size: 0.85rem;
+  color: #475569;
+  width: 100%;
+}
+
+
+.link:hover{
+ color: darkblue; /* Hoverre egy árnyalattal sötétebb */
+  text-decoration: underline;
+  cursor: pointer;
+}
+.link{
+color: black;
 }
 
 @media (max-width: 600px) {

@@ -38,6 +38,13 @@ export class NotificationsComponent implements OnInit {
     });
 
 
+    dialogRef.afterClosed().subscribe(reason=>{
+      if(reason){
+        msg.tartalom = reason;
+        this.reject(msg);
+      }
+    })
+
   }
 
   typeChange(type: string) {
@@ -92,5 +99,9 @@ export class NotificationsComponent implements OnInit {
     })
 
   }
+
+
+
+
 
 }

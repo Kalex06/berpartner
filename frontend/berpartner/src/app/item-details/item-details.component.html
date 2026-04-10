@@ -108,7 +108,7 @@
             </section>
 
             <div class="action-bar">
-                @if (currentUserId === post.tulajdonos_id) {
+                <!-- @if (currentUserId === post.tulajdonos_id) { -->
                 <div class="owner-actions">
                     <button mat-flat-button color="warn" class="delete-btn" (click)="deletePost()">
                         <mat-icon>delete</mat-icon> Törlés
@@ -117,8 +117,8 @@
                         <mat-icon>edit</mat-icon> Hirdetés szerkesztése
                     </button>
                 </div>
-                }
-                @else {
+                <!-- }
+                @else { -->
                 <div class="calendar-wrapper">
                     <mat-date-range-input [rangePicker]="picker" [dateFilter]="dateFilter" style="display: none;">
                         <input matStartDate placeholder="Mettől"  (dateChange)="onStartChange($event)">
@@ -132,7 +132,7 @@
                 <button mat-flat-button class="submit-btn" (click)="sendRent()" [disabled]="!startDate || !endDate">
                     Bérlési igény küldése
                 </button>
-                }
+                <!-- } -->
             </div>
         </div>
     </div>
