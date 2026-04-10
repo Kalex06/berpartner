@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Bérlési kérelem elutasítása</h2>
+<mat-dialog-content>
+    <p>Adja meg az elutasítás indokát:</p>
+
+    <mat-radio-group [(ngModel)]="selectedReason">
+        <mat-radio-button value="Sajnálatosan jelen pillanatban nem tudok több bérlést fogadni.">
+            Nem tudok több bérlési kérelmet fogadni jelen pillanatban.
+        </mat-radio-button>
+        
+        <mat-radio-button value="custom">
+            Egyedi indok megadása:
+        </mat-radio-button>
+
+        <mat-form-field appearance="outline" class="reason-input" *ngIf="selectedReason === 'custom'">
+            <mat-label>Indoklás</mat-label>
+            <textarea matInput [(ngModel)]="customReason" class="reason-area" placeholder="Pl.: Az eszköz szervizelés alatt áll..."></textarea>
+        </mat-form-field>
+    </mat-radio-group>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close class="cancel-btn">Mégse</button>
+    <button mat-button [mat-dialog-close]="getReason()" class="reject-btn">Elutasítás</button>
+</mat-dialog-actions>

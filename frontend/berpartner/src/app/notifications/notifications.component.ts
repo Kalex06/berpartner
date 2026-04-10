@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MessageService } from '../services/message/message.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { RejectRequestComponent } from '../reject-request/reject-request.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-notifications',
@@ -14,6 +16,7 @@ export class NotificationsComponent implements OnInit {
 
   isMenuOpen = true;
 
+  readonly dialog = inject(MatDialog);
   messages: any[] = []
 
   ngOnInit(): void {
@@ -21,6 +24,15 @@ export class NotificationsComponent implements OnInit {
     this.load();
 
   }
+
+openRejectDialog(msg: any) {
+  const dialogRef = this.dialog.open(RejectRequestComponent, {
+    data: msg,
+    width: '450px'
+  });
+
+
+}
 
   load() {
     this.Message.getMessages().subscribe({

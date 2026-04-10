@@ -67,6 +67,11 @@ import { ImprintComponent } from './imprint/imprint.component';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { EditDataComponent } from './edit-data/edit-data.component';
+import { RejectRequestComponent } from './reject-request/reject-request.component';
+
+//reject request
+import {MatRadioModule} from '@angular/material/radio';
+
 
 registerLocaleData(localeHu);
 
@@ -91,6 +96,7 @@ registerLocaleData(localeHu);
     ImageDialogComponent,
     EditPostComponent,
     EditDataComponent,
+    RejectRequestComponent,
   ],
   imports: [
     BrowserModule,
@@ -118,7 +124,8 @@ registerLocaleData(localeHu);
     MatSidenavModule,
     MatDividerModule,
     MatBadgeModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatRadioModule
   ],
   providers: [
     provideAnimationsAsync(),
