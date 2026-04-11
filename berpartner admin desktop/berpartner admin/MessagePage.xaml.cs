@@ -108,5 +108,80 @@ namespace berpartner_admin
             }
 
         }
+
+        private async void send_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", App.Token);
+                HttpResponseMessage respons = null;
+
+                if (valakinekRadio.IsChecked == true)
+                {
+                    var message = new { 
+                        felado_id = (string)null,
+                        cimzett_id = ComboBox1.SelectedValue,
+                        berles_id = (string)null, 
+                        cim = targyTextBox.Text,
+                        tartalom = uzenetTextBox.Text,
+                        tipus = "message",
+                    };
+
+
+                    respons = await client.PostAsJsonAsync("http://localhost:3000/message/send",message);
+
+
+                }
+                else
+                {
+                
+                
+                }
+
+                
+
+                if (respons.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Üzenet elküldve!", "Sikeres küldés", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+
+                    if (respons.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    {
+
+                        MessageBox.Show("Nincs jogosultságod ehhez!", "Hiányzó jogosultság", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MainWindow main = new MainWindow();
+                        main.Show();
+                        HomeWindow home = new HomeWindow();
+                        home.Close();
+
+
+
+                    }
+                    else
+                    {
+
+                        MessageBox.Show(respons.StatusCode.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    }
+
+
+
+                }
+
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Nem sikerült elérni a szervert!", "Hálózati hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
     }
 }

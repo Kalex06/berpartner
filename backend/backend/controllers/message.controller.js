@@ -59,6 +59,23 @@ async function getAllMessagesByOwner(req,res) {
 }
 
 
+
+async function sendMessage(req,res){
+    try{
+            const msg = req.body;
+
+          const sendMessageId = await Message.createMessage(msg);
+
+          res.status(200).json({message:"Sikeres üzenet küldés ID:",sendMessageId});
+
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).json({message:"Hiba az üzenet küldés közben közben",error: err.message });
+    }
+
+}
+
 async function messageAccept(req,res){
         const connection = await pool.getConnection();
     try{
@@ -164,4 +181,4 @@ async function updateIsOpenedByOwner(req,res) {
 
 
 
-module.exports = {getAllMessagesByOwner,messageAccept,messageReject,getIsOpenedCountByOwner,updateIsOpenedByOwner};
+module.exports = {getAllMessagesByOwner,messageAccept,messageReject,getIsOpenedCountByOwner,updateIsOpenedByOwner,sendMessage};

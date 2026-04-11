@@ -1,6 +1,7 @@
 const express = require('express');
 const authMiddleware = require('../middleware/auth.middleware');
-const {getAllMessagesByOwner,messageAccept,messageReject,getIsOpenedCountByOwner, updateIsOpenedByOwner} = require('../controllers/message.controller');
+const adminMiddleware = require('../middleware/admin.middleware');
+const {getAllMessagesByOwner,messageAccept,messageReject,getIsOpenedCountByOwner, updateIsOpenedByOwner,sendMessage} = require('../controllers/message.controller');
 
 
 
@@ -11,5 +12,6 @@ message_router.patch('/accept',authMiddleware,messageAccept);
 message_router.patch('/reject',authMiddleware,messageReject);
 message_router.get('/notRead',authMiddleware,getIsOpenedCountByOwner);
 message_router.patch('/updateNotRead',authMiddleware,updateIsOpenedByOwner);
+message_router.post('/send',authMiddleware,adminMiddleware,sendMessage)
 
 module.exports = message_router;
