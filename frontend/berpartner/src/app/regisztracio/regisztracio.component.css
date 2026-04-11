@@ -1,11 +1,6 @@
-.password-error{
-  color: red;
-  font-weight: bold;
-}
-
 .registration-container {
   min-height: 100vh;
-  background: #0f172a; 
+  background: #0f172a;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +11,7 @@
 
 .stepper-card {
   width: 100%;
-  max-width: 900px;              
+  max-width: 900px;
   background: rgba(255, 255, 255, 0.95);
   border: 3px solid #fb923c;
   border-radius: 20px;
@@ -85,28 +80,40 @@ mat-form-field {
   caret-color: #fb923c;
 }
 
-button[mat-button] {
-  color: #fb923c;
-  font-weight: 600;
+.next-btn {
+  background: linear-gradient(180deg, #ffd9b3, #fb923c) !important;
+  color: #7c2d12 !important;
+  border-radius: 12px !important;
+  height: 48px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 8px 25px rgba(251, 146, 60, 0.4) !important;
+  min-width: 120px;
+  transition: all 0.3s ease !important;
 }
 
-button[mat-button]:hover {
-  background: rgba(251, 146, 60, 0.1);
-}
-
-button[mat-flat-button][color="accent"] {
-  background: linear-gradient(180deg, #ffd9b3, #fb923c);
-  color: #7c2d12;
-  border-radius: 12px;
-  padding: 0 30px;
-  height: 48px;
-  font-weight: 700;
-  box-shadow: 0 8px 25px rgba(251, 146, 60, 0.4);
-}
-
-button[mat-flat-button][color="accent"]:hover {
+.next-btn:hover:not(:disabled) {
   transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(251, 146, 60, 0.5);
+  box-shadow: 0 12px 35px rgba(251, 146, 60, 0.5) !important;
+}
+
+.next-btn:disabled {
+  background: #cbd5e1 !important;
+  color: #64748b !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+}
+
+.back-btn {
+  border: 2px solid #fb923c !important;
+  color: #fb923c !important;
+  border-radius: 12px !important;
+  height: 48px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.back-btn:hover {
+  background: rgba(251, 146, 60, 0.1) !important;
 }
 
 .step-form .form-grid {
@@ -136,55 +143,41 @@ button[mat-flat-button][color="accent"]:hover {
 
 .step-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   gap: 16px;
   margin-top: 20px;
 }
 
-.step-actions {
-  display: flex;
-  justify-content: flex-end;   
-  align-items: center;
-  margin-top: 30px;
-  padding: 0 20px;
-  gap: 16px;                   
-}
-
-.step-actions:has(.back-button) {
-  justify-content: space-between;
+.step-actions:not(:has(.back-button-div)) {
+  justify-content: flex-end;
 }
 
 .logo {
   position: fixed;
   top: 30px;
   left: 40px;
-  z-index: 100;                  
+  z-index: 100;
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
 
 .logo:hover {
-  opacity: 0.8;                 
+  opacity: 0.8;
 }
 
 .logo img {
-  height: 120px;                 
+  height: 120px;
   width: auto;
   object-fit: contain;
 }
 
 @media (max-width: 768px) {
-  .step-actions {
-    flex-direction: column;
-    padding: 0;
-  }
 
   .step-actions button {
     width: 100%;
   }
-}
 
-@media (max-width: 768px) {
   .registration-container h2 {
     font-size: 1.8rem;
   }
@@ -198,16 +191,6 @@ button[mat-flat-button][color="accent"]:hover {
     grid-template-columns: 1fr;
   }
 
-  .step-actions {
-    flex-direction: column;
-  }
-
-  button[mat-flat-button] {
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
   .logo {
     top: 20px;
     left: 20px;
@@ -230,9 +213,7 @@ button[mat-flat-button][color="accent"]:hover {
   .stepper-card {
     padding: 20px;
   }
-}
 
-@media (max-width: 480px) {
   .logo img {
     height: 80px;
   }
