@@ -1,8 +1,3 @@
-.password-error {
-    color: red;
-    font-weight: bold;
-}
-
 .login-container {
     min-height: 100vh;
     background: #0f172a;
@@ -54,49 +49,49 @@ mat-form-field {
     caret-color: #fb923c;
 }
 
-.login-button button[mat-flat-button][color="accent"] {
-    background: linear-gradient(180deg, #ffd9b3, #fb923c);
-    color: #7c2d12;
-    border-radius: 12px;
-    padding: 0 30px;
-    height: 48px;
-    font-weight: 700;
-    box-shadow: 0 8px 25px rgba(251, 146, 60, 0.4);
+.submit-btn {
+    background: linear-gradient(180deg, #ffd9b3, #fb923c) !important;
+    color: #7c2d12 !important;
+    border-radius: 12px !important;
+    height: 48px !important;
+    font-weight: 700 !important;
+    box-shadow: 0 8px 25px rgba(251, 146, 60, 0.4) !important;
     width: 100%;
     max-width: 300px;
-    margin: 20px auto 0 auto;
-    display: block;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.login-button button[mat-flat-button][color="accent"]:hover {
-    transform: translateY(-3px);
+.submit-btn:hover {
+    transform: translateY(-10px) scale(1.05);
     box-shadow: 0 12px 35px rgba(251, 146, 60, 0.5);
+    opacity: 0.9;
 }
-
 
 .logo {
-  position: fixed;
-  top: 30px;
-  left: 40px;
-  z-index: 100;                  
-  cursor: pointer;
-  transition: opacity 0.2s ease;
+    position: fixed;
+    top: 30px;
+    left: 40px;
+    z-index: 100;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
 }
 
 .logo:hover {
-  opacity: 0.8;                 
+    opacity: 0.8;
 }
 
 .logo img {
-  height: 120px;                 
-  width: auto;
-  object-fit: contain;
+    height: 120px;
+    width: auto;
+    object-fit: contain;
 }
 
 @media (max-width: 768px) {
     .login-container h1 {
         font-size: 1.8rem;
     }
+
     #egesz {
         padding: 30px;
         border-radius: 16px;
@@ -107,27 +102,29 @@ mat-form-field {
     .login-container {
         padding: 20px 15px;
     }
+
     .login-container h1 {
         font-size: 1.6rem;
     }
+
     #egesz {
         padding: 20px;
     }
 }
 
 @media (max-width: 480px) {
-  .logo img {
-    height: 80px;
-  }
+    .logo img {
+        height: 80px;
+    }
 }
 
 @media (max-width: 768px) {
-  .logo {
-    top: 20px;
-    left: 20px;
-  }
+    .logo {
+        top: 20px;
+        left: 20px;
+    }
 
-  .logo img {
-    height: 90px;
-  }
+    .logo img {
+        height: 90px;
+    }
 }

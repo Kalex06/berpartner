@@ -31,8 +31,8 @@
           </div>
 
           <div class="step-actions">
-            <div class="next-button">
-              <button mat-flat-button color="accent" matStepperNext>Tovább</button>
+            <div class="next-button-div">
+              <button mat-flat-button class="next-btn" matStepperNext>Tovább</button>
             </div>
           </div>
         </form>
@@ -62,11 +62,11 @@
           </div>
 
           <div class="step-actions">
-            <div class="back-button">
-              <button mat-stroked-button matStepperPrevious>Vissza</button>
+            <div class="back-button-div">
+              <button mat-stroked-button class="back-btn" matStepperPrevious>Vissza</button>
             </div>
-            <div class="next-button">
-              <button mat-flat-button color="accent" matStepperNext>Tovább</button>
+            <div class="next-button-div">
+              <button mat-flat-button class="next-btn" matStepperNext>Tovább</button>
             </div>
           </div>
         </form>
@@ -111,11 +111,11 @@
           </div>
 
           <div class="step-actions">
-            <div class="back-button">
-              <button mat-stroked-button matStepperPrevious>Vissza</button>
+            <div class="back-button-div">
+              <button mat-stroked-button class="back-btn" matStepperPrevious>Vissza</button>
             </div>
-            <div class="next-button">
-              <button mat-flat-button color="accent" (click)="goPasswordNext(stepper)">Tovább</button>
+            <div class="next-button-div">
+              <button mat-flat-button class="next-btn" color="accent" (click)="goPasswordNext(stepper)">Tovább</button>
             </div>
           </div>
         </form>
@@ -148,11 +148,11 @@
           </div>
 
           <div class="step-actions">
-            <div class="back-button">
-              <button mat-stroked-button matStepperPrevious>Vissza</button>
+            <div class="back-button-div">
+              <button mat-stroked-button class="back-btn" matStepperPrevious>Vissza</button>
             </div>
-            <div class="next-button">
-              <button mat-flat-button color="accent" matStepperNext (click)="submit()"
+            <div class="next-button-div">
+              <button mat-flat-button class="next-btn" color="accent" matStepperNext (click)="submit()"
                 [disabled]="addressFormGroup.invalid">Regisztráció befejezése</button>
             </div>
           </div>
@@ -168,8 +168,8 @@
           <p>Lépjen tovább a bejelentkezéshez.</p>
 
           <div class="step-actions">
-            <div class="next-button">
-              <a routerLink="/login"><button mat-flat-button color="accent">Tovább a főoldalra</button></a>
+            <div class="next-button-div">
+              <a routerLink="/login"><button mat-flat-button class="next-btn">Tovább a főoldalra</button></a>
             </div>
           </div>
         </div>
