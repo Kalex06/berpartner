@@ -6,7 +6,7 @@ async function createMessage(data,connection=null) {
     const executor = connection||pool;
     const [row] = await executor.execute(
         'INSERT INTO uzenetek (felado_id,cimzett_id,berles_id,cim,tartalom,tipus,statusz) VALUES (?, ?,?, ?, ?, ?, ?)',
-        [felado_id,cimzett_id,berles_id,cim,tartalom,tipus,statusz]
+        [felado_id,cimzett_id,berles_id,cim,tartalom,tipus,statusz||null]
     );
     return row.insertId;
 }

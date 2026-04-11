@@ -10,12 +10,12 @@
 
     <Grid Background="DarkBlue">
 
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,900,150">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,900,120">
             <TextBlock HorizontalAlignment="Left" Foreground="AliceBlue" FontSize="25" Margin="0,0,40,20">Címzett</TextBlock>
-            <RadioButton IsChecked="True" Foreground="AliceBlue" FontSize="18" VerticalContentAlignment="Center" Margin="30,0,0,0">Mindenkinek</RadioButton>
+            <RadioButton IsChecked="True" x:Name="mindenkinekRadio" Foreground="AliceBlue" FontSize="18" VerticalContentAlignment="Center" Margin="30,0,0,0">Mindenkinek</RadioButton>
             <RadioButton x:Name="valakinekRadio" Foreground="AliceBlue" FontSize="18" VerticalContentAlignment="Center" Margin="30,0,0,0">Küldés egy személynek:</RadioButton>
             <ComboBox Margin="30,10,0,0" IsEnabled="{Binding ElementName=valakinekRadio,Path=IsChecked}" x:Name="ComboBox1" DisplayMemberPath="nev" SelectedValuePath="id"></ComboBox>
-            <Button Margin="30,30,0,0" Foreground="AliceBlue" FontSize="14" Height="40" Width="200" x:Name="send" >
+            <Button Margin="30,30,0,0" Foreground="AliceBlue" FontSize="14" Height="40" Width="200" x:Name="send" Click="send_Click" >
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
 
@@ -45,9 +45,9 @@
                 Küldés</Button>
         </StackPanel>
         <Label Foreground="AliceBlue" Margin="0,0,360,300" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Tárgy</Label>
-        <TextBox Width="400" Height="30" Margin="0,0,0,230" HorizontalAlignment="Center" VerticalAlignment="Center" MaxLength="25" FontSize="18" />
+        <TextBox Width="400" Height="30" x:Name="targyTextBox" Margin="0,0,0,230" HorizontalAlignment="Center" VerticalAlignment="Center" MaxLength="20" FontSize="18" />
         <Label Foreground="AliceBlue" Margin="0,0,340,130" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Üzenet</Label>
-        <TextBox Width="400" Height="200" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="18" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+        <TextBox Width="400" Height="200" x:Name="uzenetTextBox" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="18" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
 
     </Grid>
 </Page>
