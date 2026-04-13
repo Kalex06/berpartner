@@ -21,7 +21,7 @@ async function uploadItem(req,res){
             nev:nev,
             kategoria_id: Number(kategoria),
             ar_egy_napra:Number(ar_egy_napra),
-            allapot:allapot,
+            allapot:Number(allapot),
             leiras:leiras,
             tulajdonos_id: req.user.id
         };
@@ -48,6 +48,7 @@ async function uploadItem(req,res){
     }
     catch(err){
             await connection.rollback();
+            console.log(err);
             res.status(500).json({message:"Hiba feltöltés közben",error: err.message });
     }
     finally{
@@ -213,7 +214,7 @@ async function putItem(req,res) {
             name: req.body.name,
             category: req.body.category,
             price_per_day: req.body.price_per_day,
-            condition: req.body.condition,
+            condition: Number(req.body.condition),
             description: req.body.description
         };
         

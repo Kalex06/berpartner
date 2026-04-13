@@ -51,17 +51,32 @@ INSERT INTO kategoriak (fo_kategoriaId, kategoria) VALUES
 (3,'Műhely'),
 (3,'Rendezvényhelyszín');
 
+
+CREATE TABLE allapotok(
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     allapot VARCHAR(100) NOT NULL
+);
+
+INSERT INTO allapotok (allapot) VALUES 
+('Új'),
+('Újszerű'),
+('Jó / megkímélt'),
+('Használt');
+
+
+
 CREATE TABLE eszkozok (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nev VARCHAR(200) NOT NULL,
     kategoria_id INT NOT NULL,
     ar_egy_napra INT NOT NULL,
-    allapot VARCHAR(100) NOT NULL,
+    allapot_id INT NOT NULL,
     leiras TEXT,
     tulajdonos_id INT NOT NULL,
     letrehozva_ekkor TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (tulajdonos_id) REFERENCES felhasznalok(id),
-    FOREIGN KEY (kategoria_id) REFERENCES kategoriak(id)
+    FOREIGN KEY (kategoria_id) REFERENCES kategoriak(id),
+    FOREIGN KEY (allapot_id) REFERENCES allapotok(id)
 );
 
 
