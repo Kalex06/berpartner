@@ -24,7 +24,7 @@ async function uploadpictures(pool,data) {
  async function uploadItem(pool,data) {
     const {nev,kategoria_id,ar_egy_napra,allapot,leiras,tulajdonos_id} = data;
     const [rows] = await pool.execute(
-        'INSERT INTO eszkozok (nev,kategoria_id,ar_egy_napra,allapot,leiras,tulajdonos_id) VALUES (?,?,?,?,?,?)',
+        'INSERT INTO eszkozok (nev,kategoria_id,ar_egy_napra,allapot_id,leiras,tulajdonos_id) VALUES (?,?,?,?,?,?)',
         [nev,kategoria_id,ar_egy_napra,allapot,leiras,tulajdonos_id]
     );
     return rows.insertId;
@@ -35,9 +35,9 @@ async function uploadpictures(pool,data) {
     category = `AND eszkozok.kategoria_id=${category}`;
    }
     const [rows] = await pool.execute(
-        `SELECT eszkozok.id,eszkozok.nev,eszkozok.ar_egy_napra,eszkozok.allapot,eszkozok.leiras,felhasznalok.varos,eszkozok.tulajdonos_id,eszkoz_kepek.kep_nev,kategoriak.kategoria 
-        FROM eszkozok,eszkoz_kepek,kategoriak,felhasznalok  
-        WHERE eszkoz_kepek.eszkoz_id = eszkozok.id AND kategoriak.id = eszkozok.kategoria_id AND eszkozok.tulajdonos_id = felhasznalok.id ${category}
+        `SELECT eszkozok.id,eszkozok.nev,eszkozok.ar_egy_napra,allapotok.allapot,eszkozok.leiras,felhasznalok.varos,eszkozok.tulajdonos_id,eszkoz_kepek.kep_nev,kategoriak.kategoria 
+        FROM eszkozok,eszkoz_kepek,kategoriak,felhasznalok,allapotok  
+        WHERE eszkoz_kepek.eszkoz_id = eszkozok.id AND kategoriak.id = eszkozok.kategoria_id AND eszkozok.allapot_id = allapotok.id  AND eszkozok.tulajdonos_id = felhasznalok.id ${category}
         GROUP BY eszkozok.id
         ORDER BY ${sort}`
      
@@ -47,9 +47,9 @@ async function uploadpictures(pool,data) {
 
 async function getItemById(id) {
   const [rows] = await pool.execute(
-    `SELECT eszkozok.*,kategoriak.kategoria,felhasznalok.nev AS felhasznalonev,felhasznalok.telefonszam,felhasznalok.email,felhasznalok.varos,felhasznalok.iranyitoszam 
-    FROM eszkozok,kategoriak,felhasznalok  
-    WHERE kategoriak.id = eszkozok.kategoria_id AND eszkozok.tulajdonos_id = felhasznalok.id AND eszkozok.id = (?)
+    `SELECT eszkozok.*,allapotok.allapot,kategoriak.kategoria,felhasznalok.nev AS felhasznalonev,felhasznalok.telefonszam,felhasznalok.email,felhasznalok.varos,felhasznalok.iranyitoszam 
+    FROM eszkozok,kategoriak,felhasznalok,allapotok  
+    WHERE kategoriak.id = eszkozok.kategoria_id AND allapotok.id = eszkozok.id AND eszkozok.tulajdonos_id = felhasznalok.id AND eszkozok.id = (?)
     ORDER BY eszkozok.id`,
     [id]
   );
@@ -59,9 +59,9 @@ async function getItemById(id) {
 
  async function getAllItemByOwnerId(id){
     const [rows] = await pool.execute(
-        `SELECT eszkozok.id,eszkozok.nev,eszkozok.ar_egy_napra,eszkozok.allapot,eszkozok.leiras,felhasznalok.varos,eszkozok.tulajdonos_id,eszkoz_kepek.kep_nev,kategoriak.kategoria 
-        FROM eszkozok,eszkoz_kepek,kategoriak,felhasznalok  
-        WHERE eszkoz_kepek.eszkoz_id = eszkozok.id AND kategoriak.id = eszkozok.kategoria_id AND eszkozok.tulajdonos_id = felhasznalok.id AND felhasznalok.id = (?)
+        `SELECT eszkozok.id,eszkozok.nev,eszkozok.ar_egy_napra,allapotok.allapot,eszkozok.leiras,felhasznalok.varos,eszkozok.tulajdonos_id,eszkoz_kepek.kep_nev,kategoriak.kategoria 
+        FROM eszkozok,eszkoz_kepek,kategoriak,felhasznalok,allapotok  
+        WHERE eszkoz_kepek.eszkoz_id = eszkozok.id AND kategoriak.id = eszkozok.kategoria_id AND allapotok.id = eszkozok.allapot_id AND eszkozok.tulajdonos_id = felhasznalok.id AND felhasznalok.id = (?)
         GROUP BY eszkozok.id `,
         [id]
     );
@@ -81,9 +81,9 @@ async function getItemById(id) {
  async function getItemBySearch(sort,search){
    
     const [rows] = await pool.execute(
-        `SELECT eszkozok.id,eszkozok.nev,eszkozok.ar_egy_napra,eszkozok.allapot,eszkozok.leiras,felhasznalok.varos,eszkozok.tulajdonos_id,eszkoz_kepek.kep_nev,kategoriak.kategoria 
-        FROM eszkozok,eszkoz_kepek,kategoriak,felhasznalok  
-        WHERE eszkoz_kepek.eszkoz_id = eszkozok.id AND kategoriak.id = eszkozok.kategoria_id AND eszkozok.nev LIKE CONCAT('%', ?, '%')
+        `SELECT eszkozok.id,eszkozok.nev,eszkozok.ar_egy_napra,allapotok.allapot,eszkozok.leiras,felhasznalok.varos,eszkozok.tulajdonos_id,eszkoz_kepek.kep_nev,kategoriak.kategoria 
+        FROM eszkozok,eszkoz_kepek,kategoriak,felhasznalok,allapotok  
+        WHERE eszkoz_kepek.eszkoz_id = eszkozok.id AND kategoriak.id = eszkozok.kategoria_id AND allapotok.id = eszkozok.allapot_id AND eszkozok.nev LIKE CONCAT('%', ?, '%')
         GROUP BY eszkozok.id
         ORDER BY ${sort}`,
         [search]
@@ -106,7 +106,7 @@ async function getItemById(id) {
  async function updateItemById(pool,id,data) {
         const {name,category,price_per_day,condition,description} = data;
         const [rows] = await pool.execute(
-            'UPDATE eszkozok SET nev=?, kategoria_id=?, ar_egy_napra=?, allapot=?, leiras=? WHERE id=?;',
+            'UPDATE eszkozok SET nev=?, kategoria_id=?, ar_egy_napra=?, allapot_id=?, leiras=? WHERE id=?;',
             [name,category,price_per_day,condition,description,id]
         );
         return rows.affectedRows;

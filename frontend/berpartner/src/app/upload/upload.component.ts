@@ -6,6 +6,7 @@ import { ItemService } from '../services/item/item.service';
 import { CategoryService } from '../services/category/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ConditionService } from '../services/condition/condition.service';
 
 interface Condition {
   value: string;
@@ -18,7 +19,7 @@ interface Condition {
   styleUrl: './upload.component.css'
 })
 export class UploadComponent implements OnInit {
-  constructor(private fb: FormBuilder, private item: ItemService, private category: CategoryService, private router: Router) { }
+  constructor(private fb: FormBuilder, private item: ItemService, private category: CategoryService, private router: Router,private condition:ConditionService) { }
   private _formBuilder = inject(FormBuilder);
   imagePreviews: (string | null)[] = [null, null, null, null];
   selectedFiles: (File | null)[] = [null, null, null, null];
@@ -32,12 +33,7 @@ export class UploadComponent implements OnInit {
     images: [null as any, [Validators.required]]
   })
 
-  conditions: Condition[] = [
-    { value: 'Új', viewValue: 'Új' },
-    { value: 'Újszerű', viewValue: 'Újszerű' },
-    { value: 'Jó / megkímélt', viewValue: 'Jó / megkímélt' },
-    { value: 'Használt', viewValue: 'Használt' },
-  ];
+  conditions: any;
 
 
   updateImageValidation() {
@@ -107,6 +103,9 @@ export class UploadComponent implements OnInit {
           this.router.navigate(['/login']);
   
         }
+        else{
+          console.log(err);
+        }
       }
     });
   }
@@ -122,6 +121,14 @@ export class UploadComponent implements OnInit {
   
         }
       }
+    });
+    this.condition.getAllcondition().subscribe({
+      next:data =>this.conditions = data,
+      error:(err:HttpErrorResponse)=>{
+        if(err.status == 403 || err.status == 401){
+          this.router.navigate(['/login']);
+        }
+      },
     })
   }
 }
