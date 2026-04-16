@@ -7,6 +7,7 @@ import { CategoryService } from '../services/category/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { forkJoin } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ConditionService } from '../services/condition/condition.service';
 
 interface Condition {
   value: string;
@@ -19,7 +20,7 @@ interface Condition {
   styleUrl: './edit-post.component.css'
 })
 export class EditPostComponent implements OnInit {
-  constructor(private item: ItemService, private category: CategoryService, private router: Router,private route:ActivatedRoute) { }
+  constructor(private item: ItemService, private category: CategoryService, private router: Router,private route:ActivatedRoute,private condition:ConditionService) { }
   private _formBuilder = inject(FormBuilder);
   imagePreviews: (string | null)[] = [null, null, null, null];
   selectedFiles: (File | null)[] = [null, null, null, null];
@@ -38,12 +39,7 @@ export class EditPostComponent implements OnInit {
     images: [null as any, [Validators.required]]
   })
 
-  conditions: Condition[] = [
-    { value: 'Új', viewValue: 'Új' },
-    { value: 'Újszerű', viewValue: 'Újszerű' },
-    { value: 'Jó / megkímélt', viewValue: 'Jó / megkímélt' },
-    { value: 'Használt', viewValue: 'Használt' },
-  ];
+  conditions: any;
 
 
   updateImageValidation() {
@@ -133,16 +129,18 @@ export class EditPostComponent implements OnInit {
 
     forkJoin({
       cat:  this.category.getAllCategory(),
-      item: this.item.getItem(Number(this.route.snapshot.paramMap.get('id')))
+      item: this.item.getItem(Number(this.route.snapshot.paramMap.get('id'))),
+      cond: this.condition.getAllcondition()
     }).subscribe({
       next:(data)=> {
         this.maincategories = data.cat;
+        this.conditions = data.cond;
         this.itemData = data.item;
         this.uploadForm.patchValue({
           title:this.itemData.nev,
           category:this.itemData.kategoria_id,
           dailyFee:this.itemData.ar_egy_napra,
-          condition:this.itemData.allapot,
+          condition:this.itemData.allapot_id,
           description:this.itemData.leiras
         });
      const pictures:any[] =  Object.values(this.itemData.kepek);
