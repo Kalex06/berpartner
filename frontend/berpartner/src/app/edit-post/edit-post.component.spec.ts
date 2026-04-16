@@ -8,6 +8,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemService } from '../services/item/item.service';
 import { CategoryService } from '../services/category/category.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 describe('EditPostComponent', () => {
@@ -17,21 +19,38 @@ describe('EditPostComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EditPostComponent],
-      imports:[
+      imports: [
         NoopAnimationsModule,
+     
+      ],
+      providers: [
         ItemService,
         CategoryService,
         Router,
-        ActivatedRoute
+         {
+      provide: ToastrService,
+      useValue: {
+        success: () => {},
+        error: () => {}
+      }
+    },
+        {
+         provide: ActivatedRoute,
+         useValue: {
+         snapshot: {
+          paramMap: {
+            get: (key: string) => '1'
+          }
+      },
+    }
+  },
+        provideHttpClient(),
+        provideHttpClientTesting()
       ],
-            providers:[
-              provideHttpClient(),
-              provideHttpClientTesting()
-            ],
-      
-            schemas: [NO_ERRORS_SCHEMA]
+
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(EditPostComponent);
     component = fixture.componentInstance;
