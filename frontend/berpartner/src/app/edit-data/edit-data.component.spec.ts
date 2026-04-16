@@ -6,6 +6,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('EditDataComponent', () => {
   let component: EditDataComponent;
@@ -14,7 +15,10 @@ describe('EditDataComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EditDataComponent],
-      imports:[NoopAnimationsModule],
+      imports:[
+        NoopAnimationsModule,
+        ToastrModule.forRoot()
+      ],
       providers:[
         provideHttpClient(),
         provideHttpClientTesting()
