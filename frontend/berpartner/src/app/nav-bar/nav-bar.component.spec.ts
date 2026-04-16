@@ -6,7 +6,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatMenuModule } from '@angular/material/menu';
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
@@ -15,7 +15,10 @@ describe('NavBarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NavBarComponent],
-      imports:[NoopAnimationsModule],
+      imports:[
+        NoopAnimationsModule,
+        MatMenuModule
+      ],
       providers:[
         provideHttpClient(),
         provideHttpClientTesting()

@@ -5,6 +5,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrService } from 'ngx-toastr';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 describe('UserDeletionComponent', () => {
@@ -16,6 +18,23 @@ describe('UserDeletionComponent', () => {
       declarations: [UserDeletionComponent],
       imports:[NoopAnimationsModule],
       providers:[
+        {
+          provide: MatDialogRef,
+                useValue:{
+                  close:()=>{}
+                }
+              },
+              {
+                provide: MAT_DIALOG_DATA,
+                useValue:{}
+              },
+        {
+          provide: ToastrService,
+          useValue: {
+          success: () => {},
+          error: () => {}
+          }
+        },
         provideHttpClient(),
         provideHttpClientTesting()
       ],

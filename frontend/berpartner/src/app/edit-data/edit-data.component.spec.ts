@@ -7,6 +7,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 describe('EditDataComponent', () => {
   let component: EditDataComponent;
@@ -20,6 +21,16 @@ describe('EditDataComponent', () => {
         ToastrModule.forRoot()
       ],
       providers:[
+        {
+          provide: MatDialogRef,
+                useValue:{
+                  close:()=>{}
+                }
+              },
+              {
+                provide: MAT_DIALOG_DATA,
+                useValue:{}
+              },
         provideHttpClient(),
         provideHttpClientTesting()
       ],

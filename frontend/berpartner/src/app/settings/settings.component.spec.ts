@@ -5,6 +5,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrService } from 'ngx-toastr';
+import { NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 describe('SettingsComponent', () => {
   let component: SettingsComponent;
@@ -13,8 +15,15 @@ describe('SettingsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SettingsComponent],
-      imports:[NoopAnimationsModule],
-      providers:[
+      imports:[NoopAnimationsModule,NgxMaskPipe],
+      providers:[provideNgxMask(),
+        {
+          provide: ToastrService,
+          useValue: {
+          success: () => {},
+          error: () => {}
+          }
+        },
         provideHttpClient(),
         provideHttpClientTesting()
       ],

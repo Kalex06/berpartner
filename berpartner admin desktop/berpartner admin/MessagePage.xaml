@@ -14,7 +14,7 @@
             <TextBlock HorizontalAlignment="Left" Foreground="AliceBlue" FontSize="25" Margin="0,0,40,20">Címzett</TextBlock>
             <RadioButton IsChecked="True" x:Name="mindenkinekRadio" Foreground="AliceBlue" FontSize="18" VerticalContentAlignment="Center" Margin="30,0,0,0">Mindenkinek</RadioButton>
             <RadioButton x:Name="valakinekRadio" Foreground="AliceBlue" FontSize="18" VerticalContentAlignment="Center" Margin="30,0,0,0">Küldés egy személynek:</RadioButton>
-            <ComboBox Margin="30,10,0,0" IsEnabled="{Binding ElementName=valakinekRadio,Path=IsChecked}" x:Name="ComboBox1" DisplayMemberPath="nev" SelectedValuePath="id"></ComboBox>
+            <ComboBox Margin="30,10,0,0" IsEnabled="{Binding ElementName=valakinekRadio,Path=IsChecked}" IsEditable="True" TextSearch.TextPath="nev " x:Name="ComboBox1" DisplayMemberPath="nev" SelectedValuePath="id"></ComboBox>
             <Button Margin="30,30,0,0" Foreground="AliceBlue" FontSize="14" Height="40" Width="200" x:Name="send" Click="send_Click" >
                 <Button.Template>
                     <ControlTemplate TargetType="Button">

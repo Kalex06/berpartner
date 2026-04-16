@@ -6,6 +6,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 describe('ItemDetailsComponent', () => {
@@ -15,15 +17,32 @@ describe('ItemDetailsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ItemDetailsComponent],
-      imports:[NoopAnimationsModule],
-      providers:[
+      imports: [NoopAnimationsModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get: (key: string) => '1'
+              }
+            },
+          }
+        },
+        {
+          provide: ToastrService,
+          useValue: {
+            success: () => { },
+            error: () => { }
+          }
+        },
         provideHttpClient(),
         provideHttpClientTesting()
       ],
 
       schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ItemDetailsComponent);
     component = fixture.componentInstance;
