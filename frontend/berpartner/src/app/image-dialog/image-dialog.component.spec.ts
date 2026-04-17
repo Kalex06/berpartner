@@ -6,6 +6,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 describe('ImageDialogComponent', () => {
   let component: ImageDialogComponent;
@@ -14,15 +15,25 @@ describe('ImageDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ImageDialogComponent],
-      imports:[NoopAnimationsModule],
-                  providers:[
-                    provideHttpClient(),
-                    provideHttpClientTesting()
-                  ],
-            
-                  schemas: [NO_ERRORS_SCHEMA]
+      imports: [NoopAnimationsModule],
+      providers: [
+        {
+          provide: MatDialogRef,
+          useValue: {
+            close: () => { }
+          }
+        },
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: {}
+        },
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ],
+
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ImageDialogComponent);
     component = fixture.componentInstance;

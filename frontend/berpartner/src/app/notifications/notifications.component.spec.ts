@@ -4,7 +4,9 @@ import { NotificationsComponent } from './notifications.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 
 describe('NotificationsComponent', () => {
@@ -14,15 +16,22 @@ describe('NotificationsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NotificationsComponent],
-      imports:[NoopAnimationsModule],
-      providers:[
+      imports: [BrowserAnimationsModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            queryParams: of({ type:null})
+          }
+        },
+        provideAnimations(),
         provideHttpClient(),
         provideHttpClientTesting()
       ],
 
       schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(NotificationsComponent);
     component = fixture.componentInstance;

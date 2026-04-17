@@ -4,11 +4,20 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { RejectRequestComponent } from '../reject-request/reject-request.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
-  styleUrl: './notifications.component.css'
+  styleUrl: './notifications.component.css',
+  animations:[
+    trigger('fadeIn',[
+      transition(':enter',[
+        style({opocity:0}),
+        animate('300ms ease-in',style({opocity:1}))
+      ])
+    ])
+  ]
 })
 export class NotificationsComponent implements OnInit {
 
