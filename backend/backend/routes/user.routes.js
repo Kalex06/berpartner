@@ -7,7 +7,8 @@ const {
      updateUsername,
      updateAddress,
      getAllUsers,
-     deleteUser } = require('../controllers/user.controller');
+     deleteUser,
+     deleteUserByAdmin } = require('../controllers/user.controller');
 const authMiddleware = require('../middleware/auth.middleware');
 const profilePictureMiddleware = require('../middleware/profile_picture.middleware');
 const adminMiddleware = require('../middleware/admin.middleware');
@@ -26,6 +27,7 @@ user_router.patch('/update/username',authMiddleware,passwordMiddleware,updateUse
 user_router.patch('/update/password',authMiddleware,passwordMiddleware,updatePassword);
 user_router.patch('/update/address',authMiddleware,passwordMiddleware,updateAddress);
 user_router.delete('/delete',authMiddleware,passwordMiddleware,deleteUser);
+user_router.delete('/admin/delete/:id',authMiddleware,adminMiddleware,deleteUserByAdmin);
 
 
 module.exports = user_router;

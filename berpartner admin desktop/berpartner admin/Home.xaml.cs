@@ -31,12 +31,13 @@ namespace berpartner_admin
         }
 
 
-        public class User {
+        public class User
+        {
 
             public int id { get; set; }
             public string nev { get; set; }
-            public string telefonszam { get; set; }          
-            public string email { get; set; }    
+            public string telefonszam { get; set; }
+            public string email { get; set; }
             public int berelt_eszkozok_szama { get; set; }
             public string jogosultsag { get; set; }
             public string iranyitoszam { get; set; }
@@ -71,13 +72,13 @@ namespace berpartner_admin
 
                     UserDataGrid.ItemsSource = result;
 
-                
 
 
 
 
 
-        
+
+
 
                 }
                 else
@@ -91,7 +92,7 @@ namespace berpartner_admin
                         main.Show();
                         HomeWindow home = new HomeWindow();
                         home.Close();
-                        
+
 
 
                     }
@@ -115,6 +116,81 @@ namespace berpartner_admin
             {
 
                 MessageBox.Show(ex.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+
+        private async void Delete_Click(object sender, RoutedEventArgs e)
+        {
+
+            Button btn = sender as Button;
+
+            User user = btn.CommandParameter as User;
+
+            if (user != null)
+            {
+
+                int id = user.id;
+
+                if (MessageBox.Show($"Biztosan törli a felhasználót?\n\t{user.nev}", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+
+
+
+
+                    try
+                    {
+
+                        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", App.Token);
+
+                        HttpResponseMessage respons = await client.DeleteAsync($"http://localhost:3000/user/admin/delete/{id}");
+
+                        if (respons.IsSuccessStatusCode)
+                        {
+
+                            Page_Loaded(null, null);
+                            MessageBox.Show("Felhasználó törölve!","Értesítő",MessageBoxButton.OK,MessageBoxImage.Information);
+
+
+
+                        }
+                        else
+                        {
+
+                            if (respons.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                            {
+
+                                MessageBox.Show("Nincs jogosultságod ehhez!", "Hiányzó jogosultság", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MainWindow main = new MainWindow();
+                                main.Show();
+                                HomeWindow home = new HomeWindow();
+                                home.Close();
+
+
+
+                            }
+                            else
+                            {
+
+                                MessageBox.Show(respons.StatusCode.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                            }
+
+
+
+                        }
+
+                    }
+                    catch (HttpRequestException)
+                    {
+                        MessageBox.Show("Nem sikerült elérni a szervert!", "Hálózati hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
             }
 
         }
