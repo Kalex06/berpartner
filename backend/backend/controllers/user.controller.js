@@ -245,4 +245,29 @@ async function deleteUser(req,res) {
     
 }
 
-module.exports = { getAllUsers, getUserById, putUser ,getMyProfile,updateProfilePic,updateEmail,updatePhoneNumber,updateUsername,updatePassword,updateAddress,deleteUser};
+
+async function deleteUserByAdmin(req,res) {
+    
+     try{
+
+        const id = req.params.id
+
+        if(!id){
+             res.status(404).json({ message: 'Hiányzó id', error: err.message });
+        }
+
+
+      const row = await User.deleteUserById(id);
+
+
+    
+      res.status(200).json({message:'Felhasználó törölve'})
+        
+    }
+    catch(err){
+        res.status(500).json({ message: 'Hiba a felhasználó törlésekor.', error: err.message });
+    }
+    
+}
+
+module.exports = { getAllUsers, getUserById, putUser ,getMyProfile,updateProfilePic,updateEmail,updatePhoneNumber,updateUsername,updatePassword,updateAddress,deleteUser,deleteUserByAdmin};

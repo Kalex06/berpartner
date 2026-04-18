@@ -36,7 +36,7 @@
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="Background" Value="#FF152B81"/>
                     <Setter Property="Foreground" Value="White"/>
-                    
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 </Style>
                
@@ -45,7 +45,7 @@
 
             <DataGrid.Columns>
               
-                <DataGridTextColumn Header="AZONOSÍTÓ" Binding="{Binding id}" Width="*" />
+                <DataGridTextColumn Header="AZONOSÍTÓ"  Binding="{Binding id}" Width="*" />
                 <DataGridTextColumn Header="NÉV" Binding="{Binding nev}" Width="*" />
                 <DataGridTextColumn Header="TELEFONSZÁM" Binding="{Binding telefonszam}" Width="*" />
                 <DataGridTextColumn Header="E-MAIL" Binding="{Binding email}" Width="*" />
@@ -60,7 +60,7 @@
                 <DataGridTemplateColumn Header="Törlés" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="&#xE74D;" Background="#FF2E4ECF" FontSize="16" FontFamily="Segoe MDL2 Assets" Foreground="Red" BorderThickness="0"/>
+                            <Button Content="&#xE74D;" Background="#FF2E4ECF" FontSize="16" FontFamily="Segoe MDL2 Assets" Foreground="Red" CommandParameter="{Binding}" BorderThickness="0" Click="Delete_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
