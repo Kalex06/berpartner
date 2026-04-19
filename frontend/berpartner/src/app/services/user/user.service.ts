@@ -36,7 +36,7 @@ export class UserService {
   }
  
   deleteUser(data:any){
-   return this.http.delete<any>(`${this.API}/user/delete`,data)
+   return this.http.post<any>(`${this.API}/user/delete`,data)
   }
   
 }

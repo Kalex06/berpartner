@@ -26,7 +26,7 @@ user_router.patch('/update/phone',authMiddleware,passwordMiddleware,updatePhoneN
 user_router.patch('/update/username',authMiddleware,passwordMiddleware,updateUsername);
 user_router.patch('/update/password',authMiddleware,passwordMiddleware,updatePassword);
 user_router.patch('/update/address',authMiddleware,passwordMiddleware,updateAddress);
-user_router.delete('/delete',authMiddleware,passwordMiddleware,deleteUser);
+user_router.post('/delete',authMiddleware,passwordMiddleware,deleteUser);
 user_router.delete('/admin/delete/:id',authMiddleware,adminMiddleware,deleteUserByAdmin);
 
 
