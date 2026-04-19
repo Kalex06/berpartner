@@ -74,9 +74,9 @@ CREATE TABLE eszkozok (
     leiras TEXT,
     tulajdonos_id INT NOT NULL,
     letrehozva_ekkor TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (tulajdonos_id) REFERENCES felhasznalok(id),
-    FOREIGN KEY (kategoria_id) REFERENCES kategoriak(id),
-    FOREIGN KEY (allapot_id) REFERENCES allapotok(id)
+    FOREIGN KEY (tulajdonos_id) REFERENCES felhasznalok(id) ON DELETE CASCADE,
+    FOREIGN KEY (kategoria_id) REFERENCES kategoriak(id) ON DELETE CASCADE,
+    FOREIGN KEY (allapot_id) REFERENCES allapotok(id) ON DELETE CASCADE
 );
 
 
@@ -84,7 +84,7 @@ CREATE TABLE eszkoz_kepek(
     id INT AUTO_INCREMENT PRIMARY KEY,
     eszkoz_id INT NOT NULL,
     kep_nev VARCHAR(255),
-    FOREIGN KEY (eszkoz_id) REFERENCES eszkozok(id)
+    FOREIGN KEY (eszkoz_id) REFERENCES eszkozok(id) ON DELETE CASCADE
 );
 
 CREATE TABLE berlesek (
@@ -95,9 +95,9 @@ CREATE TABLE berlesek (
     datum_tol DATE NOT NULL,
     datum_ig DATE NOT NULL,
     statusz ENUM('pending','accepted','rejected') NOT NULL DEFAULT "pending",
-    FOREIGN KEY (eszkoz_id) REFERENCES eszkozok(id),
-    FOREIGN KEY (berlo_id) REFERENCES felhasznalok(id),
-    FOREIGN KEY (tulajdonos_id) REFERENCES felhasznalok(id)
+    FOREIGN KEY (eszkoz_id) REFERENCES eszkozok(id) ON DELETE CASCADE,
+    FOREIGN KEY (berlo_id) REFERENCES felhasznalok(id) ON DELETE CASCADE,
+    FOREIGN KEY (tulajdonos_id) REFERENCES felhasznalok(id) ON DELETE CASCADE
 );
 
 CREATE TABLE uzenetek(
@@ -111,9 +111,9 @@ CREATE TABLE uzenetek(
     megnyitva BOOLEAN DEFAULT FALSE,
     statusz ENUM('pending','accepted','rejected') NULL DEFAULT NULL,
     letrehozva_ekkor TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (felado_id) REFERENCES felhasznalok(id),
-    FOREIGN KEY (cimzett_id) REFERENCES felhasznalok(id),
-    FOREIGN KEY (berles_id) REFERENCES berlesek(id)
+    FOREIGN KEY (felado_id) REFERENCES felhasznalok(id) ON DELETE CASCADE,
+    FOREIGN KEY (cimzett_id) REFERENCES felhasznalok(id) ON DELETE CASCADE,
+    FOREIGN KEY (berles_id) REFERENCES berlesek(id) ON DELETE CASCADE
 
 );
 

@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 async function passwordMiddleware(req,res,next){
  try {
-         
+
          const { email, password } = req.body;
          const user = await User.findUserByemail(email);
          if (!user) {
@@ -23,7 +23,7 @@ async function passwordMiddleware(req,res,next){
 
      } catch (err) {
          console.error(err);
-         res.status(500).json({ message: 'Hiba történt  közben' })
+         res.status(500).json({ message: 'Hiba történt a jelszó ellenörzése közben' })
      }       
 
 

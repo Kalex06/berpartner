@@ -240,6 +240,7 @@ async function deleteUser(req,res) {
         
     }
     catch(err){
+        console.log(err);
         res.status(500).json({ message: 'Hiba a felhasználó törlésekor.', error: err.message });
     }
     
