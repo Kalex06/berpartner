@@ -271,6 +271,31 @@ async function deleteItem(req,res) {
             return res.status(404).json({message:"Hiányos ID!"});
         }
 
+        const match = await Item.getItemById(id);
+
+        if(!match.tulajdonos_id==req.user.id && req.user.jogosultsag != "admin"){
+            return res.status(403).json({ message: 'Nincs jogosultságod törölni ezt a bejegyzést' });
+        }
+
+
+        const pictures = await Item.getItemPicById(id);
+
+        
+        for (let index = 0; index < pictures.length; index++) {
+            try{
+                const filePath = path.join(__dirname,'..','upload','items_picture',pictures[index].kep_nev);
+                console.log(filePath);
+                await fs.unlink(filePath);
+            }
+            catch(fileErr){
+                return res.status(404).json({message:"Hiba a képek törlésekor! ",fileErr});
+            }
+        
+            
+        }
+    
+
+
         const row = await Item.deleteItemById(id);
 
       if(row===0){

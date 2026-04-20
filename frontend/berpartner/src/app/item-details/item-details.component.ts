@@ -158,7 +158,21 @@ export class ItemDetailsComponent {
     this.router.navigate([`/edit-post/${id}`]);
   }
   
-  deletePost() {
+  deletePost(id:number) {
+    this.item.deleteItem(id).subscribe({
+      next:()=>{
+        this.toastr.success("Sikeres törlés!");
+        this.router.navigate(['home']);
+      },
+      error:(err: HttpErrorResponse)=>{
+        if(err.status == 403 || err.status==401){
+          this.router.navigate(['login']);
+        }
+        else{
+          this.toastr.error(err.error.message,err.error)
+        }
+      }
+    })
     
   }
 
