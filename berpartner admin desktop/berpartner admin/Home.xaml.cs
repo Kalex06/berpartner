@@ -132,7 +132,7 @@ namespace berpartner_admin
 
                 int id = user.id;
 
-                if (MessageBox.Show($"Biztosan törli a felhasználót?\n\t{user.nev}", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                if (MessageBox.Show($"Biztosan törli a felhasználót?\n\n\t{user.nev}", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
 
 

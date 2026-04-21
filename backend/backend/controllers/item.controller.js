@@ -44,7 +44,7 @@ async function uploadItem(req,res){
 
       const savedPic = await Item.uploadpictures(connection,pictures);
         await connection.commit();
-        res.status(200).json({message:`Sikeres feltöltés! Adat Id: ${savedItemid}  Képek száma: ${savedPic}`});
+        res.status(201).json({message:`Sikeres feltöltés! Adat Id: ${savedItemid}  Képek száma: ${savedPic}`});
     }
     catch(err){
             await connection.rollback();

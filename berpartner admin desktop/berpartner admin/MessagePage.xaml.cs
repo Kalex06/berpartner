@@ -135,15 +135,23 @@ namespace berpartner_admin
                 }
                 else
                 {
-                
-                
+
+                    var message = new
+                    {
+                        felado_id = (string)null,
+                        cim = targyTextBox.Text,
+                        tartalom = uzenetTextBox.Text,
+                    };
+                    respons = await client.PostAsJsonAsync("http://localhost:3000/message/send/everyone", message);
+
                 }
 
                 
 
                 if (respons.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Üzenet elküldve!", "Sikeres küldés", MessageBoxButton.OK, MessageBoxImage.Information);
+                    
+                    MessageBox.Show("Üzenet(ek) elküldve!", "Sikeres küldés", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
