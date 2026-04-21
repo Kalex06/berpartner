@@ -51,7 +51,7 @@ async function uploadRent(req,res) {
 
         const savedmassage = await Message.createMessage(messageData,connection);
          await connection.commit(); 
-        res.status(200).json({message:`Kérés feltöltve! id:${id} , üzenetId: ${savedmassage}`,})
+        res.status(201).json({message:`Kérés feltöltve! id:${id} , üzenetId: ${savedmassage}`,})
     } catch (err) {
 
         await connection.rollback();
