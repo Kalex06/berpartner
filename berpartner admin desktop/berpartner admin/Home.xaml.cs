@@ -38,7 +38,6 @@ namespace berpartner_admin
             public string nev { get; set; }
             public string telefonszam { get; set; }
             public string email { get; set; }
-            public int berelt_eszkozok_szama { get; set; }
             public string jogosultsag { get; set; }
             public string iranyitoszam { get; set; }
             public string varos { get; set; }

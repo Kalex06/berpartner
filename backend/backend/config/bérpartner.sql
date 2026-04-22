@@ -8,7 +8,6 @@ CREATE TABLE felhasznalok (
     telefonszam VARCHAR(30) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     jelszo VARCHAR(255) NOT NULL,
-    berelt_eszkozok_szama INT DEFAULT 0,
     jogosultsag ENUM('user','admin') NOT NULL,
     iranyitoszam VARCHAR(100) NOT NULL,
     varos VARCHAR(100) NOT NULL,
