@@ -17,11 +17,18 @@ async function getOneTypeCategory(id) {
 }
 
 
-async function getMainCategorys() {
+async function getCategories() {
+  const [rows] = await pool.execute(
+    'SELECT id,kategoria FROM kategoriak ORDER BY id'
+  );
+  return rows;
+}
+
+async function getMainCategories() {
   const [rows] = await pool.execute(
     'SELECT * FROM foKategoriak ORDER BY id'
   );
   return rows;
 }
 
-module.exports = {findCategory,getOneTypeCategory,getMainCategorys};
+module.exports = {findCategory,getOneTypeCategory,getMainCategories,getCategories};
