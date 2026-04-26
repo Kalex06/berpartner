@@ -4,14 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:berpartner_admin"
-      mc:Ignorable="d"
+      mc:Ignorable="d" 
       Title="TablesPage">
 
     <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
         
     <Grid Background="DarkBlue" Loaded="Grid_Loaded">
         <Label HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,720,400" Foreground="White" FontSize="30">Főkategóriák</Label>
-        <ListBox HorizontalAlignment="Center" HorizontalContentAlignment="Stretch" Foreground="White" Background="#FF152B81"  x:Name="ListBoxmainCategories" SelectedValuePath="id" VerticalAlignment="Top" Margin="0,100,600,0" Width="300" Height="400">
+            <Button  Background="#FF2E4ECF" FontSize="18" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" VerticalAlignment="Top" Width="35" Height="35" Click="Add_Click_mainCategory"  Margin="0,50,470,400" FontFamily="Segoe MDL2 Assets" Content="&#xE710;"/>
+            <ListBox HorizontalAlignment="Center" HorizontalContentAlignment="Stretch" Foreground="White" Background="#FF152B81"  x:Name="ListBoxmainCategories" SelectedValuePath="id" VerticalAlignment="Top" Margin="0,100,600,0" Width="300" Height="400" SelectionChanged="ListBoxmainCategories_SelectionChanged">
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -24,28 +25,82 @@
 
                         <TextBlock Text="{Binding fo_kategoria}" x:Name="TextDisplay" VerticalAlignment="Center" />
                             
-                        <TextBox x:Name="TextEdit" Text="{Binding fo_kategoria, UpdateSourceTrigger=LostFocus}" 
+                        <TextBox x:Name="TextEdit" Text="{Binding fo_kategoria, UpdateSourceTrigger=Explicit}" 
                                 VerticalAlignment="Center" Visibility="Collapsed" />
                         
                             <StackPanel x:Name="NormalMode" Orientation="Horizontal" Grid.Column="1">
                                 <Button Content="&#xE70F;" Tag="{Binding ElementName=NormalMode}"  Background="#FF2E4ECF" FontSize="18" Foreground="LightGreen" FontFamily="Segoe MDL2 Assets" Click="Edit_Click" Margin="2"/>
-                            <Button Content="&#xE74D;" Background="#FF2E4ECF" FontSize="18" Foreground="Red" Click="Delete_Click" FontFamily="Segoe MDL2 Assets" Margin="2"/>
+                            <Button Content="&#xE74D;" Background="#FF2E4ECF" FontSize="18" Foreground="Red" Click="Delete_Click_mainCategory" FontFamily="Segoe MDL2 Assets" Margin="2"/>
                         </StackPanel>
 
                         <StackPanel x:Name="EditMode" Orientation="Horizontal" Grid.Column="1" Visibility="Collapsed">
-                                <Button Content="&#xE73E;" FontSize="18" FontWeight="Bold"  FontFamily="Segoe MDL2 Assets" Foreground="LightGreen"  Tag="{Binding ElementName=EditMode}"  Click="Save_Click" Background="#FF2E4ECF" Margin="2"/>
-                                <Button Content="❌" Foreground="Red" Tag="{Binding ElementName=EditMode}" Click="Cancel_Click" Background="#FF2E4ECF" Margin="2"/>
+                                <Button Content="&#xE73E;" FontSize="18" FontWeight="Bold" x:Name="btnEdit"   FontFamily="Segoe MDL2 Assets" Foreground="LightGreen"  Tag="{Binding ElementName=EditMode}"  Click="Save_Click_mainCategory" Background="#FF2E4ECF" Margin="2"/>
+                                <Button Content="❌" Foreground="Red" x:Name="btnCancel"  Tag="{Binding ElementName=EditMode}" Click="Cancel_Click" Background="#FF2E4ECF" Margin="2"/>
                         </StackPanel>
+                        
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <Label HorizontalAlignment="Center" VerticalAlignment="Top" Margin="450,40,0,400" Foreground="White" FontSize="30">Kategóriák</Label>
-        <ListBox HorizontalAlignment="Center" VerticalAlignment="Top" Margin="600,100,0,0" Width="300" Height="400">
+            <Button  Background="#FF2E4ECF" FontSize="18" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" VerticalAlignment="Top" Width="35" Height="35" Click="Add_Click_category"  Margin="670,50,0,400" FontFamily="Segoe MDL2 Assets" Content="&#xE710;"/>
+            <ListBox HorizontalAlignment="Center" HorizontalContentAlignment="Stretch" Foreground="White" Background="#FF152B81"  x:Name="ListBoxsubCategories" SelectedValuePath="id" VerticalAlignment="Top" Margin="600,100,0,0" Width="300" Height="400">
 
-        </ListBox>
+                <ListBox.Style>
+                    <Style TargetType="ListBox">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedIndex, ElementName=ListBoxmainCategories}" Value="-1">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBox">
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                <TextBox Text="Válassz ki először egy főkategóriát!" 
+                                             Foreground="White" 
+                                             Background="Transparent"
+                                             FontStyle="Italic"
+                                             BorderThickness="0"
+                                             VerticalAlignment="Top" 
+                                             Margin="10"
+                                             FontSize="16" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.Style>
+                
+                
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <TextBlock Text="{Binding kategoria}" x:Name="TextDisplay" VerticalAlignment="Center" />
+
+                            <TextBox x:Name="TextEdit" Text="{Binding kategoria, UpdateSourceTrigger=Explicit}" 
+                            VerticalAlignment="Center" Visibility="Collapsed" />
+
+                            <StackPanel x:Name="NormalMode" Orientation="Horizontal" Grid.Column="1">
+                                <Button Content="&#xE70F;" Tag="{Binding ElementName=NormalMode}"  Background="#FF2E4ECF" FontSize="18" Foreground="LightGreen" FontFamily="Segoe MDL2 Assets" Click="Edit_Click" Margin="2"/>
+                                <Button Content="&#xE74D;" Background="#FF2E4ECF" FontSize="18" Foreground="Red" Click="Delete_Click_category" FontFamily="Segoe MDL2 Assets" Margin="2"/>
+                            </StackPanel>
+
+                            <StackPanel x:Name="EditMode" Orientation="Horizontal" Grid.Column="1" Visibility="Collapsed">
+                                <Button Content="&#xE73E;" FontSize="18" FontWeight="Bold" x:Name="btnEdit"  FontFamily="Segoe MDL2 Assets" Foreground="LightGreen"  Tag="{Binding ElementName=EditMode}"  Click="Save_Click_category" Background="#FF2E4ECF" Margin="2"/>
+                                <Button Content="❌" Foreground="Red" x:Name="btnCancel" Tag="{Binding ElementName=EditMode}" Click="Cancel_Click" Background="#FF2E4ECF" Margin="2"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         <Label HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,650,770,0" Foreground="White" FontSize="30">Állapotok</Label>
-        <ListBox HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,720,600,0" Width="300" Height="400">
+        <ListBox HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,720,600,30" Width="300" Height="400">
 
         </ListBox>
 

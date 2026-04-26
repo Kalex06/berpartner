@@ -31,7 +31,7 @@ CREATE TABLE kategoriak (
      id INT AUTO_INCREMENT PRIMARY KEY,
      fo_kategoriaId INT NOT NULL,
      kategoria VARCHAR(100) NOT NULL,
-     FOREIGN KEY (fo_kategoriaId) REFERENCES foKategoriak(id)
+     FOREIGN KEY (fo_kategoriaId) REFERENCES foKategoriak(id) ON DELETE CASCADE
 );
 
 INSERT INTO kategoriak (fo_kategoriaId, kategoria) VALUES 

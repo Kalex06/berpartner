@@ -117,69 +117,88 @@ namespace berpartner_admin
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", App.Token);
                 HttpResponseMessage respons = null;
 
-                if (valakinekRadio.IsChecked == true)
-                {
-                    var message = new { 
-                        felado_id = (string)null,
-                        cimzett_id = ComboBox1.SelectedValue,
-                        berles_id = (string)null, 
-                        cim = targyTextBox.Text,
-                        tartalom = uzenetTextBox.Text,
-                        tipus = "message",
-                    };
-
-
-                    respons = await client.PostAsJsonAsync("http://localhost:3000/message/send",message);
-
-
-                }
-                else
-                {
-
-                    var message = new
-                    {
-                        felado_id = (string)null,
-                        cim = targyTextBox.Text,
-                        tartalom = uzenetTextBox.Text,
-                    };
-                    respons = await client.PostAsJsonAsync("http://localhost:3000/message/send/everyone", message);
-
-                }
-
-                
-
-                if (respons.IsSuccessStatusCode)
+                if (targyTextBox.Text != "" || uzenetTextBox.Text != "")
                 {
                     
-                    MessageBox.Show("Üzenet(ek) elküldve!", "Sikeres küldés", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        if (valakinekRadio.IsChecked == true)
+                        {
+                        if (ComboBox1.SelectedIndex != -1)
+                        {
+                            var message = new
+                            {
+                                felado_id = (string)null,
+                                cimzett_id = ComboBox1.SelectedValue,
+                                berles_id = (string)null,
+                                cim = targyTextBox.Text,
+                                tartalom = uzenetTextBox.Text,
+                                tipus = "message",
+                            };
+
+
+                            respons = await client.PostAsJsonAsync("http://localhost:3000/message/send", message);
+                        }
+                        else {
+                        MessageBox.Show("Nincs Címzett kiválasztva", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+
+                        }
+
+
+                        }
+                        else
+                        {
+
+                            var message = new
+                            {
+                                felado_id = (string)null,
+                                cim = targyTextBox.Text,
+                                tartalom = uzenetTextBox.Text,
+                            };
+                            respons = await client.PostAsJsonAsync("http://localhost:3000/message/send/everyone", message);
+
+                        }
+
+
+
+                        if (respons.IsSuccessStatusCode)
+                        {
+
+                            MessageBox.Show("Üzenet(ek) elküldve!", "Sikeres küldés", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        else
+                        {
+
+                            if (respons.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                            {
+
+                                MessageBox.Show("Nincs jogosultságod ehhez!", "Hiányzó jogosultság", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MainWindow main = new MainWindow();
+                                main.Show();
+                                HomeWindow home = new HomeWindow();
+                                home.Close();
+
+
+
+                            }
+                            else
+                            {
+
+                                MessageBox.Show(respons.StatusCode.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                            }
+
+
+
+                        }
+
                 }
-                else
-                {
+                else {
 
-                    if (respons.StatusCode == System.Net.HttpStatusCode.Forbidden)
-                    {
-
-                        MessageBox.Show("Nincs jogosultságod ehhez!", "Hiányzó jogosultság", MessageBoxButton.OK, MessageBoxImage.Error);
-                        MainWindow main = new MainWindow();
-                        main.Show();
-                        HomeWindow home = new HomeWindow();
-                        home.Close();
-
-
-
-                    }
-                    else
-                    {
-
-                        MessageBox.Show(respons.StatusCode.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                    }
-
-
-
+                    MessageBox.Show("Az üzenetnek kötelező tárgyat és tartalmat adni.", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error); 
+                
                 }
-
-            }
+           }
             catch (HttpRequestException)
             {
                 MessageBox.Show("Nem sikerült elérni a szervert!", "Hálózati hiba", MessageBoxButton.OK, MessageBoxImage.Error);
