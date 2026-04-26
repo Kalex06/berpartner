@@ -173,7 +173,7 @@ async function sendMessageForEveryone(req,res) {
 
         const message = req.body;
         if(!message.cim||!message.tartalom){
-            return res.status(404).json({message:"Hiányzó adatok!"});
+            return res.status(400).json({message:"Hiányzó bemeneti adatok!"});
         }
 
         const sendedMessage = await Message.sendMessageForEveryOne(message);
