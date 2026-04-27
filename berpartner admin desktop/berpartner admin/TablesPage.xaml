@@ -100,9 +100,36 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         <Label HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,650,770,0" Foreground="White" FontSize="30">Állapotok</Label>
-        <ListBox HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,720,600,30" Width="300" Height="400">
+            <Button  Background="#FF2E4ECF" FontSize="18" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" VerticalAlignment="Top" Width="35" Height="35" Click="Add_Click_condition"  Margin="0,660,570,0" FontFamily="Segoe MDL2 Assets" Content="&#xE710;"/>
+            <ListBox  HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" Foreground="White" Background="#FF152B81"  Margin="0,720,600,30" x:Name="ListBoxCondition" Width="300" Height="400">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-        </ListBox>
+
+                            <TextBlock Text="{Binding allapot}" x:Name="TextDisplay" VerticalAlignment="Center" />
+
+                            <TextBox x:Name="TextEdit" Text="{Binding allapot, UpdateSourceTrigger=Explicit}" 
+                    VerticalAlignment="Center" Visibility="Collapsed" />
+
+                            <StackPanel x:Name="NormalMode" Orientation="Horizontal" Grid.Column="1">
+                                <Button Content="&#xE70F;" Tag="{Binding ElementName=NormalMode}"  Background="#FF2E4ECF" FontSize="18" Foreground="LightGreen" FontFamily="Segoe MDL2 Assets" Click="Edit_Click" Margin="2"/>
+                                <Button Content="&#xE74D;" Background="#FF2E4ECF" FontSize="18" Foreground="Red" Click="Delete_Click_condition" FontFamily="Segoe MDL2 Assets" Margin="2"/>
+                            </StackPanel>
+
+                            <StackPanel x:Name="EditMode" Orientation="Horizontal" Grid.Column="1" Visibility="Collapsed">
+                                <Button Content="&#xE73E;" FontSize="18" FontWeight="Bold" x:Name="btnEdit"   FontFamily="Segoe MDL2 Assets" Foreground="LightGreen"  Tag="{Binding ElementName=EditMode}"  Click="Save_Click_condition" Background="#FF2E4ECF" Margin="2"/>
+                                <Button Content="❌" Foreground="Red" x:Name="btnCancel"  Tag="{Binding ElementName=EditMode}" Click="Cancel_Click" Background="#FF2E4ECF" Margin="2"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
     </Grid>
     </ScrollViewer>
