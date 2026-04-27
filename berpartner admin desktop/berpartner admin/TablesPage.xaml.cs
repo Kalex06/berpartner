@@ -29,12 +29,13 @@ namespace berpartner_admin
             InitializeComponent();
         }
 
-        class MainCategory {
-        
-        
+        class MainCategory
+        {
+
+
             public int id { get; set; }
             public string fo_kategoria { get; set; }
-        
+
         }
 
         class SubCategory
@@ -46,11 +47,21 @@ namespace berpartner_admin
 
         }
 
+        class Condition
+        {
+
+
+            public int id { get; set; }
+            public string allapot { get; set; }
+
+        }
+
         private static readonly HttpClient client = new HttpClient();
 
 
         ObservableCollection<MainCategory> mainCategories = new ObservableCollection<MainCategory>();
         ObservableCollection<SubCategory> categories = new ObservableCollection<SubCategory>();
+        ObservableCollection<Condition> conditions = new ObservableCollection<Condition>();
         private async void Grid_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -65,12 +76,23 @@ namespace berpartner_admin
                 {
 
                     mainCategories = await respons.Content.ReadFromJsonAsync<ObservableCollection<MainCategory>>();
+                    ListBoxmainCategories.ItemsSource = mainCategories;
 
-                   
-                     ListBoxmainCategories.ItemsSource = mainCategories;
+                    respons = await client.GetAsync("http://localhost:3000/condition/all");
+
+                    if (respons.IsSuccessStatusCode)
+                    {
+
+                        conditions = await respons.Content.ReadFromJsonAsync<ObservableCollection<Condition>>();
+                        ListBoxCondition.ItemsSource = conditions;
 
 
 
+                    }
+                    else
+                    {
+                        MessageBox.Show(respons.StatusCode.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
                 {
@@ -143,7 +165,8 @@ namespace berpartner_admin
             var text = (TextBlock)sorGrid.FindName("TextDisplay");
             var textedit = (TextBox)sorGrid.FindName("TextEdit");
 
-            if (MessageBox.Show($"Biztos módosítani akarja ezt?\n\n\t{mainCategory.fo_kategoria}","Megerősítés",MessageBoxButton.YesNo,MessageBoxImage.Warning) == MessageBoxResult.No) {
+            if (MessageBox.Show($"Biztos módosítani akarja ezt?\n\n\t{mainCategory.fo_kategoria}", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
                 return;
             }
 
@@ -158,13 +181,13 @@ namespace berpartner_admin
 
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", App.Token);
 
-                    HttpResponseMessage respons = await client.PatchAsJsonAsync($"http://localhost:3000/category/main/update",mainCategory);
+                    HttpResponseMessage respons = await client.PatchAsJsonAsync($"http://localhost:3000/category/main/update", mainCategory);
 
                     if (respons.IsSuccessStatusCode)
                     {
                         Grid_Loaded(null, null);
-                        MessageBox.Show("Sikeres Frissítés!","Értesítés",MessageBoxButton.OK,MessageBoxImage.Information);
-                        
+                        MessageBox.Show("Sikeres Frissítés!", "Értesítés", MessageBoxButton.OK, MessageBoxImage.Information);
+
 
                     }
                     else
@@ -207,9 +230,10 @@ namespace berpartner_admin
 
             }
 
-            else {
+            else
+            {
 
-                MessageBox.Show("Nem lehet üres karakterlánc!","Hiba",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show("Nem lehet üres karakterlánc!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             normalPanel.Visibility = Visibility.Visible;
@@ -286,7 +310,7 @@ namespace berpartner_admin
 
             textedit.Focus();
             textedit.SelectAll();
-            
+
 
 
         }
@@ -468,14 +492,15 @@ namespace berpartner_admin
 
         }
 
-        private  void Add_Click_mainCategory(object sender, RoutedEventArgs e)
+        private void Add_Click_mainCategory(object sender, RoutedEventArgs e)
         {
             int id = 0;
-            if (ListBoxmainCategories.Items.Count > 0) {
+            if (ListBoxmainCategories.Items.Count > 0)
+            {
 
                 var lastdata = ListBoxmainCategories.Items[ListBoxmainCategories.Items.Count - 1] as MainCategory;
 
-                id = lastdata.id+1;
+                id = lastdata.id + 1;
             }
             MainCategory new_MainCategory = new MainCategory { id = id, fo_kategoria = "" };
 
@@ -486,13 +511,13 @@ namespace berpartner_admin
                 int utolsoIndex = ListBoxmainCategories.Items.Count - 1;
                 var utolsoSor = ListBoxmainCategories.ItemContainerGenerator.ContainerFromIndex(utolsoIndex) as ListBoxItem;
 
-                    ContentPresenter cp = null;
-                    for (int i = 0; i < VisualTreeHelper.GetChildrenCount(utolsoSor); i++)
-                    {
-                        var child = VisualTreeHelper.GetChild(utolsoSor, i);
-                        if (child is Border b) child = b.Child;
-                        if (child is ContentPresenter presenter) { cp = presenter; break; }
-                    }
+                ContentPresenter cp = null;
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(utolsoSor); i++)
+                {
+                    var child = VisualTreeHelper.GetChild(utolsoSor, i);
+                    if (child is Border b) child = b.Child;
+                    if (child is ContentPresenter presenter) { cp = presenter; break; }
+                }
 
                 if (cp != null)
                 {
@@ -504,22 +529,25 @@ namespace berpartner_admin
                     StackPanel editPanel = dt.FindName("EditMode", cp) as StackPanel;
                     TextBox textedit = dt.FindName("TextEdit", cp) as TextBox;
                     TextBlock textDisplay = dt.FindName("TextDisplay", cp) as TextBlock;
-                    
+
                     btnEdit.Click -= Save_Click_mainCategory;
                     btnEdit.Click += upload_Click_Maincategory;
 
                     btnCancel.Click -= Cancel_Click;
                     btnCancel.Click += remove_Click_MainCategory;
 
-                    if (normalPanel != null){                    
+                    if (normalPanel != null)
+                    {
                         normalPanel.Visibility = Visibility.Collapsed;
                     }
 
-                    if (editPanel != null){                      
+                    if (editPanel != null)
+                    {
                         editPanel.Visibility = Visibility.Visible;
                     }
 
-                    if (textDisplay != null) {                    
+                    if (textDisplay != null)
+                    {
                         textDisplay.Visibility = Visibility.Collapsed;
                     }
 
@@ -530,7 +558,7 @@ namespace berpartner_admin
                         textedit.SelectAll();
                     }
                 }
-                
+
             }));
         }
 
@@ -546,7 +574,7 @@ namespace berpartner_admin
             }
             SubCategory new_category = new SubCategory { id = id, kategoria = "" };
 
-             categories.Add(new_category);
+            categories.Add(new_category);
 
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
@@ -695,8 +723,8 @@ namespace berpartner_admin
             text.Visibility = Visibility.Visible;
             textedit.Visibility = Visibility.Collapsed;
 
-        
-            }
+
+        }
 
         private void remove_Click_MainCategory(object sender, RoutedEventArgs e)
         {
@@ -706,7 +734,7 @@ namespace berpartner_admin
 
             mainCategories.Remove(removeItem);
 
-            
+
         }
 
         private async void upload_Click_category(object sender, RoutedEventArgs e)
@@ -813,6 +841,304 @@ namespace berpartner_admin
 
             categories.Remove(removeItem);
         }
+
+        private async void Save_Click_condition(object sender, RoutedEventArgs e)
+        {
+            var gomb = (Button)sender;
+            var condition = (Condition)gomb.DataContext;
+
+            var editPanel = (StackPanel)gomb.Tag;
+            var sorGrid = (Grid)editPanel.Parent;
+
+            var normalPanel = (StackPanel)sorGrid.FindName("NormalMode");
+            var text = (TextBlock)sorGrid.FindName("TextDisplay");
+            var textedit = (TextBox)sorGrid.FindName("TextEdit");
+
+            if (MessageBox.Show($"Biztos módosítani akarja ezt?\n\n\t{condition.allapot}", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+                return;
+            }
+
+            if (textedit.Text.Trim() != "")
+            {
+
+                BindingExpression binding = textedit.GetBindingExpression(TextBox.TextProperty);
+                binding.UpdateSource();
+
+                try
+                {
+
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", App.Token);
+
+                    HttpResponseMessage respons = await client.PatchAsJsonAsync($"http://localhost:3000/condition/update", condition);
+
+                    if (respons.IsSuccessStatusCode)
+                    {
+                        Grid_Loaded(null, null);
+                        MessageBox.Show("Sikeres Frissítés!", "Értesítés", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    }
+                    else
+                    {
+
+                        if (respons.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                        {
+
+                            MessageBox.Show("Nincs jogosultságod ehhez!", "Hiányzó jogosultság", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MainWindow main = new MainWindow();
+                            main.Show();
+                            HomeWindow home = new HomeWindow();
+                            home.Close();
+
+                        }
+                        else
+                        {
+
+                            MessageBox.Show(respons.StatusCode.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                        }
+
+                    }
+
+                }
+                catch (HttpRequestException)
+                {
+                    MessageBox.Show("Nem sikerült elérni a szervert!", "Hálózati hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
+        }
+
+        private async void Delete_Click_condition(object sender, RoutedEventArgs e)
+        {
+            var gomb = (Button)sender;
+            var condition = (Condition)gomb.DataContext;
+
+            if (MessageBox.Show($"FIGYELEM!\nHa törli ezt az állapotot akkor az összes eszköz ezen az állapoton belül és az összes ebbe az állapotban meghirdetett eszköz és a hozzá kapcsolódó adatok törlésre kerül!\nBiztos törölni akarja ezt?\n\n\t{condition.allapot}", "Megerősítés", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+                return;
+            }
+
+            try
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", App.Token);
+
+                HttpResponseMessage respons = await client.DeleteAsync($"http://localhost:3000/condition/delete/{condition.id}");
+
+                if (respons.IsSuccessStatusCode)
+                {
+                    Grid_Loaded(null, null);
+                    MessageBox.Show("Sikeres Törlés!", "Értesítés", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+
+                    if (respons.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    {
+                        MessageBox.Show("Nincs jogosultságod ehhez!", "Hiányzó jogosultság", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MainWindow main = new MainWindow();
+                        main.Show();
+                        HomeWindow home = new HomeWindow();
+                        home.Close();
+                    }
+                    else
+                    {
+
+                        MessageBox.Show(respons.StatusCode.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Nem sikerült elérni a szervert!", "Hálózati hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private  void Add_Click_condition(object sender, RoutedEventArgs e)
+        {
+            int id = 0;
+            if (ListBoxCondition.Items.Count > 0)
+            {
+
+                var lastdata = ListBoxCondition.Items[ListBoxCondition.Items.Count - 1] as Condition;
+
+                id = lastdata.id + 1;
+            }
+            Condition new_condition = new Condition { id = id, allapot = "" };
+
+            conditions.Add(new_condition);
+
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
+            {
+                int utolsoIndex = ListBoxCondition.Items.Count - 1;
+                var utolsoSor = ListBoxCondition.ItemContainerGenerator.ContainerFromIndex(utolsoIndex) as ListBoxItem;
+
+                ContentPresenter cp = null;
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(utolsoSor); i++)
+                {
+                    var child = VisualTreeHelper.GetChild(utolsoSor, i);
+                    if (child is Border b) child = b.Child;
+                    if (child is ContentPresenter presenter) { cp = presenter; break; }
+                }
+
+                if (cp != null)
+                {
+                    DataTemplate dt = cp.ContentTemplate;
+
+
+                    Button btnEdit = dt.FindName("btnEdit", cp) as Button;
+                    Button btnCancel = dt.FindName("btnCancel", cp) as Button;
+                    StackPanel normalPanel = dt.FindName("NormalMode", cp) as StackPanel;
+                    StackPanel editPanel = dt.FindName("EditMode", cp) as StackPanel;
+                    TextBox textedit = dt.FindName("TextEdit", cp) as TextBox;
+                    TextBlock textDisplay = dt.FindName("TextDisplay", cp) as TextBlock;
+
+
+
+                    btnEdit.Click -= Save_Click_condition;
+                    btnEdit.Click += upload_Click_condition;
+
+                    btnCancel.Click -= Cancel_Click;
+                    btnCancel.Click += remove_Click_condition;
+
+                    if (normalPanel != null)
+                    {
+                        normalPanel.Visibility = Visibility.Collapsed;
+                    }
+
+                    if (editPanel != null)
+                    {
+                        editPanel.Visibility = Visibility.Visible;
+                    }
+
+                    if (textDisplay != null)
+                    {
+                        textDisplay.Visibility = Visibility.Collapsed;
+                    }
+
+                    if (textedit != null)
+                    {
+                        textedit.Visibility = Visibility.Visible;
+                        textedit.Focus();
+                        textedit.SelectAll();
+                    }
+                }
+
+            }));
+
+        }
+
+
+        private async void remove_Click_condition(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+
+            var removeItem = button.DataContext as Condition;
+
+            conditions.Remove(removeItem);
+        }
+
+        private async void upload_Click_condition(object sender, RoutedEventArgs e)
+        {
+
+            var gomb = (Button)sender;
+            var condition = (Condition)gomb.DataContext;
+
+            var editPanel = (StackPanel)gomb.Tag;
+            var sorGrid = (Grid)editPanel.Parent;
+
+            var normalPanel = (StackPanel)sorGrid.FindName("NormalMode");
+            var text = (TextBlock)sorGrid.FindName("TextDisplay");
+            var textedit = (TextBox)sorGrid.FindName("TextEdit");
+
+
+            if (textedit.Text.Trim() != "")
+            {
+
+                BindingExpression binding = textedit.GetBindingExpression(TextBox.TextProperty);
+                binding.UpdateSource();
+
+                try
+                {
+
+                    var new_condition = new
+                    {
+                        allapot = condition.allapot
+                    };
+
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", App.Token);
+
+                    HttpResponseMessage respons = await client.PostAsJsonAsync($"http://localhost:3000/condition/post", new_condition);
+
+                    if (respons.IsSuccessStatusCode)
+                    {
+                        Grid_Loaded(null, null);
+
+                        gomb.Click -= upload_Click_condition;
+                        gomb.Click += Save_Click_condition;
+                        MessageBox.Show("Új rekord létrehozva!", "Értesítés", MessageBoxButton.OK, MessageBoxImage.Information);
+
+
+                    }
+                    else
+                    {
+
+                        if (respons.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                        {
+
+                            MessageBox.Show("Nincs jogosultságod ehhez!", "Hiányzó jogosultság", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MainWindow main = new MainWindow();
+                            main.Show();
+                            HomeWindow home = new HomeWindow();
+                            home.Close();
+
+
+
+                        }
+                        else
+                        {
+
+                            MessageBox.Show(respons.StatusCode.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                        }
+
+
+
+                    }
+
+                }
+                catch (HttpRequestException)
+                {
+                    MessageBox.Show("Nem sikerült elérni a szervert!", "Hálózati hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.ToString(), "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+
+            }
+
+            else
+            {
+
+                MessageBox.Show("Nem lehet üres karakterlánc!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            normalPanel.Visibility = Visibility.Visible;
+            editPanel.Visibility = Visibility.Collapsed;
+            text.Visibility = Visibility.Visible;
+            textedit.Visibility = Visibility.Collapsed;
+        }
     }
 }
-
