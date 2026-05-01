@@ -104,7 +104,12 @@ async function regist(req, res) {
         const id = await User.createUser(user);
         res.status(201).json({ message: 'Sikeres regisztráció', id });
     } catch (err) {
+        if(err.code === '1062'){
+            res.status(409).json({ message: 'A megadott e-mail cím már foglalt!'});
+        }
+        else{
         res.status(500).json({ message: 'Hiba a felhasználó regisztrálásakor', error: err.message });
+    }
     }
 }
 
