@@ -5,7 +5,8 @@ const pool = mysql.createPool({
     user: "root",
     password: "",
     database: "berpartner",
-    charset: 'utf8mb4'
+    charset: 'utf8mb4',
+    multipleStatements: true 
 });
 
 module.exports = pool;

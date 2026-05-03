@@ -22,7 +22,7 @@ async function createAdmin() {
         
         await pool.execute(
             'INSERT INTO felhasznalok (nev,telefonszam,email, jelszo , jogosultsag,iranyitoszam, varos, utca,haz_szam) VALUES (?, ?, ?, ?, ?,?,?,?,?)',
-            ['ADMIN', '3612345678', 'admin@example.com', hashedPassword, 'admin','6300', 'kalocsa', 'Admin utca', '1.']
+            ['ADMIN', '362012345678', 'admin@example.com', hashedPassword, 'admin','6300', 'kalocsa', 'Admin utca', '1.']
         );
 
         console.log('Admin felhasználó létrehozva.');

@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { identity } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class ItemService {
     let params = new HttpParams().set('sort',sort);
     if(category)
     {
-      params = new HttpParams().set('category',category);
+      params = params.set('category',category);
     }
     return this.http.get<any>(`${this.API}/item/all`,{params});
   }
@@ -34,8 +34,8 @@ export class ItemService {
   
 
   searchItems(sort:string,search:string){
-    let params = new HttpParams().set('sort',sort);
-      params = new HttpParams().set('search',search);
+    let params = new HttpParams().set('sort',sort).set('search',search);
+  
     
     return this.http.get<any>(`${this.API}/item/search`,{params});
   }

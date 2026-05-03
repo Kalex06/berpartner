@@ -41,7 +41,7 @@ INSERT INTO kategoriak (fo_kategoriaId, kategoria) VALUES
 (1,'Szállítás'),
 (1,'Rendezvény'),
 (1,'Elektronika'),
-(2,'Kisteherautó'),
+(2,'Kisteherautó'), 
 (2,'Személyautó'),
 (2,'Teherautó'),
 (2,'Földmunka & Emelőgépek'),
