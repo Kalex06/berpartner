@@ -9,13 +9,13 @@ async function login(req, res) {
         const { email, jelszo } = req.body;
         const user = await User.findUserByemail(email);
         if (!user) {
-            return res.status(404).json({ message: 'Nincs ilyen felhasználó' });
+            return res.status(401).json({ message: 'Nincs ilyen felhasználó' });
         }
 
 
         const isMatch = await bcrypt.compare(jelszo, user.jelszo);
         if (!isMatch) {
-            return res.status(404).json({ message: 'Hibás jelszó' })
+            return res.status(401).json({ message: 'Hibás jelszó' })
 
         }
         const token = jwt.sign(
@@ -28,7 +28,7 @@ async function login(req, res) {
         );
 
 
-        res.json({
+        res.status(200).json({
             token,
             user: {
                 id: user.id,

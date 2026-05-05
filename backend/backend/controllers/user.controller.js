@@ -56,7 +56,7 @@ async function updateProfilePic(req,res) {
 async function getAllUsers(req, res) {
     try {
         const users = await User.getAllUser();
-        res.json(users);
+        res.status(200).json(users);
     }
     catch (err) {
         console.error(err);

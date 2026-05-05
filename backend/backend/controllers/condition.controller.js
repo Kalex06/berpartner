@@ -60,7 +60,7 @@ async function createCondition(req, res) {
 
         const created = await Condition.createCondition(condition);
 
-        res.status(200).json({message:`Sikeres létrehozás: ${created} `});
+        res.status(201).json({message:`Sikeres létrehozás: ${created} `});
 
     }
     catch (err) {

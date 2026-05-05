@@ -5,7 +5,7 @@ const pool = require('../config/db');
 
  async function getAllUser() {
   const [rows] = await pool.execute(
-    'SELECT felhasznalok.id,felhasznalok.nev,felhasznalok.telefonszam,felhasznalok.email,felhasznalok.berelt_eszkozok_szama,felhasznalok.jogosultsag,felhasznalok.iranyitoszam,felhasznalok.varos,felhasznalok.utca,felhasznalok.haz_szam FROM felhasznalok WHERE NOT felhasznalok.jogosultsag = "admin"'
+    'SELECT felhasznalok.id,felhasznalok.nev,felhasznalok.telefonszam,felhasznalok.email,felhasznalok.jogosultsag,felhasznalok.iranyitoszam,felhasznalok.varos,felhasznalok.utca,felhasznalok.haz_szam FROM felhasznalok WHERE NOT felhasznalok.jogosultsag = "admin"'
   );
   return rows;
 }
@@ -38,10 +38,10 @@ async function createUser(user) {
 }
 
 async function updateUser(id, user) {
-  const {nev,telefonszam,email, jelszo ,berelt_eszkozok_szama, jogosultsag, varos, utca,haz_szam} = user;
+  const {nev,telefonszam,email, jelszo , jogosultsag, varos, utca,haz_szam} = user;
   const [rows] = await pool.execute(
-    'UPDATE felhasznalok SET nev = ?,telefonszam = ?,email = ?,jelszo=?,berelt_eszkozok_szama=?,  jogosultsag = ?, varos=?, utca=?, haz_szam=? WHERE id = ?',
-    [nev,telefonszam,email, jelszo ,berelt_eszkozok_szama, jogosultsag, varos, utca,haz_szam, id]
+    'UPDATE felhasznalok SET nev = ?,telefonszam = ?,email = ?,jelszo=?,  jogosultsag = ?, varos=?, utca=?, haz_szam=? WHERE id = ?',
+    [nev,telefonszam,email, jelszo, jogosultsag, varos, utca,haz_szam, id]
   );
   return rows.affectedRows; 
 }

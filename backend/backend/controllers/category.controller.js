@@ -154,10 +154,11 @@ async function createcategory(req, res) {
 
         const created = await Category.createCategory(category);
 
-        res.status(200).json({message:`Sikeres létrehozás: ${created} `});
+        res.status(201).json({message:`Sikeres létrehozás: ${created} `});
 
     }
     catch (err) {
+        console.log(err)
         res.status(500).json({ message: "Hiba a létrehozás közben!" });
     }
 

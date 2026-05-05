@@ -1,0 +1,33 @@
+require('dotenv').config(); 
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const path = require('path');
+const PORT = 3000;
+
+
+
+
+const user_router = require('./routes/user.routes');
+const auth_router = require('./routes/auth.routes');
+const item_router = require('./routes/item.routes');
+const category_router = require('./routes/category.routes');
+const condition_router = require('./routes/condition.routes');
+const rent_router = require('./routes/rent.routes');
+const message_router = require('./routes/message.routes');
+
+app.use(cors());
+app.use(express.json());
+
+app.use('/user', user_router);
+app.use('/auth', auth_router);
+app.use('/item',item_router);
+app.use('/category',category_router);
+app.use('/condition',condition_router);
+app.use('/rent',rent_router);
+app.use('/message',message_router);
+
+app.use('/upload/picture',express.static(path.join(__dirname,'upload','items_picture')));
+app.use('/upload/avatar',express.static(path.join(__dirname,'upload','profile_picture')));
+
+module.exports = app;
