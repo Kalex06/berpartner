@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { ItemService } from '../services/item/item.service';
 import { switchMap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 
 interface SortOption {
@@ -17,7 +18,7 @@ interface SortOption {
   styleUrl: './myitems.component.css'
 })
 export class MyitemsComponent implements OnInit {
-  constructor(private auth: AuthService, private item: ItemService, private router: Router) { }
+  constructor(private auth: AuthService, private item: ItemService, private router: Router,private toastr:ToastrService) { }
 
 
   options: SortOption[] = [
@@ -53,4 +54,23 @@ export class MyitemsComponent implements OnInit {
     })
 
   }
+
+  deletePost(id:number) {
+    this.item.deleteItem(id).subscribe({
+      next:()=>{
+        this.toastr.success("Sikeres törlés!");
+        this.router.navigate(['home']);
+      },
+      error:(err: HttpErrorResponse)=>{
+        if(err.status == 403 || err.status==401){
+          this.router.navigate(['login']);
+        }
+        else{
+          this.toastr.error(err.error.message,err.error)
+        }
+      }
+    })
+    
+  }
+
 }

@@ -18,13 +18,13 @@
                     <div class="location-tag"><mat-icon class="location-icon">place</mat-icon> <span>{{rent.varos}}</span></div>
                 </div>
             </mat-card-content>
-            <mat-card-actions>
-                <strong>{{rent.datum_tol | date:'yyyy. MM. dd.'}}</strong> - <strong>{{rent.datum_ig | date:'yyyy. MM. dd.'}}</strong>
+            <mat-card-actions style="justify-content: center;">
+                <strong>{{rent.datum_tol | date:'yyyy. MM. dd.'}}</strong> <span style="margin: 0 1rem;">-</span>  <strong>{{rent.datum_ig | date:'yyyy. MM. dd.'}}</strong>
             </mat-card-actions>
         </mat-card>
     }@empty{
         <p style="color: aliceblue; grid-column: span 4; text-align: center; margin-top: 40px;">
-            Nincs megjeleníthető bérl!
+            Nincs megjeleníthető bérlésed!
         </p>
     }
     </article>

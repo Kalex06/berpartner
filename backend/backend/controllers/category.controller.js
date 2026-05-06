@@ -26,7 +26,7 @@ async function getCategory(req, res) {
 
         const categories = await Category.getOneTypeCategory(mainCategory_id);
 
-        res.json(categories);
+        res.status(200).json(categories);
 
 
     }

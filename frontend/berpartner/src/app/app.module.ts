@@ -125,7 +125,7 @@ registerLocaleData(localeHu);
     MatDividerModule,
     MatBadgeModule,
     ToastrModule.forRoot(),
-    MatRadioModule
+    MatRadioModule,
   ],
   providers: [
     provideAnimationsAsync(),

@@ -43,7 +43,7 @@ async function getAllRentsByOwner(id) {
     JOIN berlesek ON berlesek.eszkoz_id = eszkozok.id
     JOIN felhasznalok ON eszkozok.tulajdonos_id = felhasznalok.id
     JOIN eszkoz_kepek ON eszkoz_kepek.eszkoz_id = eszkozok.id
-    WHERE berlesek.statusz = "accepted" AND eszkozok.tulajdonos_id = ?
+    WHERE berlesek.statusz = "accepted" AND berlesek.berlo_id = ?
     GROUP BY berlesek.id;`,
     [id]
   );

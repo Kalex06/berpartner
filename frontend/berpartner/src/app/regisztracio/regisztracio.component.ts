@@ -89,6 +89,8 @@ export class RegisztracioComponent {
     });
   }
 
+  IsSucces:any;
+
   submit() {
     const data = {
       nev: `${this.nameFormGroup.value.lastName} ${this.nameFormGroup.value.firstName}`,
@@ -101,11 +103,18 @@ export class RegisztracioComponent {
       haz_szam: this.addressFormGroup.value.house
     };
     this.auth.register(data).subscribe({
-      next: () => this.showSuccess(),
+      next: () => {
+        this.IsSucces=true
+        this.showSuccess();
+      },
       error:(err: HttpErrorResponse)=> {
         if(err.status == 403 || err.status == 401){
           this.router.navigate(['/login']);
   
+        }
+        else if(err.status == 409){
+          this.IsSucces = false;
+          this.toastr.error(err.error.message);
         }
         else{
           this.toastr.error("Regisztráció sikertelen!");

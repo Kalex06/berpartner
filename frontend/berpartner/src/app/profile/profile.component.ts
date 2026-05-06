@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
+import { jwtDecode } from "jwt-decode";
 
 @Component({
   selector: 'app-profile',
@@ -16,11 +17,15 @@ export class ProfileComponent {
   constructor(private auth: AuthService, private item: ItemService,private router:Router, private route: ActivatedRoute, private _user: UserService, private toastr: ToastrService) { }
   user: any = null
   posts: any[] = [];
+  spectatorId:any;
 
   ngOnInit() {
     this.auth.getProfile(Number(this.route.snapshot.paramMap.get('id'))).pipe(
       switchMap(profile => {
         this.user = profile;
+         const token = this.auth.getToken()
+         const decodedToken:any = jwtDecode(token!);
+         this.spectatorId = decodedToken.id;
         return this.item.getItemByOwner(profile.id);
       })
     ).subscribe({

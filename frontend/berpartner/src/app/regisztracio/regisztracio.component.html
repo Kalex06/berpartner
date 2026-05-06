@@ -162,6 +162,7 @@
       <mat-step>
         <ng-template matStepLabel>Befejezés</ng-template>
         <div class="completion-step">
+          @if(IsSucces){
           <mat-icon class="success-icon">check_circle</mat-icon>
           <h3>Köszönjük a regisztrációt!</h3>
           <p>A profilja elkészült. Már nyugodtan használhatja az oldalt!</p>
@@ -172,6 +173,13 @@
               <a routerLink="/login"><button mat-flat-button class="next-btn">Tovább a főoldalra</button></a>
             </div>
           </div>
+        }
+        @else{
+          <mat-icon class="error-icon">cancel</mat-icon>
+          <h3 style="color: #7d2e2e;">A regisztráció nem sikerült!</h3>
+          <p>Úgy tűnik valami gond akadt!</p>
+          <p>Lépjen vissza az adatok módosításához.</p>
+        }
         </div>
       </mat-step>
     </mat-horizontal-stepper>

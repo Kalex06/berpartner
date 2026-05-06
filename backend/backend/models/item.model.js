@@ -49,7 +49,7 @@ async function getItemById(id) {
   const [rows] = await pool.execute(
     `SELECT eszkozok.*,allapotok.allapot,kategoriak.kategoria,felhasznalok.nev AS felhasznalonev,felhasznalok.telefonszam,felhasznalok.email,felhasznalok.varos,felhasznalok.iranyitoszam 
     FROM eszkozok,kategoriak,felhasznalok,allapotok  
-    WHERE kategoriak.id = eszkozok.kategoria_id AND allapotok.id = eszkozok.id AND eszkozok.tulajdonos_id = felhasznalok.id AND eszkozok.id = (?)
+    WHERE kategoriak.id = eszkozok.kategoria_id AND allapotok.id = eszkozok.allapot_id AND eszkozok.tulajdonos_id = felhasznalok.id AND eszkozok.id = (?)
     ORDER BY eszkozok.id`,
     [id]
   );

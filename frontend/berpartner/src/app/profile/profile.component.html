@@ -5,6 +5,7 @@
         </button>
 
         <header class="profile-header">
+            @if(spectatorId==user?.id){
             <div class="profile-picture" (click)="fileInput.click()">
                 
                 <img *ngIf="!user?.profil_kep" src="assets/pictures/default_profil.svg" alt="Profilkép" class="pfp">
@@ -14,7 +15,13 @@
                 <div class="pfp-overlay">
                     <mat-icon>camera_alt</mat-icon>
                 </div>
+            </div>}
+            @else{
+                <div class="profile-picture-2">                
+                <img *ngIf="!user?.profil_kep" src="assets/pictures/default_profil.svg" alt="Profilkép" class="pfp">
+                <img *ngIf="user?.profil_kep" src="http://localhost:3000/upload/avatar/{{user.profil_kep}}" alt="Profilkép" class="pfp"> 
             </div>
+            }
             <h1 class="full-name">{{user?.nev}}</h1>
         </header>
 

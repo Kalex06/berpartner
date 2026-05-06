@@ -17,6 +17,18 @@ jest.mock('../config/db');
 const app = require('../app'); 
 describe('Kategória műveletek tesztelése', () => {
 
+  it('Egy típusú kategoria lekérdezése - mockolva',async()=>{
+     db.query.mockResolvedValue([{id:1,kategoria:"Építőipari & gépi szerszámok"}]);
+     
+      db.execute = db.query; 
+    
+    const res = await request(app)
+      .get('/category/sub/1')
+      .set('Authorization', `Bearer Valami`);
+
+    expect(res.statusCode).toBe(200); 
+    expect(db.query).toHaveBeenCalled();
+  })
 
   it('Új kategória létrehozása - mockolva', async () => {
 

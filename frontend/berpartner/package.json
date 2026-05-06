@@ -22,6 +22,7 @@
     "@angular/router": "^18.2.0",
     "i": "^0.3.7",
     "json-server": "^1.0.0-beta.3",
+    "jwt-decode": "^4.0.0",
     "ngx-mask": "^20.0.3",
     "ngx-toastr": "^19.1.0",
     "rxjs": "~7.8.0",

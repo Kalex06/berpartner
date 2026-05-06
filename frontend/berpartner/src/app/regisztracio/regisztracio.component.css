@@ -136,6 +136,14 @@ mat-form-field {
   margin-bottom: 20px;
 }
 
+.completion-step .error-icon {
+  font-size: 80px;
+  height: 80px;
+  width: 80px;
+  color: #af4c4c;
+  margin-bottom: 20px;
+}
+
 .completion-step h3 {
   color: #2e7d32;
   margin: 20px 0;
