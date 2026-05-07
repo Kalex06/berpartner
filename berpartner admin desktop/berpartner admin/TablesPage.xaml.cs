@@ -508,13 +508,13 @@ namespace berpartner_admin
 
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
-                int utolsoIndex = ListBoxmainCategories.Items.Count - 1;
-                var utolsoSor = ListBoxmainCategories.ItemContainerGenerator.ContainerFromIndex(utolsoIndex) as ListBoxItem;
+                int lastIndex = ListBoxmainCategories.Items.Count - 1;
+                var lastRow = ListBoxmainCategories.ItemContainerGenerator.ContainerFromIndex(lastIndex) as ListBoxItem;
 
                 ContentPresenter cp = null;
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(utolsoSor); i++)
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(lastRow); i++)
                 {
-                    var child = VisualTreeHelper.GetChild(utolsoSor, i);
+                    var child = VisualTreeHelper.GetChild(lastRow, i);
                     if (child is Border b) child = b.Child;
                     if (child is ContentPresenter presenter) { cp = presenter; break; }
                 }
@@ -578,13 +578,13 @@ namespace berpartner_admin
 
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
-                int utolsoIndex = ListBoxsubCategories.Items.Count - 1;
-                var utolsoSor = ListBoxsubCategories.ItemContainerGenerator.ContainerFromIndex(utolsoIndex) as ListBoxItem;
+                int lastIndex = ListBoxsubCategories.Items.Count - 1;
+                var lastRow = ListBoxsubCategories.ItemContainerGenerator.ContainerFromIndex(lastIndex) as ListBoxItem;
 
                 ContentPresenter cp = null;
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(utolsoSor); i++)
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(lastRow); i++)
                 {
-                    var child = VisualTreeHelper.GetChild(utolsoSor, i);
+                    var child = VisualTreeHelper.GetChild(lastRow, i);
                     if (child is Border b) child = b.Child;
                     if (child is ContentPresenter presenter) { cp = presenter; break; }
                 }
@@ -979,13 +979,13 @@ namespace berpartner_admin
 
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
-                int utolsoIndex = ListBoxCondition.Items.Count - 1;
-                var utolsoSor = ListBoxCondition.ItemContainerGenerator.ContainerFromIndex(utolsoIndex) as ListBoxItem;
+                int lastIndex = ListBoxCondition.Items.Count - 1;
+                var lastRow = ListBoxCondition.ItemContainerGenerator.ContainerFromIndex(lastIndex) as ListBoxItem;
 
                 ContentPresenter cp = null;
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(utolsoSor); i++)
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(lastRow); i++)
                 {
-                    var child = VisualTreeHelper.GetChild(utolsoSor, i);
+                    var child = VisualTreeHelper.GetChild(lastRow, i);
                     if (child is Border b) child = b.Child;
                     if (child is ContentPresenter presenter) { cp = presenter; break; }
                 }
