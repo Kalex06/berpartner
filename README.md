@@ -1,8 +1,8 @@
 ------------| Bérpartner ©2026|-------------
 
 -|Készítők|-
-  Kopó Alex
-  Maros Máté
+Kopó Alex
+Maros Máté
 
 ---| Program Beüzemelése |---
 
