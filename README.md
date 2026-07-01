@@ -27,8 +27,9 @@ A .env fájban továbbá a tikosítási kulcs is helyet kapott amit rendes kör�
 
 8. A programhoz tartozik még egy asztali Admin felület amit a .env-ben megadott adatok alapján létrehozott Admin tud belépni.
 
-9. A programot a futtatható admin desktop mappában található meg ami a Admin felület indító parancsfájlját tartalmazza. Ehhez nem kell letölteni semmit. Egy kattintásal működik.
-    FONTOS hogy a backend és az adatbázis fusson különben hibát ír.
+9. A programot az admin desktop telepito mappában található meg ami a Admin felület telepítőjét tartalmazza. Ezzel minden a projekthez tartozó fájlt letölt a telepítő. Kövesse a telepítő utasításait és kész a letöltés.
+    FONTOS hogy internet kapcsolat szükséges a telepítéshez hogy letudja tölteni a szükséges csomagokat.
+    Továbbá hogy a prorgram futása alatt a backend és az adatbázis fusson különben hibát ír.
 
 
 *A projekt csak szemléltetésként készült el a 2026-os Szoftver tesztelő és fejlesztő vizsgára. A program globális felhasználása és világhálóra való hostolása továbbfejlesztést igényel.

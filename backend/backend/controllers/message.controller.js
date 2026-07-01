@@ -90,8 +90,6 @@ async function messageAccept(req, res) {
 
         const savedmassage = await Message.createMessage(answer_message, connection);
 
-        //console.log("frissítet sorok száma:",updatedRentRow, updatedMessageRow);
-
         await connection.commit();
         res.status(201).json({ message: 'Kérés elfogadva! válaszüzenet id:', savedmassage });
     }

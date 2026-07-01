@@ -15,7 +15,6 @@ async function uploadRent(req,res) {
             tulajdonos_id:req.body.tulajdonos_id,
             datum_tol:req.body.datum_tol,
             datum_ig:req.body.datum_ig
-
         };
 
         const ItemRentesDates = await Rent.getRentsDateByItem(rentData.eszkoz_id);
@@ -32,10 +31,8 @@ async function uploadRent(req,res) {
             }
         }
 
-
         const id = await Rent.uploadRentRequest(connection,rentData);
-
-        
+ 
         const messageData = {
             felado_id:req.user.id,
             cimzett_id:req.body.tulajdonos_id,
@@ -46,9 +43,6 @@ async function uploadRent(req,res) {
             statusz:'pending'
         };
 
-
-       
-
         const savedmassage = await Message.createMessage(messageData,connection);
          await connection.commit(); 
         res.status(201).json({message:`Kérés feltöltve! id:${id} , üzenetId: ${savedmassage}`,})
@@ -57,11 +51,9 @@ async function uploadRent(req,res) {
         await connection.rollback();
         res.status(500).json({message:"Hiba a bérlés leadásakor!"});
     }
-
     finally{
         connection.release();
-    }
-    
+    }   
 }
 
 async function getMyRents(req,res) {

@@ -9,13 +9,8 @@ async function uploadItem(req,res){
     try{
         await connection.beginTransaction();
 
-
         const {kategoria} = req.body;
-         const{nev,ar_egy_napra,allapot,leiras} = req.body;
-
-       
-
-       
+        const{nev,ar_egy_napra,allapot,leiras} = req.body;
 
         const itemData = {
             nev:nev,
@@ -27,10 +22,7 @@ async function uploadItem(req,res){
         };
 
        const savedItemid = await Item.uploadItem(connection,itemData);
-
-
-
-        
+      
         const pictures = [];
         for (let index = 0; index < req.files.length; index++) {
             const element = req.files[index];
@@ -38,7 +30,6 @@ async function uploadItem(req,res){
                 savedItemid,
                 element.filename
             ]);
-
 
         };
 

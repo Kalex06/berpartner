@@ -49,7 +49,6 @@
                 <DataGridTextColumn Header="NÉV" Binding="{Binding nev}" Width="*" />
                 <DataGridTextColumn Header="TELEFONSZÁM" Binding="{Binding telefonszam}" Width="*" />
                 <DataGridTextColumn Header="E-MAIL" Binding="{Binding email}" Width="*" />
-                <DataGridTextColumn Header="BÉRELT ESZKÖZÖK SZÁMA" Binding="{Binding berelt_eszkozok_szama}" Width="*" />
                 <DataGridTextColumn Header="JOGOSULTSÁG" Binding="{Binding jogosultsag }" Width="*" />
                 <DataGridTextColumn Header="IRÁNYÍTÓSZÁM" Binding="{Binding iranyitoszam}" Width="*" />
                 <DataGridTextColumn Header="VÁROS" Binding="{Binding varos}" Width="*" />
